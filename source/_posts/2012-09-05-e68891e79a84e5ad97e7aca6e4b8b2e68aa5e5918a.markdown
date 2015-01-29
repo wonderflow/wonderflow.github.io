@@ -1,0 +1,1713 @@
+---
+author: admin
+comments: true
+date: 2012-09-05 05:45:23+00:00
+layout: post
+slug: '%e6%88%91%e7%9a%84%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%8a%a5%e5%91%8a'
+title: 我的字符串报告（AC自动机详，后缀数组无）
+wordpress_id: 491
+categories:
+- ACM
+- Algorithm
+- IT
+---
+
+上个学期开学的时候做的字符串报告，觉得还有些价值，做了些补充发上来，也许以后用得着。
+
+1 KMP
+1.1 概念：
+KMP是一种用来处理字符串匹配的算法。通俗的讲就是给你一个串A（ababababbc）和一个串B（ababbc），问你A串中是否包含B串。
+解决这类问题的朴素算法就是枚举A串开始的位置，然后逐个位置对B串进行匹配。这样的算法复杂度是O（n*m）。而这里我们要介绍的KMP算法，就是解决这类问题最坏复杂度只要O（n+m）的算法。
+KMP是由三个人共同提出的，他们的名字分别是Knuth、Morris、Pratt，这也是为什么这个算法叫KMP的原因，就是取了三个人的首字母。
+1.2 原理：
+现假设我们有两个串A（ababababbc）和B（ababbc），然后我们有两个指针i和j，表示A[i-j+1..i]和B[1..j]完全相等。让我们来看一下KMP的工作过程。
+在匹配的过程中，i不断的增加，随着i的增加，j相应的变化，如果A[i] == B[j]那么i和j一起增加，如果A[i]<>B[j]，那么j就需要减小，来找到另外一个较小的j使得A[i-j+1..i]和B[1..j]完全相等继续成立。当然，我们的j自然是减小的越少越好。
+我们看到下面，i匹配到4的时候，i和j一直是相等的，所以i和j一起递增。但是当i和j都是5的时候，A[5]<>B[5]，那么怎么办呢，我们必须要减小j.假设我们要减小到j’，那么这个j’是多少呢。
+<!-- more -->
+
+[cpp collapse="false"]
+i =	1	2	3	4	5	6	7	8	9	10
+A=	a	b	a	b	a	b	a	b	b	c
+B=	a	b	a	b	b	c
+j=	1	2	3	4	5	6
+n
+
+思考过后我们会发现，之前已经满足A[i-j+1..i]和B[1..j]完全相等即A[1..i]的末j个字母已经和B串的前j个字母相等了，那么我们缩小后得到的j’，取的A[1..i]的末j’个字母一定比j取的字母少，也就是说对于A[1..i]的末j’个字母，一定是B数组的末j’个字母。
+那么此时问题就变成了，找B数组中前j’个字母和末j’个字母完全相等的j’，当然，j’是越大越好的。我们发现B[1..4]=”abab”中，头两个字母和末两个字母是完全相等的，那么最大的j’自然是2，这样新的j就是2，然后我们继续匹配下去。
+[cpp collapse="false"]
+i =	1	2	3	4	5	6	7	8	9	10
+A=	a	b	a	b	a	b	a	b	b	c
+B=			a	b	a	b	b	c
+j=			1	2	3	4	5	6
+n
+此时i变成了5，j变成了3，而A[i]和B[j]相等，继续匹配一直匹配到i=6，j=4的时候，又发生了之前那一幕，然后j再次变成了2。然后接下去就完全匹配成功了。
+[cpp collapse="false"]
+i =	1	2	3	4	5	6	7	8	9	10
+A=	a	b	a	b	a	b	a	b	b	c
+B=					a	b	a	b	b	c
+j=					1	2	3	4	5	6
+n
+算法伪代码：
+[cpp collapse="false"]
+j:=0;
+for i:=1 to n do
+begin
+   while (j>0) and (B[j+1]<>A[i]) do j:=next[j];
+   if B[j+1]=A[i] then j:=j+1;
+   if j=m then
+   begin
+      print(“matching complete! jump to next[j] ”);
+      j:=next[j];
+   end;
+end;
+n
+在j=m的时候触发跳转只是为了继续匹配。
+我们发现，在匹配的时候，i不断的增加，是线性的，所改变的j让我们的复杂度变得不确定起来。但是又可以发现，j的跳转其实跟A串没有任何关系，完全可以由B串预处理出来。
+现在我们所要解决的就是2个问题，1、如何证明匹配的复杂度是n，2、如何快速处理出来next数组（跳转数组）。
+显然，我们用算法分析中的摊还分析，对于单个变量进行观察。我们看j变量，j每次变成next[j]的时候，都是减小的，但是最多减小到0.然后j增加的机会只有一个，就是第五行。第五行包含在一个1~n的for循环中，也就是说，j最多增加n次，无论中途减少了几次。
+打个通俗的比喻，如果一个人在2012年一年中，不断的牵手分手，一共找了100个新女朋友，其中分手后的女朋友他不会再找。那么这个人最多失恋100次，而不可能出现更多。
+把这n次平摊到for循环中，每次循环的复杂度都是O(1)，那个整个匹配的过程就是O（n）的复杂度。
+快速预处理next数组也并不像想象中那么复杂。
+1.next[1]=0
+2.设next[i]=j，表明B[1..j-1]=B[i-j+1..i-1]
+ (1)若B[i]=B[j]，则 B[1..j]=B[i-j+1…i]且next[i-1]保证j为最大的满足此式的值，则next[j+1]=next[j]+1
+ (2)若B[i]!=B[j]，此时模式串既是主串又是模式串，应将模式向右滑动至以模式中第next[j]个字符和主串中的第j个字符相比较。即j = next[j],然后就进入循环继续匹配了。
+算法伪代码：
+[cpp collapse="false"]
+next[1]:=0;
+j:=0;
+for i:=2 to m do
+begin
+   while (j>0) and (B[j+1]<>B[i]) do j:=next[j];
+   if B[j+1]=B[i] then j:=j+1;
+   next[i]:=j;
+end;
+n
+是不是发现跟上面的伪代码惊人的相似？其实快速预处理的过程就是把模式串本身既当模式串又当主串来解的。
+
+1.3 应用：
+了解了KMP的算法原理，我们来做2到题目。
+一、POJ2752
+题意是求一个串所有的前缀等于后缀的子串长度。（注意不是回文串）
+我们发现，我们KMP中求出的next数组，本身就是具有这个特点的，不过我们next数组中求出的是当前最大的前缀等于后缀的前缀子串的位置。那么我们只要递归的输出next数组就行了。（next数组有值的时候递归，为0时输出）
+二、POJ2406
+这题的题意是求一个字符串的最小循环节。（如ababab的最小循环节就是ab，而aaaa的最小循环节是a）
+这个题目非常有助于对next数组的理解。
+大家知道，next数组存的是最大的“前缀等于后缀”的前缀末尾的位置。如果我们的单词本身不能分割成更小的循环节，比如说ab，那么next数组里面存的一定是0.
+[![](http://wonderflow.info/wp-content/uploads/2012/09/1.png)](http://wonderflow.info/wp-content/uploads/2012/09/1.png)
+接下来我们看由k个最小循环节构成的next数组里存的情况。（左图）
+那么现在结果已经很显然了。如果有一个字符串s,长度是len,它的失败函数是next，如果len能被len-next[len]整除，那么    len-next[len]就是我们要求的那个子串的长度，与之对应的字符串，就是我们想得到的子串.
+
+2 字典树（Trie Tree）
+[![](http://wonderflow.info/wp-content/uploads/2012/09/2.png)](http://wonderflow.info/wp-content/uploads/2012/09/2.png)
+2.1 概念：
+顾名思义,字典树就是一种树形结构，也叫单词查找树、trie树，优点是利用字符串的公共前缀来节约存储空间，最大限度地减少无谓的字符串比较。
+假设我们现在有这些单词 he,she,may,man,say,那么我们所构成的字典树如又图所示。
+2.2 结构介绍：
+特点：
+1、根节点不包含任何字母，而除它以外的每个结点都仅包含一个字母（事实上也可以将一个数字看成字母来建字母树）；
+2. 从根结点到某个结点，路径上经过的字母依次连接起来所构成的字母序列，称为该结点对应的单词。单词列表中的每个词，都是该字母树某个结点所对应的单词；
+3、每个结点的所有儿子包含的字母各不相同。
+
+很明显的能看出来，字典树就是尽可能多的把相同的前缀放到一起来节省存储空间。
+字典树的插入（Insert）、删除（ Delete）和查找（Find）都非常简单，用一个一重循环即可，即第i 次循环找到前i 个字母所对应的子树，然后进行相应的操作。实现这棵字母树，我们用最常见的数组保存即可，当然也可以开动态的指针类型。（对于实际的ACM题目，我们一般不开动态的指针类型，因为动态的耗时多，不容易释放。）
+根据以上特点，我们可以看出，字典树是一种简单的数据结构。
+2.3 应用：
+根据我的理解，字典树最大的应用有4点。
+一、 存储并hash海量的单词以达到快速检索的目的，查找单词的复杂度O（len），非常高效。从本质上来讲，字典树就是一种高效的hash函数结构。
+二、 字典树在对字符串排序上，也是惊人的高效。所有的复杂度就是读入和输出的线性复杂度。
+三、 字典树在最长公共前缀问题（LCP）上的应用。不难发现，对于多个串，如果我们把这多个串构建起一颗字典树，那么我们很容易就发现，对与任意两个串求其最长公共前缀其实就是求这两个串在树上的最近公共祖先（LCA）。
+四、 最后一点，也可以说是trie树的拓展，那就是下面要说的AC自动机啦。
+【附：LCA离线算法Tarjan】
+　　利用并查集优越的时空复杂度，我们可以实现LCA问题的O(n+Q)算法，这里Q表示询问的次数。Tarjan算法基于深度优先搜索的框架，对于新搜索到 的一个结点，首先创建由这个结点构成的集合，再对当前结点的每一个子树进行搜索，每搜索完一棵子树，则可确定子树内的LCA询问都已解决。其他的LCA询 问的结果必然在这个子树之外，这时把子树所形成的集合与当前结点的集合合并，并将当前结点设为这个集合的祖先。之后继续搜索下一棵子树，直到当前结点的所 有子树搜索完。这时把当前结点也设为已被检查过的，同时可以处理有关当前结点的LCA询问，如果有一个从当前结点到结点v的询问，且v已被检查过，则由于 进行的是深度优先搜索，当前结点与v的最近公共祖先一定还没有被检查，而这个最近公共祖先的包涵v的子树一定已经搜索过了，那么这个最近公共祖先一定是v 所在集合的祖先。
+
+3 AC自动机（Aho-Corasick automation）
+3.1 概念：
+AC自动机（Aho-Corasick automation），该算法在1975年产生于贝尔实验室，是著名的多模匹配算法之一。一个常见的例子就是给出n个单词，再给出一段包含m个字符的文章，让你找出有多少个单词在文章里出现过。要搞懂AC自动机，先得有模式树（字典树）Trie和KMP模式匹配算法的基础知识。AC自动机算法分为3步：构造一棵Trie树，构造失败指针和模式匹配过程。
+3.2 原理：
+为了完成AC自动机，我们必须构造一颗trie树，如何构造trie树已经在上面一章讲过了。那么现在假设我们已经构造好一颗trie树了。
+初始状态就是AC自动机的指针在root结点上。
+AC自动机的运作取决于3个函数。
+1、下步函数g(q,a)，表示在当前结点为q，而我们要匹配的目标字符是a的情况下，我们要跳转到哪个结点。
+如果有一条从结点q到结点v的边表示的字符就是a，那么自然就是走到v结点。g（q,a） = v；
+找不到表示a字符的边，但是q是根结点，那么放着，等待别的字符匹配。
+找不到表示a字符的边，并且q不是根结点，那我们就用g(q,a) = NULL(空集)表示不存在
+2、失败函数f(q)，表示当我在当前结点匹配失败的时候该跳转到哪个结点。
+f(q)里面存的是字典树里面所有单词前缀中最长的一个。
+为什么？因为我要保证当我匹配失败一次后，其他潜在的可能被我匹配的串不会被遗漏。也就是说，f(q)是永远有定义的。字典树里面的根节点是任何一个无法匹配的失败函数所能跳转的点。
+3、输出函数out(q)。输出进入q结点时识别出来的匹配的模式串集合。
+
+根据以上三个函数的思想，假设我们现在有he,his,her,hers,she这几个单词，那么构建出的字典树和它所附带的失败指针是什么样子的呢。如下图所示。
+[![](http://wonderflow.info/wp-content/uploads/2012/09/3.png)](http://wonderflow.info/wp-content/uploads/2012/09/3.png)
+这里我们要说明的一点就是，与上面介绍字典树的时候不同，我们上面是直接把节点看成一个字符，而这里是把连向结点的边看作一个字符。实际上他们是一样的，就是说法上的不同。
+而在AC自动机里面，因为结点更多的时候表示一种状态，所以就把字符用边来表示，这样更容易区别开来。
+
+可以写出如下伪代码：（搜索目标串T[1..m]）
+[cpp collapse="false"]
+q := 0;							 //初始化为根结点
+for i := 1 to m do
+    while g(q; T[i]) =φ; do
+        q := f(q);					 //跟随失败函数跳转
+        q := g(q; T[i]);				 //跟随下步函数
+        if out(q) ≠NULL ; then print i, out(q);
+endfor;
+n
+
+此处的复杂度分析和证明跟KMP有异曲同工之妙，同样是用摊还分析，观看变量q，它要么是往下面增加一个结点，要么是跟随失败指针一直回到根结点。而for循环是从1~m，所以复杂度就是O（m）；
+
+整个AC自动机可分为两个阶段完成。
+阶段一、把所有模式串一起构造字典树，然后完成AC自动机中的下步函数g(q,a);
+对于g(q,a)的构造，看下图第一阶段完成后的示意图就能明白了。
+[![](http://wonderflow.info/wp-content/uploads/2012/09/4.png)](http://wonderflow.info/wp-content/uploads/2012/09/4.png)
+阶段二，自然就是把失败函数f(q)构造出来了。直接看下面的伪代码。
+[cpp collapse="false"]
+Q := emptyQueue();
+for a ∈∑ do
+   if q(0, a) = q ≠ 0 then
+       f(q) := 0; enqueue(q, Q);
+while not isEmpty(Q) do
+      r:= dequeue(Q);
+      for a ∈ ∑ do
+         if g(r; a) = u ≠ φ then
+            enqueue(u, Q); v := f(r);
+            while g(v; a) =φdo v := f(v); // (*)
+            f(u) := g(v; a);
+            out(u) := out(u) ∪ out(f(u));
+n
+这段伪代码讲了什么？
+失败函数和输出函数都是由字典树的结点按照广度优先的顺序执行的，也就是说，越靠近根结点的点越早执行。
+考虑结点r，如果我们有u = g(r,a),那就是说，r是u的父节点，即以u结点结尾的串与以r结点结尾的串+a字符 相等！
+那么失败指针f(u)怎么跳转呢？
+答案是：跳转到一个最深的结点，以这个结点结尾的串是以u结点结尾的串的后缀。
+程序执行到（*）标记的这一行就可以看出这一点，通过定位这个最深的结点v，我们有两个约束条件，以v结点结尾的串是以r结尾的串的后缀，同时g(v,a)存在。
+（注意到，v和g(v,a)都可以是root结点）
+最后就是说明一下out(q)函数，为什么要加后面的out(f(u))，f(u)匹配出来的就是以u结点结尾的串的后缀，那显然也是成立的。
+
+显然，阶段二的复杂度就是广度优先搜索遍历整棵树的复杂度。
+复杂度证明与前面的类似
+
+3.3 应用：
+AC自动机最大的应用自然就是多模式串匹配了。以网上流传最光的HDU2222为例。
+算法分三步走，构造一棵Trie树，构造失败指针和模式匹配过程
+一，构造一棵Trie树（此处略过，注意结点上存一个count值表示这个单词出现过几次）
+二，构造失败指针：（此处再概括一遍）
+构造失败指针的过程概括起来就一句话：设这个节点上的字母为C，沿着他父亲的失败指针走，直到走到一个节点，他的儿子中也有字母为C的节点。然后把当前节点的失败指针指向那个字母也为C的儿子。如果一直走到了root都没找到，那就把失败指针指向root。具体操作起来只需要：先把root加入队列(root的失败指针指向null)，这以后我们每处理一个点，就把它的所有儿子加入队列，队列为空。
+  由于失败指针都是往上做走的。所以从root开始BFS处理失败指针就可以满足要求。
+三、模式匹配过程（再概括一遍）
+匹配过程分两种情况：
+(1)当前字符匹配， 表示从当前节点沿着树边有一条路径可以到达目标字符，此时只需沿该路径走向下一个节点继续匹配即可，目标字符串指针移向下个字符继续匹配；
+(2)当前字符不匹配，则去当前节点失败指针所指向的字符继续匹配，匹配过程随着指针指向root结束。重复这2个过程中的任意一个，直到模式串走到结尾为止。
+当遇到匹配成功的时候，把ans加上结点的cout值就可以了。
+
+
+关于报告的说明：
+KMP部分借鉴：[matrix67的博文](http://www.matrix67.com/blog/archives/115)
+字典树部分借鉴：董华星 [《浅析字母树在信息学竞赛中的应用》](http://www.docin.com/p-46740324.html)
+AC自动机部分：借鉴论文[http://www.cs.uku.fi/~kilpelai/BSA05/lectures/slides04.pdf](http://www.cs.uku.fi/~kilpelai/BSA05/lectures/slides04.pdf)
+后缀数组部分：由于自己的理解不多，就不贴出来了，主要参考资料为：
+罗穗骞 [《后缀数组——处理字符串的有力工具》](http://wenku.baidu.com/view/87116e4d2e3f5727a5e9622d.html)IOI2009年国家集训队论文
+许智磊	[《后缀数组》](http://wenku.baidu.com/view/3338866b561252d380eb6ed7.html)IOI2004年国家集训队论文
+AC自动机刷题题源来自：notonlysuccess的[【专辑】AC自动机](http://www.notonlysuccess.com/index.php/aho-corasick-automaton/)
+题目汇总的专场比赛地址：[http://icpc.njust.edu.cn/Contest/41](http://icpc.njust.edu.cn/Contest/41)
+
+
+然后就是我长长的刷题记录了：
+POJ 2406 [power strings](http://poj.org/problem?id=2406)
+利用KMP算法中的next函数，求出next[len],其中len = 字符串的长度,如果len能被len-next[len]整除，那么 len-next[len]就是我们要求的那个子串的长度，与之对应的字符串，就是我们想得到的子串。若是不能整除，那自然最小循环节就是整串字符串了。
+n
+#include <iostream>
+char s[1000010];
+int next[1000010];
+int len;
+int main()
+{
+	int i,j;
+	while(1)
+	{
+		scanf("%s",s);
+		if(s[0]=='.')break;
+		len=strlen(s);
+		i=0;
+		j=-1;
+		next[0]=-1;
+		while(i<len)
+		{
+			if(j==-1||s[i]==s[j])
+			{
+				++i;
+				++j;
+				next[i]=j;
+			}else j=next[j];
+		}
+		if(len%(len-next[len])==0)
+		{
+			printf("%d\n",len/(len-next[len]));
+		}else printf("1\n");
+	}
+	return 0;
+}
+n
+POJ 2752 [Seek the Name, Seek the Fame](http://poj.org/problem?id=2752)
+给出一个字符串A,求A有多少个前缀同时也是后缀，从小到大输出这些前缀的长度
+对于长度为len的字符串，由next的定义知：A[0]A[1]...A[next[len]-1]=A[len-next[len]]...A[len-1]此时A[0]A[1]...A[next[len]-1]为一个符合条件的前缀有A[0]A[1]....A[next[next[len]]-1] = A[len-next[next[len] - next[next[len]]]...A[next[len]-1],故A[0]A[1]....A[next[next[len]]-1]也是一个符合条件的前缀.所以递归next函数就可以了。
+n
+#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+#include <string.h>
+#include <memory.h>
+#include <math.h>
+#include <iostream>
+using namespace std;
+
+int next[400100];
+char ss[ 400100];
+int len;
+
+ void get_next(char s[])
+{
+    int i,j;i=0;next[0]=-1;j=-1;
+    while(i<len)
+   {
+      if(j==-1||s[i]==s[j])
+     {
+          ++i;++j;
+
+	   next[i]=j;
+      }
+	else  j=next[j];//子串的j指针转到next[j]继续比较
+    }
+}
+
+
+
+
+void getnext(char s[])
+{
+	next[1] = 0;
+	int i;
+	int j = 0;
+	for(i = 2; i <= len; i++)
+	{
+		while(j > 0 && s[j] != s[i - 1])j = next[j];
+		if(s[i-1] == s[j])j++;
+		next[i] = j;
+	}
+}
+void print(int n)
+{
+	if(next[n])
+	{
+		print(next[n]);
+	}
+	if(!next[n])printf("%d",n);
+	else printf(" %d",n);
+}
+int main()
+{
+	while(scanf("%s",ss)!=EOF)
+	{
+        memset(next,0,sizeof(next));
+		len = strlen(ss);
+		get_next(ss);
+		print(len);
+		printf("\n");
+	}
+	return 0;
+}
+n
+POJ 3461 [Oulipo](http://poj.org/problem?id=3461)
+KMP裸题啊,完整的KMP~
+n
+#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+#include <string.h>
+#include <memory.h>
+#include <math.h>
+#include <iostream>
+using namespace std;
+
+int next[1200000];
+char ss[1200000];
+char str[1000009];
+int len;
+
+void GetNext(char p[]) {
+    int i = 0, j = -1;
+    next[0] = -1;
+    while (p[i]!='\0') {
+        if ((j == -1) || (p[i] == p[j])) {
+            i++;j++;
+            next[i] = j;
+        } else {
+            j = next[j];
+        }
+    }
+}
+int kmp()
+{
+    int j=0,i = 0,sum=0;
+    while(str[i] != '\0')
+    {
+        if((j==-1)||(str[i] == ss[j]))
+        {
+        i++;
+           j++;
+            if(j==len)
+            {
+                sum++;
+                j=next[j];
+            }
+        }
+        else j = next[j];
+
+    }
+    return sum;
+}
+int main()
+{
+    int cas;
+    scanf("%d",&cas);
+	while(cas--)
+	{
+       scanf("%s%s",ss,str);
+       len = strlen(ss);
+        GetNext(ss);
+		printf("%d\n",kmp());
+	}
+	return 0;
+}
+n
+
+POJ 3167 [Cow Patterns](http://poj.org/problem?id=3167)
+关于KMP的一道很好的题目啊。
+提示：
+1、构造数组， q[j] p[j]分别表示在两个奶牛队列中中前i个数j出现的次数 （这个构造很容易出错）
+2、用q和p数组对比当前串的标号大小是，比较在比它大（或小）的，和相等的，别忘了减去前面一部分已经匹配过的
+3、多写几个函数，让自己的代码能看的更清楚，此题AC，你对KMP的理解基本就到位了。
+n
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <set>
+#include <memory.h>
+using namespace std;
+
+int p[25100][30],q[100100][30];//p[i][j]表示在前i个序列里，j出现过的次数
+int pst[25100],str[100100];
+int _next[25100];
+int n,k,s;
+
+bool IsMatch(int a,int b,int mod)
+{
+    int sma,smb;
+    sma = smb = 0;
+	int eqa,eqb;
+	eqa = eqb = 0;
+    switch(mod)
+    {
+        case 1:
+            for(int i=1;i<pst[a];i++)
+            {
+                sma+=p[a+1][i];
+            }
+			eqa = p[a+1][pst[a]];
+            for(int i=1;i<pst[b];i++)
+            {
+                smb+=p[b+1][i]-p[b-a][i];
+            }			
+			eqb = p[b+1][pst[b]] - p[b-a][pst[b]];
+            break;
+        case  2:
+            for(int i=1;i<pst[a];i++)
+            {
+                sma+=p[a+1][i];
+            }
+			eqa =  p[a+1][pst[a]];
+            for(int i=1;i<str[b];i++)
+            {
+				if(b>a)smb+=q[b+1][i]-q[b-a][i];
+				else smb+=q[b+1][i];
+            }			
+			if(b>a)eqb =  q[b+1][str[b]]-q[b-a][str[b]];
+			else eqb =  q[b+1][str[b]];
+            break;
+    }
+	if(sma==smb&&eqa==eqb)return true;
+    return false;
+}
+
+void GetNext()
+{
+    int i,j;
+    _next[0] = -1;i = 0;j=-1;
+    while(i<k)
+    {
+        if(j==-1||IsMatch(j,i,1))
+        {
+            i++;j++;
+            _next[i] = j;
+        }
+        else j = _next[j];
+    }
+}
+
+int ans[100100];
+int ansn;
+
+void KMP()
+{
+    ansn = 0;
+    int i,j;
+    i = 0;j=0;
+    while(i<n)
+    {
+        j++;
+		j--;
+		if(j==-1||IsMatch(j,i,2))
+        {
+            i++;j++;
+            if(j == k)
+            {
+                j = _next[j];
+                ans[ansn++] = i-k;
+            }
+        }
+        else j = _next[j];
+    }
+}
+
+int main()
+{
+    while(scanf("%d%d%d",&n,&k,&s)!=EOF)
+    {
+        memset(p,0,sizeof(p));
+        memset(q,0,sizeof(q));
+        for(int i=0;i<n;i++)
+        {
+            scanf("%d",&str[i]);
+            for(int j=1;j<=s;j++)
+            {
+                if(j == str[i])q[i+1][j] = q[i][j] + 1;
+                else q[i+1][j] = q[i][j];
+            }
+        }
+        for(int i=0;i<k;i++)
+        {
+            scanf("%d",&pst[i]);
+            for(int j=1;j<=s;j++)
+            {
+                if(j == pst[i])p[i+1][j] = p[i][j] + 1;
+                else p[i+1][j] = p[i][j];
+            }
+        }
+        GetNext();
+        KMP();
+        printf("%d\n",ansn);
+        for(int i=0;i<ansn;i++)
+            printf("%d\n",ans[i]+1);
+    }
+    return 0;
+}
+n
+
+上文提到的HDU2222[Keywords Search](http://acm.hdu.edu.cn/showproblem.php?pid=2222)
+关键的是找到了一个单词后就在字典树上把这个标记掉。
+n
+#include<iostream>
+#include<cstring>
+#include<cstdio>
+using namespace std;
+#define NEXTN 26
+#define M 250000
+
+struct Node{
+	int next[NEXTN];
+	int fail;
+	int count;
+}tree[M];
+int _p;
+int que[M];
+
+void init(){
+	_p = 1;//0 is always root
+	memset(tree,-1,sizeof(tree));
+}
+
+void insert(char * word){
+	int root = 0;
+	for(int i=0;word[i];i++){
+		if(tree[root].next[word[i]-'a']==-1){
+			tree[root].next[word[i]-'a'] = _p++;
+		}
+		root = tree[root].next[word[i]-'a'];
+	}
+	if(tree[root].count!=-1)tree[root].count++;
+	else tree[root].count = 1;
+//	cout<<root<<" "<<tree[root].count<<endl;
+}
+
+void maketree(){
+	int _f,_t,v,fa;
+	_f = _t = 0;
+	que[_t++] = 0;
+	tree[0].fail = 0;
+	while(_f!=_t){
+		v = que[_f++];
+		for(int i=0;i<NEXTN;i++){
+			int dex = tree[v].next[i];
+			if(dex!=-1){
+				if(!v){
+					tree[dex].fail = 0;
+					que[_t++] = dex;
+					continue;
+				}
+				fa = tree[v].fail;
+				while(true){
+					if(tree[fa].next[i]!=-1){
+						tree[dex].fail = tree[fa].next[i];
+						break;
+					}else if(!fa){
+						tree[dex].fail = 0;
+						break;
+					}
+					fa = tree[fa].fail;
+				}
+				que[_t++] = dex;
+			}
+		}
+	}
+}
+
+int gao(char * paper){
+	maketree();
+	int root = 0;
+	int len = strlen(paper);
+	int ret = 0;
+	for(int i=0;i<len;i++){
+		int v = paper[i] - 'a';
+		while(tree[root].next[v]==-1&&root)
+			root = tree[root].fail;
+		root = tree[root].next[v];
+		if(root==-1)root = 0;
+		int tp = root;
+		while(tp&&tree[tp].count!=-1){
+			ret += tree[tp].count;
+			tree[tp].count = -1;
+			tp = tree[tp].fail;
+		}
+		//cout<<paper[i]<<" "<<ret<<endl;
+	}
+	return ret;
+}
+
+char temp[56],paper[1000020];
+int main(){
+	int T,n;
+	scanf("%d",&T);
+	while(T--){
+		init();
+		scanf("%d",&n);
+		for(int i=0;i<n;i++){
+			scanf("%s",temp);
+			insert(temp);
+		}
+		scanf("%s",paper);
+		printf("%d\n",gao(paper));
+	}
+}
+n
+
+HDU2896 [病毒侵袭](http://acm.hdu.edu.cn/showproblem.php?pid=2896)
+问你目标中出现了几个模式串。
+n
+#include<iostream>
+#include<algorithm>
+#include<cstring>
+#include<vector>
+#include<cstdio>
+using namespace std;
+#define NEXTN 130
+#define M 60000
+
+struct Node{
+	int next[NEXTN];
+	int fail;
+	int count;
+}tree[M];
+int _p;
+int que[M];
+vector<int>vt;
+
+void init(){
+	_p = 1;//0 is always root
+	memset(tree,-1,sizeof(tree));
+}
+
+void insert(char * word,int num){
+	int root = 0;
+	for(int i=0;word[i];i++){
+		if(tree[root].next[word[i]]==-1){
+			tree[root].next[word[i]] = _p++;
+		}
+		root = tree[root].next[word[i]];
+	}
+	tree[root].count = num;
+}
+
+void maketree(){
+	int _f,_t,v,fa;
+	_f = _t = 0;
+	que[_t++] = 0;
+	tree[0].fail = 0;
+	while(_f!=_t){
+		v = que[_f++];
+		for(int i=0;i<NEXTN;i++){
+			int dex = tree[v].next[i];
+			if(dex!=-1){
+				if(!v){
+					tree[dex].fail = 0;
+					que[_t++] = dex;
+					continue;
+				}
+				fa = tree[v].fail;
+				while(true){
+					if(tree[fa].next[i]!=-1){
+						tree[dex].fail = tree[fa].next[i];
+						break;
+					}else if(!fa){
+						tree[dex].fail = 0;
+						break;
+					}
+					fa = tree[fa].fail;
+				}
+				que[_t++] = dex;
+			}
+		}
+	}
+}
+
+void gao(char * paper){
+	int len = strlen(paper);
+	int root = 0;
+	for(int i=0;i<len;i++){
+		int v = paper[i];
+		while(tree[root].next[v]==-1&&root)
+			root = tree[root].fail;
+		root = tree[root].next[v];
+		if(root==-1)root = 0;
+		int tp = root;
+		while(tp){
+			if(tree[tp].count!=-1)vt.push_back(tree[tp].count);
+			tp = tree[tp].fail;
+		}
+		//cout<<paper[i]<<" "<<ret<<endl;
+	}
+}
+
+char temp[210],paper[10020];
+int main(){
+	int n,m,ans;
+	while(scanf("%d",&n)!=EOF){
+		init();
+		ans = 0;
+		for(int i=0;i<n;i++){
+			scanf("%s",temp);
+			insert(temp,i+1);
+		}
+		maketree();
+		scanf("%d",&m);
+		for(int i=0;i<m;i++){
+			vt.clear();
+			scanf("%s",paper);
+			gao(paper);
+			if(vt.size()>0){
+				sort(vt.begin(),vt.end());
+				unique(vt.begin(),vt.end());
+				ans++;
+				printf("web %d:",i+1);
+				for(int j=0;j<vt.size();j++){
+					printf(" %d",vt[j]);
+				}
+				printf("\n");
+			}
+		}
+		printf("total: %d\n",ans);
+	}
+}
+n
+类似的题目：
+[病毒侵袭持续中](http://acm.hdu.edu.cn/showproblem.php?pid=3065)
+目标串中各个模式串出现了几次
+[Detect the Virus](http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=3430)
+先解码，再套模板
+
+POJ 2778 [DNA Sequence](http://poj.org/problem?id=2778)
+AC自动机加矩阵快速幂优化
+问你长度为N的串中不包含了模式串的串有几个。但是N的范围让你崩溃，没学过矩阵知识的就必须把这块补上了，送上矩阵知识传送门[《十个利用矩阵乘法解决的经典题目》](http://www.matrix67.com/blog/archives/276)
+n
+#include<iostream>
+#include<algorithm>
+#include<cstring>
+#include<vector>
+#include<cstdio>
+using namespace std;
+#define LL __int64
+const int Mod = 100000;
+const int NEXTN = 4;
+const int size = 110;
+
+LL rec[size][size];
+struct Node{
+	int next[NEXTN];
+	int fail;
+	int end;
+	void init(){
+		memset(next,-1,sizeof(next));
+		fail = -1;
+		end = 0;
+	}
+}tree[size];
+int _p=0;
+int que[size],_f,_t;
+
+int Index(char c){
+	switch(c){
+		case 'A':return 0;
+		case 'G':return 1;
+		case 'C':return 2;
+		case 'T':return 3;
+	}
+}
+void insert(char* word){
+	int root = 0;
+	for(int i=0;word[i];i++){
+		if(tree[root].end){
+		//	cout<<root<<" "<<word<<endl;
+			break;
+		}
+		if(tree[root].next[Index(word[i])]==-1){
+			_p++;
+			tree[root].next[Index(word[i])] = _p;
+			tree[_p].init();
+		}
+		root = tree[root].next[Index(word[i])];
+	}
+	tree[root].end++;
+}
+
+void maketree(){
+	int v=0,fa,dex=0;
+	_f = _t = 0;
+	que[_t++] = 0;
+	while(_f<_t){
+		v = que[_f++];
+		for(int i=0;i<NEXTN;i++){
+			dex = tree[v].next[i];
+			if(dex!=-1){
+				if(!v){
+					tree[dex].fail = 0;
+				}else{
+					fa = tree[v].fail;
+					tree[dex].fail = tree[fa].next[i];
+					if(tree[tree[dex].fail].end)tree[dex].end++;
+				}
+				que[_t++] = tree[v].next[i];
+			//	cout<<dex<<" "<<tree[dex].end<<endl;
+			//	if(tree[dex].end)id[dex] = rn++;
+			}else{
+				if(!v)tree[v].next[i] = 0;
+				else{
+					fa = tree[v].fail;
+					tree[v].next[i] = tree[fa].next[i];
+				}
+			}
+		}
+	}
+}
+
+
+void matrixMul(LL a[][size],LL b[][size],int m){
+	LL c[size][size] = {0};
+	for(int k=0;k<m;k++){
+		for(int i=0;i<m;i++){
+			for(int j=0;j<m;j++){
+				c[k][i]+=(a[k][j]*b[j][i]);
+				if(c[k][i]>=Mod)c[k][i]%=Mod;
+			}
+		}
+	}
+	for(int i=0;i<m;i++)
+		for(int j=0;j<m;j++)
+			a[i][j] = c[i][j];
+}
+
+
+
+char temp[120];
+LL ans[size][size],ret;
+
+
+int main(){
+	int n,m;
+	while(scanf("%d%d",&m,&n)!=EOF){
+		_p = 0;//0 is always root
+		tree[0].init();
+		for(int i=0;i<m;i++){
+			scanf("%s",temp);
+			insert(temp);
+		}
+		maketree();
+		_p++;
+		memset(rec,0,sizeof(rec));
+		for(int i=0;i<_p;i++){
+			if(!tree[i].end){
+				for(int j=0;j<NEXTN;j++){
+					if(!tree[tree[i].next[j]].end){
+						rec[i][tree[i].next[j]]++;
+					}
+				}
+			}
+		}
+		ret = 0;
+		memset(ans,0,sizeof(ans));
+		for(int i=0;i<_p;i++)
+			ans[i][i] = 1;
+		//p(rec,m);
+		while(n>0){
+			if(n&1)
+				matrixMul(ans,rec,_p);
+			matrixMul(rec,rec,_p);
+			n>>=1;
+			//	p(rec,m);
+		}
+
+		for(int i=0;i<_p;i++)
+			if(!tree[i].end){
+				ret +=ans[0][i];
+				if(ret>=Mod)ret%=Mod;
+			}
+		printf("%I64d\n",ret);
+	}
+
+}
+n
+
+HDU2243 [考研路茫茫——单词情结](http://acm.hdu.edu.cn/showproblem.php?pid=2243)
+上一题的加强版，增加熟练度的机会～
+n
+#include<iostream>
+#include<cstring>
+#include<cstdio>
+using namespace std;
+#define LL unsigned __int64
+const int size = 28;
+int n,l;
+struct Node{
+	int next[26],fail,end;
+	void init(){
+		memset(next,-1,sizeof(next));
+		fail = -1;
+		end = 0;
+	}
+}node[size];
+int que[size],front,tail;
+int nNode;
+LL graph[size][size];
+struct Mat{
+	LL m[size][size];
+}gm;
+
+void insert(char * word){
+	int p = 0;
+	for(int i=0;word[i];i++){
+		int v = word[i]-'a';
+		if(node[p].next[v]==-1){
+			nNode++;
+			node[p].next[v] = nNode;
+			node[nNode].init();
+		}
+		p = node[p].next[v];
+	}
+	node[p].end++;
+}
+
+void build(){
+	front = tail = 0;
+	que[tail++] = 0;
+	int v,dex;
+	while(front<tail){
+		v = que[front++];
+		for(int i=0;i<26;i++){
+			dex = node[v].next[i];
+			if(dex!=-1){
+				if(!v)node[dex].fail = 0;
+				else{
+					node[dex].fail = node[node[v].fail].next[i];
+					if(node[node[dex].fail].end)node[dex].end++;
+				}
+				que[tail++] = dex;
+			}else{
+				if(!v)node[0].next[i] = 0;
+				else node[v].next[i] = node[node[v].fail].next[i];
+			}
+		}
+	}
+}
+
+void getGraph(){
+	memset(graph,0,sizeof(graph));
+	for(int i=0;i<nNode;i++){
+		if(node[i].end)continue;
+		for(int j=0;j<26;j++){
+			if(node[node[i].next[j]].end)continue;
+			graph[i][node[i].next[j]]++;
+		}
+	}
+/*	for(int i=0;i<nNode;i++){
+		for(int j=0;j<nNode;j++){
+			cout<<graph[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+	*/
+	
+}
+
+Mat matrixMul(Mat a,Mat b,int sz){
+	Mat c;
+	for(int i=0;i<sz;i++){
+		for(int j=0;j<sz;j++){
+			c.m[i][j] = 0;
+			for(int k=0;k<sz;k++){
+				c.m[i][j] += a.m[i][k]*b.m[k][j];
+			}
+		}
+	}
+	return c;
+}
+
+Mat matrixPow(Mat st,int n,int sz){
+	Mat ret;
+	for(int i=0;i<sz;i++){
+		for(int j=0;j<sz;j++){
+			ret.m[i][j] = 0;
+		}
+	}
+	for(int i=0;i<sz;i++)
+		ret.m[i][i] = 1;
+	while(n>0){
+		if(n&1)ret = matrixMul(ret,st,sz);
+		st = matrixMul(st,st,sz);
+		n>>=1;
+	}
+	return ret;
+}
+
+Mat matrixAdd(Mat a,Mat b,int sz){
+	Mat ret;
+	for(int i=0;i<sz;i++){
+		for(int j=0;j<sz;j++){
+			ret.m[i][j] = a.m[i][j] + b.m[i][j];
+		}
+	}
+	return ret;
+}
+
+Mat matrixSum(int n,int sz){
+	if(n==1){
+		return gm;
+	}
+	Mat tmp = matrixSum(n>>1,sz);
+	Mat ret;
+	if(n&1){
+		Mat k = matrixPow(gm,n/2+1,sz);
+		ret = matrixAdd(tmp,k,sz);
+		ret = matrixAdd(ret,matrixMul(tmp,k,sz),sz);
+	}else{
+		ret = matrixPow(gm,n>>1,sz);
+		ret = matrixMul(ret,tmp,sz);
+		ret = matrixAdd(tmp,ret,sz);
+	}
+	return ret;
+}
+
+LL pow(int n){
+	if(!n)return 1;
+	LL a = 26;
+	LL ret = 1;
+	while(n>0){
+		if(n&1)ret*=a;
+		a*=a;
+		n>>=1;
+	}
+	return ret;
+}
+
+LL sum(int n){
+	if(n==1)return 26;
+	LL tmp = sum(n>>1);
+	if(n&1){
+		LL k = pow(n/2+1);
+		return tmp+k+tmp*k;
+	}
+	return tmp+pow(n/2)*tmp;
+}
+
+LL calcOther(int n,int sz){
+	LL ret = 0;
+	Mat ans = matrixSum(n,sz);
+	for(int i=0;i<sz;i++){
+		if(node[i].end)continue;
+		ret+=ans.m[0][i];
+	}
+//	cout<<"matrix:"<<ret<<endl;
+	return ret;
+}
+
+int main(){
+	char word[16];
+	while(scanf("%d%d",&n,&l)!=EOF){
+		nNode = 0;
+		node[0].init();
+		for(int i=0;i<n;i++){
+			scanf("%s",word);
+			insert(word);
+		}
+		nNode++;
+		build();
+		getGraph();
+		for(int i=0;i<nNode;i++){
+			for(int j=0;j<nNode;j++){
+				gm.m[i][j] = graph[i][j];
+			}
+		}
+		LL ans = sum(l);
+//		cout<<"sum: "<<ans<<endl;
+		ans-=calcOther(l,nNode);
+		printf("%I64u\n",ans);
+	}
+	return 0;
+}
+n
+
+POJ1625 [Censored!](http://poj.org/problem?id=1625)
+AC自动机+大数+简单DP，学习AC自动机DP的机会到了～
+n
+#include<iostream>
+#include<cstdio>
+#include<cstring>
+using namespace std;
+#define MAXN 9999
+#define MAXSIZE 10
+#define DLEN 4
+const int size = 128;
+class BigNum
+{ 
+private: 
+	int a[50];    //可以控制大数的位数 
+	int len;       //大数长度
+public: 
+	BigNum(){ len = 1;memset(a,0,sizeof(a)); }   //构造函数
+	BigNum(const int);       //将一个int类型的变量转化为大数
+	BigNum(const char*);     //将一个字符串类型的变量转化为大数
+	BigNum(const BigNum &);  //拷贝构造函数
+	BigNum &operator=(const BigNum &);   //重载赋值运算符，大数之间进行赋值运算
+
+	friend istream& operator>>(istream&,  BigNum&);   //重载输入运算符
+	friend ostream& operator<<(ostream&,  BigNum&);   //重载输出运算符
+
+	BigNum operator+(const BigNum &) const;   //重载加法运算符，两个大数之间的相加运算 
+	BigNum operator*(const BigNum &) const;   //重载乘法运算符，两个大数之间的相乘运算 
+
+	void print();       //输出大数
+	void init(){
+		memset(a,0,sizeof(a));
+		len = 1;
+	}
+}; 
+
+struct Node{
+	int next[50],fail;
+	bool end;
+	void init(){
+		memset(next,-1,sizeof(next));
+		fail = -1;
+		end = 0;
+	}
+}tree[size];
+int _p;
+BigNum dp[size][size],bg[size][size];
+int graph[size][size];
+int n,m,p;
+int hash[256];
+int que[size],front,tail;
+
+void insert(char *word){
+	int p = 0;
+	for(int i=0;word[i];i++){
+		if(tree[p].next[hash[word[i]]]==-1){
+			_p++;
+			tree[p].next[hash[word[i]]] = _p;
+			tree[_p].init();
+		}
+		p = tree[p].next[hash[word[i]]];
+	}
+	tree[p].end = true;
+}
+
+void build(){
+	front = tail = 0;
+	que[tail++] = 0;
+	while(front<tail){
+		int v = que[front++];
+		for(int i=0;i<n;i++){
+			int dex = tree[v].next[i];
+			if(dex!=-1){
+				if(!v)tree[dex].fail = 0;
+				else {
+					tree[dex].fail = tree[tree[v].fail].next[i];
+					tree[dex].end |= tree[tree[dex].fail].end;
+				}
+				que[tail++] = dex;
+			}else{
+				if(!v)tree[v].next[i] = 0;
+				else tree[v].next[i] = tree[tree[v].fail].next[i];
+			}
+		}
+	}
+}
+
+void makegraph(){
+	memset(graph,0,sizeof(graph));
+	for(int i=0;i<_p;i++){
+		if(tree[i].end)continue;
+		for(int j=0;j<n;j++){
+			if(tree[tree[i].next[j]].end)continue;
+			graph[i][tree[i].next[j]]++;
+		}
+	}
+	for(int i=0;i<_p;i++){
+		for(int j=0;j<_p;j++){
+			bg[i][j] = graph[i][j];
+		//	cout<<graph[i][j]<<" ";
+		}
+		//cout<<endl;
+	}
+}
+
+void gao(){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<_p;j++){
+			dp[i][j].init();
+		}
+	}
+	dp[0][0] = 1;
+	//cout<<"start:"<<endl;
+	for(int i=1;i<=m;i++){
+		for(int j=0;j<_p;j++){
+			for(int k=0;k<_p;k++){
+				if(graph[k][j]){
+					dp[i][j] = dp[i][j] + dp[i-1][k]*bg[k][j];
+				//	dp[i][j].print();
+				}
+			}
+	//		cout<<i<<" "<<j<<" "<<dp[i][j]<<endl;
+		}
+	}
+}
+
+void print(){
+	BigNum ans;
+	ans = 0;
+	for(int i=0;i<_p;i++){
+		ans = ans + dp[m][i];
+	}
+	ans.print();
+}
+
+int main(){
+	char temp[56];
+	while(scanf("%d%d%d",&n,&m,&p)!=EOF){
+		scanf("%s",temp);
+		_p = 0;
+		tree[_p].init();
+		for(int i=0;i<n;i++){
+			hash[temp[i]] = i;
+		}
+		for(int i=0;i<p;i++){
+			scanf("%s",temp);
+			insert(temp);
+		}
+		_p++;
+		build();
+		makegraph();
+		gao();
+		print();
+	}
+	return 0;
+}
+
+
+BigNum::BigNum(const int b)     //将一个int类型的变量转化为大数
+{ 
+	int c,d = b;
+	len = 0;
+	memset(a,0,sizeof(a));
+	while(d > MAXN)
+	{
+		c = d - (d / (MAXN + 1)) * (MAXN + 1); 
+		d = d / (MAXN + 1);
+		a[len++] = c;
+	}
+	a[len++] = d;
+}
+BigNum::BigNum(const char*s)     //将一个字符串类型的变量转化为大数
+{
+	int t,k,index,l,i;
+	memset(a,0,sizeof(a));
+	l=strlen(s);   
+	len=l/DLEN;
+	if(l%DLEN)
+		len++;
+	index=0;
+	for(i=l-1;i>=0;i-=DLEN)
+	{
+		t=0;
+		k=i-DLEN+1;
+		if(k<0)
+			k=0;
+		for(int j=k;j<=i;j++)
+			t=t*10+s[j]-'0';
+		a[index++]=t;
+	}
+}
+BigNum::BigNum(const BigNum & T) : len(T.len)  //拷贝构造函数
+{ 
+	int i; 
+	memset(a,0,sizeof(a)); 
+	for(i = 0 ; i < len ; i++)
+		a[i] = T.a[i]; 
+} 
+BigNum & BigNum::operator=(const BigNum & n)   //重载赋值运算符，大数之间进行赋值运算
+{
+	int i;
+	len = n.len;
+	memset(a,0,sizeof(a)); 
+	for(i = 0 ; i < len ; i++) 
+		a[i] = n.a[i]; 
+	return *this; 
+}
+istream& operator>>(istream & in,  BigNum & b)   //重载输入运算符
+{
+	char ch[MAXSIZE*4];
+	int i = -1;
+	in>>ch;
+	int l=strlen(ch);
+	int count=0,sum=0;
+	for(i=l-1;i>=0;)
+	{
+		sum = 0;
+		int t=1;
+		for(int j=0;j<4&&i>=0;j++,i--,t*=10)
+		{
+			sum+=(ch[i]-'0')*t;
+		}
+		b.a[count]=sum;
+		count++;
+	}
+	b.len =count++;
+	return in;
+
+}
+ostream& operator<<(ostream& out,  BigNum& b)   //重载输出运算符
+{
+	int i;  
+	cout << b.a[b.len - 1]; 
+	for(i = b.len - 2 ; i >= 0 ; i--)
+	{ 
+		cout.width(DLEN); 
+		cout.fill('0'); 
+		cout << b.a[i]; 
+	} 
+	return out;
+}
+
+BigNum BigNum::operator+(const BigNum & T) const   //两个大数之间的相加运算
+{
+	BigNum t(*this);
+	int i,big;      //位数   
+	big = T.len > len ? T.len : len; 
+	for(i = 0 ; i < big ; i++) 
+	{ 
+		t.a[i] +=T.a[i]; 
+		if(t.a[i] > MAXN) 
+		{ 
+			t.a[i + 1]++; 
+			t.a[i] -=MAXN+1; 
+		} 
+	} 
+	if(t.a[big] != 0)
+		t.len = big + 1; 
+	else
+		t.len = big;   
+	return t;
+}
+
+BigNum BigNum::operator*(const BigNum & T) const   //两个大数之间的相乘运算 
+{ 
+	BigNum ret; 
+	int i,j,up; 
+	int temp,temp1;   
+	for(i = 0 ; i < len ; i++)
+	{ 
+		up = 0; 
+		for(j = 0 ; j < T.len ; j++)
+		{ 
+			temp = a[i] * T.a[j] + ret.a[i + j] + up; 
+			if(temp > MAXN)
+			{ 
+				temp1 = temp - temp / (MAXN + 1) * (MAXN + 1); 
+				up = temp / (MAXN + 1); 
+				ret.a[i + j] = temp1; 
+			} 
+			else
+			{ 
+				up = 0; 
+				ret.a[i + j] = temp; 
+			} 
+		} 
+		if(up != 0) 
+			ret.a[i + j] = up; 
+	} 
+	ret.len = i + j; 
+	while(ret.a[ret.len - 1] == 0 && ret.len > 1)
+		ret.len--; 
+	return ret; 
+} 
+
+void BigNum::print()    //输出大数
+{ 
+	int i;   
+	cout << a[len - 1]; 
+	for(i = len - 2 ; i >= 0 ; i--)
+	{ 
+		cout.width(DLEN); 
+		cout.fill('0'); 
+		cout << a[i]; 
+	} 
+	cout << endl;
+}
+n
+
+HDU2825 [Wireless Password](http://acm.hdu.edu.cn/showproblem.php?pid=2825)
+AC自动机DP 加上一点小小的状态压缩DP,前面这么多恶心题都下来了，这题就是小菜了。
+n
+#include <cstdio>
+#include <cstring>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+const int size = 128;
+const int MOD = 20090717; 
+
+int n,m,k;
+struct Node{
+	int next[26],fail;
+	int end;
+	void init(){
+		memset(next,-1,sizeof(next));
+		fail = -1;
+		end = 0;
+	}
+}tree[size];
+int que[size],_p;
+int graph[size][size];
+int dp[26][size][1<<10];
+int calc[1<<10];
+
+void insert(char * word,int ind){
+	int p = 0;
+	for(int i=0;word[i];i++){
+		int m = word[i] - 'a';
+		if(tree[p].next[m]==-1){
+			tree[++_p].init();
+			tree[p].next[m] = _p;
+		}
+		p = tree[p].next[m];
+	}
+	tree[p].end |= (1<<ind);
+}
+
+void build(){
+	int front,tail;
+	front = tail = 0;
+	que[tail++] = 0;
+	while(front<tail){
+		int v = que[front++];
+		for(int i=0;i<26;i++){
+			int dex = tree[v].next[i];
+			if(dex!=-1){
+				if(!v)tree[dex].fail = 0;
+				else{
+					tree[dex].fail = tree[tree[v].fail].next[i];
+					tree[dex].end |= tree[tree[dex].fail].end;
+				}
+				que[tail++] = dex;
+			}else{
+				if(!v)tree[v].next[i] = 0;
+				else tree[v].next[i] = tree[tree[v].fail].next[i];
+			}
+		}
+	}
+}
+
+void getGraph(){
+	memset(graph,0,sizeof(graph));
+	for(int i=0;i<_p;i++){
+		for(int j=0;j<26;j++){
+			graph[i][tree[i].next[j]]++;
+		}
+	}
+/*	for(int i=0;i<_p;i++){
+		for(int j=0;j<_p;j++){
+			cout<<graph[i][j]<<" ";
+		}
+		cout<<endl;
+	}*/
+}
+
+bool check(int n){
+	int ret = 0;
+	while(n){
+		n&=(n-1);
+		ret++;
+	}
+	if(ret>=k)return true;
+	return false;
+}
+
+int gao(){
+	for(int i=0;i<=n;i++){
+		for(int j=0;j<(1<<m);j++){
+			for(int k=0;k<=_p;k++){
+				dp[i][k][j] = 0;
+			}
+		}
+	}
+	//memset(dp,0,sizeof(dp));
+	dp[0][0][0] = 1;
+	const int mx = 1<<m;
+	for(int i=0;i<n;i++){
+		for(int j=0;j<mx;j++){
+			for(int p1=0;p1<_p;p1++){
+				if(dp[i][p1][j]==0)continue;
+				for(int p2=0;p2<26;p2++){
+					int v = tree[p1].next[p2];
+					dp[i+1][v][j|tree[v].end] += dp[i][p1][j];
+					if(dp[i+1][v][j|tree[v].end]>=MOD)
+						dp[i+1][v][j|tree[v].end] -= MOD;
+				}
+			}
+		}
+	}
+	int ans = 0;
+	for(int i=0;i<_p;i++){
+		for(int j=0;j<mx;j++){
+			if(calc[j]>=k)
+				ans = (ans+dp[n][i][j])%MOD;
+		}
+	}
+	return ans;
+}
+
+
+char temp[128];
+int main(){
+	calc[0] = 0;
+	const int d = 1<<10;
+	for(int i=1;i<d;i++){
+		calc[i] = calc[i>>1]+(i&1);
+	}
+	while(scanf("%d%d%d",&n,&m,&k)!=EOF){
+		if(m+n+k==0)break;
+		_p = 0;
+		tree[_p].init();
+		for(int i=0;i<m;i++){
+			scanf("%s",temp);
+			insert(temp,i);
+		}
+		_p++;
+		build();
+	//	getGraph();
+		printf("%d\n",gao()%MOD);
+	}
+	return 0;
+}
+n
+
+HDU 2296 [Ring](http://acm.hdu.edu.cn/showproblem.php?pid=2296)
+AC自动机DP，要记录路径（string就可以了）
+n
+#include <cstdio>
+#include <cstring>
+#include <string>
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int n,m;
+char buff[1024];
+char words[126][16];
+struct Node{
+	int next[26];
+	int fail;
+	int val;
+	void init(){
+		memset(next,-1,sizeof(next));
+		fail = -1;
+		val = 0;
+	}
+}tree[1010];
+int _p;
+int que[1010],head,tail;
+int dp[1010][56];
+string str[1010][56];
+void init(){
+	_p = 0;
+	tree[_p].init();
+}
+void insert(char *word,int val){
+	int v = 0;
+	for(int i=0;word[i];i++){
+		int nt = word[i]-'a';
+		if(tree[v].next[nt]==-1){
+			tree[v].next[nt] = ++_p;
+			tree[_p].init();
+		}
+		v = tree[v].next[nt];
+	}
+	tree[v].val += val;
+}
+void build(){
+	head = tail = 0;
+	int root = 0;
+	que[tail++] = root;
+	while(head<tail){
+		root = que[head++];
+		for(int i=0;i<26;i++){
+			int dex = tree[root].next[i];
+			if(dex!=-1){
+				if(!root)tree[dex].fail = 0;
+				else{
+					tree[dex].fail = tree[tree[root].fail].next[i];
+					tree[dex].val += tree[tree[dex].fail].val;
+				}
+				que[tail++] = dex;
+			}else{
+				if(!root)tree[root].next[i] = root;
+				else tree[root].next[i] = tree[tree[root].fail].next[i];
+			}
+		}
+	}
+}
+
+void solve(){
+	memset(dp,-1,sizeof(dp));
+	for(int i=0;i<=_p;i++){
+		str[i][0] = "";
+	}
+	dp[0][0] = 0;
+	string ans,tmp;
+	int mnt = -1;
+	for(int i=0;i<n;i++){
+		for(int j=0;j<=_p;j++){
+			if(dp[j][i]<0)continue;
+			for(int k=0;k<26;k++){
+				int v = tree[j].next[k];
+				if(dp[v][i+1]<dp[j][i]+tree[v].val){
+					dp[v][i+1] = dp[j][i]+tree[v].val;
+					str[v][i+1] = str[j][i];
+					str[v][i+1].push_back('a'+k);
+					if(dp[v][i+1]>mnt){
+						mnt = dp[v][i+1];
+						ans = str[v][i+1];
+//						cout<<mnt<<" "<<ans<<endl;
+					}
+				}else if(dp[v][i+1]==dp[j][i]+tree[v].val){
+					tmp = str[j][i];
+					tmp.push_back('a'+k);
+					if(tmp<str[v][i+1]){
+						str[v][i+1] = tmp;
+					}
+				}
+			}
+		}
+	}
+	if(mnt==0)puts("");
+	else{
+		int f = 0;
+		for(int i=1;i<=n;i++){
+			for(int j=0;j<=_p;j++){
+				if(dp[j][i]==mnt){
+					ans = str[j][i];
+					f = i;
+					break;
+				}
+			}
+			if(f)break;
+		}
+		for(int i=0;i<=_p;i++){
+			if(dp[i][f]==mnt&&str[i][f]<ans){
+				ans = str[i][f];
+			}
+		}
+		
+		printf("%s\n",ans.c_str());
+	}
+//	cout<<mnt<<endl;
+}
+
+int main(){
+	int T,t;
+	scanf("%d",&T);
+	while(T--){
+		scanf("%d%d",&n,&m);
+		init();
+		for(int i=0;i<m;i++){
+			scanf("%s",words[i]);
+		}
+		for(int i=0;i<m;i++){
+			scanf("%d",&t);
+			insert(words[i],t);
+		}
+		build();
+		solve();
+	}
+	return 0;
+}
+n
+
+再来几道自己刷吧：
+[DNA REPAIR](http://acm.hdu.edu.cn/showproblem.php?pid=2457)
+[Searching the String](http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=3228)
+
+还有这两个没刷，据说很恶心：
+[Resource Archiver](http://acm.hdu.edu.cn/showproblem.php?pid=3247)
+[BCD Code](http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=3494)
+
+这么多题目刷下来对AC自动机的理解：
+
+AC自动机就是个简单的状态转移，甚至连模板都不需要专门准备。
+
+注意点：
+
+1、可能有重复串在同一个节点上。
+2、某个节点的信息可以在构建失败指针的过程中传递构建，这样就不用每次query的时候多走一遍了。
+3、传递失败指针的信息的时候，跟构建失败指针不一样。一个是拿父亲的失败指针的next值赋过来，一个是拿自己的失败指针的节点值的信息赋过来。（这个错误让我一度以为自己被AC自动机诅咒了--那几天天天嘴里念叨着“AC自动机不肯让我AC。。”，还好最后ZYZ帮我查出来了，感谢！！）
+4、AC自动机就是指针指来指去，必要时还是对着模板看看比较安全，但是query函数千变万化，一定要有自己的思考。
+
+

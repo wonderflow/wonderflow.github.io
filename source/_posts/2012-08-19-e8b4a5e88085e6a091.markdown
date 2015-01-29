@@ -1,0 +1,17 @@
+---
+author: admin
+comments: true
+date: 2012-08-19 03:51:11+00:00
+layout: post
+slug: '%e8%b4%a5%e8%80%85%e6%a0%91'
+title: 败者树
+wordpress_id: 447
+categories:
+- IT
+- 碎碎念
+post_format:
+- 状态
+---
+
+在网上看到有人画了一张原理图，一目了然，非常专业～
+![败者树](http://images.cnblogs.com/cnblogs_com/songqq/%E6%9C%AA%E5%91%BD%E5%90%8D.jpg)

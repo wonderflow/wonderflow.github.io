@@ -1,0 +1,16 @@
+---
+author: admin
+comments: true
+date: 2012-08-17 12:28:45+00:00
+layout: post
+slug: '445'
+title: No Content Found
+wordpress_id: 445
+categories:
+- 碎碎念
+post_format:
+- 状态
+---
+
+这哥们太给力了，[面试题集锦](http://blog.csdn.net/v_july_v/article/details/6543438)；
+不管面试不面试，看看总归每坏处，何况题目都还挺有趣的～

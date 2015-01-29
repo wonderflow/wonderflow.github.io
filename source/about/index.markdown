@@ -1,12 +1,10 @@
 ---
 layout: page
 title: "about"
-date: 2015-01-27 09:42
+date: 2015-01-27 11:03
 comments: true
 sharing: true
 footer: true
 ---
 
-# WonderfloW
-
-contact: wonderflow.sun【@】gmail.com
+Contact: wonderflow.sun【@】gmail.com

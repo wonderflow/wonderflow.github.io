@@ -1,0 +1,130 @@
+---
+author: admin
+comments: true
+date: 2013-08-11 05:51:54+00:00
+layout: post
+slug: cloudfoundry%e5%85%a5%e9%97%a8%e6%9d%90%e6%96%99%e6%b1%87%e9%9b%86
+title: CloudFoundry入门材料汇集
+wordpress_id: 693
+categories:
+- CloudFoundry
+- IT
+tags:
+- cloudfoundry
+---
+
+# 架构总览
+
+
+
+
+[**深入cloudfoundry**](http://qing.blog.sina.com.cn/tj/88ca09aa330004r8.html)**[（第一版）上](http://qing.blog.sina.com.cn/tj/88ca09aa330004r8.html)，**
+
+
+
+
+[**深入cloudfoundry**](http://qing.blog.sina.com.cn/tj/88ca09aa33000975.html)**[（第一版）下](http://qing.blog.sina.com.cn/tj/88ca09aa33000975.html),**
+
+
+
+
+[**深入cloudfoundry**](http://qing.blog.sina.com.cn/tj/88ca09aa33003k2j.html)**[（一周年版）](http://qing.blog.sina.com.cn/tj/88ca09aa33003k2j.html),**
+
+
+
+
+[**Cloud Foundry**](http://cnblog.cloudfoundry.com/2013/03/26/523/)**[技术全貌及核心组件分析](http://cnblog.cloudfoundry.com/2013/03/26/523/),**
+
+
+
+
+[**以****NATS****为主线的****CloudFoundry****原理**](http://blog.csdn.net/resouer/article/details/8065795),
+
+
+<!-- more -->
+
+
+# 
+
+
+
+
+# 部署相关
+
+
+
+
+******[多节点部署之配置文件全攻略](http://lory-yang.com/2012/12/16/cloudfoundry-multi-cluster/),**
+
+
+
+
+[Running your own CloudFoundry based on your IaaS. Part 1](http://blog.csdn.net/resouer/article/details/7939952),
+
+
+
+
+[Running your own CloudFoundry based on your IaaS. Part 2](http://blog.csdn.net/resouer/article/details/8010756).
+
+
+
+
+
+# 组件细节
+
+
+
+
+## [VMC](http://lory-yang.com/2012/11/20/vmc-source/),
+
+
+
+
+## [DEA](http://lory-yang.com/2012/09/09/cloud-foundry-dea/),
+
+
+
+
+## [NATS](http://blog.csdn.net/resouer/article/details/8094980),
+
+
+
+
+## [Router](http://lory-yang.com/2012/08/06/cloud_foundry_router/),
+
+
+
+
+## [cloudcontroller](http://blog.csdn.net/cherry_sun/article/details/7750394),
+
+
+
+
+## [EventMachine](http://blog.csdn.net/resouer/article/details/7975550),
+
+
+
+
+## [Service Gateway](http://blog.csdn.net/shlazww/article/details/8112874)
+
+
+
+
+## dashboard: [1](http://blog.csdn.net/resouer/article/details/8709609),[2](http://blog.csdn.net/resouer/article/details/7866753),[3](http://lory-yang.com/2012/08/15/cloudfoundry_varz/)
+
+
+
+
+# ruby相关
+
+
+
+
+**[Ruby socket programming in CloudFoundry](http://blog.csdn.net/resouer/article/details/7967217),****
+**
+
+
+
+
+**[How to use your GemFile](http://blog.csdn.net/resouer/article/details/7970178).****
+**
