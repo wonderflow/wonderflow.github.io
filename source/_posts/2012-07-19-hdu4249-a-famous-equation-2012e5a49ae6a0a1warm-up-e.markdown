@@ -21,7 +21,8 @@ tags:
 [题目描述](http://icpc.njust.edu.cn/Hdu/4249)：就是给你一个含问号的和式，问你有多少种情况满足题意。
 
 一开始写了个搜索，暴力枚举每个问号位的情况，然后稍微减了下支，想想一年多前这样的搜索一定觉得很难写不想写，如今十来分钟就写好了，还挺得意，然后果断TLE了！
-[cpp title="bruteforce search code"]
+
+```
 #include<iostream>
 #include<cstdio>
 #include<cstring>
@@ -102,12 +103,12 @@ int main()
 	}
 	return 0;
 }
-n
+```
 
 然后得到了阿森的提示，知道了要用DP的方法。就跟人在模拟这个过程类似，其实变化只有两种，一种是有进位，一种是无进位。用一个dp[i][0]表示第i位无进位时的情况总数，dp[i][1]表示第i位有进位时的情况总数。
 然后用了各种三目运算符解决了不少if,else判断，再加上前置0的问题。哎，想清楚了DP过程后，前前后后debug了将近三个小时才AC。
 
-n
+```
 #include<iostream>
 #include<cstdio>
 #include<cstring>
@@ -238,5 +239,5 @@ int main(){
 	}
 	return 0;
 }
-n
+```
 

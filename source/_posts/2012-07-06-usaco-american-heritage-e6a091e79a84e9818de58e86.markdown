@@ -28,7 +28,7 @@ AEFDBHGC
 
 
 
-n
+```
 //动态存树
 /*
 TASK:heritage
@@ -106,12 +106,12 @@ int main()
 		del(tree);
 	}
 }
-n
+```
 
 
 
 
-n
+```
 //静态存树
 /*
 TASK:heritage
@@ -182,4 +182,4 @@ int main()
 		printf("\n");
 	}
 }
-n
+```

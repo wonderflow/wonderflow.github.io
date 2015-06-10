@@ -30,7 +30,7 @@ tags:
 
 另外，我的dinic模板经过一年多的检验，发现一直不错，效率和准确性等都有保证，大家可以放心使用。
 
-[cpp title="netflow dinic"]
+```
 //WonderfloW's dinic Template
 #include<iostream>
 #include<memory.h>
@@ -191,7 +191,7 @@ int main()
 
 	}
 }
-n
+```
 
 
 顺带总结下今天的比赛：

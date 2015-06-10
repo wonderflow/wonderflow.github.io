@@ -14,7 +14,8 @@ tags:
 ---
 
 C++的文档中说，STL中的unique是类似于这样实现的：
-[cpp collapse="false"]
+
+```
 template <class ForwardIterator>
   ForwardIterator unique ( ForwardIterator first, ForwardIterator last )
 {
@@ -26,7 +27,8 @@ template <class ForwardIterator>
   }
   return ++result;
 }
-n
+```
+
 仔细一看就知道，它并不是帮你直接把一个数组中所有重复的元素除去，而是对数组扫描一次，只看当前元素和前面一个元素，如果当前值和前面的值相等，那么跳过，否则就把这个值算上，迭代器递增，最后返回给你一个位置，表示我扫描到多少个当前值与其前面一个元素值不同的元素。
 
 所以，要真正利用好unique，我们必须先对我们所需要进行unique操作的数组排序，然后再使用unique。
@@ -36,7 +38,8 @@ n
 另外，unique函数可以接受两个参数（数组的开头，数组的末尾），也可以接受三个参数（数组的开头，数组的末尾，两个元素的比较（即定义怎样算元素相等））
 
 看一下实例吧：
-[cpp collapse="false"]
+
+```
 // resizing vector
 #include <iostream>
 #include <vector>
@@ -83,6 +86,6 @@ int main () {
 first: myvector contains: 10 20 30 20 10
 second: myvector contains: 10 20 30
 */
-n
+```
 
 深入阅读：[C++官方网站上的描述](http://www.cplusplus.com/reference/algorithm/unique/)。

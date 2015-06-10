@@ -43,7 +43,7 @@ tags:
 
 初始化：dp[0][0] = 0; dp[i][0] = dp[0][i] = i;
 
-n
+```
 #include<iostream>
 #include<cstring>
 #include<cstdio>
@@ -85,7 +85,7 @@ int main(){
 
 	return 0;
 }
-n
+```
 
 
 然后再来看看这个题目： [POJ 1035 Spell Checker](http://poj.org/problem?id=1035)
@@ -107,7 +107,8 @@ n
 这样一来，运行速度明显上升了。
 
 网上找了一份写的比较好的代码拿过来给大家借鉴一下:原址为[鸵鸟](http://www.cnblogs.com/asuran/archive/2009/10/01/1577199.html)
-n
+
+```
 #include <iostream>
 #include <string>
 #include <vector>
@@ -224,4 +225,4 @@ int main(int argc, char* argv[])
         cout << op[i];
     return 0;
 }
-n
+```

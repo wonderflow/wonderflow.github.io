@@ -37,7 +37,8 @@ tags:
 
 执迷不误的我们终于发现了B题的搜索不可能实现的本质，可怜我还用各种STL库写了一个巨长的搜索方法。唉，就这样我写了一个多小时毫无用处的代码。伤不起。。。
 有兴趣的朋友可以看下。我觉得有必要再多看看STL的东西，在近日发一篇STL常用库函数合集文章。
-n
+
+```
 #include<iostream>
 #include<set>
 #include<vector>
@@ -268,7 +269,7 @@ int main()
 	}
 	return 0;
 }
-n
+```
 
 [![](http://wonderflow.info/wp-content/uploads/2012/07/5.jpg)](http://wonderflow.info/wp-content/uploads/2012/07/5.jpg)
 

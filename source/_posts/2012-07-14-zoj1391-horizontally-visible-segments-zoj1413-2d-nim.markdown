@@ -31,7 +31,7 @@ tags:
 
 其他：代码都是跟老高学的，对线段树不熟练，有时间还是要把notonlysuccesss的[线段树合集](http://www.notonlysuccess.com/index.php/segment-tree-complete/)刷一下啊。
 
-n
+```
 #include<iostream>
 #include<set>
 #include<cstdio>
@@ -148,7 +148,7 @@ s[n].clear();
 	}
 	return 0;
 }
-n
+```
 
 
 对于《2D Nim》这题，样例没过哥就AC了。。数据实在太弱了。后来HJWAJ跟我说了一种，统计横向和纵向连通块的长度以及其相应个数，然后两张图进行对比，感觉没也错。反正都AC了，实在想不出什么反例，POJ和ZOJ的数据都是一样的，无论怎么瞎搞都能过。我当时就是求了个连通块个数，然后比较连通块个数是否相等就过了。我的代码就不贴了。
@@ -157,7 +157,7 @@ n
 
 说白了，就是个很恶心的模拟题。就是数据出弱了，随便怎么搞都能过，就显得没那么恶心了。o(∩_∩)o ~
 
-[cpp title="Dango's code"]
+```
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -324,4 +324,4 @@ int main()
     }
     return 0;
 }
-n
+```

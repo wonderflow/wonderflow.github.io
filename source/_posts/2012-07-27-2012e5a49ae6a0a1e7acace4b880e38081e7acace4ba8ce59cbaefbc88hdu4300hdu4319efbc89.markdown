@@ -22,7 +22,8 @@ tags:
 说一下自己搞出来的题目吧，感觉多校其实比较水的，题目也不难，模板题，陈题很多，不过两场我们队的名次都很烂诶，30开外了都，抗不住啊！出现的问题就是队里的模板太少、不全。不过也好，做一场补一场的模板。
 
 hdu4300《Clairewd’s message》是个字符串，利用next数组求解，小trick就是next数组求出来的值要小于(len-1)/2才取。即：while(len-next[dx]<=(len-1)/2)dx = next[dx];
-n
+
+```
 #include<iostream>
 #include<cstring>
 #include<cstdio>
@@ -76,14 +77,15 @@ int main()
 	}
 	return 0;
 }
-n
+```
 
 hdu4307《Matrix》先搞出一个公式（HJWAJ）搞的，然后看见这个公式YY一下，网络流，最小割模型。
 D = sigama(bij)-(sigama(bij)(ai=0,aj=0)+sigama(bij)(ai=1,aj=0)+sigama(bij)(ai=0,aj=1))
 左边一个源点，右边一个汇点，中间1000个点，表示ai。源点表示ai=0，汇点表示ai=1，对于ai=0的情况，bij作为作为一条边连向源点（小优化：因为aj无论是0是1，只要ai为0，就要连源点，那么对于每个ai，直接求和100个j，变成一条边再连，就能少掉1000*999条边）；然后因为ai=1的时候，一定会取ci的值，那么ci作为一条边让ai连向汇点。
 最后看ai=1，aj=0的情况，就是说，i处的值和j处的值分属两个不同的阵营的生活，要多割掉一条边权，那么直接在i和j之间再连一条bij的边权就过了。
 想出建边方法后，这种数学外壳的网络流，估计还是他会先碰到，所以让HJWAJ练练手写了一下，贴下他的代码：
-[cpp title="HJWAJ's code"]
+
+```
 #include<iostream>
 #include<fstream>
 #include<iomanip>
@@ -219,7 +221,7 @@ int main()
     }
     return 0;
 }
-n
+```
 
 hdu4308《Saving Princess claire》就是个宽搜，把所有P的点看成一个点加入队列就可以了。
 
@@ -229,7 +231,8 @@ hdu4309《Seikimatsu Occult Tonneru》就是个裸的网络流，但是比赛的
 擦！题意啊，下次一定要好好读题。
 
 hdu4310《Hero》状态压缩DP，现在发现状态压缩DP的题真多，这题只能算是最裸的。就是拿一个int的每一位是0是1表示一个敌人死没死，然后枚举。记忆化爆搜的思想啊。初学状态压缩的同学可以学习一下，我贴个代码方便下大家：
-n
+
+```
 #include<iostream>
 #include<cstdio>
 using namespace std;
@@ -266,11 +269,12 @@ int main()
 	}
 	return 0;
 }
-n
+```
 
 hdu4317《Unfair Nim》状态压缩DP，dp[i][j]表示到第i位进位情况为j的时候最少需要增加的石子个数。j是1<<10的大小，每一位的1、0表示当前堆石子前一位的进位情况。然后dp的转移又是2^10的，表示每一堆到底增加还是不增加。转移的时候用三个值(1、当前位原有值，2、当前得到的进位，3、当前准备增加的)异或得到一个新值，算最后的新值中1的个数，如果是偶数个的话就表示可以。用3个值两两异或然后与起来得到新的值的进位，然后用dp[i][j] = min(dp[i][j],dp[i+1][s]+cnt(k)*(1<<i));转移。
 看代码更清楚点吧：不过阿森说我这个还可以优化，不知道那些0ms的人怎么过的，我7s过的，给了10s。（知道怎么优化的朋友在下面留言大家探讨下哈，谢谢~）
-n
+
+```
 #include<iostream>
 #include<cstring>
 #include<cstdio>
@@ -340,7 +344,7 @@ int main()
 	}
 
 }
-n
+```
 
 hdu4318《 Power transmission》最短路dijkstra算法，就是把加变成乘就行了。没什么trick。类似的以前有一个抓到小偷的概率的问题，每个路口通向不同的点抓到小偷的概率不同的，问你最大的一条路的抓到小偷的概率是多少。两个一样的题目，不过后者题面更好玩，更容易记住。
 

@@ -20,7 +20,8 @@ tags:
 ---
 
 Counting Rectangles 这题一开始都没人做，其实就是个水题。因为题目中说的很清楚，只会有垂直和水平的线。这个时候，我们可以枚举任意两条横线，对于每条竖线，看有多少竖线跟这两条横线相交，设相交数为tmp。最后对于这两条横线和所有的竖线构成的矩形个数就是(temp-1)*temp/2（一个框构成的矩形有temp-1个，两个框构成的矩形有temp-2个。。以此类推至1个）。这样就能在N^3的复杂度内算出所有矩形个数了。
-n
+
+```
 /*
 枚举任意两条横线，对于每条竖线，看有多少竖线跟这两条横线相交，设相交数为tmp
 最后对于这两条横线和所有的竖线构成的矩形个数就是(temp-1)*temp/2
@@ -95,7 +96,7 @@ int main()
 	}
 	return 0;
 }
-n
+```
 
 Decoding Morse Sequences是个字符串的题，要求在一篇莫斯电码构成的文章中，找出给定字典所能构成的文章内容数有多少。
 看到10000个字符和10000个单词，当时就虚了，根本不敢做。
@@ -107,7 +108,8 @@ Decoding Morse Sequences是个字符串的题，要求在一篇莫斯电码构�
 2、在匹配的过程中用随机数取代逐个匹配，随机一定次数，简称瞎搞。。。
 3、使用AC自动机构成一个字典，然后对全文匹配的过程中调用DP过程（不过这个方法比较虚，让zyz搞了一个下午，各种TLE，MLE，看来对AC自动机的理解还是不够深刻，有待以后再来做这个题）
 
-[cpp title="my bruteforce dp code"]
+
+```
 #include<iostream>
 #include<cstring>
 #include<memory.h>
@@ -176,10 +178,11 @@ int main()
 
 	}
 }
-n
+```
 
 后来ZYZ终于用AC自动机的方法AC了！
-[cpp title="zyz's code"]
+
+```
 #include<iostream>
 #include<cstdio>
 #include<cstring>
@@ -298,4 +301,4 @@ int main()
 	}
 	return 0;
 }
-n
+```

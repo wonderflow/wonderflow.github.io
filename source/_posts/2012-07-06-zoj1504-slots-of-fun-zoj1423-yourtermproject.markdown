@@ -22,7 +22,7 @@ Slots of Fun 这题，一开始想了40分钟，不知道怎么快速计算每�
 然后常规的方法就是用sqrt（3）这样的把每个点相对于起始点的坐标计算出来，然后用eps比较是否相等。
 后来小翟告诉我一个方法，非常简单，就是使用余弦定理，如果一个点的坐标(x,y)表示的是第几排，第几个数字的话，那么A,B两点之间的距离其实就是dis^2 = (xa-xb)^2+(ya-yb)^2+2*|xa-xb|*|ya-yb|cos(α) ,而本身我们的图像可以知道α是个60°角，那么答案就很明显啦。
 
-n
+```
 #include<stdio.h>
 #include<cstring>
 #include<string>
@@ -96,7 +96,7 @@ int main()
 	}
 	return 0;
 }
-n
+```
 
 
 
@@ -109,7 +109,7 @@ n
 3、括号中间是单个字符
 然后控制好保存括号匹配的栈，就OK了。
 
-n
+```
 #include<iostream>
 #include<cstdio>
 #include<cstring>
@@ -201,4 +201,4 @@ int main()
 		printf("\n");
 	}
 }
-n
+```

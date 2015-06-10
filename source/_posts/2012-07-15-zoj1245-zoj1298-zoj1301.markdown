@@ -26,7 +26,7 @@ ZOJ1298《Domino Effect》是一个有意思的题，问多米诺效应产生到
 ZOJ1301《The New Villa》是一个宽搜，要把因为点只有10个，可以用一个int按位存取操作。本身很基础，就是状态压缩的思想很值得借鉴。
 然后这个是个speacial judge的题，需要输出路径。以前我写宽搜的时候，喜欢出队的时候，再把vis数组值1，这样一开始的时候可以少写一次，但是这样好像会出现状态的覆盖和重复入队，以后还是把这个习惯改回来，换成每次入队的时候把vis数组赋值吧。
 
-[cpp title="Triangles"]
+```
 #include<iostream>
 #include<cstdio>
 #include<cstring>
@@ -217,9 +217,9 @@ int main()
 		printf("\n");
 	}
 }
-n
+```
 
-[cpp title="The New Villa"]
+```
 #include<iostream>
 #include<cstdio>
 #include<cstring>
@@ -354,4 +354,4 @@ int main()
 
 	return 0;
 }
-n
+```

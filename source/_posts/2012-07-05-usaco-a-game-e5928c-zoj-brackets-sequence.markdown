@@ -46,7 +46,7 @@ O（N^3）的复杂度，N<=100，所以可以解决。
 
 PS：好久没这么耐心的写解题报告了啊，哈哈~
 
-n
+```
 //USACO A GAME
 /*
 ID:bobo
@@ -99,9 +99,9 @@ int main()
 	}
 
 }
-n
+```
 
-n
+```
 //ZOJ Brackets Sequence
 #include<iostream>
 #include<cstring>
@@ -198,5 +198,5 @@ int main()
 	return 0;
 }
 
-n
+```
 

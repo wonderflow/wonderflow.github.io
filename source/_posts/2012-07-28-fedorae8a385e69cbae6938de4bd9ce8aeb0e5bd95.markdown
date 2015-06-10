@@ -44,7 +44,8 @@ sudo yum install gnome-tweak-tool
 9、安装gvim：yum install gvim  安装c++: yum install gcc-c++
 
 10、退出root权限，在home下新建一个.gvimrc，写一下gvim的配置文件。
-[css collapse="false"]
+
+```
 colorscheme torte
 winpos 633 0
 winsize 90 62
@@ -60,7 +61,7 @@ nmap <Space> a<Space>
 nmap <F1> <Esc>
 imap <F1> <Esc>
 nmap gao i#include <cstdio><Enter>#include <cstring><Enter>#include <iostream><Enter>#include <algorithm><Enter><Enter>using namespace std;<Enter><Enter>int main() {<Enter>return 0;<Enter>}<Esc>{j
-[/css]
+```
 
 10、在system setting -> keyboard 里面改一下快捷键
 

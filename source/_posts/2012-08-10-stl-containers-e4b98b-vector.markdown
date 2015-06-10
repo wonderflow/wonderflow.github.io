@@ -41,30 +41,12 @@ tags:
 
 
 
-
-
-`
-
-
-
-
+```
 
 # include 
-
-
-
-
-
 # include 
-
-
-
-
 
 using namespace std;
-
-
-
 
 
 struct Node{
@@ -241,7 +223,7 @@ seventh out: 100 100
 
 
 
-`
+```
 
 
 

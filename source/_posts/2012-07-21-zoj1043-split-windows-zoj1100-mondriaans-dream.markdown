@@ -27,7 +27,7 @@ ZOJ1043《Split Windows》是一个题目描述很长很长的题目，以至于
 3、调整树高的同时把矩形画出来。每次递归的时候传左上角那个点的坐标。
 4、一定要注意细节。如果过了样例还WA，那么就倒霉了，这种题目不好debug啊，实际上没什么trick，就是烦。。
 
-n
+```
 #include<iostream>
 #include<cmath>
 #include<cstdio>
@@ -153,13 +153,14 @@ int main()
 
 	return 0;
 }
-n
+```
 
 ZOJ1100 《Mondriaan's Dream》是一个非常好的状态压缩DP。题目的意思就是给你一块大小为n*m的矩形，问你能有多少种分割成一个个2*1小矩形的方案。
 阿森说，这是轮廓线DP，每次拿一个int存储当前行被分割后的状态。int的前十位，每一位，1表示当前的这个格子是被占用的，0表示这个各自是空的。
 [![](http://wonderflow.info/wp-content/uploads/2012/07/dp1100.png)](http://wonderflow.info/wp-content/uploads/2012/07/dp1100.png)
 有了这张图片，应该会好理解一些。想清楚了转移，那么DP的代码非常简洁，尤其是位操作的压缩DP，各种优美。
-n
+
+```
 #include<iostream>
 #include<cstdio>
 #include<cstring>
@@ -191,4 +192,4 @@ int main()
 	}
 	return 0;
 }
-n
+```

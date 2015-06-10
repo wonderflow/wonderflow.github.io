@@ -35,7 +35,7 @@ tags:
 
 最后要注意的就是，你有可能还会PE，因为他要求每个case后面都要输出一个空行，但是最后一个case还不能有空行。。。反正我是搞了很久。。。
 
-[java toolbar="true"]
+```
 import java.util.*;
 import java.math.*;
 
@@ -156,4 +156,4 @@ public class Main
 		}
 	}
 }
-[/java]
+```

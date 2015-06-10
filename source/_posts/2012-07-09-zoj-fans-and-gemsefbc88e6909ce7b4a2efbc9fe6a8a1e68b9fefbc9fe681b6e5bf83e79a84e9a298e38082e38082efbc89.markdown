@@ -30,7 +30,7 @@ tags:
 
 恩，学到不少~~
 
-[cpp toolbar="true" title="ZOJ1237"]
+```
 #include <set>
 #include <queue>
 #include <cctype>
@@ -237,4 +237,4 @@ int main() {
 /*
 值得注意的是这句话，“There is one line after each map, ignore them.”一定要用gets把它读掉，因为这行里是有字符的。
 */
-n
+```

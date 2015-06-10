@@ -21,7 +21,8 @@ tags:
 “Fill the Cisterns!”这个题就是给你很多个相连通的水箱，高度体积各不相同，然后给你一定体积的水，问你最后达到的水箱高度是多少。
 
 做法很简单，就是二分。每次枚举每个水箱，算出可以达到的容量跟标准容量比较，然后调整二分的值。注意精度即可。这个算是《狗狗四十题》里面相对简单的题了。
-n
+
+```
 #include<iostream>
 #include<cstdio>
 using namespace std;
@@ -82,7 +83,7 @@ int main()
 
 	return 0;
 }
-n
+```
 
 
 “Crossed Matchings”是个有意思的题目，给你上下各一列数，让你进行匹配。规则是数字相同的才可以匹配，且每个数字只可以被匹配一次，并且匹配的时候一定要是两个匹配以线段相交的形式出现，且每组匹配只能有一个交点。再然后，还有一个限制条件，就是每组两个匹配的四个字符不能都是一样的。
@@ -91,7 +92,7 @@ n
 
 [![](http://wonderflow.info/wp-content/uploads/2012/07/zoj1425.png)](http://wonderflow.info/wp-content/uploads/2012/07/zoj1425.png)
 
-n
+```
 //all numbers are positive integers less than 100
 // so algorithm of O(n^3) is OK
 #include<iostream>
@@ -140,4 +141,4 @@ int main()
 
 	}
 }
-n
+```
