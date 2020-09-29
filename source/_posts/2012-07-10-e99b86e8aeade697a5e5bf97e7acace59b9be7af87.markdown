@@ -21,19 +21,19 @@ tags:
 
 鱼头让我们对照着比赛各个阶段的rank来做下总结，那么就对着rank说吧。
 <!-- more -->
-[![](http://wonderflow.info/wp-content/uploads/2012/07/1.jpg)](http://wonderflow.info/wp-content/uploads/2012/07/1.jpg)
+[![](https://wonderflow.info/images/2012-07-10-e99b86e8aeade697a5e5bf97e7acace59b9be7af87/1.jpg)](https://wonderflow.info/images/2012-07-10-e99b86e8aeade697a5e5bf97e7acace59b9be7af87/1.jpg)
 
 第一个小时的时候，节奏不错，10分钟左右的时候，我和老高讨论出A的水题本质，25分钟的时候敲完A，wa了。中间嘉炜把G题的思路搞了出来同时在我wa了以后开始敲，在47~48分钟，嘉炜AC了G，我和老高也讨论出了A的错误，ans每次要初始化为INF，忘了初始化。
 
-[![](http://wonderflow.info/wp-content/uploads/2012/07/2.jpg)](http://wonderflow.info/wp-content/uploads/2012/07/2.jpg)
+[![](https://wonderflow.info/images/2012-07-10-e99b86e8aeade697a5e5bf97e7acace59b9be7af87/2.jpg)](https://wonderflow.info/images/2012-07-10-e99b86e8aeade697a5e5bf97e7acace59b9be7af87/2.jpg)
 
 看图片也能发现，第二个小时的时候有点茫然，快速把水题切完后，大家花了一个小时看了一下所有的题目，然后讨论了几道题目的想法。然后突然watermelon 看似很轻松的AC了B，让我们的节奏乱了。就想着怎么去暴力搞B了，竟然没有把嘉炜打断一下问问数学方法。
 
-[![](http://wonderflow.info/wp-content/uploads/2012/07/3.jpg)](http://wonderflow.info/wp-content/uploads/2012/07/3.jpg)
+[![](https://wonderflow.info/images/2012-07-10-e99b86e8aeade697a5e5bf97e7acace59b9be7af87/3.jpg)](https://wonderflow.info/images/2012-07-10-e99b86e8aeade697a5e5bf97e7acace59b9be7af87/3.jpg)
 
 在这整整一个小时里，我和老高都在想怎么搞B比较好，同时在努力看懂F题的意思。这时HJWAJ在敲java的I题，感觉是高精度~！然后情节曲折的发现java超时了！再然后发现一个C++的优化，可以把精度保证在int内，然后果断换成C++ AC了。这中间我抽空开始敲B的暴力搜索解法了！
 
-[![](http://wonderflow.info/wp-content/uploads/2012/07/4.jpg)](http://wonderflow.info/wp-content/uploads/2012/07/4.jpg)
+[![](https://wonderflow.info/images/2012-07-10-e99b86e8aeade697a5e5bf97e7acace59b9be7af87/4.jpg)](https://wonderflow.info/images/2012-07-10-e99b86e8aeade697a5e5bf97e7acace59b9be7af87/4.jpg)
 
 执迷不误的我们终于发现了B题的搜索不可能实现的本质，可怜我还用各种STL库写了一个巨长的搜索方法。唉，就这样我写了一个多小时毫无用处的代码。伤不起。。。
 有兴趣的朋友可以看下。我觉得有必要再多看看STL的东西，在近日发一篇STL常用库函数合集文章。
@@ -271,7 +271,7 @@ int main()
 }
 ```
 
-[![](http://wonderflow.info/wp-content/uploads/2012/07/5.jpg)](http://wonderflow.info/wp-content/uploads/2012/07/5.jpg)
+[![](https://wonderflow.info/images/2012-07-10-e99b86e8aeade697a5e5bf97e7acace59b9be7af87/5.jpg)](https://wonderflow.info/images/2012-07-10-e99b86e8aeade697a5e5bf97e7acace59b9be7af87/5.jpg)
 
 最后一个小时，HJWAJ独当一面，把一道简单的模拟题搞出来了，至此，HJWAJ在本次比赛独立搞出3题，成为最大的功臣~呵呵。我和老高略打酱油了。
 其实B应该是可以搞出来的，最后就快想出来了，可惜时间不够了。没办法，在B搜索暴力解法上的时间花的太多了。再有就是最后一个DP题了，可惜了，没能搞出来。

@@ -20,7 +20,7 @@ tags:
 
 
 
-然后跟陈琦一起翻译了一把。看这里：[EventMachine入门](http://wonderflow.info/wp-content/uploads/2013/07/EventMachine%E5%85%A5%E9%97%A8.pdf)
+然后跟陈琦一起翻译了一把。看这里：[EventMachine入门](https://wonderflow.info/images/2013-07-29-eventmachine-introduction-translation/EventMachine%E5%85%A5%E9%97%A8.pdf)
 
 
 

@@ -33,7 +33,7 @@ tags:
 最后我们就得到了一个个被染成了0~1的块。
 问题也转换成了：现在有很多个物品，每个物品有两个部件组成，而这两个部件要分别放到不同的袋子里。最后还要求这两个袋子的重量尽可能相近。
 很容易想到这是一个经典的DP问题。区别于传统的01背包。现在只是把原来的01背包里的0换掉。改成了A、B背包。做法就是两个数组，互相交替着存一轮一轮可以达到的DP值。
-[![](http://wonderflow.info/wp-content/uploads/2012/07/11.png)](http://wonderflow.info/wp-content/uploads/2012/07/11.png)
+[![](https://wonderflow.info/images/2012-07-12-zoj1462-team-them-upzoj1066-square-ice/11.png)](https://wonderflow.info/images/2012-07-12-zoj1462-team-them-upzoj1066-square-ice/11.png)
 最后从n/2处开始往前找能达到的DP值。
 关于怎么把答案输出，我是用的vector，在求DP的时候顺便把答案也一起都存下来了。
 

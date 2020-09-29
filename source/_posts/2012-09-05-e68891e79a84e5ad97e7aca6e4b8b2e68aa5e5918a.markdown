@@ -118,12 +118,12 @@ end;
 这个题目非常有助于对next数组的理解。
 
 大家知道，next数组存的是最大的“前缀等于后缀”的前缀末尾的位置。如果我们的单词本身不能分割成更小的循环节，比如说ab，那么next数组里面存的一定是0.
-[![](http://wonderflow.info/wp-content/uploads/2012/09/1.png)](http://wonderflow.info/wp-content/uploads/2012/09/1.png)
+[![](https://wonderflow.info/images/2012-09-05-e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/1.png)](https://wonderflow.info/images/2012-09-05-e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/1.png)
 接下来我们看由k个最小循环节构成的next数组里存的情况。（左图）
 那么现在结果已经很显然了。如果有一个字符串s,长度是len,它的失败函数是next，如果len能被len-next[len]整除，那么    len-next[len]就是我们要求的那个子串的长度，与之对应的字符串，就是我们想得到的子串.
 
 # 2 字典树（Trie Tree）
-[![](http://wonderflow.info/wp-content/uploads/2012/09/2.png)](http://wonderflow.info/wp-content/uploads/2012/09/2.png)
+[![](https://wonderflow.info/images/2012-09-05-e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/2.png)](https://wonderflow.info/images/2012-09-05-e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/2.png)
 ## 2.1 概念：
 顾名思义,字典树就是一种树形结构，也叫单词查找树、trie树，优点是利用字符串的公共前缀来节约存储空间，最大限度地减少无谓的字符串比较。
 假设我们现在有这些单词 he,she,may,man,say,那么我们所构成的字典树如又图所示。
@@ -174,7 +174,7 @@ f(q)里面存的是字典树里面所有单词前缀中最长的一个。
 3、输出函数out(q)。输出进入q结点时识别出来的匹配的模式串集合。
 
 根据以上三个函数的思想，假设我们现在有he,his,her,hers,she这几个单词，那么构建出的字典树和它所附带的失败指针是什么样子的呢。如下图所示。
-[![](http://wonderflow.info/wp-content/uploads/2012/09/3.png)](http://wonderflow.info/wp-content/uploads/2012/09/3.png)
+[![](https://wonderflow.info/images/2012-09-05-e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/3.png)](https://wonderflow.info/images/2012-09-05-e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/3.png)
 这里我们要说明的一点就是，与上面介绍字典树的时候不同，我们上面是直接把节点看成一个字符，而这里是把连向结点的边看作一个字符。实际上他们是一样的，就是说法上的不同。
 而在AC自动机里面，因为结点更多的时候表示一种状态，所以就把字符用边来表示，这样更容易区别开来。
 
@@ -195,7 +195,7 @@ endfor;
 整个AC自动机可分为两个阶段完成。
 阶段一、把所有模式串一起构造字典树，然后完成AC自动机中的下步函数g(q,a);
 对于g(q,a)的构造，看下图第一阶段完成后的示意图就能明白了。
-[![](http://wonderflow.info/wp-content/uploads/2012/09/4.png)](http://wonderflow.info/wp-content/uploads/2012/09/4.png)
+[![](https://wonderflow.info/images/2012-09-05-e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/4.png)](https://wonderflow.info/images/2012-09-05-e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/4.png)
 阶段二，自然就是把失败函数f(q)构造出来了。直接看下面的伪代码。
 
 ```

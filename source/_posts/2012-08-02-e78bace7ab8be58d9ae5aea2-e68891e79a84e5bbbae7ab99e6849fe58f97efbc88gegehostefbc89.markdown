@@ -23,12 +23,12 @@ tags:
 <!-- more -->
 
 研究了一天后，发现自己买国内的域名空间什么的，需要备案，好像很麻烦的样子，然后买国外的域名吧，付款又很不方便。然后就问qxavier师兄，问他是怎么弄的，问过以后就知道了。原来他用的[戈戈主机](http://client.gegehost.com/aff.php?aff=480)，就是这个链接。里面的空间有便宜的100元/年，也有贵的，看你的选择了。然后域名也是可以一起买的（不同的域名费用不同，具体大家可以在那个网站上看看资费标准），一套下来，就是在他的主页上选择，一路点击，方便易懂。付款就是支付宝，有淘宝购买经历的人应该都能直接搞定的。
-[![](http://wonderflow.info/wp-content/uploads/2012/08/1.png)](http://wonderflow.info/wp-content/uploads/2012/08/1.png)
+[![](https://wonderflow.info/images/2012-08-02-e78bace7ab8be58d9ae5aea2-e68891e79a84e5bbbae7ab99e6849fe58f97efbc88gegehostefbc89/1.png)](https://wonderflow.info/images/2012-08-02-e78bace7ab8be58d9ae5aea2-e68891e79a84e5bbbae7ab99e6849fe58f97efbc88gegehostefbc89/1.png)
 
 更详细的：一些基本的东西怎么弄？wordpress博客如何建？ 那就直接点[这里](http://client.gegehost.com/aff.php?aff=480)，然后就查看使用教程吧~
 
 在付款完毕后，他会给你发很多信件，然后一封封信件看完基本就明白怎么操作了。当然啦，不懂还可以看看他提供的教程，还可以咨询客服。
-[![](http://wonderflow.info/wp-content/uploads/2012/08/2.png)](http://wonderflow.info/wp-content/uploads/2012/08/2.png)
+[![](https://wonderflow.info/images/2012-08-02-e78bace7ab8be58d9ae5aea2-e68891e79a84e5bbbae7ab99e6849fe58f97efbc88gegehostefbc89/2.png)](https://wonderflow.info/images/2012-08-02-e78bace7ab8be58d9ae5aea2-e68891e79a84e5bbbae7ab99e6849fe58f97efbc88gegehostefbc89/2.png)
 
 然后进入Cpanel，开始发挥你的想象力搞起吧。
 总的来说，我觉得戈戈主机不错，价格不贵，加了QQ群以后，网站碰到的几个问题也有人回答，用了这一个月也没觉得有什么不好，一切顺利。

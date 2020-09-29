@@ -52,7 +52,7 @@ tags:
 
 不过我们还是成功用opengl做出了一点东西的。尽管很丑陋，但是我永远不会忘记，那年初夏，我们opengl做出的第一个游戏平台。那个在香樟树下，挥着军刀的长相丑陋的十字军。
 
-[![十字军](http://wonderflow.info/wp-content/uploads/2011/12/11.jpg)](http://wonderflow.info/wp-content/uploads/2011/12/11.jpg)
+[![十字军](https://wonderflow.info/images/2011-12-07-e7acace59b9be5b18ae4b8ade585b4e59bbee781b5e69daf-e68891e79a84lost_island/11.jpg)](https://wonderflow.info/images/2011-12-07-e7acace59b9be5b18ae4b8ade585b4e59bbee781b5e69daf-e68891e79a84lost_island/11.jpg)
 
 显然，想要写好一个3D游戏，真的是异常困难的，尽管上届主席给我们介绍了愿意为我们建造3D游戏模型的同学，但是之后还有一系列海量的工作，是我们不敢想象的，于是我们果断的放弃了。不过我们这半年的时间绝对没有白费，我们对游戏的编写有了较深入的认识，这倒是为我们后面用HGE引擎写平台打下了一个坚实的基础。
 
@@ -72,7 +72,7 @@ tags:
 
 后期，很多其他朋友帮助了我们，感谢朱艺楠作为一个参赛者帮忙做得大量测试以及提供了很多音效和图片素材，感谢薛斌在英雄的平衡性上给了我大量的建议，让最终的四个英雄都比较均衡的出场了，感谢孙健编写的大量文档，感谢袁晨和卫霄鹏给力的解说，让现场观众彻底的融入到了游戏里，还有其他所有为平台的建立做出贡献的人们以及所有的参赛选手们，是你们的努力，让Lost_Island这个平台展现出如此精彩的画面~
 
-[![lost_island](http://wonderflow.info/wp-content/uploads/2011/12/22.jpg)](http://wonderflow.info/wp-content/uploads/2011/12/22.jpg)
+[![lost_island](https://wonderflow.info/images/2011-12-07-e7acace59b9be5b18ae4b8ade585b4e59bbee781b5e69daf-e68891e79a84lost_island/22.jpg)](https://wonderflow.info/images/2011-12-07-e7acace59b9be5b18ae4b8ade585b4e59bbee781b5e69daf-e68891e79a84lost_island/22.jpg)
 
 感谢张珂、胡新杰集训队的两届队长，给了我太多太多的帮助，感谢李翔，李必充，袁晨，周宇哲，朱国森和孟原菲给了平台如此多的支持和帮助~~
 

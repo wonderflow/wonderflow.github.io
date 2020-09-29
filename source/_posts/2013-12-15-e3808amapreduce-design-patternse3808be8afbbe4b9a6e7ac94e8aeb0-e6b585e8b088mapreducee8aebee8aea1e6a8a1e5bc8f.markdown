@@ -190,7 +190,7 @@ Output format会把reduce阶段的输出键值对根据record writer写到文件
   * 数据能根据指定字段分组
 
 
-**数值聚合模式各组件功能图：[![1](http://wonderflow.info/wp-content/uploads/2013/12/1.jpg)](http://wonderflow.info/wp-content/uploads/2013/12/1.jpg)******
+**数值聚合模式各组件功能图：[![1](https://wonderflow.info/images/2013-12-15-e3808amapreduce-design-patternse3808be8afbbe4b9a6e7ac94e8aeb0-e6b585e8b088mapreducee8aebee8aea1e6a8a1e5bc8f/1.jpg)](https://wonderflow.info/images/2013-12-15-e3808amapreduce-design-patternse3808be8afbbe4b9a6e7ac94e8aeb0-e6b585e8b088mapreducee8aebee8aea1e6a8a1e5bc8f/1.jpg)******
 
 **用法案例：**
 
@@ -210,7 +210,7 @@ Output format会把reduce阶段的输出键值对根据record writer写到文件
 
 **反向索引模式各组件功能图：******
 
-[![2](http://wonderflow.info/wp-content/uploads/2013/12/2.jpg)](http://wonderflow.info/wp-content/uploads/2013/12/2.jpg)
+[![2](https://wonderflow.info/images/2013-12-15-e3808amapreduce-design-patternse3808be8afbbe4b9a6e7ac94e8aeb0-e6b585e8b088mapreducee8aebee8aea1e6a8a1e5bc8f/2.jpg)](https://wonderflow.info/images/2013-12-15-e3808amapreduce-design-patternse3808be8afbbe4b9a6e7ac94e8aeb0-e6b585e8b088mapreducee8aebee8aea1e6a8a1e5bc8f/2.jpg)
 
 **用法案例：**
 
@@ -235,7 +235,7 @@ Stackoverflow是一个技术类问答社区，上面经常引用wikipedia上面�
   * 创建的计数器个数较小，两位数以内。
 
 
-**计数器计数模式各组件功能图：[![3](http://wonderflow.info/wp-content/uploads/2013/12/3.jpg)](http://wonderflow.info/wp-content/uploads/2013/12/3.jpg)******
+**计数器计数模式各组件功能图：[![3](https://wonderflow.info/images/2013-12-15-e3808amapreduce-design-patternse3808be8afbbe4b9a6e7ac94e8aeb0-e6b585e8b088mapreducee8aebee8aea1e6a8a1e5bc8f/3.jpg)](https://wonderflow.info/images/2013-12-15-e3808amapreduce-design-patternse3808be8afbbe4b9a6e7ac94e8aeb0-e6b585e8b088mapreducee8aebee8aea1e6a8a1e5bc8f/3.jpg)******
 
 使用计数器能很快的完成计算，因为数据仅仅在map中处理，没有输出要写。性能主要取决于执行的map的个数和处理每条记录花费的时间。
 
@@ -263,7 +263,7 @@ Stackoverflow是一个技术类问答社区，上面经常引用wikipedia上面�
 
 考虑用一个评估方法f，处理记录，如果返回true，保留，如果返回false，丢掉。
 
-**过滤模式各组件功能图：[![4](http://wonderflow.info/wp-content/uploads/2013/12/4.jpg)](http://wonderflow.info/wp-content/uploads/2013/12/4.jpg)******
+**过滤模式各组件功能图：[![4](https://wonderflow.info/images/2013-12-15-e3808amapreduce-design-patternse3808be8afbbe4b9a6e7ac94e8aeb0-e6b585e8b088mapreducee8aebee8aea1e6a8a1e5bc8f/4.jpg)](https://wonderflow.info/images/2013-12-15-e3808amapreduce-design-patternse3808be8afbbe4b9a6e7ac94e8aeb0-e6b585e8b088mapreducee8aebee8aea1e6a8a1e5bc8f/4.jpg)******
 
 **用法案例：******
 
@@ -314,7 +314,7 @@ Grep，一个使用正则表达式找出感兴趣的文本行的强大的工具�
   * 你的数据是结构化的基于行的
 
 
-**分层结构模式各组件功能图：[![5](http://wonderflow.info/wp-content/uploads/2013/12/5.jpg)](http://wonderflow.info/wp-content/uploads/2013/12/5.jpg)******
+**分层结构模式各组件功能图：[![5](https://wonderflow.info/images/2013-12-15-e3808amapreduce-design-patternse3808be8afbbe4b9a6e7ac94e8aeb0-e6b585e8b088mapreducee8aebee8aea1e6a8a1e5bc8f/5.jpg)](https://wonderflow.info/images/2013-12-15-e3808amapreduce-design-patternse3808be8afbbe4b9a6e7ac94e8aeb0-e6b585e8b088mapreducee8aebee8aea1e6a8a1e5bc8f/5.jpg)******
 
 **用法案例：******
 
@@ -340,7 +340,7 @@ Hbase是很自然的存储这类数据的方式。所以可以用这种方法把
 
 这种模式利用partitioner分割数据。没有确切的分区逻辑。需要做的只是通过自定义partitioner决定一条记录去哪个分区。
 
-**分区模式各组件功能图[![6](http://wonderflow.info/wp-content/uploads/2013/12/6.jpg)](http://wonderflow.info/wp-content/uploads/2013/12/6.jpg)**
+**分区模式各组件功能图[![6](https://wonderflow.info/images/2013-12-15-e3808amapreduce-design-patternse3808be8afbbe4b9a6e7ac94e8aeb0-e6b585e8b088mapreducee8aebee8aea1e6a8a1e5bc8f/6.jpg)](https://wonderflow.info/images/2013-12-15-e3808amapreduce-design-patternse3808be8afbbe4b9a6e7ac94e8aeb0-e6b585e8b088mapreducee8aebee8aea1e6a8a1e5bc8f/6.jpg)**
 
 **用法案例：******
 
@@ -418,7 +418,7 @@ mapper准备要join的数据，并从记录中抽取外键，当做输出key，�
 
 reducer收集每个输入组的值到临时列表，执行期望的join操作。例如标记为A的记录存储在代表A的列表，标记为B的记录存储在代表B的列表。然后迭代两个集合的所有记录join到一起。对于内连接，两个列表都不是空的就输出join后的数据。对于外连接，空列表也会跟非空列表join。反连接会确保只有一个列表是空的。非空列表记录跟空列表一块写出来。
 
-[![7](http://wonderflow.info/wp-content/uploads/2013/12/7.jpg)](http://wonderflow.info/wp-content/uploads/2013/12/7.jpg)
+[![7](https://wonderflow.info/images/2013-12-15-e3808amapreduce-design-patternse3808be8afbbe4b9a6e7ac94e8aeb0-e6b585e8b088mapreducee8aebee8aea1e6a8a1e5bc8f/7.jpg)](https://wonderflow.info/images/2013-12-15-e3808amapreduce-design-patternse3808be8afbbe4b9a6e7ac94e8aeb0-e6b585e8b088mapreducee8aebee8aea1e6a8a1e5bc8f/7.jpg)
 
 **通常连接模式会跟过滤模式联合使用，以用来过滤掉大量重复无用的连接键值对。******
 
@@ -444,6 +444,6 @@ reducer收集每个输入组的值到临时列表，执行期望的join操作。
 
 MapReduce正在飞速发展，新的功能和新的系统也会随着时间应运而生，但是我相信，本文谈到的设计模式，必将随MapReduce的存在而长久留存下去。掌握mapreduce的设计模式就等于在大数据的时代中掌握了一把利器。
 
-附上pdf版本：[浅谈MapReduce设计模](http://wonderflow.info/wp-content/uploads/2013/12/浅谈MapReduce设计模式.pdf)[式](http://wonderflow.info/wp-content/uploads/2013/12/浅谈MapReduce设计模式.pdf)
+附上pdf版本：[浅谈MapReduce设计模](https://wonderflow.info/images/2013-12-15-e3808amapreduce-design-patternse3808be8afbbe4b9a6e7ac94e8aeb0-e6b585e8b088mapreducee8aebee8aea1e6a8a1e5bc8f/浅谈MapReduce设计模式.pdf)[式](https://wonderflow.info/images/2013-12-15-e3808amapreduce-design-patternse3808be8afbbe4b9a6e7ac94e8aeb0-e6b585e8b088mapreducee8aebee8aea1e6a8a1e5bc8f/浅谈MapReduce设计模式.pdf)
 
 参考文献：《Hadoop实战(第2版)》《MapReduce Design Patterns》

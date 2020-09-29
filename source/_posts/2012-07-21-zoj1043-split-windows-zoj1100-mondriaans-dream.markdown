@@ -157,7 +157,7 @@ int main()
 
 ZOJ1100 《Mondriaan's Dream》是一个非常好的状态压缩DP。题目的意思就是给你一块大小为n*m的矩形，问你能有多少种分割成一个个2*1小矩形的方案。
 阿森说，这是轮廓线DP，每次拿一个int存储当前行被分割后的状态。int的前十位，每一位，1表示当前的这个格子是被占用的，0表示这个各自是空的。
-[![](http://wonderflow.info/wp-content/uploads/2012/07/dp1100.png)](http://wonderflow.info/wp-content/uploads/2012/07/dp1100.png)
+[![](https://wonderflow.info/images/2012-07-21-zoj1043-split-windows-zoj1100-mondriaans-dream/dp1100.png)](https://wonderflow.info/images/2012-07-21-zoj1043-split-windows-zoj1100-mondriaans-dream/dp1100.png)
 有了这张图片，应该会好理解一些。想清楚了转移，那么DP的代码非常简洁，尤其是位操作的压缩DP，各种优美。
 
 ```

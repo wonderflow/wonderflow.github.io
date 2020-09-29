@@ -169,7 +169,7 @@ float maxsum(float *A,int n){
 ```
 
 
-4、背包问题：这个看一下[背包九讲](http://wonderflow.info/wp-content/uploads/2012/08/%E8%83%8C%E5%8C%85%E4%B9%9D%E8%AE%B2.pdf)吧。
+4、背包问题：这个看一下[背包九讲](https://wonderflow.info/images/2012-08-08-e587a0e7a78de7ae80e58d95e7b1bbe59e8be79a84dp/%E8%83%8C%E5%8C%85%E4%B9%9D%E8%AE%B2.pdf)吧。
 
 
 

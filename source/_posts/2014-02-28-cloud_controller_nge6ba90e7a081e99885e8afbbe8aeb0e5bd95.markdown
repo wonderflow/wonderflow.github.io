@@ -75,7 +75,7 @@ Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Fo
 
 
 首先让我们看一下这张框架图：
-![Alt text](http://wonderflow.info/wp-content/uploads/2014/02/ccng.png)
+![Alt text](https://wonderflow.info/images/2014-02-28-cloud_controller_nge6ba90e7a081e99885e8afbbe8aeb0e5bd95/ccng.png)
 **图1.CCNG架构图byshlallen**
 
 
@@ -155,7 +155,7 @@ Blobstore模块主要负责维护静态文件的存储，这部分文件主要�
 
 
 
-![Alt text](http://wonderflow.info/wp-content/uploads/2014/02/droplet.png)
+![Alt text](https://wonderflow.info/images/2014-02-28-cloud_controller_nge6ba90e7a081e99885e8afbbe8aeb0e5bd95/droplet.png)
 **图2.buildpack、droplet、package结构图 by 薛伟**
 
 
@@ -327,7 +327,7 @@ DEA模块的功能是负责CCNG与众DEA之间通信。
 
 
 
-![Alt text](http://wonderflow.info/wp-content/uploads/2014/02/cfpush.png)
+![Alt text](https://wonderflow.info/images/2014-02-28-cloud_controller_nge6ba90e7a081e99885e8afbbe8aeb0e5bd95/cfpush.png)
 **图3.APP上传流程示意图 by 薛伟**
 
 

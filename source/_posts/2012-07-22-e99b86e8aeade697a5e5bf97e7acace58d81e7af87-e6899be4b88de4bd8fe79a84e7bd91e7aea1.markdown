@@ -31,7 +31,7 @@ tags:
 接下来网络终于恢复正常了，又发现自己的博客上不来了，之前也一直断断续续的发现自己的博客有时会连不上，用ping命令发现自己的域名根本无法解析，就纳闷了，主要是怀疑自己的网站被墙了，毕竟是国外的服务器，没有备案，心里虚啊，然后喊同学试着登录一下，发现是可以的，这个时候就放心了。
 
 研究过后，发现是本地DNS解析服务器的问题，只要更换一下本地的dns就行了。什么本地dns啊，刚听到这个词我还真一时没有反应过来，但是看到这张图以后，我瞬间就懂了！
-[![](http://wonderflow.info/wp-content/uploads/2012/07/TM截图未命名.png)](http://wonderflow.info/wp-content/uploads/2012/07/TM截图未命名.png)
+[![](https://wonderflow.info/images/2012-07-22-e99b86e8aeade697a5e5bf97e7acace58d81e7af87-e6899be4b88de4bd8fe79a84e7bd91e7aea1/TM截图未命名.png)](https://wonderflow.info/images/2012-07-22-e99b86e8aeade697a5e5bf97e7acace58d81e7af87-e6899be4b88de4bd8fe79a84e7bd91e7aea1/TM截图未命名.png)
 相信大家也瞬间就懂了，就是改IP的地方嘛。有些自动寻找的dns解析服务器可能无法连接到我们想要连接的站点，那么这个时候可以自己去网上找一些dns解析服务器的地址。
 我们可以使用opendns
 208.67.222.222
@@ -41,13 +41,13 @@ tags:
 8.8.4.4
 
 然后更换好以后，ping自己的域名或者主机的ip。命令："ping [主机的域名或IP地址]"
-[![](http://wonderflow.info/wp-content/uploads/2012/07/21.png)](http://wonderflow.info/wp-content/uploads/2012/07/21.png)
+[![](https://wonderflow.info/images/2012-07-22-e99b86e8aeade697a5e5bf97e7acace58d81e7af87-e6899be4b88de4bd8fe79a84e7bd91e7aea1/21.png)](https://wonderflow.info/images/2012-07-22-e99b86e8aeade697a5e5bf97e7acace58d81e7af87-e6899be4b88de4bd8fe79a84e7bd91e7aea1/21.png)
 通过ping你想连接的域名，你可以查看自己的连接是否正常，也可以看网速如何，丢包严重不严重等情况。
 如果ping得到的结果是解析不了或者ip不是自己的主机IP，那么就说明这个dns解析服务器不正确，应该换一个dns服务器再试试。
 
 然后还可以使用tracert命令来查看自己的电脑和主机之间要经过多少个路由器，路由器当然是经过的越少越好咯。
 命令：“tracert [主机域名或IP]”
-[![](http://wonderflow.info/wp-content/uploads/2012/07/31.png)](http://wonderflow.info/wp-content/uploads/2012/07/31.png)
+[![](https://wonderflow.info/images/2012-07-22-e99b86e8aeade697a5e5bf97e7acace58d81e7af87-e6899be4b88de4bd8fe79a84e7bd91e7aea1/31.png)](https://wonderflow.info/images/2012-07-22-e99b86e8aeade697a5e5bf97e7acace58d81e7af87-e6899be4b88de4bd8fe79a84e7bd91e7aea1/31.png)
 
 
 

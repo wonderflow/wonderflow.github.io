@@ -17,7 +17,7 @@ Putty是一款不错的，在windows下可以用来进行ssh和telnet远程连�
 
 
 
-[![微博桌面截图_20130818182114](http://wonderflow.info/wp-content/uploads/2013/08/微博桌面截图_20130818182114.jpg)](http://wonderflow.info/wp-content/uploads/2013/08/微博桌面截图_20130818182114.jpg)
+[![微博桌面截图_20130818182114](https://wonderflow.info/images/2013-08-18-puttye4bdbfe794a8e9858de7bdae/微博桌面截图_20130818182114.jpg)](https://wonderflow.info/images/2013-08-18-puttye4bdbfe794a8e9858de7bdae/微博桌面截图_20130818182114.jpg)
 
 
 

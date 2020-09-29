@@ -90,7 +90,7 @@ int main()
 
 搞图论这么久，谁一眼看到这个题，会想到是个DP呢？然后题目里还有一句很重要的话：“all numbers are positive integers less than 100”告诉你数据范围的。看下图就应该明白了。
 
-[![](http://wonderflow.info/wp-content/uploads/2012/07/zoj1425.png)](http://wonderflow.info/wp-content/uploads/2012/07/zoj1425.png)
+[![](https://wonderflow.info/images/2012-07-13-zoj1389-fill-the-cisterns-zoj1425-crossed-matchings/zoj1425.png)](https://wonderflow.info/images/2012-07-13-zoj1389-fill-the-cisterns-zoj1425-crossed-matchings/zoj1425.png)
 
 ```
 //all numbers are positive integers less than 100

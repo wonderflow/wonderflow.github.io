@@ -68,7 +68,7 @@ Beef McNuggets
 题目大意：有n（<=10）个整数a1, a2, …, an（<=256），问是否存在无法用a1～an的线性表达式（k1a1 + k2a2 + … + knan）组成的数，如果有，其中最大的数是多少？（这个数的上限为2,000,000,000！）
 
 就是一个多重背包了，关键就是一点，两个互质的数a,b，他们不能构成的最大的数是a*b-a-b；（这个性质其实我还不太会证，AC的时候就是知道两个互质的数不能构成的数字不会很大，后来ac了看usaco的analysis才知道的。如果看到这里的同学知道怎么证的，麻烦留言互相学习啊~谢谢~）
-至于背包的一些传统DP解法，有一篇文章[《背包九讲》](http://wonderflow.info/wp-content/uploads/2012/08/背包九讲.pdf)，讲的非常好，如果之前没看过，大家可以点开来看看。
+至于背包的一些传统DP解法，有一篇文章[《背包九讲》](https://wonderflow.info/images/2012-08-02-usaco-raucous-rockers-beef-mcnuggets-fence-rails/背包九讲.pdf)，讲的非常好，如果之前没看过，大家可以点开来看看。
 ```
 /*
 ID: bobo
