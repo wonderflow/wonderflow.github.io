@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Software Engineering on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/categories/software-engineering/</link>
+    <description>Recent content in Software Engineering on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 24 Oct 2014 13:50:30 +0000</lastBuildDate><atom:link href="https://wonderflow.info/categories/software-engineering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>《程序员修炼之道》的笔记</title>
+      <link>https://wonderflow.info/posts/2014/10/24/e3808ae7a88be5ba8fe59198e4bfaee782bce4b98be98193e3808be79a84e7ac94e8aeb0/</link>
+      <pubDate>Fri, 24 Oct 2014 13:50:30 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2014/10/24/e3808ae7a88be5ba8fe59198e4bfaee782bce4b98be98193e3808be79a84e7ac94e8aeb0/</guid>
+      <description>老样子：印象笔记链接 责任：Provide Options, Don’t Make Lame Excuses. 什么是负责？就是在出了问题时，要提供各种选择，而不是找借口。不要说事情做不到；要说明能够做什么来挽回局面。 软件的熵：Don’t Live with Broken Windows. 不要留着“破窗户”（低劣的设计、错误的决策、糟糕的代码）不修。发现一个修一个，如果没有时间整理，就把出问题的代码放在注释里或者显示未实现。 足够好的软件：Make Quality a Requirements Issue 让用户参与权衡质量的需求 知识资产：Invest Regularly in Your Knowledge Portfolio 经营你的知识资产: 定期投资：尽管每次投资量小，但是要保持习惯 多元化：你知道的不同的事情越多，你就越有价值。你掌握的技术越多，你就越能更好地进行调整，赶上变化。 管理风险：不要把所有的技术</description>
+    </item>
+    
+    <item>
+      <title>版本控制与工作流</title>
+      <link>https://wonderflow.info/posts/2014/04/10/e78988e69cace68ea7e588b6e4b88ee5b7a5e4bd9ce6b581/</link>
+      <pubDate>Thu, 10 Apr 2014 14:28:04 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2014/04/10/e78988e69cace68ea7e588b6e4b88ee5b7a5e4bd9ce6b581/</guid>
+      <description>之前写过一篇git用法的文章，git pocket阅读记录。最近软件工程课要做报告，就又把这些内容整理了一下。 画这些PPT上的图真是一个超级耗时的工作啊，有兴趣的看看吧。 主要讲的是git原理以及分支模型(branching model)相关的内容。 版本控制报告PPT</description>
+    </item>
+    
+    <item>
+      <title>《Practices of an Agile Developer》读书笔记</title>
+      <link>https://wonderflow.info/posts/2013/11/26/e8afbbe4b9a6e7ac94e8aeb0/</link>
+      <pubDate>Tue, 26 Nov 2013 05:01:57 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2013/11/26/e8afbbe4b9a6e7ac94e8aeb0/</guid>
+      <description>这是一本比较普通的书，读了没什么坏处，不读也没什么大的损失。 全书讲了有关敏捷开发应该有的45个习惯，有的很实用，有的比较啰嗦。 比较有启发的一些习惯： 1、先难后易，先要解决技术难点，把简单的问题留到最后。 2、Blame doesn&amp;rsquo;t fix bugs. 3、写单元测试很重要。如果你的代码写单元测试很困难，说明设计本身有问题。 4、要专业而不是自我。对事不对人。 5、持续小步前进才是敏捷。一个学习型的团队才是好团队。 6、把握开发的节奏，保持事件之间稳定重复的间隔。 7、让客户做决定。给客户想要的软件而不是我们臆想的。 8、根据需要选择技术，而不是卖弄技术。 9、提早集成、频繁集成。保持可发布状态。 10、提早实现自动化部署。 11、使用短迭</description>
+    </item>
+    
+  </channel>
+</rss>

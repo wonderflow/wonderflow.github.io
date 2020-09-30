@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JavaScript on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/categories/javascript/</link>
+    <description>Recent content in JavaScript on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 15 Sep 2013 16:31:10 +0000</lastBuildDate><atom:link href="https://wonderflow.info/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScript中的闭包（JavaScript权威指南读书笔记）</title>
+      <link>https://wonderflow.info/posts/2013/09/15/javascripte4b8ade79a84e997ade58c85efbc88javascripte69d83e5a881e68c87e58d97e8afbbe4b9a6e7ac94e8aeb0efbc89/</link>
+      <pubDate>Sun, 15 Sep 2013 16:31:10 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2013/09/15/javascripte4b8ade79a84e997ade58c85efbc88javascripte69d83e5a881e68c87e58d97e8afbbe4b9a6e7ac94e8aeb0efbc89/</guid>
+      <description>最近在看javascript的书，稍微学习一些前端的东西，以便做些web应用的方便。 以前看到闭包这个概念一直不太懂，今天下定决心好好研读了一下，终于明白了一二。 像绝大多数高级编程语言，javascript也有其词法的作用域。意思是说，当函数被执行的时候，起作用的不是被调用时的变量作用域，而是在函数被定义的时候声明的变量域。所以为了实现这个词法作用域的功能，javascript必须在中间过程中不仅保存函数的代码，还需要保存当时所引用的作用域链。这个函数对象和函数变量保存起来的作用域的组合在计算机科学里的称呼就叫做闭包。 从技术角度来说，javascript里的函数都是闭包：它们都是对象，并且它们有</description>
+    </item>
+    
+  </channel>
+</rss>

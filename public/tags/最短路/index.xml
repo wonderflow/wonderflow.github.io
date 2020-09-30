@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>最短路 on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/</link>
+    <description>Recent content in 最短路 on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 02 Aug 2012 14:42:06 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>扯 &amp;&amp; 最短路floyd的DP解法解释</title>
+      <link>https://wonderflow.info/posts/2012/08/02/e689af-e69c80e79fade8b7affloyde79a84dpe8a7a3e6b395e8a7a3e9878a/</link>
+      <pubDate>Thu, 02 Aug 2012 14:42:06 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/08/02/e689af-e69c80e79fade8b7affloyde79a84dpe8a7a3e6b395e8a7a3e9878a/</guid>
+      <description>帮鱼头整理集训队训练教程，据说要出书，瞬间感到压力巨大。就那些平时大家随便写写，只是给自己看看的，非常散漫的解题报告，和专题上很多算法本质都不理解的各种报告组成的一个文档。我真的，压力巨大。那么尽自己力量去整理吧。 整本书的结构就是： 章节（专题介绍-&amp;gt;讲的参差不齐）；子目录（该专题算法介绍-&amp;gt;伪代码(反正不是通俗易懂)）; 子目录：例题-&amp;gt;题意-&amp;gt;思路-&amp;gt;代码（这就导致小半本书代码）。 我也不知道这样是好是坏，是否适合读者入门。反正我最讨厌大段大段贴代码的书了。 然后尽力整理吧，其实这本书倒更像是一个模板库，对于把所有专题都了解过的人，是一本很好的复习资料。我就花了一个晚</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Guide for Cloud Foundry New Teamer | 奇迹之流WonderfloW</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.75.1" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Guide for Cloud Foundry New Teamer" />
+<meta property="og:description" content="Preparation 1、阅读以下博客： 了解架构，阅读“深入CloudFoundry一周年” 2、请准备好一个linux的客户端，如果没有请申请一个虚拟机，并安装好ubuntu10.04（windows下使用远程连接的方式是使用putty软件。） 3、如果不熟悉linux，请阅读linux相关命令，初步了解。 Start 定位cloudfoundry集群： 请使用$ curl [your domain]。若显示出正常信息则初步表面集群配置正确，否则请找帮你配置集群的人。 配置linux源，提高下载速度。(百度一个ubuntu cn的源) {% codeblock %} $ /etc/apt/sources.list $ sudo apt-get update {% endcodeblock %} 安装git，为了下载一个基本应用，github上面的。 {% codeblock %} $ sudo apt-get install git {% endcodeblock %} 安装maven，为了" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wonderflow.info/posts/2013/07/25/guide-for-cloud-foundry-new-teamer-2/" />
+<meta property="article:published_time" content="2013-07-25T05:41:20+00:00" />
+<meta property="article:modified_time" content="2013-07-25T05:41:20+00:00" />
+<meta itemprop="name" content="Guide for Cloud Foundry New Teamer">
+<meta itemprop="description" content="Preparation 1、阅读以下博客： 了解架构，阅读“深入CloudFoundry一周年” 2、请准备好一个linux的客户端，如果没有请申请一个虚拟机，并安装好ubuntu10.04（windows下使用远程连接的方式是使用putty软件。） 3、如果不熟悉linux，请阅读linux相关命令，初步了解。 Start 定位cloudfoundry集群： 请使用$ curl [your domain]。若显示出正常信息则初步表面集群配置正确，否则请找帮你配置集群的人。 配置linux源，提高下载速度。(百度一个ubuntu cn的源) {% codeblock %} $ /etc/apt/sources.list $ sudo apt-get update {% endcodeblock %} 安装git，为了下载一个基本应用，github上面的。 {% codeblock %} $ sudo apt-get install git {% endcodeblock %} 安装maven，为了">
+<meta itemprop="datePublished" content="2013-07-25T05:41:20+00:00" />
+<meta itemprop="dateModified" content="2013-07-25T05:41:20+00:00" />
+<meta itemprop="wordCount" content="3308">
+
+
+
+<meta itemprop="keywords" content="cloudfoundry,ruby," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Guide for Cloud Foundry New Teamer"/>
+<meta name="twitter:description" content="Preparation 1、阅读以下博客： 了解架构，阅读“深入CloudFoundry一周年” 2、请准备好一个linux的客户端，如果没有请申请一个虚拟机，并安装好ubuntu10.04（windows下使用远程连接的方式是使用putty软件。） 3、如果不熟悉linux，请阅读linux相关命令，初步了解。 Start 定位cloudfoundry集群： 请使用$ curl [your domain]。若显示出正常信息则初步表面集群配置正确，否则请找帮你配置集群的人。 配置linux源，提高下载速度。(百度一个ubuntu cn的源) {% codeblock %} $ /etc/apt/sources.list $ sudo apt-get update {% endcodeblock %} 安装git，为了下载一个基本应用，github上面的。 {% codeblock %} $ sudo apt-get install git {% endcodeblock %} 安装maven，为了"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        奇迹之流WonderfloW
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/archive/" title="Archive page">
+              Archive
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
+              Posts
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
+  <header class="mt4 w-100">
+    <aside class="instapaper_ignoref b helvetica tracked">
+      
+      POSTS
+    </aside>
+    
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://wonderflow.info/posts/2013/07/25/guide-for-cloud-foundry-new-teamer-2/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2013/07/25/guide-for-cloud-foundry-new-teamer-2/&amp;text=Guide%20for%20Cloud%20Foundry%20New%20Teamer" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://wonderflow.info/posts/2013/07/25/guide-for-cloud-foundry-new-teamer-2/&amp;title=Guide%20for%20Cloud%20Foundry%20New%20Teamer" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+    <h1 class="f1 athelas mt3 mb1">Guide for Cloud Foundry New Teamer</h1>
+    
+    <p class="tracked">
+      By <strong>
+        
+        admin
+        
+      </strong>
+    </p>
+    
+    
+    <time class="f6 mv4 dib tracked"
+      datetime="2013-07-25T05:41:20Z">July 25, 2013</time>
+
+    
+    
+  </header>
+  <div
+    class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-100-l"><h2 id="preparation">Preparation</h2>
+<p>1、阅读以下博客：
+了解架构，阅读“<a href="http://qing.blog.sina.com.cn/2294942122/88ca09aa33003k2j.html">深入CloudFoundry一周年</a>”</p>
+<p>2、请准备好一个linux的客户端，如果没有请申请一个虚拟机，并安装好ubuntu10.04（windows下使用远程连接的方式是使用putty软件。）</p>
+<p>3、如果不熟悉linux，请阅读linux相关命令，初步了解。</p>
+<h2 id="start">Start</h2>
+<ol>
+<li>
+<p>定位cloudfoundry集群： 请使用$ curl [your domain]。若显示出正常信息则初步表面集群配置正确，否则请找帮你配置集群的人。</p>
+</li>
+<li>
+<p>配置linux源，提高下载速度。(百度一个ubuntu cn的源)</p>
+</li>
+</ol>
+<p>{% codeblock %}
+$ /etc/apt/sources.list $ sudo apt-get update
+{% endcodeblock %}</p>
+<ol>
+<li>安装git，为了下载一个基本应用，github上面的。</li>
+</ol>
+<p>{% codeblock %}
+$ sudo apt-get install git
+{% endcodeblock %}</p>
+<ol>
+<li>安装maven，为了打包成war包，期间阅读下maven的功能，不求甚解。</li>
+</ol>
+<p>{% codeblock %}
+$ sudo apt-get install maven2
+{% endcodeblock %}</p>
+<ol>
+<li>用git下载cloud foundry基本样例。(请注册github，并百度相关用法，<a href="https://github.com/wonderflow/cloudfoundry-samples/tree/master/hello-spring-mysql">github简单应用</a> )</li>
+</ol>
+<p>{% codeblock %}
+$ git clone [http://***.git]
+{% endcodeblock %}</p>
+<ol>
+<li>cd到相应根目录，执行maven打包</li>
+</ol>
+<p>{% codeblock %}
+$ mvn clean package
+{% endcodeblock %}</p>
+<ol>
+<li>把war包上传，需要一个干净的目录，里面只有一个war包</li>
+</ol>
+<p>{% codeblock %}
+$ mkdir newdir $ mv *.war newdir/
+{% endcodeblock %}</p>
+<ol>
+<li>在继续下去之前，可能你需要安装ruby以及vmc等相关工具。 ！！建议【安装的版本ruby1.9.3】！！ <a href="http://ruby-china.org/wiki/install_ruby_guide">install_ruby_guide</a>（请一定要有耐心,到了这一部时间极长)</li>
+</ol>
+<p>{% codeblock %}
+$ rvm install 1.9.3 &ndash;with-readline-dir=$rvm_path/usr # 安装 Ruby 1.9.3
+{% endcodeblock %}</p>
+<p>尤其是出现 it may takes time&hellip;.的时候，要等很久。 但是如果等了很久还是那样就，没关系的。</p>
+<p>{% codeblock %}</p>
+<p>#安装完后查看下rails包是否正常。
+$ gem list #如果是空的，执行
+$ rvm use 1.9.3
+#然后安装vmc
+$ gem install vmc</p>
+<p>{% endcodeblock %}</p>
+<!-- raw HTML omitted -->
+<ol start="9">
+<li>按下述执行</li>
+</ol>
+<p>{% codeblock %}</p>
+<p>$ cd [只有war包的目录]
+$ vmc target [your domain]
+$ vmc register</p>
+<blockquote>
+<p>emai：　[your_email_address]
+password: [your password]
+confirm password:[your password]
+$ vmc login
+emai：　[your_email_address]
+password: [your password]
+$ vmc push
+Name&gt; test1
+Instances&gt; 1
+1: spring
+2: other
+Framework&gt; spring
+1: java
+2: java7
+3: other
+Runtime&gt; 1
+1: 64M
+2: 128M
+3: 256M
+4: 512M
+5: 1G
+6: 2G
+7: 4G
+8: 8G
+9: 16G
+Memory Limit&gt; 512M
+Creating spring-mysql&hellip; OK
+1: spring-mysql.cf1.load
+2: none
+Domain&gt; test1.cf.test
+[根据给你部署集群的人-配置的不同而不同]
+Updating spring-mysql&hellip; OK
+Create services for application?&gt; y
+Name&gt; mysql-spring
+Creating service mysql-spring&hellip; OK</p>
+</blockquote>
+<p>{% endcodeblock %}</p>
+<p>后面的操作全部默认（包括save configuration 选择n也是）</p>
+<p>完成后得到一个网址，可以访问。（就是之前给你确定的Domain）</p>
+<h2 id="相关资料">相关资料</h2>
+<p><a href="http://studiogang.blog.51cto.com/505887/386852">AB test</a>；
+<a href="http://blog.csdn.net/yurunsheng/article/details/7978240">示例应用的解析</a>；
+<a href="http://blog.csdn.net/dengsilinming/article/details/7516655">vmc的简单说明</a>；
+<a href="https://github.com/cloudfoundry/vmc">vmc项目主页</a>；</p>
+<h2 id="some-tips-related">Some tips related</h2>
+<h3 id="关于bosh">关于BOSH：</h3>
+<p>登陆到bosh，ssh root@[ip address] （you will know the password if you have the authentication）</p>
+<p>安装自己相应的配置文件。</p>
+<p>{% codeblock %}</p>
+<p>$ bosh status #查看配置情况，顺便看到yml配置文件的地址
+$ bosh deployment [/[youraddress]/deployments/cf/cf_test_2.yml] #添加自己的配置文件。
+$ bosh vms #查看组件整体情况
+$ bosh restart XXX #重启某组件</p>
+<p>{% endcodeblock %}</p>
+<h3 id="rvm管理工具的一些用法">rvm管理工具的一些用法。</h3>
+<p>{% codeblock %}</p>
+<p>$ bash -l #bash重启
+$ rvm use 1.9.2 #使用某个版本
+$ rvm 1.9.2 &ndash;default
+$ gem list #查看gem包
+$ gem -v
+$ ruby -v #查看当前使用的版本</p>
+<p>{% endcodeblock %}</p>
+<p>Gem卸载、安装相关，以vmc为例。</p>
+<p>先卸载当前版本，再安装0.5.1版本</p>
+<p>{% codeblock %}</p>
+<p>$ gem uninstall vmc
+$ gem install vmc &ndash;version=0.5.1 检查nameserver是否正常。
+$ vim /etc/resolv.conf</p>
+<p>{% endcodeblock %}</p>
+<p>vmc登录出现一些问题，使用-t选项，可以看到cloudcontroller里面的代码。</p>
+<p>{% codeblock %}</p>
+<p>$ vmc register -t #可以看到cloudcontroller里面相关代码。 #登录到集群cloudcontroller相关模块查看cloudcontroller 的yml文件。
+$ ssh [root@10.10.102.165] #请使用你自己集群cloudcontroller的文件
+$ vi /var/vcap/jobs/cloud_controller/config/cloud_controller.yml #之前遇到一个https不能使用的问题，改成http即可。</p>
+<p>{% endcodeblock %}</p>
+<p><strong>others：you may ask the guys nearby，if you are clever, they will glad to help you。</strong></p>
+<h2 id="learn-ruby">Learn Ruby</h2>
+<p>一、 阅读一本ruby语言的相关电子书，建立初步概念，网上很多。
+<a href="http://ishare.iask.sina.com.cn/f/23034819.html">《Ruby从入门到精通》</a> <a href="http://wenku.baidu.com/view/dd769633a32d7375a4178059.html">《Ruby语言入门教程》</a></p>
+<p>二、如果有脚本语言的基础，阅读：<a href="http://www.btsmth.com/show_topic.php?en_name=Programming&amp;gid=156911">“快速读懂ruby代码问答”</a></p>
+<p>三、 看别人高手写的小代码，<a href="http://codeforces.com/">Codeforces</a></p>
+<p>四、Cloud Foundry 源码：<a href="https://github.com/cloudfoundry">@github</a></p>
+<h2 id="components-list">Components List</h2>
+<p><strong>LB</strong>（load balance）:负载均衡器，对进来的url请求进行负载均衡的分发，分发到Router，使用nginx。</p>
+<p><strong>Router</strong>：对所有进来的Request进行路由，包括nginx和router两个组件。目前使用的nginx是带LUA语言扩展的第二版，它里面加入了url查询和统计逻辑。处理了原来ruby写脚本处理转发的瓶颈。从架构图上可以看出，从router路由出去的数据，很大一部分是流向了DEA，还有一部分则是流向了CloudController组件。</p>
+<p><strong>DEA</strong> （Droplet Execution Agent）:它负责把上传的应用制作并存储成CloudFoundry能使用的Droplet，在应用开始执行后，dea把droplet 复制成很多份实例去运行。同时它还进行一个对应用程序的容器作用，承载应用程序在其中孤立运行，对系统进行保护。最后它给router一个信息让应用对应的request访问到这里。</p>
+<p><strong>CC</strong> （Cloud Controller）： Cloud Controller是CloudFoundry的管理模块。主要工作包括： a) 对apps的增删改读； b) 启动、停止应用程序（通过DEA）； c) Stagingapps（把apps打包成一个droplet，通过Stager）； d) 修改应用程序运行环境，包括instance、mem等等； e) 管理service，包括service与app的绑定等； f) Cloud环境的管理； g) 修改Cloud的用户信息（通过UAA，ACM）； h) 查看CloudFoundry，以及每一个app的log信息。</p>
+<p><strong>CCDB</strong> （CloudController Database）：cc的数据库，用来存储用户的应用信息，在启动应用与创建instance的时候会用到。</p>
+<p><strong>UAA</strong>（User Account and Authentication）：是一个用户认证的模块，负责验证用户的信息。</p>
+<p><strong>UAADB</strong>（User Account and Authentication Database）：uaa的数据库，用来存储用户的信息，同样在登陆的过程中可以测试。</p>
+<p><strong>Health Manager</strong>: 从各个DEA里面拿到运行信息，然后进行统计分析，报告等。统计数据会与CloudController的设定指标进行比对，并提供Alert等。这些信息会发送到dashboard显示出来。</p>
+<p><strong>Service</strong>：这个模块是很多个服务的合集，由多个节点共同构成，包括所有支持的数据库等。 『mongodb，mysql ，postgresql ，rabbit ，redis ，service_gateway』
+大致服务流程如下：
+a) 开发人员通过VMC创建一个Service;
+b) VMC把其转为Restful接口到CloudController；
+c) CloudController通过Restful接口发送创建命令到Service Gateway；
+d) ServiceGateway通过NATS发送provision命令道Service Node； e) ServiceNode创建Service；
+f) Service Node把返回创建的Service访问方法回Service Gateway；
+g) ServiceGateway返回访问方法到CloudController；
+h) CloudController把创建的Service访问放法注入到应用运行环境；
+i) 最终用户可以直接访问其服务。</p>
+<p><strong>NATS</strong> (Message bus)：CloudFoundry的架构是基于消息发布与订阅的，联系各模块的就是nats的组件。也就是说它是cloudfoundry的神经系统。 所以nats是一款基于EventMachine、使用“发布&ndash;订阅”机制的轻量级消息中间件。 『CloudFoundry作为一个弹性设计的，多模块的分布式系统，且支持模块自发现，错误自检，保证模块间低耦合。其根本原理就是基于消息发布订阅机制构建。每台服务器上的每个模块会根据自己的消息类别，向Message Bus发布多个消息主题；而同时也向自己需要交互的模块，按照需要的信息内容的消息主题订阅消息。』</p>
+<p><strong>Dashboard</strong>: 用于显示系统内部各情况的板报。</p>
+<p><strong>Opentsdb</strong>: 负责存储dashboard所要显示各类信息的数据库。</p>
+<p><strong>Collector</strong>: a) 发现各组件，创建varz信息（组件的各种信息，随组件的不同提供的信息也不同） b) 收集各组件提供的varz信息 c) 处理varz信息并存储到spentsdb</p>
+<p><strong>Learn More by Yourself</strong>:
+<a href="http://group.google.com">http://group.google.com</a> 【bosh-users】 【cloudfoundry】 and so on</p>
+<p>——Sun Jianbo 2013年7月25日</p>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/cloudfoundry" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">cloudfoundry</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/ruby" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">ruby</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+    </div>
+  </div>
+
+  <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+</article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info" >
+    &copy;  奇迹之流WonderfloW 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

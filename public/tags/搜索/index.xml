@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>搜索 on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/%E6%90%9C%E7%B4%A2/</link>
+    <description>Recent content in 搜索 on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 02 Aug 2012 05:37:32 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/%E6%90%9C%E7%B4%A2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>USACO Raucous Rockers &amp;&amp; Beef McNuggets &amp;&amp; Fence Rails</title>
+      <link>https://wonderflow.info/posts/2012/08/02/usaco-raucous-rockers-beef-mcnuggets-fence-rails/</link>
+      <pubDate>Thu, 02 Aug 2012 05:37:32 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/08/02/usaco-raucous-rockers-beef-mcnuggets-fence-rails/</guid>
+      <description>Raucous Rockers 题目大意：有N(&amp;lt;=20)首歌，打算放在M(&amp;lt;=20)张CD中，每张CD可存储T(&amp;lt;=20)分钟的音乐，给定每首歌的时长，问如何将歌曲按照日期（也就是输入）的顺序，存在这M张CD中，并且每首歌不可以分开存在多张CD上，使得存储的歌曲的数目最多。 解决思路：就是个01背包的变形吧？用滚动数组迭代。dp[m][t],表示我前m张cd用到第t分钟的时候，最多能放多少首歌。N首歌的那一个纬度可以省去，因为每次都只要用到当前纬度的状态。 与01背包的区别就是每次做完一个物品，我都要把影响扩展到后面的每一个容量，也就是说，我前面那些CD就能放下这么多歌了，那么我后面的CD也至少能放那么多</description>
+    </item>
+    
+    <item>
+      <title>ZOJ1030 Farmland &amp;&amp; ZOJ1145 Dreisam Equations</title>
+      <link>https://wonderflow.info/posts/2012/07/22/zoj1030-farmland-zoj1145-dreisam-equations/</link>
+      <pubDate>Sun, 22 Jul 2012 11:05:54 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/22/zoj1030-farmland-zoj1145-dreisam-equations/</guid>
+      <description>zoj1030 《Farmland》绝对是恶心人的题，题目是要求找出边长为n的多边形。但是如果途中有其他的边或者点，就不算。 做法就是枚举每一条边，然后dfs，每次选择夹角最小的点。选择完以后要对所有的点枚举，查看点是否在多边形内。最后，因为每条边都按照正向走和反向走，可能出现重复，怎么解决重复呢，算面积，面积为负的舍弃。 代码写的比较烦躁：WA了十多次，搞了好久，果然我这样的人还是不适合做计算几何的、 #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;vector&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;map&amp;gt; #define infinity 1e10 #define EP 1e-8 using namespace std; /* * 1.dfs出一个多边形(坐标变换，把一条边转成x轴正方向) * 2.判断多边形内是否有孤立的点，采用射线法， * (射线与多边形的交点是奇数个的时候，点在多边形内，在此之前要判断是否在线</description>
+    </item>
+    
+    <item>
+      <title>HDU4249 A Famous Equation 2012多校warm up E</title>
+      <link>https://wonderflow.info/posts/2012/07/19/hdu4249-a-famous-equation-2012e5a49ae6a0a1warm-up-e/</link>
+      <pubDate>Thu, 19 Jul 2012 12:23:06 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/19/hdu4249-a-famous-equation-2012e5a49ae6a0a1warm-up-e/</guid>
+      <description>今天下午做了场多校热身赛，题目都不难，做到一题有意思的DP，把它记录一下。 题目描述：就是给你一个含问号的和式，问你有多少种情况满足题意。 一开始写了个搜索，暴力枚举每个问号位的情况，然后稍微减了下支，想想一年多前这样的搜索一定觉得很难写不想写，如今十来分钟就写好了，还挺得意，然后果断TLE了！ #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;climits&amp;gt; #include&amp;lt;stack&amp;gt; #include&amp;lt;string&amp;gt; #include&amp;lt;map&amp;gt; using namespace std; int rec[3][20],num[3]; int ask[3]; int ans; int getz(int x) { int ret = 1; for(int i=0;i&amp;lt;x;i++) ret*=10; return ret; } void dfs(int flag,int dex,int sum) { if(sum&amp;lt;0)return; if(!flag&amp;amp;&amp;amp;dex==num[flag]){ if(!sum)ans++; return; } if(dex==num[flag]){ dex = 0; flag--; } if(rec[flag][dex]&amp;lt;0){ for(int i=dex?0:1;i&amp;lt;10;i++){ if(flag==2)dfs(flag,dex+1,sum+i*getz(num[flag]-dex-1)); else dfs(flag,dex+1,sum-i*getz(num[flag]-dex-1)); } }else{ if(flag==2)dfs(flag,dex+1,sum+rec[flag][dex]*getz(num[flag]-dex-1)); else dfs(flag,dex+1,sum-rec[flag][dex]*getz(num[flag]-dex-1)); } } int main() { int icase =0 ; char ss[100]; int flag = 0; while(gets(ss)) { icase++; memset(num,0,sizeof(num)); memset(ask,0,sizeof(ask)); flag = 0; printf(&amp;quot;Case %d: &amp;quot;,icase); int siz = strlen(ss); for(int i=0;i&amp;lt;siz;i++){ switch(ss[i]){ case &#39;+&#39;:case &#39;=&#39;: flag++;break; case &#39;?&#39;: rec[flag][num[flag]++] = -1; ask[flag]++; break; default: rec[flag][num[flag]++] = ss[i]-&#39;0&#39;; break; } } if(ask[0]+ask[1]==0 || ask[0]+ask[2]==0 || ask[1]+ask[2]==0){ puts(&amp;quot;1&amp;quot;);continue; } ans = 0; dfs(2,0,0); printf(&amp;quot;%d\n&amp;quot;,ans); } return 0; } 然后得到了阿森的提示，知道了要用DP的方法。就跟人在模拟这</description>
+    </item>
+    
+    <item>
+      <title>ZOJ1245 &amp;&amp; ZOJ1298 &amp;&amp; ZOJ1301</title>
+      <link>https://wonderflow.info/posts/2012/07/15/zoj1245-zoj1298-zoj1301/</link>
+      <pubDate>Sun, 15 Jul 2012 15:40:47 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/15/zoj1245-zoj1298-zoj1301/</guid>
+      <description>这三题都比较简单，就放在一起了。 ZOJ1245《Triangles》是一个DP，转移就是看三角形的顶点，从上面一层它的左边和右边两个顶点转移的。或者从下面一层左右顶点转移的。 要注意的是奇偶时三角形的方向是不一样的，DP的时候，只能从是它方向的三角形转移过来。然后还有注意一下数组大小，今天就是这样WA了一下午。 ZOJ1298《Domino Effect》是一个有意思的题，问多米诺效应产生到结束一共需要的时间。其实就是个最短路，但是你不知道最终会在那条边上终止还是在点上终止，这个时候就需要枚举边，再算出结果找出一个耗时最大的，就是答案了。 ZOJ1301《The New Villa》是一个宽搜，要把因为点只有</description>
+    </item>
+    
+  </channel>
+</rss>

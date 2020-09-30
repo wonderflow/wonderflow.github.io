@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>染色 on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/%E6%9F%93%E8%89%B2/</link>
+    <description>Recent content in 染色 on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 12 Jul 2012 11:56:25 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/%E6%9F%93%E8%89%B2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ZOJ1462 Team Them Up! &amp;&amp; ZOJ1066 Square Ice</title>
+      <link>https://wonderflow.info/posts/2012/07/12/zoj1462-team-them-upzoj1066-square-ice/</link>
+      <pubDate>Thu, 12 Jul 2012 11:56:25 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/12/zoj1462-team-them-upzoj1066-square-ice/</guid>
+      <description>今天似乎是被《team them up》虐了一天啊。昨天就知道了解法，就是一直wa。中间还去把当年正常比赛官方数据下载下来对比了一下。结果发现zoj和poj的数据竟然是加强了的。。。。 说下题意：一堆人要分班级，人与人之间有的互相认识，有的不认识。现在只有两个班，但是我分班级有限制条件。 1、一个班级的同学都要互相认识。 2、一个班级里一定要至少有一个人。 3、两个班级里的人数要尽可能靠近 看到这个题可能会没有什么想法。比如我就是这样。然后根据以前的经验，从小数据开始，如果1个人的话怎么分，2个人的话怎么分等等。后来发现这个不存在一个递推关系，因为人之间还有图的关系。 然后就问了一下薛斌怎么想的，发现他的思路很好。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AC自动机 on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/ac%E8%87%AA%E5%8A%A8%E6%9C%BA/</link>
+    <description>Recent content in AC自动机 on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 13 Jul 2012 08:31:13 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/ac%E8%87%AA%E5%8A%A8%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ZOJ1426 Counting Rectangles &amp;&amp; ZOJ1387 Decoding Morse Sequences</title>
+      <link>https://wonderflow.info/posts/2012/07/13/zoj1426-counting-rectangles-zoj1387-decoding-morse-sequences/</link>
+      <pubDate>Fri, 13 Jul 2012 08:31:13 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/13/zoj1426-counting-rectangles-zoj1387-decoding-morse-sequences/</guid>
+      <description>Counting Rectangles 这题一开始都没人做，其实就是个水题。因为题目中说的很清楚，只会有垂直和水平的线。这个时候，我们可以枚举任意两条横线，对于每条竖线，看有多少竖线跟这两条横线相交，设相交数为tmp。最后对于这两条横线和所有的竖线构成的矩形个数就是(temp-1)*temp/2（一个框构成的矩形有temp-1个，两个框构成的矩形有temp-2个。。以此类推至1个）。这样就能在N^3的复杂度内算出所有矩形个数了。 /* 枚举任意两条横线，对于每条竖线，看有多少竖线跟这两条横线相交，设相交数为tmp 最后对于这两条横线和所有的竖线构成的矩形个数就是(temp-1)*temp/2 这样就能在N^3的复杂度内算出所有矩形个数了。</description>
+    </item>
+    
+  </channel>
+</rss>

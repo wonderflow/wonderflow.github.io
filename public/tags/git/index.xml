@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/git/</link>
+    <description>Recent content in git on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 10 Apr 2014 14:28:04 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>版本控制与工作流</title>
+      <link>https://wonderflow.info/posts/2014/04/10/e78988e69cace68ea7e588b6e4b88ee5b7a5e4bd9ce6b581/</link>
+      <pubDate>Thu, 10 Apr 2014 14:28:04 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2014/04/10/e78988e69cace68ea7e588b6e4b88ee5b7a5e4bd9ce6b581/</guid>
+      <description>之前写过一篇git用法的文章，git pocket阅读记录。最近软件工程课要做报告，就又把这些内容整理了一下。 画这些PPT上的图真是一个超级耗时的工作啊，有兴趣的看看吧。 主要讲的是git原理以及分支模型(branching model)相关的内容。 版本控制报告PPT</description>
+    </item>
+    
+    <item>
+      <title>《git pocket guide》读书笔记</title>
+      <link>https://wonderflow.info/posts/2013/08/27/e3808agit-pocket-guidee3808be8afbbe4b9a6e7ac94e8aeb0/</link>
+      <pubDate>Tue, 27 Aug 2013 15:47:21 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2013/08/27/e3808agit-pocket-guidee3808be8afbbe4b9a6e7ac94e8aeb0/</guid>
+      <description>最近读了2013年新出的一本关于git的书《git pocket guide》既锻炼了自己的英语阅读，又学习了git，真是一举两得。 读书笔记长达40多页，要是整理成wordpress网页的格式，非得折腾死，还是直接上传一个pdf比较直接，看这里：chinese_git_pocket_wonderflow。 学会了git，就该常用github了，这个程序员的天堂。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>策略 on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/%E7%AD%96%E7%95%A5/</link>
+    <description>Recent content in 策略 on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 12 Jul 2012 16:48:13 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/%E7%AD%96%E7%95%A5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>集训日志第五篇（解题常用方法的总结）</title>
+      <link>https://wonderflow.info/posts/2012/07/12/e99b86e8aeade697a5e5bf97e7acace4ba94e7af87efbc88e8a7a3e9a298e5b8b8e794a8e696b9e6b395e79a84e680bbe7bb93efbc89/</link>
+      <pubDate>Thu, 12 Jul 2012 16:48:13 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/12/e99b86e8aeade697a5e5bf97e7acace4ba94e7af87efbc88e8a7a3e9a298e5b8b8e794a8e696b9e6b395e79a84e680bbe7bb93efbc89/</guid>
+      <description>集训的时光不知不觉，其实已经过去了一半了，十三天。 每天做一到二个题，总结、思考。看重的不是做出的题目是用的什么方法，看重的是怎么想到的这个做题的方法，思路是怎么来的。那么今天顺势总结下思考问题的一些方法。 题目做的多了，就会自然而然的产生一些经验，比如看到数据的范围，就能想到最终的解法是什么复杂度的，然后根据复杂度，就可以套一些模型，一些常用的算法。 再根据常用的方法的多种应用，思考针对该题的解决方案。 这是很常见的一种方法，我喜欢称之为“经验教训”法。 面对一个问题，先从小规模着手，如果这个问题的数据非常小，从1个、2个、3个、、这样以此类推的往多处叠加，那么这个问题的解法会不会思考出来。要知道，如</description>
+    </item>
+    
+  </channel>
+</rss>

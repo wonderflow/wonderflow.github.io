@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>2012多校第一、第二场（hdu4300~hdu4319） | 奇迹之流WonderfloW</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.75.1" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="2012多校第一、第二场（hdu4300~hdu4319）" />
+<meta property="og:description" content="说一下自己搞出来的题目吧，感觉多校其实比较水的，题目也不难，模板题，陈题很多，不过两场我们队的名次都很烂诶，30开外了都，抗不住啊！出现的问题就是队里的模板太少、不全。不过也好，做一场补一场的模板。 hdu4300《Clairewd’s message》是个字符串，利用next数组求解，小trick就是next数组求出来的值要小于(len-1)/2才取。即：while(len-next[dx]&lt;=(len-1)/2)dx = next[dx]; #include&lt;iostream&gt; #include&lt;cstring&gt; #include&lt;cstdio&gt; using namespace std; int map[30]; int len; int s[101000]; int next[101000]; char str[101000]; void get_next() { int i,j;i=0;next[0]=-1;j=-1; while(i&lt;len) { if(j==-1||map[s[j]]==s[i]) { &#43;&#43;i;&#43;&#43;j; next[i]=j; } else j=next[j]; } } int main() { int T; scanf(&quot;%d&quot;,&amp;T); while(T--){ scanf(&quot;%s&quot;,str); len = strlen(str); for(int i=0;i&lt;len;i&#43;&#43;){ map[str[i]-&#39;a&#39;] = i; } scanf(&quot;%s&quot;,str); len = strlen(str); for(int i=0;i&lt;len;i&#43;&#43;){ s[i] = str[i] - &#39;a&#39;; } get_next(); // cout&lt;&lt;next[len]&lt;&lt;endl; int dx = len; while(len-next[dx]&lt;=(len-1)/2)dx = next[dx]; // cout&lt;&lt;next[dx]&lt;&lt;endl; for(int i=0;i&lt;len-next[dx];i&#43;&#43;){ printf(&quot;%c&quot;,s[i]&#43;&#39;a&#39;); } for(int i=0;i&lt;len-next[dx];i&#43;&#43;){ printf(&quot;%c&quot;,map[s[i]]&#43;&#39;a&#39;); } printf(&quot;\n&quot;); } return 0;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wonderflow.info/posts/2012/07/27/2012e5a49ae6a0a1e7acace4b880e38081e7acace4ba8ce59cbaefbc88hdu4300hdu4319efbc89/" />
+<meta property="article:published_time" content="2012-07-27T12:59:12+00:00" />
+<meta property="article:modified_time" content="2012-07-27T12:59:12+00:00" />
+<meta itemprop="name" content="2012多校第一、第二场（hdu4300~hdu4319）">
+<meta itemprop="description" content="说一下自己搞出来的题目吧，感觉多校其实比较水的，题目也不难，模板题，陈题很多，不过两场我们队的名次都很烂诶，30开外了都，抗不住啊！出现的问题就是队里的模板太少、不全。不过也好，做一场补一场的模板。 hdu4300《Clairewd’s message》是个字符串，利用next数组求解，小trick就是next数组求出来的值要小于(len-1)/2才取。即：while(len-next[dx]&lt;=(len-1)/2)dx = next[dx]; #include&lt;iostream&gt; #include&lt;cstring&gt; #include&lt;cstdio&gt; using namespace std; int map[30]; int len; int s[101000]; int next[101000]; char str[101000]; void get_next() { int i,j;i=0;next[0]=-1;j=-1; while(i&lt;len) { if(j==-1||map[s[j]]==s[i]) { &#43;&#43;i;&#43;&#43;j; next[i]=j; } else j=next[j]; } } int main() { int T; scanf(&quot;%d&quot;,&amp;T); while(T--){ scanf(&quot;%s&quot;,str); len = strlen(str); for(int i=0;i&lt;len;i&#43;&#43;){ map[str[i]-&#39;a&#39;] = i; } scanf(&quot;%s&quot;,str); len = strlen(str); for(int i=0;i&lt;len;i&#43;&#43;){ s[i] = str[i] - &#39;a&#39;; } get_next(); // cout&lt;&lt;next[len]&lt;&lt;endl; int dx = len; while(len-next[dx]&lt;=(len-1)/2)dx = next[dx]; // cout&lt;&lt;next[dx]&lt;&lt;endl; for(int i=0;i&lt;len-next[dx];i&#43;&#43;){ printf(&quot;%c&quot;,s[i]&#43;&#39;a&#39;); } for(int i=0;i&lt;len-next[dx];i&#43;&#43;){ printf(&quot;%c&quot;,map[s[i]]&#43;&#39;a&#39;); } printf(&quot;\n&quot;); } return 0;">
+<meta itemprop="datePublished" content="2012-07-27T12:59:12+00:00" />
+<meta itemprop="dateModified" content="2012-07-27T12:59:12+00:00" />
+<meta itemprop="wordCount" content="2338">
+
+
+
+<meta itemprop="keywords" content="ACM,Dinic,DP,hdu,多校,最小割,网络流,解题报告," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="2012多校第一、第二场（hdu4300~hdu4319）"/>
+<meta name="twitter:description" content="说一下自己搞出来的题目吧，感觉多校其实比较水的，题目也不难，模板题，陈题很多，不过两场我们队的名次都很烂诶，30开外了都，抗不住啊！出现的问题就是队里的模板太少、不全。不过也好，做一场补一场的模板。 hdu4300《Clairewd’s message》是个字符串，利用next数组求解，小trick就是next数组求出来的值要小于(len-1)/2才取。即：while(len-next[dx]&lt;=(len-1)/2)dx = next[dx]; #include&lt;iostream&gt; #include&lt;cstring&gt; #include&lt;cstdio&gt; using namespace std; int map[30]; int len; int s[101000]; int next[101000]; char str[101000]; void get_next() { int i,j;i=0;next[0]=-1;j=-1; while(i&lt;len) { if(j==-1||map[s[j]]==s[i]) { &#43;&#43;i;&#43;&#43;j; next[i]=j; } else j=next[j]; } } int main() { int T; scanf(&quot;%d&quot;,&amp;T); while(T--){ scanf(&quot;%s&quot;,str); len = strlen(str); for(int i=0;i&lt;len;i&#43;&#43;){ map[str[i]-&#39;a&#39;] = i; } scanf(&quot;%s&quot;,str); len = strlen(str); for(int i=0;i&lt;len;i&#43;&#43;){ s[i] = str[i] - &#39;a&#39;; } get_next(); // cout&lt;&lt;next[len]&lt;&lt;endl; int dx = len; while(len-next[dx]&lt;=(len-1)/2)dx = next[dx]; // cout&lt;&lt;next[dx]&lt;&lt;endl; for(int i=0;i&lt;len-next[dx];i&#43;&#43;){ printf(&quot;%c&quot;,s[i]&#43;&#39;a&#39;); } for(int i=0;i&lt;len-next[dx];i&#43;&#43;){ printf(&quot;%c&quot;,map[s[i]]&#43;&#39;a&#39;); } printf(&quot;\n&quot;); } return 0;"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        奇迹之流WonderfloW
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/archive/" title="Archive page">
+              Archive
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
+              Posts
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
+  <header class="mt4 w-100">
+    <aside class="instapaper_ignoref b helvetica tracked">
+      
+      POSTS
+    </aside>
+    
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://wonderflow.info/posts/2012/07/27/2012e5a49ae6a0a1e7acace4b880e38081e7acace4ba8ce59cbaefbc88hdu4300hdu4319efbc89/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2012/07/27/2012e5a49ae6a0a1e7acace4b880e38081e7acace4ba8ce59cbaefbc88hdu4300hdu4319efbc89/&amp;text=2012%e5%a4%9a%e6%a0%a1%e7%ac%ac%e4%b8%80%e3%80%81%e7%ac%ac%e4%ba%8c%e5%9c%ba%ef%bc%88hdu4300~hdu4319%ef%bc%89" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://wonderflow.info/posts/2012/07/27/2012e5a49ae6a0a1e7acace4b880e38081e7acace4ba8ce59cbaefbc88hdu4300hdu4319efbc89/&amp;title=2012%e5%a4%9a%e6%a0%a1%e7%ac%ac%e4%b8%80%e3%80%81%e7%ac%ac%e4%ba%8c%e5%9c%ba%ef%bc%88hdu4300~hdu4319%ef%bc%89" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+    <h1 class="f1 athelas mt3 mb1">2012多校第一、第二场（hdu4300~hdu4319）</h1>
+    
+    <p class="tracked">
+      By <strong>
+        
+        admin
+        
+      </strong>
+    </p>
+    
+    
+    <time class="f6 mv4 dib tracked"
+      datetime="2012-07-27T12:59:12Z">July 27, 2012</time>
+
+    
+    
+  </header>
+  <div
+    class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-100-l"><p>说一下自己搞出来的题目吧，感觉多校其实比较水的，题目也不难，模板题，陈题很多，不过两场我们队的名次都很烂诶，30开外了都，抗不住啊！出现的问题就是队里的模板太少、不全。不过也好，做一场补一场的模板。</p>
+<p>hdu4300《Clairewd’s message》是个字符串，利用next数组求解，小trick就是next数组求出来的值要小于(len-1)/2才取。即：while(len-next[dx]&lt;=(len-1)/2)dx = next[dx];</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+int map[30];
+int len;
+int s[101000];
+int next[101000];
+char str[101000];
+void get_next()
+{
+    int i,j;i=0;next[0]=-1;j=-1;
+    while(i&lt;len)
+   {
+      if(j==-1||map[s[j]]==s[i])
+     {
+          ++i;++j;
+           next[i]=j;
+      }
+        else  j=next[j];
+    }
+}
+
+int main()
+{
+	int T;
+	scanf(&quot;%d&quot;,&amp;T);
+	while(T--){
+		scanf(&quot;%s&quot;,str);
+		len = strlen(str);
+		for(int i=0;i&lt;len;i++){
+			map[str[i]-'a'] = i;
+		}
+		scanf(&quot;%s&quot;,str);
+		len = strlen(str);
+		for(int i=0;i&lt;len;i++){
+			s[i] = str[i] - 'a';
+		}
+		get_next();
+	//	cout&lt;&lt;next[len]&lt;&lt;endl;
+		int dx = len;
+		while(len-next[dx]&lt;=(len-1)/2)dx = next[dx];
+	//	cout&lt;&lt;next[dx]&lt;&lt;endl;
+		for(int i=0;i&lt;len-next[dx];i++){
+			printf(&quot;%c&quot;,s[i]+'a');
+		}
+		for(int i=0;i&lt;len-next[dx];i++){
+			printf(&quot;%c&quot;,map[s[i]]+'a');
+		}
+		printf(&quot;\n&quot;);
+	}
+	return 0;
+}
+</code></pre><p>hdu4307《Matrix》先搞出一个公式（HJWAJ）搞的，然后看见这个公式YY一下，网络流，最小割模型。
+D = sigama(bij)-(sigama(bij)(ai=0,aj=0)+sigama(bij)(ai=1,aj=0)+sigama(bij)(ai=0,aj=1))
+左边一个源点，右边一个汇点，中间1000个点，表示ai。源点表示ai=0，汇点表示ai=1，对于ai=0的情况，bij作为作为一条边连向源点（小优化：因为aj无论是0是1，只要ai为0，就要连源点，那么对于每个ai，直接求和100个j，变成一条边再连，就能少掉1000*999条边）；然后因为ai=1的时候，一定会取ci的值，那么ci作为一条边让ai连向汇点。
+最后看ai=1，aj=0的情况，就是说，i处的值和j处的值分属两个不同的阵营的生活，要多割掉一条边权，那么直接在i和j之间再连一条bij的边权就过了。
+想出建边方法后，这种数学外壳的网络流，估计还是他会先碰到，所以让HJWAJ练练手写了一下，贴下他的代码：</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;fstream&gt;
+#include&lt;iomanip&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;set&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#include&lt;stack&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#include&lt;sstream&gt;
+using namespace std;
+#define Node 2100  //点数
+#define Edge 2400000  //边数
+#define  INF ((1&lt;&lt;30)-1)  //无穷大,根据flowtype的不同，此值要修改大小
+#define min(x,y)  ((x)&lt;(y)?(x):(y))
+#define  flowtype int
+struct Graph
+{
+    struct G_Edge
+    {
+        int to,next;
+        flowtype val;
+    }edge[Edge];
+    int head[Node];//表头
+    int level[Node];//层次图
+    int que[Node];//队列
+    int vis[Node];//层次图记录是否访问过
+    int p,N;//N为点数
+    void init()
+    {
+        p=0;
+        for(int i=0;i&lt;=N+1;i++)head[i]=-1;
+    }
+    void insert(int a,int b,flowtype c,flowtype c_rev)
+ //前向星构图，c是正向边流量，c_rev是反向边.
+ //网络流的边都是成对构造,有性质:对于任意一对边，知道了一个，另一个只要异或1.
+    {
+        edge[p].next=head[a];
+        edge[p].to=b;
+        edge[p].val=c;
+        head[a]=p++;
+        edge[p].next=head[b];
+        edge[p].to=a;
+        edge[p].val=c_rev;
+        head[b]=p++;
+    }
+    bool bfs_level(int src,int des)//构造层次图
+    {
+        memset(level,-1,sizeof(level));
+        int q,p,index,i;
+        q=p=0;
+        que[q++]=src;
+        level[src]=0;
+        while(p!=q)
+        {
+            index=que[p++];
+            for(i=head[index];i!=-1;i=edge[i].next)
+            {
+                int v=edge[i].to;
+                if(edge[i].val&gt;0&amp;&amp;level[v]==-1)
+                {
+                    level[v]=level[index]+1;
+                    que[q++]=v;
+                }
+            }
+        }
+        return level[des]!=-1;
+    }
+    flowtype dinic(int cur,int des,flowtype lim)//多路增广dinic
+    {
+        if(cur==des)return lim;
+        int index,i;
+        flowtype mul_flow=0,one_flow;//多路增广用
+        for(i=head[cur];i!=-1&amp;&amp;lim-mul_flow&gt;0;i=edge[i].next)
+        {
+            index=edge[i].to;
+            if(edge[i].val&gt;0&amp;&amp;level[cur]==level[index]-1)
+            {
+                one_flow=dinic(index,des,min(edge[i].val,lim-mul_flow));
+                if(!one_flow)level[index]=-1;
+                else
+                {
+                    mul_flow+=one_flow;
+                    edge[i].val-=one_flow;
+                    edge[i^1].val+=one_flow;
+                }
+            }
+        }
+        return mul_flow;
+    }
+    flowtype max_flow(int src,int des)
+    {
+        flowtype ans=0;
+        while(bfs_level(src,des))ans+=dinic(src,des,INF);
+        return ans;
+    }
+};
+Graph g;
+int main()
+{
+    int n,a,i,j,t,sum,all;
+    scanf(&quot;%d&quot;,&amp;t);
+    while(t--)
+    {
+        all=0;
+        scanf(&quot;%d&quot;,&amp;n);
+        g.N=n+100;
+        g.init();
+        for(i=0; i&lt;n; i++)
+        {
+            sum=0;
+            for(j=0; j&lt;n; j++)
+            {
+                scanf(&quot;%d&quot;,&amp;a);
+                sum+=a;
+                if(i!=j)g.insert(i+1,j+1,a,0);
+            }
+            all+=sum;
+            g.insert(0,i+1,sum,0);
+        }
+        for(i=0; i&lt;n; i++)
+        {
+            scanf(&quot;%d&quot;,&amp;a);
+            g.insert(i+1,n+1,a,0);
+        }
+        //cout&lt;&lt;&quot;ok&quot;&lt;&lt;endl;
+        printf(&quot;%d\n&quot;,all-g.max_flow(0,n+1));
+    }
+    return 0;
+}
+</code></pre><p>hdu4308《Saving Princess claire》就是个宽搜，把所有P的点看成一个点加入队列就可以了。</p>
+<p>hdu4309《Seikimatsu Occult Tonneru》就是个裸的网络流，但是比赛的时候N多人没过，难点在哪？
+因为给的模型如果数据量很大的话，就是一个很难的模型：问给你网络中n条边，有的有费用，有的没费用，有费用的点只要付走一次的钱，以后就变成免费的了。如果这题数据量大的话，还真的无解了，不会啊。（就是这个题吧数据量从12变成100，知道的怎么解决这样问题的朋友可以在下面留言大家一起探讨下啊~谢谢~）
+但是坑爹的就是，这题有费用的边最多只有12条，暴力枚举每一条有费用的边用不用就行了。更坑爹的是，这题有费用的边还可以只走一次再不走它，然后这一次是不要钱的！！就是不用有费用的边的话，流量也要给1.
+擦！题意啊，下次一定要好好读题。</p>
+<p>hdu4310《Hero》状态压缩DP，现在发现状态压缩DP的题真多，这题只能算是最裸的。就是拿一个int的每一位是0是1表示一个敌人死没死，然后枚举。记忆化爆搜的思想啊。初学状态压缩的同学可以学习一下，我贴个代码方便下大家：</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+#define MAXN 20
+#define bin(x) (1&lt;&lt;x)
+#define LL long long
+#define MIN(x,y) (x)&lt;(y)?(x):(y)
+#define INF 99999999999999LL
+LL dp[1&lt;&lt;MAXN];
+int hp[MAXN];
+int hurt[MAXN];
+int n;
+LL calc(int s){
+	LL dps = 0;
+	for(int i=0;i&lt;n;i++){
+		if(s&amp;bin(i))dps+=hurt[i];
+	}
+	return dps;
+}
+int main()
+{
+	while(scanf(&quot;%d&quot;,&amp;n)!=EOF){
+		for(int i=0;i&lt;n;i++){
+			scanf(&quot;%d%d&quot;,&amp;hurt[i],&amp;hp[i]);
+		}
+		for(int i=0;i&lt;bin(n);i++)dp[i] = INF;
+		dp[bin(n)-1] = 0;
+		for(int i=bin(n)-2;i&gt;=0;i--){
+			for(int j=0;j&lt;n;j++){
+				if(!(i&amp;bin(j)))dp[i] = MIN(dp[i],dp[i^bin(j)]+calc(i^bin(j))*hp[j]);
+			}
+		}
+		printf(&quot;%lld\n&quot;,dp[0]);
+	}
+	return 0;
+}
+</code></pre><p>hdu4317《Unfair Nim》状态压缩DP，dp[i][j]表示到第i位进位情况为j的时候最少需要增加的石子个数。j是1&laquo;10的大小，每一位的1、0表示当前堆石子前一位的进位情况。然后dp的转移又是2^10的，表示每一堆到底增加还是不增加。转移的时候用三个值(1、当前位原有值，2、当前得到的进位，3、当前准备增加的)异或得到一个新值，算最后的新值中1的个数，如果是偶数个的话就表示可以。用3个值两两异或然后与起来得到新的值的进位，然后用dp[i][j] = min(dp[i][j],dp[i+1][s]+cnt(k)*(1&laquo;i));转移。
+看代码更清楚点吧：不过阿森说我这个还可以优化，不知道那些0ms的人怎么过的，我7s过的，给了10s。（知道怎么优化的朋友在下面留言大家探讨下哈，谢谢~）</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+#define INF ((1&lt;&lt;30)-1)
+int rec[23];
+int dp[23][1&lt;&lt;12];
+int ca[23];
+int maxx = 0;
+int n;
+int ans;
+int count(int s){
+	int ret = 0;
+	while(s){
+		s&gt;&gt;=1;
+		ret++;
+	}
+	return ret;
+}
+
+inline int cnt(int s){
+	int ret = 0;
+	while(s){
+		if(s&amp;1)ret++;
+		s&gt;&gt;=1;
+	}
+	return ret;
+}
+
+int main()
+{
+	while(scanf(&quot;%d&quot;,&amp;n)!=EOF){
+		maxx =  -1;
+		for(int i=0;i&lt;n;i++){
+			scanf(&quot;%d&quot;,&amp;rec[i]);
+			maxx = max(maxx,count(rec[i]));
+		}
+		memset(dp,0,sizeof(dp));
+		for(int i=0;i&lt;=maxx+1;i++){
+			for(int j=0;j&lt;(1&lt;&lt;10);j++){
+				dp[i][j] = INF;
+			}
+		}
+		dp[maxx+1][0] = 0;
+		for(int i=0;i&lt;=maxx+1;i++){
+			ca[i] = 0;
+			for(int j=0;j&lt;n;j++){
+				ca[i]+=(1&lt;&lt;j)*((rec[j]&amp;(1&lt;&lt;i))?1:0);
+			}
+		}
+		for(int i=maxx;i&gt;=0;i--){
+			for(int j=0;j&lt;(1&lt;&lt;n);j++){// 前位进位
+				for(int k=0;k&lt;(1&lt;&lt;n);k++){// 当前位增加值
+					if((cnt(j^k^ca[i])&amp;1)==0){//ca[]: 当前数字值
+						int s = ((j&amp;k)|(j&amp;ca[i])|(k&amp;ca[i]));
+						dp[i][j] = min(dp[i][j],dp[i+1][s]+cnt(k)*(1&lt;&lt;i));
+					//	if(dp[i][j]!=INF)cout&lt;&lt;j&lt;&lt;&quot; &quot;&lt;&lt;k&lt;&lt;&quot; &quot;&lt;&lt;ca[i]&lt;&lt;&quot; &quot;&lt;&lt;s&lt;&lt;endl;
+					}
+				}
+			//	cout&lt;&lt;dp[i][j]&lt;&lt;endl;
+			}
+		}
+//		cout&lt;&lt;&quot;ans:&quot;&lt;&lt;endl;
+		if(dp[0][0]==INF)puts(&quot;impossible&quot;);
+		else printf(&quot;%d\n&quot;,dp[0][0]);
+		
+	}
+
+}
+</code></pre><p>hdu4318《 Power transmission》最短路dijkstra算法，就是把加变成乘就行了。没什么trick。类似的以前有一个抓到小偷的概率的问题，每个路口通向不同的点抓到小偷的概率不同的，问你最大的一条路的抓到小偷的概率是多少。两个一样的题目，不过后者题面更好玩，更容易记住。</p>
+<p>其他题目都是gaozhen和HJWAJ搞定的了，包括2~3个线段树，2个模板题，2~3个DP还有好多计算机何题。队里的同学有兴趣可以去询问他们哈。</p>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/acm" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">ACM</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/dinic" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Dinic</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/dp" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">DP</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/hdu" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">hdu</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E5%A4%9A%E6%A0%A1" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">多校</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E6%9C%80%E5%B0%8F%E5%89%B2" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">最小割</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E7%BD%91%E7%BB%9C%E6%B5%81" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">网络流</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">解题报告</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+    </div>
+  </div>
+
+  <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/posts/2012/07/14/zoj3475-the-great-wall-ie69c80e5b08fe589b2efbc88dinicefbc89/">ZOJ3475 The Great Wall I(最小割)（Dinic）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/19/hdu4249-a-famous-equation-2012e5a49ae6a0a1warm-up-e/">HDU4249 A Famous Equation 2012多校warm up E</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/21/zoj1043-split-windows-zoj1100-mondriaans-dream/">ZOJ1043 Split Windows &amp;&amp; ZOJ1100 Mondriaan&#39;s Dream</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/13/zoj1389-fill-the-cisterns-zoj1425-crossed-matchings/">&#39;ZOJ1389 Fill the Cisterns! &amp;&amp; ZOJ1425 Crossed Matchings &#39;</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/12/zoj1462-team-them-upzoj1066-square-ice/">ZOJ1462 Team Them Up! &amp;&amp; ZOJ1066 Square Ice</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/10/zoj1448-pattern-matching-using-regular-expressionefbc88e5a4a7e887aae784b6e9a298efbc81efbc89/">ZOJ1448 Pattern Matching Using Regular Expression（大自然题！）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/09/160/">ZOJ1509 Family(高精度，DP，拓扑排序)</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/22/zoj1030-farmland-zoj1145-dreisam-equations/">ZOJ1030 Farmland &amp;&amp; ZOJ1145 Dreisam Equations</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/15/zoj1245-zoj1298-zoj1301/">ZOJ1245 &amp;&amp; ZOJ1298 &amp;&amp; ZOJ1301</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/14/zoj1391-horizontally-visible-segments-zoj1413-2d-nim/">ZOJ1391 Horizontally Visible Segments &amp;&amp; ZOJ1413 2D Nim</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/13/zoj1426-counting-rectangles-zoj1387-decoding-morse-sequences/">ZOJ1426 Counting Rectangles &amp;&amp; ZOJ1387 Decoding Morse Sequences</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/09/zoj-fans-and-gemsefbc88e6909ce7b4a2efbc9fe6a8a1e68b9fefbc9fe681b6e5bf83e79a84e9a298e38082e38082efbc89/">ZOJ1237 Fans and Gems（搜索？模拟？恶心的题。。）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/08/zoj1506-left-labyrinths-zoj1518-this-sentence-is-false/">ZOJ1506 Left labyrinths &amp;&amp; ZOJ1518 This Sentence is False</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/07/zoj1460-the-partition-of-a-cake/">&#39;ZOJ1460 The Partition of a Cake &#39;</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/06/zoj1504-slots-of-fun-zoj1423-yourtermproject/">ZOJ1504 Slots of Fun &amp;&amp; ZOJ1423 (Your)((Term)((Project)))</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+</article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info" >
+    &copy;  奇迹之流WonderfloW 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

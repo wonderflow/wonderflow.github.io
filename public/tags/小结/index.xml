@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>小结 on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/%E5%B0%8F%E7%BB%93/</link>
+    <description>Recent content in 小结 on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 25 Jul 2012 00:26:30 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/%E5%B0%8F%E7%BB%93/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>集训日志第十一篇——集训结束</title>
+      <link>https://wonderflow.info/posts/2012/07/25/e99b86e8aeade697a5e5bf97e7acace58d81e4b880e7af87-e99b86e8aeade7bb93e69d9f/</link>
+      <pubDate>Wed, 25 Jul 2012 00:26:30 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/25/e99b86e8aeade697a5e5bf97e7acace58d81e4b880e7af87-e99b86e8aeade7bb93e69d9f/</guid>
+      <description>暑假集训就这么进行到了最后一天，真快。感觉每天的时间就是融汇成了上午一道水题刷完，然后一道难题刷到下午两三点，有时debug到四五点，或者再刷一道题目到晚上八、九点，然后再换一道题目。有时比赛，刷的题目就更少了，比赛中的水题其实没有收获了，所以也不算刷的题目。 果然，一个暑假集训的时间还是不够刷完狗狗四十题啊，有些题目实在没有想法。昨天填那张集训调查表，表上有个问题，问本次集训最大的收获是什么，然后我发现，自己一没有开拓什么新的专题，二没有把自己以前的专题深入，实在汗颜，感到没什么收获。后来仔细一想，倒也不是全无所获，刷狗狗四十题到今天，感觉自己的勇气有了莫大的提升。再恶心的题目，只要有了想法和</description>
+    </item>
+    
+    <item>
+      <title>集训日志第四篇</title>
+      <link>https://wonderflow.info/posts/2012/07/10/e99b86e8aeade697a5e5bf97e7acace59b9be7af87/</link>
+      <pubDate>Tue, 10 Jul 2012 16:46:07 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/10/e99b86e8aeade697a5e5bf97e7acace59b9be7af87/</guid>
+      <description>今天鱼头组织了第一次组队赛，用的是浙大2010年九月份的月赛。题目质量不错，发现有一份watashi的解题报告，大家可以过去围观，上面还有各题的代码，对于想要赛后AK的队员非常有帮助。 鱼头让我们对照着比赛各个阶段的rank来做下总结，那么就对着rank说吧。 第一个小时的时候，节奏不错，10分钟左右的时候，我和老高讨论出A的水题本质，25分钟的时候敲完A，wa了。中间嘉炜把G题的思路搞了出来同时在我wa了以后开始敲，在47~48分钟，嘉炜AC了G，我和老高也讨论出了A的错误，ans每次要初始化为INF，忘了初始化。 看图片也能发现，第二个小时的时候有点茫然，快速把水题切完后，大家花了一个小时看了一</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ruby on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/ruby/</link>
+    <description>Recent content in ruby on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 21 Nov 2013 16:27:21 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>《ruby元编程》读书笔记</title>
+      <link>https://wonderflow.info/posts/2013/11/21/e3808arubye58583e7bc96e7a88be3808be8afbbe4b9a6e7ac94e8aeb0/</link>
+      <pubDate>Thu, 21 Nov 2013 16:27:21 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2013/11/21/e3808arubye58583e7bc96e7a88be3808be8afbbe4b9a6e7ac94e8aeb0/</guid>
+      <description>总的来说，《ruby元编程》是一本好书。 当我拿到这本书的时候，第一反应是什么叫元编程？书上的定义是这样的：“元编程是写出编写代码的代码”。 而我认为，元编程是ruby语言的一些高级特性，是属于ruby的奇技淫巧。 有意思的是，这本书不是枯燥的一章一章给你灌输这些知识，而是描述公司里一个老程序员一对一带一个年轻程序员的故事。就是所谓的mentor/buddy制度，大部分IT公司都有，就是不知道贯彻的怎么样。不管书中描述的这样的工作情况是不是真的，都很令人神往。 我觉得一个IT行业的大公司就该有这样的气度，把新员工当朋友、兄弟一样培养，毕竟IT行业中，人才是最大的财富。这样带起来的团队，相比凝聚力也是极</description>
+    </item>
+    
+    <item>
+      <title>Eventmachine Introduction Translation</title>
+      <link>https://wonderflow.info/posts/2013/07/29/eventmachine-introduction-translation/</link>
+      <pubDate>Mon, 29 Jul 2013 08:49:32 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2013/07/29/eventmachine-introduction-translation/</guid>
+      <description>最近在学Eventmachine，发现Dan Sinclair写的eventmachine introduction真心赞！ 然后跟陈琦一起翻译了一把。看这里：EventMachine入门 Eventmachine是Ruby中相当重要的轻量级通信模块，其相当于node.js，也是CouldFoundry中通信的主要途径。理清Eventmachine的工作机制对于理解CloudFoundry有磨刀不误砍柴工的功效。 关于Eventmachine的学习，我的路线为： 磊哥的博客 github上的Eventmachine Dan Sinclair写的eventmachine的入门导论 有人说，效率不是你工作的时间长短而是你</description>
+    </item>
+    
+    <item>
+      <title>Guide for Cloud Foundry New Teamer</title>
+      <link>https://wonderflow.info/posts/2013/07/25/guide-for-cloud-foundry-new-teamer-2/</link>
+      <pubDate>Thu, 25 Jul 2013 05:41:20 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2013/07/25/guide-for-cloud-foundry-new-teamer-2/</guid>
+      <description>Preparation 1、阅读以下博客： 了解架构，阅读“深入CloudFoundry一周年” 2、请准备好一个linux的客户端，如果没有请申请一个虚拟机，并安装好ubuntu10.04（windows下使用远程连接的方式是使用putty软件。） 3、如果不熟悉linux，请阅读linux相关命令，初步了解。 Start 定位cloudfoundry集群： 请使用$ curl [your domain]。若显示出正常信息则初步表面集群配置正确，否则请找帮你配置集群的人。 配置linux源，提高下载速度。(百度一个ubuntu cn的源) {% codeblock %} $ /etc/apt/sources.list $ sudo apt-get update {% endcodeblock %} 安装git，为了下载一个基本应用，github上面的。 {% codeblock %} $ sudo apt-get install git {% endcodeblock %} 安装maven，为了</description>
+    </item>
+    
+  </channel>
+</rss>

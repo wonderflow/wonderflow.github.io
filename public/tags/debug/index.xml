@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Debug on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/debug/</link>
+    <description>Recent content in Debug on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 15 Jul 2012 16:12:17 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/debug/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>集训日志第七篇</title>
+      <link>https://wonderflow.info/posts/2012/07/15/e99b86e8aeade697a5e5bf97e7acace4b883e7af87/</link>
+      <pubDate>Sun, 15 Jul 2012 16:12:17 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/15/e99b86e8aeade697a5e5bf97e7acace4b883e7af87/</guid>
+      <description>今天下午挺郁闷的，一个简单的DP题debug了很久。最后实在扛不住了，就找阿森帮忙检查一下错误。直到后来才发现是数组开小了。 当时另外有人来找森哥问一下一个难题的思路，其实是不是难题我也不知道，姑且算作是难题吧，这样思路的价值会高一点。然后我找阿森帮忙调试这件事情就被鄙视了，说法是，阿森这样的人才，不应该浪费在debug这种事情上，而应该用做传授思路上。 当时本来就很郁闷的一直找不出错误的原因，再被这么来一下，真的非常生气。 本来这样的事情实在不应该写出来，但是我怕这样的事情憋在心理，以后一个人debug的时候会有心理阴影，就索性写出来了，希望涉及的人不要太介怀，我肯定是写过就忘了，以后看了徒增一笑</description>
+    </item>
+    
+  </channel>
+</rss>

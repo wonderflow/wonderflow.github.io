@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>source on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/source/</link>
+    <description>Recent content in source on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 18 Oct 2013 08:18:21 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/source/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ubuntu源的本地化</title>
+      <link>https://wonderflow.info/posts/2013/10/18/ubuntue79a84e6ba90/</link>
+      <pubDate>Fri, 18 Oct 2013 08:18:21 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2013/10/18/ubuntue79a84e6ba90/</guid>
+      <description>最近，为了装个runit，装了2天，各种问题都出现了，始终无法解决，都快装哭了。 最后用排除法，一个个排除问题，发现是使用的网易ubuntu源的问题。 哎，看来从研究设计到工程细节，还是有很大的技术距离的。 静默安装方法 {% codeblock %} sudo DEBIAN_FRONTEND=noninteractive apt-get install -f -y &amp;ndash;force-yes &amp;ndash;no-install-recommends runit {% endcodeblock %} 最后为了安全稳定，决定自己建立ubuntu的局域网源，这样后面安装软件也会更快。 1、安装依赖软件 {% codeblock %} sudo apt-get install dpkg-dev {% endcodeblock %} 2、将 /var/cache/apt/archives/下的所有deb文件拷到(cp命令，图形界面都没问题) 你想要的地方，拷贝前建议执行一下 {% codeblock %} sudo apt-get autoclean {% endcodeblock %} 比方说拷至home下新建的deb文件夹 {% codeblock %} sudo cp /var/cache/apt/archives/*.deb /var/www/deb/ {% endcodeblock %} 3、拷贝完成后到/var/</description>
+    </item>
+    
+  </channel>
+</rss>

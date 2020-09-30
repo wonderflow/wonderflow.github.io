@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>黑客 on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/%E9%BB%91%E5%AE%A2/</link>
+    <description>Recent content in 黑客 on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 03 Sep 2012 14:22:32 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/%E9%BB%91%E5%AE%A2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>《黑客与画家》读书笔记</title>
+      <link>https://wonderflow.info/posts/2012/09/03/e3808ae9bb91e5aea2e4b88ee794bbe5aeb6e3808be8afbbe4b9a6e7ac94e8aeb0/</link>
+      <pubDate>Mon, 03 Sep 2012 14:22:32 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/09/03/e3808ae9bb91e5aea2e4b88ee794bbe5aeb6e3808be8afbbe4b9a6e7ac94e8aeb0/</guid>
+      <description>这又是我读到的一本神奇的书，他坚定了我的世界观。 说起这本书，还是在活动室溜达的时候,无意中在黄典典桌上发现的。当时对这本书也是慕名已久了，然后随手一翻就发现停不下来了，就这样，连着两三天，每天一有空就看，不知不觉就看完了。这真是一本IT界思想盛宴的书啊。 说起这本书，不得不提一下本书的作者，本书其实是硅谷创业之父Paul Graham的文集。而Paul Graham又是何许人也呢？ 他是世界上首个互联网应用程序Viaweb开发人之一，也是viaweb公司的创始人，后被雅虎收购改名为&amp;quot;Yahoo!Store&amp;quot;。开创了天使投资的模式，被《福布斯》杂志喻为“撼动硅谷的人”。目前为止扶持过</description>
+    </item>
+    
+    <item>
+      <title>网络攻防与Python</title>
+      <link>https://wonderflow.info/posts/2012/07/04/e7bd91e7bb9ce694bbe998b2e4b88epython/</link>
+      <pubDate>Wed, 04 Jul 2012 16:14:02 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/04/e7bd91e7bb9ce694bbe998b2e4b88epython/</guid>
+      <description>上个学期学《网络攻防》，《信息安全》。发现自己对网络攻防、信息安全这方面内容还真的挺感兴趣的。 说来也是，学计算机的，谁小时候没有一个黑客梦呢！ 然后就开始研究了啊。趁着有兴趣的时候。 先去搞了CSDN的500万密码，然后开始把密码删选，把最常出现的几千个搞出来，然后跟崔嵬学习了一下对网站结构的分析之类的。再然后就发现了，还是学校教务处网站比较简单，哈哈，就拿学校教务处网站开工练手了。 记得第一个爆出密码来的同学是一个女生，成绩非常好，名字也挺好的，跟小说《诛仙》里一个人物的名相同，后来还认识了，算是挺有缘分的~哈哈~~ 当时先是把所有学号和密码相同的同学爆了一遍，后来发现不过瘾，把生日密码来尝试了一下</description>
+    </item>
+    
+  </channel>
+</rss>

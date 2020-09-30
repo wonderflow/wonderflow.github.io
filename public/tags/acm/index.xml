@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ACM on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/acm/</link>
+    <description>Recent content in ACM on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 07 Aug 2012 14:04:53 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/acm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>字符串的编辑距离</title>
+      <link>https://wonderflow.info/posts/2012/08/07/e5ad97e7aca6e4b8b2e79a84e7bc96e8be91e8b79de7a6bb/</link>
+      <pubDate>Tue, 07 Aug 2012 14:04:53 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/08/07/e5ad97e7aca6e4b8b2e79a84e7bc96e8be91e8b79de7a6bb/</guid>
+      <description>编辑距离，又称Levenshtein距离（也叫做Edit Distance），是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。 许可的编辑操作包括1、将一个字符替换成另一个字符；2、插入一个字符3、删除一个字符。 根据《柔性字符串匹配》一书的介绍，一共有四种方法。 1、最古老，最灵活的动态规划解法。 2、基于自动机的公式法（常用语错误距离允许较小的情况） 3、用位并行来模拟其他方法。 4、先用简单的条件过滤掉文本中大段编辑距离超过范围的不相关文本，再用其他算法进行匹配。 先介绍一下最基本的动态规划解法。空间复杂度和时间复杂度均为O（n^2）。 正好poj3356就是个这样的题目，有兴趣的可以做一下。 用</description>
+    </item>
+    
+    <item>
+      <title>扯 &amp;&amp; 最短路floyd的DP解法解释</title>
+      <link>https://wonderflow.info/posts/2012/08/02/e689af-e69c80e79fade8b7affloyde79a84dpe8a7a3e6b395e8a7a3e9878a/</link>
+      <pubDate>Thu, 02 Aug 2012 14:42:06 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/08/02/e689af-e69c80e79fade8b7affloyde79a84dpe8a7a3e6b395e8a7a3e9878a/</guid>
+      <description>帮鱼头整理集训队训练教程，据说要出书，瞬间感到压力巨大。就那些平时大家随便写写，只是给自己看看的，非常散漫的解题报告，和专题上很多算法本质都不理解的各种报告组成的一个文档。我真的，压力巨大。那么尽自己力量去整理吧。 整本书的结构就是： 章节（专题介绍-&amp;gt;讲的参差不齐）；子目录（该专题算法介绍-&amp;gt;伪代码(反正不是通俗易懂)）; 子目录：例题-&amp;gt;题意-&amp;gt;思路-&amp;gt;代码（这就导致小半本书代码）。 我也不知道这样是好是坏，是否适合读者入门。反正我最讨厌大段大段贴代码的书了。 然后尽力整理吧，其实这本书倒更像是一个模板库，对于把所有专题都了解过的人，是一本很好的复习资料。我就花了一个晚</description>
+    </item>
+    
+    <item>
+      <title>USACO Raucous Rockers &amp;&amp; Beef McNuggets &amp;&amp; Fence Rails</title>
+      <link>https://wonderflow.info/posts/2012/08/02/usaco-raucous-rockers-beef-mcnuggets-fence-rails/</link>
+      <pubDate>Thu, 02 Aug 2012 05:37:32 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/08/02/usaco-raucous-rockers-beef-mcnuggets-fence-rails/</guid>
+      <description>Raucous Rockers 题目大意：有N(&amp;lt;=20)首歌，打算放在M(&amp;lt;=20)张CD中，每张CD可存储T(&amp;lt;=20)分钟的音乐，给定每首歌的时长，问如何将歌曲按照日期（也就是输入）的顺序，存在这M张CD中，并且每首歌不可以分开存在多张CD上，使得存储的歌曲的数目最多。 解决思路：就是个01背包的变形吧？用滚动数组迭代。dp[m][t],表示我前m张cd用到第t分钟的时候，最多能放多少首歌。N首歌的那一个纬度可以省去，因为每次都只要用到当前纬度的状态。 与01背包的区别就是每次做完一个物品，我都要把影响扩展到后面的每一个容量，也就是说，我前面那些CD就能放下这么多歌了，那么我后面的CD也至少能放那么多</description>
+    </item>
+    
+    <item>
+      <title>2012多校第一、第二场（hdu4300~hdu4319）</title>
+      <link>https://wonderflow.info/posts/2012/07/27/2012e5a49ae6a0a1e7acace4b880e38081e7acace4ba8ce59cbaefbc88hdu4300hdu4319efbc89/</link>
+      <pubDate>Fri, 27 Jul 2012 12:59:12 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/27/2012e5a49ae6a0a1e7acace4b880e38081e7acace4ba8ce59cbaefbc88hdu4300hdu4319efbc89/</guid>
+      <description>说一下自己搞出来的题目吧，感觉多校其实比较水的，题目也不难，模板题，陈题很多，不过两场我们队的名次都很烂诶，30开外了都，抗不住啊！出现的问题就是队里的模板太少、不全。不过也好，做一场补一场的模板。 hdu4300《Clairewd’s message》是个字符串，利用next数组求解，小trick就是next数组求出来的值要小于(len-1)/2才取。即：while(len-next[dx]&amp;lt;=(len-1)/2)dx = next[dx]; #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;cstdio&amp;gt; using namespace std; int map[30]; int len; int s[101000]; int next[101000]; char str[101000]; void get_next() { int i,j;i=0;next[0]=-1;j=-1; while(i&amp;lt;len) { if(j==-1||map[s[j]]==s[i]) { ++i;++j; next[i]=j; } else j=next[j]; } } int main() { int T; scanf(&amp;quot;%d&amp;quot;,&amp;amp;T); while(T--){ scanf(&amp;quot;%s&amp;quot;,str); len = strlen(str); for(int i=0;i&amp;lt;len;i++){ map[str[i]-&#39;a&#39;] = i; } scanf(&amp;quot;%s&amp;quot;,str); len = strlen(str); for(int i=0;i&amp;lt;len;i++){ s[i] = str[i] - &#39;a&#39;; } get_next(); // cout&amp;lt;&amp;lt;next[len]&amp;lt;&amp;lt;endl; int dx = len; while(len-next[dx]&amp;lt;=(len-1)/2)dx = next[dx]; // cout&amp;lt;&amp;lt;next[dx]&amp;lt;&amp;lt;endl; for(int i=0;i&amp;lt;len-next[dx];i++){ printf(&amp;quot;%c&amp;quot;,s[i]+&#39;a&#39;); } for(int i=0;i&amp;lt;len-next[dx];i++){ printf(&amp;quot;%c&amp;quot;,map[s[i]]+&#39;a&#39;); } printf(&amp;quot;\n&amp;quot;); } return 0;</description>
+    </item>
+    
+    <item>
+      <title>集训日志第十一篇——集训结束</title>
+      <link>https://wonderflow.info/posts/2012/07/25/e99b86e8aeade697a5e5bf97e7acace58d81e4b880e7af87-e99b86e8aeade7bb93e69d9f/</link>
+      <pubDate>Wed, 25 Jul 2012 00:26:30 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/25/e99b86e8aeade697a5e5bf97e7acace58d81e4b880e7af87-e99b86e8aeade7bb93e69d9f/</guid>
+      <description>暑假集训就这么进行到了最后一天，真快。感觉每天的时间就是融汇成了上午一道水题刷完，然后一道难题刷到下午两三点，有时debug到四五点，或者再刷一道题目到晚上八、九点，然后再换一道题目。有时比赛，刷的题目就更少了，比赛中的水题其实没有收获了，所以也不算刷的题目。 果然，一个暑假集训的时间还是不够刷完狗狗四十题啊，有些题目实在没有想法。昨天填那张集训调查表，表上有个问题，问本次集训最大的收获是什么，然后我发现，自己一没有开拓什么新的专题，二没有把自己以前的专题深入，实在汗颜，感到没什么收获。后来仔细一想，倒也不是全无所获，刷狗狗四十题到今天，感觉自己的勇气有了莫大的提升。再恶心的题目，只要有了想法和</description>
+    </item>
+    
+    <item>
+      <title>ZOJ1030 Farmland &amp;&amp; ZOJ1145 Dreisam Equations</title>
+      <link>https://wonderflow.info/posts/2012/07/22/zoj1030-farmland-zoj1145-dreisam-equations/</link>
+      <pubDate>Sun, 22 Jul 2012 11:05:54 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/22/zoj1030-farmland-zoj1145-dreisam-equations/</guid>
+      <description>zoj1030 《Farmland》绝对是恶心人的题，题目是要求找出边长为n的多边形。但是如果途中有其他的边或者点，就不算。 做法就是枚举每一条边，然后dfs，每次选择夹角最小的点。选择完以后要对所有的点枚举，查看点是否在多边形内。最后，因为每条边都按照正向走和反向走，可能出现重复，怎么解决重复呢，算面积，面积为负的舍弃。 代码写的比较烦躁：WA了十多次，搞了好久，果然我这样的人还是不适合做计算几何的、 #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;vector&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;map&amp;gt; #define infinity 1e10 #define EP 1e-8 using namespace std; /* * 1.dfs出一个多边形(坐标变换，把一条边转成x轴正方向) * 2.判断多边形内是否有孤立的点，采用射线法， * (射线与多边形的交点是奇数个的时候，点在多边形内，在此之前要判断是否在线</description>
+    </item>
+    
+    <item>
+      <title>ZOJ1043 Split Windows &amp;&amp; ZOJ1100 Mondriaan&#39;s Dream</title>
+      <link>https://wonderflow.info/posts/2012/07/21/zoj1043-split-windows-zoj1100-mondriaans-dream/</link>
+      <pubDate>Sat, 21 Jul 2012 16:13:14 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/21/zoj1043-split-windows-zoj1100-mondriaans-dream/</guid>
+      <description>ZOJ1043《Split Windows》是一个题目描述很长很长的题目，以至于我花了一个小时才看懂，估计也是因为看的时候不断在分心的原因吧。 题目描述的意思是，给你一颗描述矩形框如何分割的树，树的叶子结点都用字母表示，每个子树部分都用‘-’或‘|’表示如何分割。然后让你把符合该描述的最小的一种矩形分割画出来。然后还花了很多的笔墨教你如何左右大小调整，其实意思就是如果大小不一致了，按比例放大，遇到不是整数的情况，就左子树向上取整。 其实这道题目很有点当年那个画N倍长度的“X”题的翻版的感觉，就是一个递归画图。但是要先把每个子树的高度调整好。 做法： 1、建树，求每个子树的树高。 2、调整树高，遇到‘-’,</description>
+    </item>
+    
+    <item>
+      <title>HDU4249 A Famous Equation 2012多校warm up E</title>
+      <link>https://wonderflow.info/posts/2012/07/19/hdu4249-a-famous-equation-2012e5a49ae6a0a1warm-up-e/</link>
+      <pubDate>Thu, 19 Jul 2012 12:23:06 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/19/hdu4249-a-famous-equation-2012e5a49ae6a0a1warm-up-e/</guid>
+      <description>今天下午做了场多校热身赛，题目都不难，做到一题有意思的DP，把它记录一下。 题目描述：就是给你一个含问号的和式，问你有多少种情况满足题意。 一开始写了个搜索，暴力枚举每个问号位的情况，然后稍微减了下支，想想一年多前这样的搜索一定觉得很难写不想写，如今十来分钟就写好了，还挺得意，然后果断TLE了！ #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;climits&amp;gt; #include&amp;lt;stack&amp;gt; #include&amp;lt;string&amp;gt; #include&amp;lt;map&amp;gt; using namespace std; int rec[3][20],num[3]; int ask[3]; int ans; int getz(int x) { int ret = 1; for(int i=0;i&amp;lt;x;i++) ret*=10; return ret; } void dfs(int flag,int dex,int sum) { if(sum&amp;lt;0)return; if(!flag&amp;amp;&amp;amp;dex==num[flag]){ if(!sum)ans++; return; } if(dex==num[flag]){ dex = 0; flag--; } if(rec[flag][dex]&amp;lt;0){ for(int i=dex?0:1;i&amp;lt;10;i++){ if(flag==2)dfs(flag,dex+1,sum+i*getz(num[flag]-dex-1)); else dfs(flag,dex+1,sum-i*getz(num[flag]-dex-1)); } }else{ if(flag==2)dfs(flag,dex+1,sum+rec[flag][dex]*getz(num[flag]-dex-1)); else dfs(flag,dex+1,sum-rec[flag][dex]*getz(num[flag]-dex-1)); } } int main() { int icase =0 ; char ss[100]; int flag = 0; while(gets(ss)) { icase++; memset(num,0,sizeof(num)); memset(ask,0,sizeof(ask)); flag = 0; printf(&amp;quot;Case %d: &amp;quot;,icase); int siz = strlen(ss); for(int i=0;i&amp;lt;siz;i++){ switch(ss[i]){ case &#39;+&#39;:case &#39;=&#39;: flag++;break; case &#39;?&#39;: rec[flag][num[flag]++] = -1; ask[flag]++; break; default: rec[flag][num[flag]++] = ss[i]-&#39;0&#39;; break; } } if(ask[0]+ask[1]==0 || ask[0]+ask[2]==0 || ask[1]+ask[2]==0){ puts(&amp;quot;1&amp;quot;);continue; } ans = 0; dfs(2,0,0); printf(&amp;quot;%d\n&amp;quot;,ans); } return 0; } 然后得到了阿森的提示，知道了要用DP的方法。就跟人在模拟这</description>
+    </item>
+    
+    <item>
+      <title>ZOJ3475 The Great Wall I(最小割)（Dinic）</title>
+      <link>https://wonderflow.info/posts/2012/07/14/zoj3475-the-great-wall-ie69c80e5b08fe589b2efbc88dinicefbc89/</link>
+      <pubDate>Sat, 14 Jul 2012 16:33:22 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/14/zoj3475-the-great-wall-ie69c80e5b08fe589b2efbc88dinicefbc89/</guid>
+      <description>今天第二场组队赛，就搞出了这个题。说来去年搞了一个暑假图论网络流神马的，在自己的博客前面这么多题目解题报告里面竟然没有出现过，实在不应该。 题意： 对于王国X，存在敌对国E和附属国A，我们要建造围墙把敌对国隔开，附属国会给钱你，如果你建造的城墙把它围进去的话。当然，X城和附属国不一定要连通。这个就是和这一套题里的神题《The Great Wall II》唯一的区别了。另外题目里还说，地图以外的区域也要建造围墙隔起来。 看到我的做法和watashi发的解题报告里面的方法有所区别，觉得还是有必要写一下题解。 思路：看到这个题，基本就觉得是最小割了。为什么？感觉啊~！因为要把两个区域分开，然后分开还需要费用，很容易想到是网络流</description>
+    </item>
+    
+    <item>
+      <title>ZOJ1391 Horizontally Visible Segments &amp;&amp; ZOJ1413 2D Nim</title>
+      <link>https://wonderflow.info/posts/2012/07/14/zoj1391-horizontally-visible-segments-zoj1413-2d-nim/</link>
+      <pubDate>Sat, 14 Jul 2012 16:02:48 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/14/zoj1391-horizontally-visible-segments-zoj1413-2d-nim/</guid>
+      <description>《Horizontally Visible Segments》是一个线段树的题，给你n条垂直的线，问你三条两两互不挡住但是能用横线连起来的直线对有多少。 做法就是用线段树，首先对于x坐标排序，然后对一长条染色，被覆盖住的线段部分显然不可能再被后面的线段所看见。所以只要记录当前直线被哪些线段（id）覆盖过就可以了。最后对于已经标记好颜色的标号集合，枚举任意两个，然后再枚举其中一个的标号集合里面有没有元素的标号集合包含另外一个没使用的。简单来说，就是暴力查看存不存在三个标号两两可以看见。 做法基本就是这样了。 注意点： 1、在标号颜色的时候，要用set判重。 2、写线段树的时候加个延迟标记，表示连续的、同时也是被延迟更新的</description>
+    </item>
+    
+    <item>
+      <title>&#39;ZOJ1389 Fill the Cisterns! &amp;&amp; ZOJ1425 Crossed Matchings &#39;</title>
+      <link>https://wonderflow.info/posts/2012/07/13/zoj1389-fill-the-cisterns-zoj1425-crossed-matchings/</link>
+      <pubDate>Fri, 13 Jul 2012 09:16:05 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/13/zoj1389-fill-the-cisterns-zoj1425-crossed-matchings/</guid>
+      <description>“Fill the Cisterns!”这个题就是给你很多个相连通的水箱，高度体积各不相同，然后给你一定体积的水，问你最后达到的水箱高度是多少。 做法很简单，就是二分。每次枚举每个水箱，算出可以达到的容量跟标准容量比较，然后调整二分的值。注意精度即可。这个算是《狗狗四十题》里面相对简单的题了。 #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; using namespace std; #define EPS 1e-6 struct Node { int b,h,w,d; }node[50100]; int water; int n; bool calc(double m) { double sum = 0; for(int i=0;i&amp;lt;n;i++) { if(node[i].b&amp;lt;m) { if(m&amp;gt;node[i].b+node[i].h) sum+=node[i].h*node[i].w*node[i].d; else sum+=node[i].w*node[i].d*(m-node[i].b); } } if(sum&amp;gt;=water)return true; return false; } int main() { int T; scanf(&amp;quot;%d&amp;quot;,&amp;amp;T); while(T--) { scanf(&amp;quot;%d&amp;quot;,&amp;amp;n); double total=0; for(int i=0;i&amp;lt;n;i++) { scanf(&amp;quot;%d%d%d%d&amp;quot;,&amp;amp;node[i].b,&amp;amp;node[i].h ,&amp;amp;node[i].w,&amp;amp;node[i].d); total+=node[i].h*node[i].w*node[i].d; } scanf(&amp;quot;%d&amp;quot;,&amp;amp;water); double l=0,r=10e9; double mid; if(water&amp;gt;total) { printf(&amp;quot;OVERFLOW\n&amp;quot;); continue; } while(l&amp;lt;r) { mid = (l+r)/2; if(calc(mid))r = mid-0.001; else l = mid+0.001; } printf(&amp;quot;%.2lf\n&amp;quot;,l); } return 0; } “Crossed Matchings”是个有意思的题目，给你上下各一列数，让你进行匹配。规则是数字相同的才可以匹配，且每个数字只可以被匹配一次</description>
+    </item>
+    
+    <item>
+      <title>ZOJ1462 Team Them Up! &amp;&amp; ZOJ1066 Square Ice</title>
+      <link>https://wonderflow.info/posts/2012/07/12/zoj1462-team-them-upzoj1066-square-ice/</link>
+      <pubDate>Thu, 12 Jul 2012 11:56:25 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/12/zoj1462-team-them-upzoj1066-square-ice/</guid>
+      <description>今天似乎是被《team them up》虐了一天啊。昨天就知道了解法，就是一直wa。中间还去把当年正常比赛官方数据下载下来对比了一下。结果发现zoj和poj的数据竟然是加强了的。。。。 说下题意：一堆人要分班级，人与人之间有的互相认识，有的不认识。现在只有两个班，但是我分班级有限制条件。 1、一个班级的同学都要互相认识。 2、一个班级里一定要至少有一个人。 3、两个班级里的人数要尽可能靠近 看到这个题可能会没有什么想法。比如我就是这样。然后根据以前的经验，从小数据开始，如果1个人的话怎么分，2个人的话怎么分等等。后来发现这个不存在一个递推关系，因为人之间还有图的关系。 然后就问了一下薛斌怎么想的，发现他的思路很好。</description>
+    </item>
+    
+    <item>
+      <title>ZOJ1448 Pattern Matching Using Regular Expression（大自然题！）</title>
+      <link>https://wonderflow.info/posts/2012/07/10/zoj1448-pattern-matching-using-regular-expressionefbc88e5a4a7e887aae784b6e9a298efbc81efbc89/</link>
+      <pubDate>Tue, 10 Jul 2012 16:59:50 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/10/zoj1448-pattern-matching-using-regular-expressionefbc88e5a4a7e887aae784b6e9a298efbc81efbc89/</guid>
+      <description>狗狗四十题里面的这个题非常有意思，号称“大自然”题。其实就是模拟简单正则匹配的规则，录入模式串和匹配串，把最左最长的匹配子串输出出来。 一开始没有什么思路，后来看了watashi的代码，才发现了做法。话说watashi的那个《狗狗40题搞完纪念》绝对是个神贴啊。上面的代码资源，太可贵了！ 具体做法是： 先扫模式串，把模式串的规则整理出来。把一些规则统一起来，如&amp;quot;.&amp;ldquo;的规则，统一为字符0~256之间的任意字符，就是跟【1-9】这种一样咯。 然后用dp[i]表示从i开始作为匹配的头，最后面能匹配到的位置。 最后不得不说，这题还是相当恶心的，模式串从后往前开始对匹配串进行匹配是为了无后效</description>
+    </item>
+    
+    <item>
+      <title>ZOJ1509 Family(高精度，DP，拓扑排序)</title>
+      <link>https://wonderflow.info/posts/2012/07/09/160/</link>
+      <pubDate>Mon, 09 Jul 2012 15:35:33 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/09/160/</guid>
+      <description>这题确实是个好题目。讲的是动物家族，每个人都有50%父亲的基因和50%母亲的基因，然后给你一张家族图，最后询问你指定的两个人中有相同的血缘关系的百分比是多少。 一开始其实是没什么想法的。就问了问老高，后来才知道，原来是个DP。 为了无后效性，所以我们必须要先进行拓扑排序，这样的话，先把祖先之间的血缘关系求出来，然后子孙后代的寻缘关系其实可以递推到子孙的其中一人与另外一人上一辈的血缘关系的。 首先dp[i][j]表示，第i个人和第j个人的基因相同的比例是多少。 然后dp[i][i]肯定是初始化为1的。 另外，从拓扑排序后的先祖开始计算DP值，那么两重for循环，i在j前面。也就是j肯定比i的备份小，那么要</description>
+    </item>
+    
+    <item>
+      <title>ZOJ1237 Fans and Gems（搜索？模拟？恶心的题。。）</title>
+      <link>https://wonderflow.info/posts/2012/07/09/zoj-fans-and-gemsefbc88e6909ce7b4a2efbc9fe6a8a1e68b9fefbc9fe681b6e5bf83e79a84e9a298e38082e38082efbc89/</link>
+      <pubDate>Mon, 09 Jul 2012 05:52:34 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/09/zoj-fans-and-gemsefbc88e6909ce7b4a2efbc9fe6a8a1e68b9fefbc9fe681b6e5bf83e79a84e9a298e38082e38082efbc89/</guid>
+      <description>此题的类型应该就是一个暴力搜索，但是搜索的变换过程非常之恶心。一旦处理不好，就是多写上百行代码的事情。 自己写了五个小时，写不下去了，因为实在恶心到了，处理的方法不好。最后一看watashi的代码，羞愧的五体投地，就把自己的代码人道毁灭了！ 那就学学watashi大牛的代码吧。也挺好。说明一下，代码都是watashi的，我自己只是做了一些适当的注释。其中用的什么样的方法，基本注释里面已经写的很清楚。看来暴力的题目，熟练使用STL才是王道啊。 再结合昨天看watashi代码的经验就是： 该暴力的题，全部使用STL，让代码清楚简洁干净利落到极致！ 该高效的题，尽量使用位运算，不让任何多余的操作降低自己程序的</description>
+    </item>
+    
+    <item>
+      <title>ZOJ1506 Left labyrinths &amp;&amp; ZOJ1518 This Sentence is False</title>
+      <link>https://wonderflow.info/posts/2012/07/08/zoj1506-left-labyrinths-zoj1518-this-sentence-is-false/</link>
+      <pubDate>Sun, 08 Jul 2012 15:57:51 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/08/zoj1506-left-labyrinths-zoj1518-this-sentence-is-false/</guid>
+      <description>今天把第一场定时训练训练的C和E都过了，都是不错的题目。 Left labyrinths讲的是一个迷宫，你进入迷宫后要遵守规则，优先靠右走。然后问你最后能否到中央大厅。 我感觉有这样几个注意点： 1、迷宫的入口如何搜寻：就是左右是‘#’但是上下是‘.’的点或者反过来。 2、迷宫的大厅什么时候算走到了？找到田字格的‘.’块，注意22就算了，我一开始想象着要33才算，果断WA了。 3、规则说靠右走，但是没说只能靠右走，其实必要的时候还是要往别的方向走的。 4、每个格子不是只能走一次，而是每个格子的每个方向只能走一次。 有了这几个注意点，基本上AC就没问题了。这题主要是题目理解上的问题了吧，一开始我无论怎样都WA，后来去</description>
+    </item>
+    
+    <item>
+      <title>&#39;ZOJ1460 The Partition of a Cake &#39;</title>
+      <link>https://wonderflow.info/posts/2012/07/07/zoj1460-the-partition-of-a-cake/</link>
+      <pubDate>Sat, 07 Jul 2012 04:19:58 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/07/zoj1460-the-partition-of-a-cake/</guid>
+      <description>这真是过的艰辛的一题啊。搞ACM搞到了最后一年，就决定碰到的每道题都不能错过，尤其是好题目。以前总是想着，放着吧，以后研究到的时候总归会做到的。熟不知以后也会遇到新的题目，一直这样推给以后，其实只是欺骗自己而已。所以，哪怕明知其难，也要迎难而上。 果然不出所料，对于我这个计算几何小白，果然搞了很久才搞定。一开始是想着自己找规律的，但是自己找到的规律也没有自己证明，其实就是YY的，果然不出所料，WA了。然后问HJWAJ怎么做，才知道了方法。就是对于一个空间，每切一刀增加的空间数，就等于点数加一。 关于这一个规律的证明，其实想象一下就可以了。如果没有交点，那么显然是一刀把原来切的哪个平面分成两个。如果</description>
+    </item>
+    
+    <item>
+      <title>ZOJ1504 Slots of Fun &amp;&amp; ZOJ1423 (Your)((Term)((Project)))</title>
+      <link>https://wonderflow.info/posts/2012/07/06/zoj1504-slots-of-fun-zoj1423-yourtermproject/</link>
+      <pubDate>Fri, 06 Jul 2012 06:35:07 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/06/zoj1504-slots-of-fun-zoj1423-yourtermproject/</guid>
+      <description>最近教练出的每日早晚一小时定时训练，出的都是狗狗40的套题里面的题目，觉得很好，有必要都AC一遍，慢慢来吧。 Slots of Fun 这题，一开始想了40分钟，不知道怎么快速计算每个点的坐标，结果最后才想到，只要扫的时候用两重循环扫替代线性的扫描，就可以快速定位一个点的坐标了。（果然智商是硬伤啊！！） 然后常规的方法就是用sqrt（3）这样的把每个点相对于起始点的坐标计算出来，然后用eps比较是否相等。 后来小翟告诉我一个方法，非常简单，就是使用余弦定理，如果一个点的坐标(x,y)表示的是第几排，第几个数字的话，那么A,B两点之间的距离其实就是dis^2 = (xa-xb)^2+(ya-yb)^2+2*|xa-xb|*|</description>
+    </item>
+    
+    <item>
+      <title>USACO American Heritage 树的遍历</title>
+      <link>https://wonderflow.info/posts/2012/07/06/usaco-american-heritage-e6a091e79a84e9818de58e86/</link>
+      <pubDate>Fri, 06 Jul 2012 04:19:18 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/06/usaco-american-heritage-e6a091e79a84e9818de58e86/</guid>
+      <description>题目给出树的前序和中序遍历，让你给出树的后续遍历。 我记得正好是两年前，第一次新生赛的时候，就做到了这个题目，那个时候觉得好难啊，也是，连递归都没有理解的人，来做这样的题，确实有点难了。 如输入： ABEDFCHG CBADEFGH 输出： AEFDBHGC 做这题的窍门就是找规律了啊，可以看见，前序遍历的最开始，都是各个子树的根节点。而中序遍历则是可以用来帮助确定子树的范围。 理解了树的结构和递归以后，就很容易了。 此时做起来倒是格外的亲切了。然后写了两个，一个用动态指针存树，一个用静态数组存树。 //动态存树 /* TASK:heritage LANG:C++ USER:BOBO */ #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstring&amp;gt; using namespace std; char str1[200],str2[200]; struct Node { char c; Node *l,*r; }*tree; int num; void build(Node * root,int l,int r) { int k = -1; for(int i=l;i&amp;lt;=r;i++) { if(str1[i] == root-&amp;gt;c) { k = i;break; } } if(k-l&amp;gt;0) { root-&amp;gt;l = new Node(); root-&amp;gt;l-&amp;gt;c = str2[num++]; build(root-&amp;gt;l,l,k-1); } else root-&amp;gt;l = NULL; if(r-k&amp;gt;0) { root-&amp;gt;r = new Node(); root-&amp;gt;r-&amp;gt;c = str2[num++]; build(root-&amp;gt;r,k+1,r); }</description>
+    </item>
+    
+    <item>
+      <title>USACO A GAME 和 ZOJ1463 Brackets Sequence</title>
+      <link>https://wonderflow.info/posts/2012/07/05/usaco-a-game-e5928c-zoj-brackets-sequence/</link>
+      <pubDate>Thu, 05 Jul 2012 15:49:27 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/05/usaco-a-game-e5928c-zoj-brackets-sequence/</guid>
+      <description>今天正好做了两道DP题，所以一起贴了出来，本身这两道题的关联度不大。 USACO上这题是个博弈，两个人，轮流取数，规则是只能取一个队列两端的数，然后先手和后手都要使用最优策略，使得最后得到的数之和最大。 问先手和后手最后各得多少分。 一开始怎么也想不出来。后来跟方易凡讨论了一下，发现了他常用的一种思考问题的方式。就是先考虑小的情况。 如果队列中只有一个数字的话，显然，先取的人拿走，后手为0. 有两个数字的话，先手拿较大的那个，后手拿较小的那个。 此时，规模扩大到三个。这下怎么办呢？ 其实按照正常的思维方式，就是左右都试试，那么，我取了队列左边的数，队列第二个开始，一直到最右边的数留到了第二轮，在第二轮中，原</description>
+    </item>
+    
+    <item>
+      <title>USACO Riding the Fences</title>
+      <link>https://wonderflow.info/posts/2012/07/03/usaco-riding-the-fences/</link>
+      <pubDate>Tue, 03 Jul 2012 14:33:25 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/03/usaco-riding-the-fences/</guid>
+      <description>本身这个就是一个无向图欧拉回路的题。 欧拉回路的两个特性一是连通，二是点的度数要么都为偶数，要么有且仅有两个奇数 然后写的时候，有个递归，递归的退出的时候才存结果，而不是递归一开始的时候存。 为什么呢？ 可能存在这样的情况 1-&amp;gt;2-&amp;gt;3-&amp;gt;4 然后存在3-&amp;gt;5-&amp;gt;6-&amp;gt;3这样一个分支。 先输出的话，按照字典续小的，4就直接被输出了，显然这样就不行了。但是递归的最后才记录的话，说明已经确定了，那就是稳定的情况了。 /* TASK: fence LANG: C++ NAME: BOBO */ #include&amp;lt;iostream&amp;gt; #include&amp;lt;vector&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;memory.h&amp;gt; using namespace std; int f,cnt; bool vis[1500]; int edge[600][600]; int deg[600]; int ans[600]; int ns; void dfs(int index) { for(int i=1;i&amp;lt;=cnt;i++) { if(edge[index][i]) { edge[index][i] = --edge[i][index]; dfs(i); } } ans[ns++] = index; } int main() { int a,b; //freopen(&amp;quot;fence.in&amp;quot;,&amp;quot;r&amp;quot;,stdin); //freopen(&amp;quot;fence.out&amp;quot;,&amp;quot;w&amp;quot;,stdout); while(scanf(&amp;quot;%d&amp;quot;,&amp;amp;f)!=EOF) { ns = cnt = 0; memset(edge,0,sizeof(edge)); memset(deg,0,sizeof(deg)); for(int i=0;i&amp;lt;f;i++) { scanf(&amp;quot;%d%d&amp;quot;,&amp;amp;a,&amp;amp;b); edge[a][b] = ++edge[b][a]; cnt = max(a,cnt); cnt = max(b,cnt); deg[a]++; deg[b]++; } int num; for(num=1;num&amp;lt;=cnt;num++)if(deg[num]%2)break; if(num==cnt+1)dfs(1); else dfs(num); for(int i=ns-1;i&amp;gt;=0;i--) { printf(&amp;quot;%d\n&amp;quot;,ans[i]); } } }</description>
+    </item>
+    
+  </channel>
+</rss>

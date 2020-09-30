@@ -1,0 +1,27 @@
+title = "奇迹之流WonderfloW"
+baseURL = "https://wonderflow.info"
+languageCode = "zh-cn"
+theme = "ananke"
+
+DefaultContentLanguage = "en"
+SectionPagesMenu = "main"
+Paginate = 8 # this is set low for demonstrating with dummy content. Set to a higher number
+googleAnalytics = ""
+enableRobotsTXT = true
+hasCJKLanguage = true
+summaryLength = 300
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+[params]
+  favicon = ""
+  site_logo = ""
+  description = "The last theme you'll ever need. Maybe."
+  github = "https://github.com/wonderflow"
+  # choose a background color from any on this page: http://tachyons.io/docs/themes/skins/ and preface it with "bg-"
+  background_color_class = "bg-black"
+  featured_image = "/images/gohugo-default-sample-hero-image.jpg"
+  recent_posts_number = 8

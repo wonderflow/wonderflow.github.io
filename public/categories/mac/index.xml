@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MAC on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/categories/mac/</link>
+    <description>Recent content in MAC on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 22 Mar 2014 16:52:14 +0000</lastBuildDate><atom:link href="https://wonderflow.info/categories/mac/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>星斗满天（一）</title>
+      <link>https://wonderflow.info/posts/2014/03/22/e6989fe69697e6bba1e5a4a9efbc88e4b880efbc89/</link>
+      <pubDate>Sat, 22 Mar 2014 16:52:14 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2014/03/22/e6989fe69697e6bba1e5a4a9efbc88e4b880efbc89/</guid>
+      <description>跑步的路上，偶尔抬头一看天，才发现久违的漫天繁星。果然春季就这么莫名其妙的如约而至，仿佛前一秒还是冬天、后一秒就变成了夏天，然后才出现了春天，对，就是这么的莫名其妙。 其实春天来的还是很热烈的，从植物园门口川流不息的行人以及周边有名气的小饭店门口都坐满了等待落座的客人就可以看出来。然后就组织了一下爬山的班级活动，虽然成行的只有四人，但是我们从老和山一路向北，将军山、灵峰山、美女山，一直到最后的北高峰。然后下山，在法华寺周围的小村子里找了一家名叫“老二川菜馆”的饭店，饭店虽小，但是味道非常好，很是地道。我想在经过那么长时间的运动后饱餐一顿实在是一种非常幸福的感觉，虽然我知道这跟我的减肥计划又越走越</description>
+    </item>
+    
+    <item>
+      <title>AppleScript基本语法</title>
+      <link>https://wonderflow.info/posts/2014/02/28/applescripte59fbae69cace8afade6b395/</link>
+      <pubDate>Fri, 28 Feb 2014 14:42:37 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2014/02/28/applescripte59fbae69cace8afade6b395/</guid>
+      <description>在池老板写的《mactalk人生元编程》中了解到applescript这个东西，在徐宥博客上也看到过类似的介绍，那天路过图书馆，看到这本书，就突然来了兴致。 今天下决心花了一个晚上的时间好好了解了一下。最后发现这是个悲伤的故事。╮(╯▽╰)╭ 行 applescript是一种基于行的语言，不需要分号只有的分隔符，指令间以行结束符区分。 {% codeblock %} set x to 1 copy x + 1 to y {% endcodeblock %} 连接符 Option+Return产生连接符，类似C/C++中的“\”，为了让代码可以换行接着写 注释 单行注释就是连续两个斜杠 {% codeblock %} set a to 1 -- this is a comment {% endcodeblock %} 多行注释分界符是“(” “)” {% codeblock %} set a to 1 (* we are all ; comments. *) {% endcodeblock %} 执行结果 每一个有效执行的</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>ZOJ1462 Team Them Up! &amp;&amp; ZOJ1066 Square Ice | 奇迹之流WonderfloW</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.75.1" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="ZOJ1462 Team Them Up! &amp;&amp; ZOJ1066 Square Ice" />
+<meta property="og:description" content="今天似乎是被《team them up》虐了一天啊。昨天就知道了解法，就是一直wa。中间还去把当年正常比赛官方数据下载下来对比了一下。结果发现zoj和poj的数据竟然是加强了的。。。。 说下题意：一堆人要分班级，人与人之间有的互相认识，有的不认识。现在只有两个班，但是我分班级有限制条件。 1、一个班级的同学都要互相认识。 2、一个班级里一定要至少有一个人。 3、两个班级里的人数要尽可能靠近 看到这个题可能会没有什么想法。比如我就是这样。然后根据以前的经验，从小数据开始，如果1个人的话怎么分，2个人的话怎么分等等。后来发现这个不存在一个递推关系，因为人之间还有图的关系。 然后就问了一下薛斌怎么想的，发现他的思路很好。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wonderflow.info/posts/2012/07/12/zoj1462-team-them-upzoj1066-square-ice/" />
+<meta property="article:published_time" content="2012-07-12T11:56:25+00:00" />
+<meta property="article:modified_time" content="2012-07-12T11:56:25+00:00" />
+<meta itemprop="name" content="ZOJ1462 Team Them Up! &amp;&amp; ZOJ1066 Square Ice">
+<meta itemprop="description" content="今天似乎是被《team them up》虐了一天啊。昨天就知道了解法，就是一直wa。中间还去把当年正常比赛官方数据下载下来对比了一下。结果发现zoj和poj的数据竟然是加强了的。。。。 说下题意：一堆人要分班级，人与人之间有的互相认识，有的不认识。现在只有两个班，但是我分班级有限制条件。 1、一个班级的同学都要互相认识。 2、一个班级里一定要至少有一个人。 3、两个班级里的人数要尽可能靠近 看到这个题可能会没有什么想法。比如我就是这样。然后根据以前的经验，从小数据开始，如果1个人的话怎么分，2个人的话怎么分等等。后来发现这个不存在一个递推关系，因为人之间还有图的关系。 然后就问了一下薛斌怎么想的，发现他的思路很好。">
+<meta itemprop="datePublished" content="2012-07-12T11:56:25+00:00" />
+<meta itemprop="dateModified" content="2012-07-12T11:56:25+00:00" />
+<meta itemprop="wordCount" content="1667">
+
+
+
+<meta itemprop="keywords" content="ACM,C&#43;&#43;,DP,反图,染色,模拟,狗狗四十题,解题报告," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ZOJ1462 Team Them Up! &amp;&amp; ZOJ1066 Square Ice"/>
+<meta name="twitter:description" content="今天似乎是被《team them up》虐了一天啊。昨天就知道了解法，就是一直wa。中间还去把当年正常比赛官方数据下载下来对比了一下。结果发现zoj和poj的数据竟然是加强了的。。。。 说下题意：一堆人要分班级，人与人之间有的互相认识，有的不认识。现在只有两个班，但是我分班级有限制条件。 1、一个班级的同学都要互相认识。 2、一个班级里一定要至少有一个人。 3、两个班级里的人数要尽可能靠近 看到这个题可能会没有什么想法。比如我就是这样。然后根据以前的经验，从小数据开始，如果1个人的话怎么分，2个人的话怎么分等等。后来发现这个不存在一个递推关系，因为人之间还有图的关系。 然后就问了一下薛斌怎么想的，发现他的思路很好。"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        奇迹之流WonderfloW
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/archive/" title="Archive page">
+              Archive
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
+              Posts
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
+  <header class="mt4 w-100">
+    <aside class="instapaper_ignoref b helvetica tracked">
+      
+      POSTS
+    </aside>
+    
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://wonderflow.info/posts/2012/07/12/zoj1462-team-them-upzoj1066-square-ice/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2012/07/12/zoj1462-team-them-upzoj1066-square-ice/&amp;text=ZOJ1462%20Team%20Them%20Up!%20&amp;&amp;%20ZOJ1066%20Square%20Ice" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://wonderflow.info/posts/2012/07/12/zoj1462-team-them-upzoj1066-square-ice/&amp;title=ZOJ1462%20Team%20Them%20Up!%20&amp;&amp;%20ZOJ1066%20Square%20Ice" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+    <h1 class="f1 athelas mt3 mb1">ZOJ1462 Team Them Up! &amp;&amp; ZOJ1066 Square Ice</h1>
+    
+    <p class="tracked">
+      By <strong>
+        
+        admin
+        
+      </strong>
+    </p>
+    
+    
+    <time class="f6 mv4 dib tracked"
+      datetime="2012-07-12T11:56:25Z">July 12, 2012</time>
+
+    
+    
+  </header>
+  <div
+    class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-100-l"><p>今天似乎是被《team them up》虐了一天啊。昨天就知道了解法，就是一直wa。中间还去把当年正常比赛官方数据下载下来对比了一下。结果发现zoj和poj的数据竟然是加强了的。。。。</p>
+<p>说下题意：一堆人要分班级，人与人之间有的互相认识，有的不认识。现在只有两个班，但是我分班级有限制条件。
+1、一个班级的同学都要互相认识。
+2、一个班级里一定要至少有一个人。
+3、两个班级里的人数要尽可能靠近</p>
+<p>看到这个题可能会没有什么想法。比如我就是这样。然后根据以前的经验，从小数据开始，如果1个人的话怎么分，2个人的话怎么分等等。后来发现这个不存在一个递推关系，因为人之间还有图的关系。
+然后就问了一下薛斌怎么想的，发现他的思路很好。
+一开始人与人之间互相认识，而且只有认识的才能在一个班。那么不认识的必然不能再一个班。这样我们把互相之间不认识的人连到一起，最后又变成了一个跟之前做过的一道<a href="http://wonderflow.info/archives/131">《this sentence is false》</a>有些类似了。做法也是类似。就是把连在一起的互相不认识的人染色。直接相连的人都是必须要0~1染不同的颜色的。如果发现有一个点要染成0，同时它已经被染成了1，或者相反。那么就是矛盾出现了。
+最后我们就得到了一个个被染成了0~1的块。
+问题也转换成了：现在有很多个物品，每个物品有两个部件组成，而这两个部件要分别放到不同的袋子里。最后还要求这两个袋子的重量尽可能相近。
+很容易想到这是一个经典的DP问题。区别于传统的01背包。现在只是把原来的01背包里的0换掉。改成了A、B背包。做法就是两个数组，互相交替着存一轮一轮可以达到的DP值。
+<a href="https://wonderflow.info/images/2012-07-12-zoj1462-team-them-upzoj1066-square-ice/11.png"><img src="https://wonderflow.info/images/2012-07-12-zoj1462-team-them-upzoj1066-square-ice/11.png" alt=""></a>
+最后从n/2处开始往前找能达到的DP值。
+关于怎么把答案输出，我是用的vector，在求DP的时候顺便把答案也一起都存下来了。</p>
+<p>然后就要说说困扰了我一下午的原因了：就是dp[0]=true的情况，用过一次后就该刷新的，谁知我手贱，写for循环的时候从1开始，这下就给跪了。后来薛斌来了一组神数据，瞬间就让我给过了。附在代码下面。</p>
+<pre><code>/*
+ * step 1: use reverse edge to make strong connected graph
+ * step 2: use 0 or 1 to color every strong connected components  
+  			and count the number of them . name them as con[i][2];
+ * step 3: for every components do a DP problem to decide which class to put
+ *
+ * there comes the question: how to solve the DP problem?
+ * make an n sized array as dp[N]; 
+ * for every con[i],try to put the number.
+ */
+#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;memory.h&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+#define MAXN 128
+using namespace std;
+int n;
+bool edge[MAXN][MAXN];
+int color[MAXN];
+int con[MAXN];
+bool vis[MAXN];
+vector&lt;int&gt; rec[MAXN][2];
+bool over;
+bool dp[MAXN];
+vector&lt;int&gt;ans[MAXN];
+vector&lt;int&gt;ansp[MAXN];
+bool tdp[MAXN];
+//make reverse edge to get strong connected graph
+void dfs(int v,int num)
+{
+	con[v] = num;
+//	cout&lt;&lt;&quot;ver&quot;&lt;&lt;v&lt;&lt;&quot; &quot;&lt;&lt;num&lt;&lt;endl;
+	for(int i=1;i&lt;=n;i++)
+	{
+		if((!edge[v][i]||!edge[i][v])&amp;&amp;!con[i])
+			dfs(i,num);
+	}
+}
+
+//paint every connected graph
+void paint(int v,int c)
+{
+	rec[con[v]][c].push_back(v);
+	color[v] = c;
+	//cout&lt;&lt;v&lt;&lt;&quot; &quot;&lt;&lt;c&lt;&lt;endl;
+	if(over)return;
+	for(int i=1;i&lt;=n;i++)
+	{
+		if(i==v)continue;
+		if(con[v]==con[i]&amp;&amp;(!edge[v][i]||!edge[i][v]))
+		{
+			if(color[i] == -1)paint(i,1^c);
+			else if(color[i]==c)
+			{
+				over = true;
+			//	cout&lt;&lt;&quot;over; &quot;&lt;&lt;i&lt;&lt;endl;
+				return;
+			}
+		}
+	}
+}
+
+int main()
+{
+	int T;
+//	freopen(&quot;xb.in&quot;,&quot;r&quot;,stdin);
+	scanf(&quot;%d&quot;,&amp;T);
+	int icase=0;
+	while(T--)
+	{
+		if(icase)printf(&quot;\n&quot;);
+		memset(edge,0,sizeof(edge));
+		memset(con,0,sizeof(con));
+		memset(color,-1,sizeof(color));
+		icase++;
+		scanf(&quot;%d&quot;,&amp;n);
+		int t,m;
+		for(int i=1;i&lt;=n;i++)
+		{
+			while(scanf(&quot;%d&quot;,&amp;t)&amp;&amp;t)
+				edge[i][t] = true;
+		}
+		int num = 1;
+		for(int i=1;i&lt;=n;i++)
+		{
+			if(!con[i])dfs(i,num++);
+		}
+		over = false;
+		for(int i=0;i&lt;=n;i++)
+		{
+			rec[i][0].clear();
+			rec[i][1].clear();
+			ansp[i].clear();
+			ans[i].clear();
+		}
+		for(int i=1;i&lt;=n;i++)
+		{
+			if(color[i]==-1)
+				paint(i,0);
+		}
+		if(over)
+		{
+			printf(&quot;No solution\n&quot;);
+			continue;
+		}
+		else
+		{
+			memset(tdp,0,sizeof(tdp));
+			memset(dp,0,sizeof(dp));
+			tdp[0] = true;
+			for(int i=1;i&lt;num;i++)
+			{
+				for(int j=n;j&gt;0;j--)
+				{
+					if(rec[i][0].size()&lt;=j&amp;&amp;tdp[j-rec[i][0].size()])
+					{
+						dp[j] = true;
+						int t = j-rec[i][0].size();
+					ans[j].clear();
+						for(int k=0;k&lt;ansp[t].size();k++)ans[j].push_back(ansp[t][k]);
+						for(int k=0;k&lt;rec[i][0].size();k++)
+							ans[j].push_back(rec[i][0][k]);
+					}
+					if(rec[i][1].size()&lt;=j&amp;&amp;tdp[j-rec[i][1].size()])
+					{
+						dp[j] = true;
+					ans[j].clear();
+						int t = j-rec[i][1].size();
+						for(int k=0;k&lt;ansp[t].size();k++)ans[j].push_back(ansp[t][k]);
+						for(int k=0;k&lt;rec[i][1].size();k++)ans[j].push_back(rec[i][1][k]);
+					}
+				}
+				for(int j=0;j&lt;=n;j++)
+				{
+					ansp[j].clear();
+					for(int k=0;k&lt;ans[j].size();k++)
+						ansp[j].push_back(ans[j][k]);
+					tdp[j] = dp[j];
+				}
+				for(int j=0;j&lt;=n;j++)
+				{
+					dp[j] = 0;
+					ans[j].clear();
+				}
+			}
+			memset(vis,0,sizeof(vis));
+			for(int i=(n+1)/2;i&gt;0;i--)
+			{
+				if(tdp[i])
+				{
+					sort(ansp[i].begin(),ansp[i].end());
+					printf(&quot;%d&quot;,ansp[i].size());
+					for(int k=0;k&lt;ansp[i].size();k++)
+					{
+						printf(&quot; %d&quot;,ansp[i][k]);
+						vis[ansp[i][k]] = true;
+					}
+					printf(&quot;\n&quot;);
+					printf(&quot;%d&quot;,n-ansp[i].size());
+					for(int k=1;k&lt;=n;k++)
+						if(!vis[k])
+							printf(&quot; %d&quot;,k);
+					printf(&quot;\n&quot;);
+					break;
+				}
+			}
+		}
+
+	}
+}
+
+/*
+1
+9
+2 5 6 7 8 9 0
+1 5 6 7 8 9 0
+4 5 6 7 8 9 0
+3 5 6 7 8 9 0
+1 2 3 4 0
+1 2 3 4 5 7 8 9 0
+1 2 3 4 5 6 8 9 0
+1 2 3 4 5 6 7 9 0
+1 2 3 4 5 6 7 8 0
+*/
+</code></pre><p>zoj1066是个简单的题。怎么搞都可以搞出来。但是如果注意读题的话，或许解出此题的速度会加快很多。
+做法：-1和1的情况都是很好处理的，注意到他说每行、每列最后的和是1，那么在一行的和成为1之前，0的一个拐角都是拐向左边的，成为1之后，就是拐向右边，一列的情况则是成为1之前拐向上面，成为1之后拐向下面。
+当然，不管这个，凭感觉去写，先把-1和1的情况处理好，然后0的情况则是四边去尝试，最后也是能过的，不过就是考虑的情况多了点，会觉得比较烦。。。我就是这么过的。。。呵呵~~</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;memory.h&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+int rec[20][20];
+bool hh[100][100];
+bool edge[100][100];
+
+
+
+int main()
+{
+	int n;
+	int icase = 0;
+	while(scanf(&quot;%d&quot;,&amp;n)&amp;&amp;n)
+	{
+		if(icase)puts(&quot;&quot;);
+		icase++;
+		for(int i=0;i&lt;n;i++)
+		{
+			for(int j=0;j&lt;n;j++)
+			{
+				scanf(&quot;%d&quot;,&amp;rec[i][j]);
+			}
+		}
+		memset(edge,0,sizeof(edge));
+		memset(hh,0,sizeof(edge));
+		for(int i=0;i&lt;4*n-1;i++)
+		{
+			for(int j=0;j&lt;4*n+3;j++)
+			{
+				if((i-1)%4==0&amp;&amp;(j-1)%4==2)
+				{
+					int x = (i-1)/4;
+					int y=  (j-1)/4;
+				//	cout&lt;&lt;rec[x][y]&lt;&lt;&quot; &quot;&lt;&lt;x&lt;&lt;&quot; &quot;&lt;&lt;y&lt;&lt;endl;
+					switch(rec[x][y])
+					{
+						case 1:
+							hh[i][j-1] = hh[i][j+1] = true;
+							hh[i][j-2] = hh[i][j+2] = true;
+							break;
+						case -1:
+							hh[i-1][j] = hh[i+1][j] = true;
+							hh[i-2][j] = hh[i+2][j] = true;
+							break;
+					}
+				}
+			}
+		}
+		for(int i=0;i&lt;4*n-1;i++)
+		{
+			for(int j=0;j&lt;4*n+3;j++)
+			{
+				if((i-1)%4==0&amp;&amp;(j-1)%4==2)
+				{
+					int x = (i-1)/4;
+					int y=  (j-1)/4;
+					
+					if(!rec[x][y])
+					{
+						if(!hh[i][j-2])
+						{
+							if(i-2&gt;0&amp;&amp;!hh[i-2][j])
+							{
+								hh[i][j-1] = hh[i-1][j] = true;
+								hh[i][j-2] = hh[i-2][j] = true;
+								continue;
+							}
+							if(i+2&lt;4*n-1&amp;&amp;!hh[i+2][j])
+							{
+								hh[i][j-1] = hh[i+1][j] = true;
+								hh[i][j-2] = hh[i+2][j] = true;
+								continue;
+							}
+						}
+						if(!hh[i][j+2]) 
+						{
+
+							if(i-2&gt;0&amp;&amp;!hh[i-2][j])
+							{
+								hh[i][j+1] = hh[i-1][j] = true;
+								hh[i][j+2] = hh[i-2][j] = true;
+								continue;
+							}
+							if(i+2&lt;4*n-1&amp;&amp;!hh[i+2][j])
+							{
+								hh[i][j+1] = hh[i+1][j] = true;
+								hh[i][j+2] = hh[i+2][j] = true;
+								continue;
+							}
+						}
+
+					}
+				}
+			}
+		}
+
+
+		printf(&quot;Case %d:\n\n&quot;,icase);
+		for(int i=0;i&lt;4*n-1;i++)
+		{
+			for(int j=0;j&lt;4*n+3;j++)
+			{
+				if(!i||i==4*n-2||!j||j==4*n+2)
+				{
+					printf(&quot;*&quot;);
+					continue;
+				}
+				if(((i-1)%4==0&amp;&amp;(j-1)%4==0)
+					||((i-1)%4==2&amp;&amp;(j-1)%4==2))
+				{
+					printf(&quot;H&quot;);
+					continue;
+				}
+				if((i-1)%4==0&amp;&amp;(j-1)%4==2)
+				{
+					printf(&quot;O&quot;);
+					continue;
+				}
+				if((i-1)%4==0&amp;&amp;(j-1)%2&amp;&amp;hh[i][j])
+				{
+					printf(&quot;-&quot;);
+					continue;
+				}
+				if((i-1)%2&amp;&amp;(j-1)%4==2&amp;&amp;hh[i][j])
+				{
+					printf(&quot;|&quot;);continue;
+				}
+				printf(&quot; &quot;);
+
+			}
+			printf(&quot;\n&quot;);
+		}
+
+	}
+}
+</code></pre><ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/acm" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">ACM</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/c&#43;&#43;" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">C&#43;&#43;</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/dp" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">DP</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E5%8F%8D%E5%9B%BE" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">反图</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E6%9F%93%E8%89%B2" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">染色</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E6%A8%A1%E6%8B%9F" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">模拟</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E7%8B%97%E7%8B%97%E5%9B%9B%E5%8D%81%E9%A2%98" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">狗狗四十题</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">解题报告</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+    </div>
+  </div>
+
+  <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/posts/2012/07/10/zoj1448-pattern-matching-using-regular-expressionefbc88e5a4a7e887aae784b6e9a298efbc81efbc89/">ZOJ1448 Pattern Matching Using Regular Expression（大自然题！）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/09/zoj-fans-and-gemsefbc88e6909ce7b4a2efbc9fe6a8a1e68b9fefbc9fe681b6e5bf83e79a84e9a298e38082e38082efbc89/">ZOJ1237 Fans and Gems（搜索？模拟？恶心的题。。）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/09/160/">ZOJ1509 Family(高精度，DP，拓扑排序)</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/08/zoj1506-left-labyrinths-zoj1518-this-sentence-is-false/">ZOJ1506 Left labyrinths &amp;&amp; ZOJ1518 This Sentence is False</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/07/zoj1460-the-partition-of-a-cake/">&#39;ZOJ1460 The Partition of a Cake &#39;</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/06/zoj1504-slots-of-fun-zoj1423-yourtermproject/">ZOJ1504 Slots of Fun &amp;&amp; ZOJ1423 (Your)((Term)((Project)))</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/05/usaco-a-game-e5928c-zoj-brackets-sequence/">USACO A GAME 和 ZOJ1463 Brackets Sequence</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/06/usaco-american-heritage-e6a091e79a84e9818de58e86/">USACO American Heritage 树的遍历</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/03/usaco-riding-the-fences/">USACO Riding the Fences</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+</article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info" >
+    &copy;  奇迹之流WonderfloW 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

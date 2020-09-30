@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>高精度 on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/%E9%AB%98%E7%B2%BE%E5%BA%A6/</link>
+    <description>Recent content in 高精度 on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 09 Jul 2012 15:35:33 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/%E9%AB%98%E7%B2%BE%E5%BA%A6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ZOJ1509 Family(高精度，DP，拓扑排序)</title>
+      <link>https://wonderflow.info/posts/2012/07/09/160/</link>
+      <pubDate>Mon, 09 Jul 2012 15:35:33 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/09/160/</guid>
+      <description>这题确实是个好题目。讲的是动物家族，每个人都有50%父亲的基因和50%母亲的基因，然后给你一张家族图，最后询问你指定的两个人中有相同的血缘关系的百分比是多少。 一开始其实是没什么想法的。就问了问老高，后来才知道，原来是个DP。 为了无后效性，所以我们必须要先进行拓扑排序，这样的话，先把祖先之间的血缘关系求出来，然后子孙后代的寻缘关系其实可以递推到子孙的其中一人与另外一人上一辈的血缘关系的。 首先dp[i][j]表示，第i个人和第j个人的基因相同的比例是多少。 然后dp[i][i]肯定是初始化为1的。 另外，从拓扑排序后的先祖开始计算DP值，那么两重for循环，i在j前面。也就是j肯定比i的备份小，那么要</description>
+    </item>
+    
+  </channel>
+</rss>

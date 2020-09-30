@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>思维 on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/%E6%80%9D%E7%BB%B4/</link>
+    <description>Recent content in 思维 on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 10 Sep 2012 13:47:53 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/%E6%80%9D%E7%BB%B4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>九月十日记</title>
+      <link>https://wonderflow.info/posts/2012/09/10/e4b99de69c88e58d81e697a5e8aeb0/</link>
+      <pubDate>Mon, 10 Sep 2012 13:47:53 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/09/10/e4b99de69c88e58d81e697a5e8aeb0/</guid>
+      <description>达者为师，首先祝全天下的教师和非以教师为职业但是分享过知识的人，节日快乐。 然后开始正文： 今天是教师节，也是生产实习出去参观的第一天，也是老妈来南京开会的日子，所以我这一天倒是过得蛮充实。 早晨在大一新生军训时嘹亮的口号声中朦朦胧胧的被吵醒。然后就去四工听亚信联创的一个HR过来给我们宣讲，讲了一上午。 边看Python Web边听亚信联创的HR给我们讲软件工程的各种流程，倒是保持了我一贯的学习习惯。陆陆续续听了一些，也算是明白了亚信联创的一些公司背景。 总的来说亚信联创是一家服务于传统三大网络运营商（电信，移动，联通）的一家软件公司。在南京规模比较大，最近盖了一栋很大的楼，正在装修。 下午坐大巴去亚信联创</description>
+    </item>
+    
+    <item>
+      <title>《黑客与画家》读书笔记</title>
+      <link>https://wonderflow.info/posts/2012/09/03/e3808ae9bb91e5aea2e4b88ee794bbe5aeb6e3808be8afbbe4b9a6e7ac94e8aeb0/</link>
+      <pubDate>Mon, 03 Sep 2012 14:22:32 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/09/03/e3808ae9bb91e5aea2e4b88ee794bbe5aeb6e3808be8afbbe4b9a6e7ac94e8aeb0/</guid>
+      <description>这又是我读到的一本神奇的书，他坚定了我的世界观。 说起这本书，还是在活动室溜达的时候,无意中在黄典典桌上发现的。当时对这本书也是慕名已久了，然后随手一翻就发现停不下来了，就这样，连着两三天，每天一有空就看，不知不觉就看完了。这真是一本IT界思想盛宴的书啊。 说起这本书，不得不提一下本书的作者，本书其实是硅谷创业之父Paul Graham的文集。而Paul Graham又是何许人也呢？ 他是世界上首个互联网应用程序Viaweb开发人之一，也是viaweb公司的创始人，后被雅虎收购改名为&amp;quot;Yahoo!Store&amp;quot;。开创了天使投资的模式，被《福布斯》杂志喻为“撼动硅谷的人”。目前为止扶持过</description>
+    </item>
+    
+    <item>
+      <title>集训日志第五篇（解题常用方法的总结）</title>
+      <link>https://wonderflow.info/posts/2012/07/12/e99b86e8aeade697a5e5bf97e7acace4ba94e7af87efbc88e8a7a3e9a298e5b8b8e794a8e696b9e6b395e79a84e680bbe7bb93efbc89/</link>
+      <pubDate>Thu, 12 Jul 2012 16:48:13 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/12/e99b86e8aeade697a5e5bf97e7acace4ba94e7af87efbc88e8a7a3e9a298e5b8b8e794a8e696b9e6b395e79a84e680bbe7bb93efbc89/</guid>
+      <description>集训的时光不知不觉，其实已经过去了一半了，十三天。 每天做一到二个题，总结、思考。看重的不是做出的题目是用的什么方法，看重的是怎么想到的这个做题的方法，思路是怎么来的。那么今天顺势总结下思考问题的一些方法。 题目做的多了，就会自然而然的产生一些经验，比如看到数据的范围，就能想到最终的解法是什么复杂度的，然后根据复杂度，就可以套一些模型，一些常用的算法。 再根据常用的方法的多种应用，思考针对该题的解决方案。 这是很常见的一种方法，我喜欢称之为“经验教训”法。 面对一个问题，先从小规模着手，如果这个问题的数据非常小，从1个、2个、3个、、这样以此类推的往多处叠加，那么这个问题的解法会不会思考出来。要知道，如</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 10 Aug 2012 12:41:30 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>STL Containers 之 vector</title>
+      <link>https://wonderflow.info/posts/2012/08/10/stl-containers-e4b98b-vector/</link>
+      <pubDate>Fri, 10 Aug 2012 12:41:30 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/08/10/stl-containers-e4b98b-vector/</guid>
+      <description>我觉得，vector是STL中最常用的容器，没有之一。 因为它简单，安全，也容易理解。实际上它就是一个刚学C++时我们梦寐以求的动态数组，大小不需要一开始的时候定，而又不像链表操作起来那么麻烦。 先说一下最简单的几个用法吧： 比如说你要创建一个一维数组，数组元素是一个结构体。（为什么用结构体？因为结构体都会了的话，int之类的，就简单了。） 在示例代码中用注释的方式讲解一下各种vector函数的用法。 # include # include using namespace std; struct Node{ int x,y; Node(){x = 30;} Node(int x,int y):x(x),y(y){}//构造函数 }; int main(){ vectormyvector; //定义一个vector数组 for(int i=0;i&amp;lt;9;i++){ myvector.push_back(Node(i,1+i)); //插入一个元素 } myvector.pop_back();//与之对应的pop_back是</description>
+    </item>
+    
+    <item>
+      <title>STL Algorithms 之 unique</title>
+      <link>https://wonderflow.info/posts/2012/08/10/stl-algorithms-e4b98b-unique/</link>
+      <pubDate>Fri, 10 Aug 2012 10:40:13 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/08/10/stl-algorithms-e4b98b-unique/</guid>
+      <description>C++的文档中说，STL中的unique是类似于这样实现的： template &amp;lt;class ForwardIterator&amp;gt; ForwardIterator unique ( ForwardIterator first, ForwardIterator last ) { ForwardIterator result=first; while (++first != last) { if (!(*result == *first)) // or: if (!pred(*result,*first)) for the pred version *(++result)=*first; } return ++result; } 仔细一看就知道，它并不是帮你直接把一个数组中所有重复的元素除去，而是对数组扫描一次，只看当前元素和前面一个元素，如果当前值和前面的值相等，那么跳过，否则就把这个值算上，迭代器递增，最后返回给你一个位置，表示我扫描到多少个当前值与其前面一个元素值不同的元素。 所以，要真正利用好unique，我们必须先对我们所需要进行unique操作的数组排序，然后再使用unique。 这样以后其实还是不满足我们的要求的，因为实际上unique函数实现的只是把不同的元素“unique”放</description>
+    </item>
+    
+    <item>
+      <title>ZOJ1391 Horizontally Visible Segments &amp;&amp; ZOJ1413 2D Nim</title>
+      <link>https://wonderflow.info/posts/2012/07/14/zoj1391-horizontally-visible-segments-zoj1413-2d-nim/</link>
+      <pubDate>Sat, 14 Jul 2012 16:02:48 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/14/zoj1391-horizontally-visible-segments-zoj1413-2d-nim/</guid>
+      <description>《Horizontally Visible Segments》是一个线段树的题，给你n条垂直的线，问你三条两两互不挡住但是能用横线连起来的直线对有多少。 做法就是用线段树，首先对于x坐标排序，然后对一长条染色，被覆盖住的线段部分显然不可能再被后面的线段所看见。所以只要记录当前直线被哪些线段（id）覆盖过就可以了。最后对于已经标记好颜色的标号集合，枚举任意两个，然后再枚举其中一个的标号集合里面有没有元素的标号集合包含另外一个没使用的。简单来说，就是暴力查看存不存在三个标号两两可以看见。 做法基本就是这样了。 注意点： 1、在标号颜色的时候，要用set判重。 2、写线段树的时候加个延迟标记，表示连续的、同时也是被延迟更新的</description>
+    </item>
+    
+    <item>
+      <title>ZOJ1462 Team Them Up! &amp;&amp; ZOJ1066 Square Ice</title>
+      <link>https://wonderflow.info/posts/2012/07/12/zoj1462-team-them-upzoj1066-square-ice/</link>
+      <pubDate>Thu, 12 Jul 2012 11:56:25 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/12/zoj1462-team-them-upzoj1066-square-ice/</guid>
+      <description>今天似乎是被《team them up》虐了一天啊。昨天就知道了解法，就是一直wa。中间还去把当年正常比赛官方数据下载下来对比了一下。结果发现zoj和poj的数据竟然是加强了的。。。。 说下题意：一堆人要分班级，人与人之间有的互相认识，有的不认识。现在只有两个班，但是我分班级有限制条件。 1、一个班级的同学都要互相认识。 2、一个班级里一定要至少有一个人。 3、两个班级里的人数要尽可能靠近 看到这个题可能会没有什么想法。比如我就是这样。然后根据以前的经验，从小数据开始，如果1个人的话怎么分，2个人的话怎么分等等。后来发现这个不存在一个递推关系，因为人之间还有图的关系。 然后就问了一下薛斌怎么想的，发现他的思路很好。</description>
+    </item>
+    
+    <item>
+      <title>ZOJ1448 Pattern Matching Using Regular Expression（大自然题！）</title>
+      <link>https://wonderflow.info/posts/2012/07/10/zoj1448-pattern-matching-using-regular-expressionefbc88e5a4a7e887aae784b6e9a298efbc81efbc89/</link>
+      <pubDate>Tue, 10 Jul 2012 16:59:50 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/10/zoj1448-pattern-matching-using-regular-expressionefbc88e5a4a7e887aae784b6e9a298efbc81efbc89/</guid>
+      <description>狗狗四十题里面的这个题非常有意思，号称“大自然”题。其实就是模拟简单正则匹配的规则，录入模式串和匹配串，把最左最长的匹配子串输出出来。 一开始没有什么思路，后来看了watashi的代码，才发现了做法。话说watashi的那个《狗狗40题搞完纪念》绝对是个神贴啊。上面的代码资源，太可贵了！ 具体做法是： 先扫模式串，把模式串的规则整理出来。把一些规则统一起来，如&amp;quot;.&amp;ldquo;的规则，统一为字符0~256之间的任意字符，就是跟【1-9】这种一样咯。 然后用dp[i]表示从i开始作为匹配的头，最后面能匹配到的位置。 最后不得不说，这题还是相当恶心的，模式串从后往前开始对匹配串进行匹配是为了无后效</description>
+    </item>
+    
+    <item>
+      <title>ZOJ1237 Fans and Gems（搜索？模拟？恶心的题。。）</title>
+      <link>https://wonderflow.info/posts/2012/07/09/zoj-fans-and-gemsefbc88e6909ce7b4a2efbc9fe6a8a1e68b9fefbc9fe681b6e5bf83e79a84e9a298e38082e38082efbc89/</link>
+      <pubDate>Mon, 09 Jul 2012 05:52:34 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/09/zoj-fans-and-gemsefbc88e6909ce7b4a2efbc9fe6a8a1e68b9fefbc9fe681b6e5bf83e79a84e9a298e38082e38082efbc89/</guid>
+      <description>此题的类型应该就是一个暴力搜索，但是搜索的变换过程非常之恶心。一旦处理不好，就是多写上百行代码的事情。 自己写了五个小时，写不下去了，因为实在恶心到了，处理的方法不好。最后一看watashi的代码，羞愧的五体投地，就把自己的代码人道毁灭了！ 那就学学watashi大牛的代码吧。也挺好。说明一下，代码都是watashi的，我自己只是做了一些适当的注释。其中用的什么样的方法，基本注释里面已经写的很清楚。看来暴力的题目，熟练使用STL才是王道啊。 再结合昨天看watashi代码的经验就是： 该暴力的题，全部使用STL，让代码清楚简洁干净利落到极致！ 该高效的题，尽量使用位运算，不让任何多余的操作降低自己程序的</description>
+    </item>
+    
+  </channel>
+</rss>

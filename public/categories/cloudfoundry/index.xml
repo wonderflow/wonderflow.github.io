@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CloudFoundry on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/categories/cloudfoundry/</link>
+    <description>Recent content in CloudFoundry on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 17 Dec 2014 08:08:26 +0000</lastBuildDate><atom:link href="https://wonderflow.info/categories/cloudfoundry/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>cf-release结构解析</title>
+      <link>https://wonderflow.info/posts/2014/12/17/cf-releasee7bb93e69e84e8a7a3e69e90/</link>
+      <pubDate>Wed, 17 Dec 2014 08:08:26 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2014/12/17/cf-releasee7bb93e69e84e8a7a3e69e90/</guid>
+      <description>1. 制作时的cf-release结构解析 此处指的release统一为CloudFoundry官方给出的cf-release，不做修改。 1.1. 通过载入cf-release文件夹下config/final.yml文件，获得需要下载release文件的远程服务器网址，默认使用的提供商是s3，地址是：blob.cfblob.com 1.2. 通过config/blobs.yml，可以得到所有blobs的object_id，通过服务器地址+object_id拼接的字符串即可下载到相对应的blob内容。 1.3. 默认存储的位置为cf-release/.blobs，存储的文件名为sha1值，下载完成后会在cf-release/bl</description>
+    </item>
+    
+    <item>
+      <title>Cloud Foundry 运维入门</title>
+      <link>https://wonderflow.info/posts/2014/07/01/cloud-foundry-e8bf90e7bbb4e585a5e997a8/</link>
+      <pubDate>Tue, 01 Jul 2014 06:05:03 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2014/07/01/cloud-foundry-e8bf90e7bbb4e585a5e997a8/</guid>
+      <description>@(CF V2相关)[guide] 之前写过一个Guide for Cloud Foundry New Teamer。不过似乎已经有些过时，那会实验室主要是针对的CF v1进行的研究，现在已经全面进入V2时代了。所以更新一下关于CloudFoundry运维的一些内容。如果有时间也可再回头看看V1的那个帖子，希望能有所帮助。 部署 关于部署，目前使用的工具一般有两种，BOSH和cf_nise_installer。BOSH适用于集群安装，cf_nise_installer适用于单节点安装。下面主要以cf_nise_installer的安装方法为主描述部署的运维流程。 cf_nise_installer实际上就是一大堆shell脚本建立起来的项目，对sh</description>
+    </item>
+    
+    <item>
+      <title>为什么选择Bosh而不用Puppet/Chef</title>
+      <link>https://wonderflow.info/posts/2014/03/17/e4b8bae4bb80e4b988e98089e68ba9boshe8808ce4b88de794a8puppetchef/</link>
+      <pubDate>Mon, 17 Mar 2014 06:44:24 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2014/03/17/e4b8bae4bb80e4b988e98089e68ba9boshe8808ce4b88de794a8puppetchef/</guid>
+      <description>总的来说，Puppet/Chef是配置管理（Configration Management）工具，Bosh是云管理（Cloud Orchestration）工具。 Bosh的功能包含了Puppet/Chef所有的功能，并且Bosh把IaaS和PaaS的管理工作结合了起来并且实现了自动化，节省了大量的工作。但是Bosh需要IaaS层提供API，并且需要专门为API编写Bosh适配的CPI（Cloud Provider Interface），故而部署和使用的要求较高。 与此同时，Puppet/Chef工具自2000年起就已开始被广泛使用，其标准化的配置流程也渐渐成为了业界标准。因为其小巧灵活的特性，所以使用要求较低。与Bo</description>
+    </item>
+    
+    <item>
+      <title>Cloud_Controller_NG源码阅读记录</title>
+      <link>https://wonderflow.info/posts/2014/02/28/cloud_controller_nge6ba90e7a081e99885e8afbbe8aeb0e5bd95/</link>
+      <pubDate>Fri, 28 Feb 2014 04:14:33 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2014/02/28/cloud_controller_nge6ba90e7a081e99885e8afbbe8aeb0e5bd95/</guid>
+      <description>Cloud_Controller_NG源码阅读记录 @(CC阅读)[cloud controller] by wonderflow Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Foundry 平台用来管理控制应用和服务的组件。 官方文档是这么解释CCNG的作用的： 维护一个包含应用、服务、配置信息的数据库(CCDB)。 在blobstore中存储应用的packages和droplets。 通过NATS和其他组件进行通信，包括Droplet Execution Agents (DEAs)、Service Gateways、和 Health Manager（HM）。 其他供用户调用的后端API。 阅读该组件源码，有助于从应用管理的视角理解cloudfoundry的运行</description>
+    </item>
+    
+    <item>
+      <title>CloudFoundry入门材料汇集</title>
+      <link>https://wonderflow.info/posts/2013/08/11/cloudfoundrye585a5e997a8e69d90e69699e6b187e99b86/</link>
+      <pubDate>Sun, 11 Aug 2013 05:51:54 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2013/08/11/cloudfoundrye585a5e997a8e69d90e69699e6b187e99b86/</guid>
+      <description>架构总览 深入cloudfoundry（第一版）上， 深入cloudfoundry（第一版）下, 深入cloudfoundry（一周年版）, Cloud Foundry技术全貌及核心组件分析, 以NATS为主线的CloudFoundry原理, 部署相关 ****多节点部署之配置文件全攻略, Running your own CloudFoundry based on your IaaS. Part 1, Running your own CloudFoundry based on your IaaS. Part 2. 组件细节 VMC, DEA, NATS, Router, cloudcontroller, EventMachine, Service Gateway dashboard: 1,2,3 ruby相关 Ruby socket programming in CloudFoundry,** ** How to use your GemFile.** **</description>
+    </item>
+    
+    <item>
+      <title>Eventmachine Introduction Translation</title>
+      <link>https://wonderflow.info/posts/2013/07/29/eventmachine-introduction-translation/</link>
+      <pubDate>Mon, 29 Jul 2013 08:49:32 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2013/07/29/eventmachine-introduction-translation/</guid>
+      <description>最近在学Eventmachine，发现Dan Sinclair写的eventmachine introduction真心赞！ 然后跟陈琦一起翻译了一把。看这里：EventMachine入门 Eventmachine是Ruby中相当重要的轻量级通信模块，其相当于node.js，也是CouldFoundry中通信的主要途径。理清Eventmachine的工作机制对于理解CloudFoundry有磨刀不误砍柴工的功效。 关于Eventmachine的学习，我的路线为： 磊哥的博客 github上的Eventmachine Dan Sinclair写的eventmachine的入门导论 有人说，效率不是你工作的时间长短而是你</description>
+    </item>
+    
+    <item>
+      <title>Guide for Cloud Foundry New Teamer</title>
+      <link>https://wonderflow.info/posts/2013/07/25/guide-for-cloud-foundry-new-teamer-2/</link>
+      <pubDate>Thu, 25 Jul 2013 05:41:20 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2013/07/25/guide-for-cloud-foundry-new-teamer-2/</guid>
+      <description>Preparation 1、阅读以下博客： 了解架构，阅读“深入CloudFoundry一周年” 2、请准备好一个linux的客户端，如果没有请申请一个虚拟机，并安装好ubuntu10.04（windows下使用远程连接的方式是使用putty软件。） 3、如果不熟悉linux，请阅读linux相关命令，初步了解。 Start 定位cloudfoundry集群： 请使用$ curl [your domain]。若显示出正常信息则初步表面集群配置正确，否则请找帮你配置集群的人。 配置linux源，提高下载速度。(百度一个ubuntu cn的源) {% codeblock %} $ /etc/apt/sources.list $ sudo apt-get update {% endcodeblock %} 安装git，为了下载一个基本应用，github上面的。 {% codeblock %} $ sudo apt-get install git {% endcodeblock %} 安装maven，为了</description>
+    </item>
+    
+  </channel>
+</rss>

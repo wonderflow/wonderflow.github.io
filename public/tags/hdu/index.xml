@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hdu on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/hdu/</link>
+    <description>Recent content in hdu on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 27 Jul 2012 12:59:12 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/hdu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2012多校第一、第二场（hdu4300~hdu4319）</title>
+      <link>https://wonderflow.info/posts/2012/07/27/2012e5a49ae6a0a1e7acace4b880e38081e7acace4ba8ce59cbaefbc88hdu4300hdu4319efbc89/</link>
+      <pubDate>Fri, 27 Jul 2012 12:59:12 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/27/2012e5a49ae6a0a1e7acace4b880e38081e7acace4ba8ce59cbaefbc88hdu4300hdu4319efbc89/</guid>
+      <description>说一下自己搞出来的题目吧，感觉多校其实比较水的，题目也不难，模板题，陈题很多，不过两场我们队的名次都很烂诶，30开外了都，抗不住啊！出现的问题就是队里的模板太少、不全。不过也好，做一场补一场的模板。 hdu4300《Clairewd’s message》是个字符串，利用next数组求解，小trick就是next数组求出来的值要小于(len-1)/2才取。即：while(len-next[dx]&amp;lt;=(len-1)/2)dx = next[dx]; #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;cstdio&amp;gt; using namespace std; int map[30]; int len; int s[101000]; int next[101000]; char str[101000]; void get_next() { int i,j;i=0;next[0]=-1;j=-1; while(i&amp;lt;len) { if(j==-1||map[s[j]]==s[i]) { ++i;++j; next[i]=j; } else j=next[j]; } } int main() { int T; scanf(&amp;quot;%d&amp;quot;,&amp;amp;T); while(T--){ scanf(&amp;quot;%s&amp;quot;,str); len = strlen(str); for(int i=0;i&amp;lt;len;i++){ map[str[i]-&#39;a&#39;] = i; } scanf(&amp;quot;%s&amp;quot;,str); len = strlen(str); for(int i=0;i&amp;lt;len;i++){ s[i] = str[i] - &#39;a&#39;; } get_next(); // cout&amp;lt;&amp;lt;next[len]&amp;lt;&amp;lt;endl; int dx = len; while(len-next[dx]&amp;lt;=(len-1)/2)dx = next[dx]; // cout&amp;lt;&amp;lt;next[dx]&amp;lt;&amp;lt;endl; for(int i=0;i&amp;lt;len-next[dx];i++){ printf(&amp;quot;%c&amp;quot;,s[i]+&#39;a&#39;); } for(int i=0;i&amp;lt;len-next[dx];i++){ printf(&amp;quot;%c&amp;quot;,map[s[i]]+&#39;a&#39;); } printf(&amp;quot;\n&amp;quot;); } return 0;</description>
+    </item>
+    
+    <item>
+      <title>HDU4249 A Famous Equation 2012多校warm up E</title>
+      <link>https://wonderflow.info/posts/2012/07/19/hdu4249-a-famous-equation-2012e5a49ae6a0a1warm-up-e/</link>
+      <pubDate>Thu, 19 Jul 2012 12:23:06 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/19/hdu4249-a-famous-equation-2012e5a49ae6a0a1warm-up-e/</guid>
+      <description>今天下午做了场多校热身赛，题目都不难，做到一题有意思的DP，把它记录一下。 题目描述：就是给你一个含问号的和式，问你有多少种情况满足题意。 一开始写了个搜索，暴力枚举每个问号位的情况，然后稍微减了下支，想想一年多前这样的搜索一定觉得很难写不想写，如今十来分钟就写好了，还挺得意，然后果断TLE了！ #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;climits&amp;gt; #include&amp;lt;stack&amp;gt; #include&amp;lt;string&amp;gt; #include&amp;lt;map&amp;gt; using namespace std; int rec[3][20],num[3]; int ask[3]; int ans; int getz(int x) { int ret = 1; for(int i=0;i&amp;lt;x;i++) ret*=10; return ret; } void dfs(int flag,int dex,int sum) { if(sum&amp;lt;0)return; if(!flag&amp;amp;&amp;amp;dex==num[flag]){ if(!sum)ans++; return; } if(dex==num[flag]){ dex = 0; flag--; } if(rec[flag][dex]&amp;lt;0){ for(int i=dex?0:1;i&amp;lt;10;i++){ if(flag==2)dfs(flag,dex+1,sum+i*getz(num[flag]-dex-1)); else dfs(flag,dex+1,sum-i*getz(num[flag]-dex-1)); } }else{ if(flag==2)dfs(flag,dex+1,sum+rec[flag][dex]*getz(num[flag]-dex-1)); else dfs(flag,dex+1,sum-rec[flag][dex]*getz(num[flag]-dex-1)); } } int main() { int icase =0 ; char ss[100]; int flag = 0; while(gets(ss)) { icase++; memset(num,0,sizeof(num)); memset(ask,0,sizeof(ask)); flag = 0; printf(&amp;quot;Case %d: &amp;quot;,icase); int siz = strlen(ss); for(int i=0;i&amp;lt;siz;i++){ switch(ss[i]){ case &#39;+&#39;:case &#39;=&#39;: flag++;break; case &#39;?&#39;: rec[flag][num[flag]++] = -1; ask[flag]++; break; default: rec[flag][num[flag]++] = ss[i]-&#39;0&#39;; break; } } if(ask[0]+ask[1]==0 || ask[0]+ask[2]==0 || ask[1]+ask[2]==0){ puts(&amp;quot;1&amp;quot;);continue; } ans = 0; dfs(2,0,0); printf(&amp;quot;%d\n&amp;quot;,ans); } return 0; } 然后得到了阿森的提示，知道了要用DP的方法。就跟人在模拟这</description>
+    </item>
+    
+  </channel>
+</rss>

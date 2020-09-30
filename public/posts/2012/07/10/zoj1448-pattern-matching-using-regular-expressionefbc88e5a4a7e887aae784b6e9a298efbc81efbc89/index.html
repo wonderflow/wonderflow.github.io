@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>ZOJ1448 Pattern Matching Using Regular Expression（大自然题！） | 奇迹之流WonderfloW</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.75.1" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="ZOJ1448 Pattern Matching Using Regular Expression（大自然题！）" />
+<meta property="og:description" content="狗狗四十题里面的这个题非常有意思，号称“大自然”题。其实就是模拟简单正则匹配的规则，录入模式串和匹配串，把最左最长的匹配子串输出出来。 一开始没有什么思路，后来看了watashi的代码，才发现了做法。话说watashi的那个《狗狗40题搞完纪念》绝对是个神贴啊。上面的代码资源，太可贵了！ 具体做法是： 先扫模式串，把模式串的规则整理出来。把一些规则统一起来，如&quot;.&ldquo;的规则，统一为字符0~256之间的任意字符，就是跟【1-9】这种一样咯。 然后用dp[i]表示从i开始作为匹配的头，最后面能匹配到的位置。 最后不得不说，这题还是相当恶心的，模式串从后往前开始对匹配串进行匹配是为了无后效" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wonderflow.info/posts/2012/07/10/zoj1448-pattern-matching-using-regular-expressionefbc88e5a4a7e887aae784b6e9a298efbc81efbc89/" />
+<meta property="article:published_time" content="2012-07-10T16:59:50+00:00" />
+<meta property="article:modified_time" content="2012-07-10T16:59:50+00:00" />
+<meta itemprop="name" content="ZOJ1448 Pattern Matching Using Regular Expression（大自然题！）">
+<meta itemprop="description" content="狗狗四十题里面的这个题非常有意思，号称“大自然”题。其实就是模拟简单正则匹配的规则，录入模式串和匹配串，把最左最长的匹配子串输出出来。 一开始没有什么思路，后来看了watashi的代码，才发现了做法。话说watashi的那个《狗狗40题搞完纪念》绝对是个神贴啊。上面的代码资源，太可贵了！ 具体做法是： 先扫模式串，把模式串的规则整理出来。把一些规则统一起来，如&quot;.&ldquo;的规则，统一为字符0~256之间的任意字符，就是跟【1-9】这种一样咯。 然后用dp[i]表示从i开始作为匹配的头，最后面能匹配到的位置。 最后不得不说，这题还是相当恶心的，模式串从后往前开始对匹配串进行匹配是为了无后效">
+<meta itemprop="datePublished" content="2012-07-10T16:59:50+00:00" />
+<meta itemprop="dateModified" content="2012-07-10T16:59:50+00:00" />
+<meta itemprop="wordCount" content="1120">
+
+
+
+<meta itemprop="keywords" content="ACM,C&#43;&#43;,DP,大自然题,模拟,正则表达式,狗狗四十题,解题报告," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ZOJ1448 Pattern Matching Using Regular Expression（大自然题！）"/>
+<meta name="twitter:description" content="狗狗四十题里面的这个题非常有意思，号称“大自然”题。其实就是模拟简单正则匹配的规则，录入模式串和匹配串，把最左最长的匹配子串输出出来。 一开始没有什么思路，后来看了watashi的代码，才发现了做法。话说watashi的那个《狗狗40题搞完纪念》绝对是个神贴啊。上面的代码资源，太可贵了！ 具体做法是： 先扫模式串，把模式串的规则整理出来。把一些规则统一起来，如&quot;.&ldquo;的规则，统一为字符0~256之间的任意字符，就是跟【1-9】这种一样咯。 然后用dp[i]表示从i开始作为匹配的头，最后面能匹配到的位置。 最后不得不说，这题还是相当恶心的，模式串从后往前开始对匹配串进行匹配是为了无后效"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        奇迹之流WonderfloW
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/archive/" title="Archive page">
+              Archive
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
+              Posts
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
+  <header class="mt4 w-100">
+    <aside class="instapaper_ignoref b helvetica tracked">
+      
+      POSTS
+    </aside>
+    
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://wonderflow.info/posts/2012/07/10/zoj1448-pattern-matching-using-regular-expressionefbc88e5a4a7e887aae784b6e9a298efbc81efbc89/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2012/07/10/zoj1448-pattern-matching-using-regular-expressionefbc88e5a4a7e887aae784b6e9a298efbc81efbc89/&amp;text=ZOJ1448%20Pattern%20Matching%20Using%20Regular%20Expression%ef%bc%88%e5%a4%a7%e8%87%aa%e7%84%b6%e9%a2%98%ef%bc%81%ef%bc%89" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://wonderflow.info/posts/2012/07/10/zoj1448-pattern-matching-using-regular-expressionefbc88e5a4a7e887aae784b6e9a298efbc81efbc89/&amp;title=ZOJ1448%20Pattern%20Matching%20Using%20Regular%20Expression%ef%bc%88%e5%a4%a7%e8%87%aa%e7%84%b6%e9%a2%98%ef%bc%81%ef%bc%89" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+    <h1 class="f1 athelas mt3 mb1">ZOJ1448 Pattern Matching Using Regular Expression（大自然题！）</h1>
+    
+    <p class="tracked">
+      By <strong>
+        
+        admin
+        
+      </strong>
+    </p>
+    
+    
+    <time class="f6 mv4 dib tracked"
+      datetime="2012-07-10T16:59:50Z">July 10, 2012</time>
+
+    
+    
+  </header>
+  <div
+    class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-100-l"><p>狗狗四十题里面的这个题非常有意思，号称“大自然”题。其实就是模拟简单正则匹配的规则，录入模式串和匹配串，把最左最长的匹配子串输出出来。</p>
+<p>一开始没有什么思路，后来看了watashi的代码，才发现了做法。话说watashi的那个<a href="http://blog.watashi.ws/991/gougou40/">《狗狗40题搞完纪念》</a>绝对是个神贴啊。上面的代码资源，太可贵了！</p>
+<p>具体做法是：
+先扫模式串，把模式串的规则整理出来。把一些规则统一起来，如&quot;.&ldquo;的规则，统一为字符0~256之间的任意字符，就是跟【1-9】这种一样咯。
+然后用dp[i]表示从i开始作为匹配的头，最后面能匹配到的位置。</p>
+<p>最后不得不说，这题还是相当恶心的，模式串从后往前开始对匹配串进行匹配是为了无后效性。碰到&rdquo;*&ldquo;即any==true的情况，就要遍历每个i为起点，找最后能匹配到的j的位置。总的来说，先把模式串统一整理一下的思想，是非常值得学习的。</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+using namespace std;
+#define NODE 100
+
+struct Node
+{
+	bool no,any;
+	bool cmp;
+	char from,to;
+	bool match(char s)
+	{
+		if(!cmp)return true;
+		if(!no&amp;&amp;from&lt;=s&amp;&amp;s&lt;=to)return true;
+		if(no&amp;&amp;(s&lt;from||s&gt;to))return true;
+		return false;
+	}
+};
+vector&lt;Node&gt;regex;
+
+int dp[NODE];
+
+//对于一个串，构造一个分析串regex，
+//有了分析串后，对于分析串里的每一个节点都要进行匹配
+void getRegex(char * modes)
+{
+	regex.clear();
+	int len = strlen(modes);
+	for(int i=0;i&lt;len;)
+	{
+		Node a;
+		a.cmp = true;
+		a.any = false;
+		a.no = false;
+		switch(modes[i++])
+		{
+			case '.':
+				a.cmp = false;
+				break;
+			case '['://notice such case &quot;[\*-\\]&quot;
+				if(modes[i]=='^')
+				{
+					a.no = true;
+					i++;
+				}
+				if(modes[i]=='\\')
+				{
+					i++;
+				}
+					a.from = modes[i++];
+					i++;
+				if(modes[i]=='\\')
+				{
+					i++;
+				}
+
+				a.to = modes[i];
+				i++;
+				i++;
+				if (a.from &gt; a.to) { // between c1 and c2
+					swap(a.from, a.to);
+				}
+				
+				break;
+			case '\\':
+				i++;
+				//no break;
+			default:
+				a.from = a.to = modes[i-1];
+				break;
+		}
+		switch(modes[i++])
+		{
+			case '+':
+				regex.push_back(a);
+				//no break;
+			case '*':
+				a.any = true;
+				regex.push_back(a);
+				break;
+			default:
+				regex.push_back(a);
+				i--;
+				break;
+		}
+	}
+}
+
+//对于模式串，找能匹配的串
+//如果匹配不到，那么dp[i]的值赋-1
+//考虑，如果是一个*,可以不匹配，又要尽可能多的匹配
+void solve(char *str)
+{
+	int n = strlen(str);
+	for(int i=0;i&lt;=n;i++)dp[i] = i;
+	for(vector&lt;Node&gt;::reverse_iterator it = regex.rbegin();it!=regex.rend();it++)
+	{
+	//	 printf(&quot;{ %s, [%s(%d)-(%d)]}\n&quot;, it-&gt;any ? &quot;y&quot; : &quot;n&quot;, it-&gt;no ? &quot;^&quot; : &quot;&quot;, it-&gt;from, it-&gt;to);
+		if(it-&gt;any)
+		{
+			for(int i=0;i&lt;=n;i++)
+			{
+				for(int j=i;j&lt;n;j++)
+				{
+					if(it-&gt;match(str[j]))dp[i] = max(dp[i],dp[j+1]);
+					else break;
+				}
+			}
+		}
+		else
+		{
+			for(int i=0;i&lt;n;i++)
+			{
+				dp[i] = it-&gt;match(str[i])?dp[i+1]:-1;
+			}
+			dp[n] = -1;
+		}
+	}
+}
+
+int main()
+{
+	char modes[100],str[100];
+	while(gets(modes))
+	{
+		if(!strcmp(modes,&quot;end&quot;))break;
+		gets(str);
+		getRegex(modes);
+		int len = strlen(str);
+		solve(str);
+		bool win = false;
+		for(int i=0;i&lt;len;i++)
+		{
+			if(dp[i]&gt;i)
+			{
+				win = true;
+				for(int k=0;k&lt;i;k++)
+					printf(&quot;%c&quot;,str[k]);
+				printf(&quot;(&quot;);
+				for(int k=i;k&lt;dp[i];k++)
+					printf(&quot;%c&quot;,str[k]);
+				printf(&quot;)&quot;);
+				for(int k=dp[i];k&lt;len;k++)
+					printf(&quot;%c&quot;,str[k]);
+				break;
+			}
+		}
+		if(!win)printf(&quot;%s&quot;,str);
+		printf(&quot;\n&quot;);
+
+
+	}
+	
+	return 0;
+}
+</code></pre><p>崔嵬的做法则是：比较正常的思路，也是我一开始想的思路（就是一开始的时候做着做着，碰到<em>就不知道怎么做下去了）
+对于待匹配的串，枚举能匹配部分的起点。用一个match函数，返回所能正确匹配的最远终点（题目要求贪婪模式）。
+碰到“[c1-c2]”、“[^c1-c2]”、“.”、“\”、都不难处理，而碰到“+”的时候，可以转移成一个前面的和一个“</em>”，也就是最麻烦的就是处理“<em>”的过程。
+崔嵬用了一个递归的方法求的“</em>”，还是非常神奇的。</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;math.h&gt;
+#include &lt;algorithm&gt;
+#include &lt;string&gt;
+#include &lt;map&gt;
+#include &lt;set&gt;
+
+using namespace std;
+
+char **str, **pat;
+
+int match() {
+	int i=0,j=0,ans=-1,f,type,arg0,arg1,sj,sub;
+	while ((*pat)[i]) {
+		if ((*pat)[i]=='[') {
+			type=((*pat)[i+1]!='^'),i+=((*pat)[i+1]!='^')?1:2;
+			arg0=(((*pat)[i]=='\\')?(*pat)[++i]:(*pat)[i]),i+=2;
+			arg1=(((*pat)[i]=='\\')?(*pat)[++i]:(*pat)[i]),i+=2;
+			if (arg0&gt;arg1) swap(arg0,arg1);
+		} else if ((*pat)[i]=='.')
+			type=2, ++i;
+		else
+			type=3, arg0=(((*pat)[i]=='\\')?(*pat)[++i]:(*pat)[i]), ++i;
+		if ((*pat)[i]=='*' || (*pat)[i]=='+') {
+			sj=j, ++i;
+			while ((*str)[j] &amp;&amp; !(type&lt;2 &amp;&amp; (((*str)[j]&gt;=arg0&amp;&amp;(*str)[j]&lt;=arg1)^type) || type==2 &amp;&amp; !(*str)[j] || type==3 &amp;&amp; (*str)[j]!=arg0))
+				++j;
+			for (f=sj+((*pat)[i-1]=='+');f&lt;=j;f++) {
+				(*str)+=f,(*pat)+=i;
+				sub=match();
+				(*str)-=f,(*pat)-=i;
+				if (sub!=-1 &amp;&amp; ans&lt;sub+f)
+					ans=sub+f;
+			}
+			return ans;
+		}
+		if ((type&lt;2 &amp;&amp; (((*str)[j]&gt;=arg0&amp;&amp;(*str)[j]&lt;=arg1)^type) || type==2 &amp;&amp; !(*str)[j] || type==3 &amp;&amp; (*str)[j]!=arg0))return -1;
+		++j;
+	}
+	return j;
+}
+
+
+char spat[90],sstr[90];
+
+int main() {
+	str=new char*;
+	pat=new char*;
+	while (gets(spat),strcmp(spat,&quot;end&quot;)) {
+		gets(sstr);
+		int l=strlen(sstr),su=-1,si;
+		for (int i=0;i&lt;=l;i++) {
+			(*str)=sstr+i,(*pat)=spat;
+			int u=match();
+			if (u!=-1) {
+				su=u,si=i;
+				break;
+			}
+		}
+		if (su&gt;0) {
+			for (int i=0;i&lt;si;i++)
+				putchar(sstr[i]);
+			putchar('(');
+			for (int i=0;i&lt;su;i++)
+				putchar(sstr[si+i]);
+			putchar(')');
+			for (int i=si+su;i&lt;l;i++)
+				putchar(sstr[i]);
+			putchar('\n');
+		} else
+			puts(sstr);
+	}
+	return 0;
+}
+
+</code></pre><ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/acm" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">ACM</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/c&#43;&#43;" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">C&#43;&#43;</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/dp" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">DP</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E5%A4%A7%E8%87%AA%E7%84%B6%E9%A2%98" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">大自然题</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E6%A8%A1%E6%8B%9F" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">模拟</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">正则表达式</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E7%8B%97%E7%8B%97%E5%9B%9B%E5%8D%81%E9%A2%98" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">狗狗四十题</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">解题报告</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+    </div>
+  </div>
+
+  <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/posts/2012/07/09/zoj-fans-and-gemsefbc88e6909ce7b4a2efbc9fe6a8a1e68b9fefbc9fe681b6e5bf83e79a84e9a298e38082e38082efbc89/">ZOJ1237 Fans and Gems（搜索？模拟？恶心的题。。）</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/09/160/">ZOJ1509 Family(高精度，DP，拓扑排序)</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/08/zoj1506-left-labyrinths-zoj1518-this-sentence-is-false/">ZOJ1506 Left labyrinths &amp;&amp; ZOJ1518 This Sentence is False</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/07/zoj1460-the-partition-of-a-cake/">&#39;ZOJ1460 The Partition of a Cake &#39;</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/06/zoj1504-slots-of-fun-zoj1423-yourtermproject/">ZOJ1504 Slots of Fun &amp;&amp; ZOJ1423 (Your)((Term)((Project)))</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/05/usaco-a-game-e5928c-zoj-brackets-sequence/">USACO A GAME 和 ZOJ1463 Brackets Sequence</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/06/usaco-american-heritage-e6a091e79a84e9818de58e86/">USACO American Heritage 树的遍历</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/03/usaco-riding-the-fences/">USACO Riding the Fences</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+</article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info" >
+    &copy;  奇迹之流WonderfloW 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

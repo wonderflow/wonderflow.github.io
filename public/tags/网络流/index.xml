@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>网络流 on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/</link>
+    <description>Recent content in 网络流 on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 27 Jul 2012 12:59:12 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2012多校第一、第二场（hdu4300~hdu4319）</title>
+      <link>https://wonderflow.info/posts/2012/07/27/2012e5a49ae6a0a1e7acace4b880e38081e7acace4ba8ce59cbaefbc88hdu4300hdu4319efbc89/</link>
+      <pubDate>Fri, 27 Jul 2012 12:59:12 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/27/2012e5a49ae6a0a1e7acace4b880e38081e7acace4ba8ce59cbaefbc88hdu4300hdu4319efbc89/</guid>
+      <description>说一下自己搞出来的题目吧，感觉多校其实比较水的，题目也不难，模板题，陈题很多，不过两场我们队的名次都很烂诶，30开外了都，抗不住啊！出现的问题就是队里的模板太少、不全。不过也好，做一场补一场的模板。 hdu4300《Clairewd’s message》是个字符串，利用next数组求解，小trick就是next数组求出来的值要小于(len-1)/2才取。即：while(len-next[dx]&amp;lt;=(len-1)/2)dx = next[dx]; #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;cstdio&amp;gt; using namespace std; int map[30]; int len; int s[101000]; int next[101000]; char str[101000]; void get_next() { int i,j;i=0;next[0]=-1;j=-1; while(i&amp;lt;len) { if(j==-1||map[s[j]]==s[i]) { ++i;++j; next[i]=j; } else j=next[j]; } } int main() { int T; scanf(&amp;quot;%d&amp;quot;,&amp;amp;T); while(T--){ scanf(&amp;quot;%s&amp;quot;,str); len = strlen(str); for(int i=0;i&amp;lt;len;i++){ map[str[i]-&#39;a&#39;] = i; } scanf(&amp;quot;%s&amp;quot;,str); len = strlen(str); for(int i=0;i&amp;lt;len;i++){ s[i] = str[i] - &#39;a&#39;; } get_next(); // cout&amp;lt;&amp;lt;next[len]&amp;lt;&amp;lt;endl; int dx = len; while(len-next[dx]&amp;lt;=(len-1)/2)dx = next[dx]; // cout&amp;lt;&amp;lt;next[dx]&amp;lt;&amp;lt;endl; for(int i=0;i&amp;lt;len-next[dx];i++){ printf(&amp;quot;%c&amp;quot;,s[i]+&#39;a&#39;); } for(int i=0;i&amp;lt;len-next[dx];i++){ printf(&amp;quot;%c&amp;quot;,map[s[i]]+&#39;a&#39;); } printf(&amp;quot;\n&amp;quot;); } return 0;</description>
+    </item>
+    
+    <item>
+      <title>ZOJ3475 The Great Wall I(最小割)（Dinic）</title>
+      <link>https://wonderflow.info/posts/2012/07/14/zoj3475-the-great-wall-ie69c80e5b08fe589b2efbc88dinicefbc89/</link>
+      <pubDate>Sat, 14 Jul 2012 16:33:22 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/14/zoj3475-the-great-wall-ie69c80e5b08fe589b2efbc88dinicefbc89/</guid>
+      <description>今天第二场组队赛，就搞出了这个题。说来去年搞了一个暑假图论网络流神马的，在自己的博客前面这么多题目解题报告里面竟然没有出现过，实在不应该。 题意： 对于王国X，存在敌对国E和附属国A，我们要建造围墙把敌对国隔开，附属国会给钱你，如果你建造的城墙把它围进去的话。当然，X城和附属国不一定要连通。这个就是和这一套题里的神题《The Great Wall II》唯一的区别了。另外题目里还说，地图以外的区域也要建造围墙隔起来。 看到我的做法和watashi发的解题报告里面的方法有所区别，觉得还是有必要写一下题解。 思路：看到这个题，基本就觉得是最小割了。为什么？感觉啊~！因为要把两个区域分开，然后分开还需要费用，很容易想到是网络流</description>
+    </item>
+    
+  </channel>
+</rss>

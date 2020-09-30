@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/categories/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 10 Aug 2012 12:41:30 +0000</lastBuildDate><atom:link href="https://wonderflow.info/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>STL Containers 之 vector</title>
+      <link>https://wonderflow.info/posts/2012/08/10/stl-containers-e4b98b-vector/</link>
+      <pubDate>Fri, 10 Aug 2012 12:41:30 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/08/10/stl-containers-e4b98b-vector/</guid>
+      <description>我觉得，vector是STL中最常用的容器，没有之一。 因为它简单，安全，也容易理解。实际上它就是一个刚学C++时我们梦寐以求的动态数组，大小不需要一开始的时候定，而又不像链表操作起来那么麻烦。 先说一下最简单的几个用法吧： 比如说你要创建一个一维数组，数组元素是一个结构体。（为什么用结构体？因为结构体都会了的话，int之类的，就简单了。） 在示例代码中用注释的方式讲解一下各种vector函数的用法。 # include # include using namespace std; struct Node{ int x,y; Node(){x = 30;} Node(int x,int y):x(x),y(y){}//构造函数 }; int main(){ vectormyvector; //定义一个vector数组 for(int i=0;i&amp;lt;9;i++){ myvector.push_back(Node(i,1+i)); //插入一个元素 } myvector.pop_back();//与之对应的pop_back是</description>
+    </item>
+    
+    <item>
+      <title>STL Algorithms 之 unique</title>
+      <link>https://wonderflow.info/posts/2012/08/10/stl-algorithms-e4b98b-unique/</link>
+      <pubDate>Fri, 10 Aug 2012 10:40:13 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/08/10/stl-algorithms-e4b98b-unique/</guid>
+      <description>C++的文档中说，STL中的unique是类似于这样实现的： template &amp;lt;class ForwardIterator&amp;gt; ForwardIterator unique ( ForwardIterator first, ForwardIterator last ) { ForwardIterator result=first; while (++first != last) { if (!(*result == *first)) // or: if (!pred(*result,*first)) for the pred version *(++result)=*first; } return ++result; } 仔细一看就知道，它并不是帮你直接把一个数组中所有重复的元素除去，而是对数组扫描一次，只看当前元素和前面一个元素，如果当前值和前面的值相等，那么跳过，否则就把这个值算上，迭代器递增，最后返回给你一个位置，表示我扫描到多少个当前值与其前面一个元素值不同的元素。 所以，要真正利用好unique，我们必须先对我们所需要进行unique操作的数组排序，然后再使用unique。 这样以后其实还是不满足我们的要求的，因为实际上unique函数实现的只是把不同的元素“unique”放</description>
+    </item>
+    
+  </channel>
+</rss>

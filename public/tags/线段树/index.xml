@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>线段树 on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/</link>
+    <description>Recent content in 线段树 on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 14 Jul 2012 16:02:48 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ZOJ1391 Horizontally Visible Segments &amp;&amp; ZOJ1413 2D Nim</title>
+      <link>https://wonderflow.info/posts/2012/07/14/zoj1391-horizontally-visible-segments-zoj1413-2d-nim/</link>
+      <pubDate>Sat, 14 Jul 2012 16:02:48 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/14/zoj1391-horizontally-visible-segments-zoj1413-2d-nim/</guid>
+      <description>《Horizontally Visible Segments》是一个线段树的题，给你n条垂直的线，问你三条两两互不挡住但是能用横线连起来的直线对有多少。 做法就是用线段树，首先对于x坐标排序，然后对一长条染色，被覆盖住的线段部分显然不可能再被后面的线段所看见。所以只要记录当前直线被哪些线段（id）覆盖过就可以了。最后对于已经标记好颜色的标号集合，枚举任意两个，然后再枚举其中一个的标号集合里面有没有元素的标号集合包含另外一个没使用的。简单来说，就是暴力查看存不存在三个标号两两可以看见。 做法基本就是这样了。 注意点： 1、在标号颜色的时候，要用set判重。 2、写线段树的时候加个延迟标记，表示连续的、同时也是被延迟更新的</description>
+    </item>
+    
+  </channel>
+</rss>

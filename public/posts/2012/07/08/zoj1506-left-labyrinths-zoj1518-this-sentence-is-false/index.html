@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>ZOJ1506 Left labyrinths &amp;&amp; ZOJ1518 This Sentence is False | 奇迹之流WonderfloW</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.75.1" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="ZOJ1506 Left labyrinths &amp;&amp; ZOJ1518 This Sentence is False" />
+<meta property="og:description" content="今天把第一场定时训练训练的C和E都过了，都是不错的题目。 Left labyrinths讲的是一个迷宫，你进入迷宫后要遵守规则，优先靠右走。然后问你最后能否到中央大厅。 我感觉有这样几个注意点： 1、迷宫的入口如何搜寻：就是左右是‘#’但是上下是‘.’的点或者反过来。 2、迷宫的大厅什么时候算走到了？找到田字格的‘.’块，注意22就算了，我一开始想象着要33才算，果断WA了。 3、规则说靠右走，但是没说只能靠右走，其实必要的时候还是要往别的方向走的。 4、每个格子不是只能走一次，而是每个格子的每个方向只能走一次。 有了这几个注意点，基本上AC就没问题了。这题主要是题目理解上的问题了吧，一开始我无论怎样都WA，后来去" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wonderflow.info/posts/2012/07/08/zoj1506-left-labyrinths-zoj1518-this-sentence-is-false/" />
+<meta property="article:published_time" content="2012-07-08T15:57:51+00:00" />
+<meta property="article:modified_time" content="2012-07-08T15:57:51+00:00" />
+<meta itemprop="name" content="ZOJ1506 Left labyrinths &amp;&amp; ZOJ1518 This Sentence is False">
+<meta itemprop="description" content="今天把第一场定时训练训练的C和E都过了，都是不错的题目。 Left labyrinths讲的是一个迷宫，你进入迷宫后要遵守规则，优先靠右走。然后问你最后能否到中央大厅。 我感觉有这样几个注意点： 1、迷宫的入口如何搜寻：就是左右是‘#’但是上下是‘.’的点或者反过来。 2、迷宫的大厅什么时候算走到了？找到田字格的‘.’块，注意22就算了，我一开始想象着要33才算，果断WA了。 3、规则说靠右走，但是没说只能靠右走，其实必要的时候还是要往别的方向走的。 4、每个格子不是只能走一次，而是每个格子的每个方向只能走一次。 有了这几个注意点，基本上AC就没问题了。这题主要是题目理解上的问题了吧，一开始我无论怎样都WA，后来去">
+<meta itemprop="datePublished" content="2012-07-08T15:57:51+00:00" />
+<meta itemprop="dateModified" content="2012-07-08T15:57:51+00:00" />
+<meta itemprop="wordCount" content="1910">
+
+
+
+<meta itemprop="keywords" content="ACM,Zoj,狗狗四十题,解题报告," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ZOJ1506 Left labyrinths &amp;&amp; ZOJ1518 This Sentence is False"/>
+<meta name="twitter:description" content="今天把第一场定时训练训练的C和E都过了，都是不错的题目。 Left labyrinths讲的是一个迷宫，你进入迷宫后要遵守规则，优先靠右走。然后问你最后能否到中央大厅。 我感觉有这样几个注意点： 1、迷宫的入口如何搜寻：就是左右是‘#’但是上下是‘.’的点或者反过来。 2、迷宫的大厅什么时候算走到了？找到田字格的‘.’块，注意22就算了，我一开始想象着要33才算，果断WA了。 3、规则说靠右走，但是没说只能靠右走，其实必要的时候还是要往别的方向走的。 4、每个格子不是只能走一次，而是每个格子的每个方向只能走一次。 有了这几个注意点，基本上AC就没问题了。这题主要是题目理解上的问题了吧，一开始我无论怎样都WA，后来去"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        奇迹之流WonderfloW
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/archive/" title="Archive page">
+              Archive
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
+              Posts
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
+  <header class="mt4 w-100">
+    <aside class="instapaper_ignoref b helvetica tracked">
+      
+      POSTS
+    </aside>
+    
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://wonderflow.info/posts/2012/07/08/zoj1506-left-labyrinths-zoj1518-this-sentence-is-false/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2012/07/08/zoj1506-left-labyrinths-zoj1518-this-sentence-is-false/&amp;text=ZOJ1506%20Left%20labyrinths%20&amp;&amp;%20ZOJ1518%20This%20Sentence%20is%20False" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://wonderflow.info/posts/2012/07/08/zoj1506-left-labyrinths-zoj1518-this-sentence-is-false/&amp;title=ZOJ1506%20Left%20labyrinths%20&amp;&amp;%20ZOJ1518%20This%20Sentence%20is%20False" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+    <h1 class="f1 athelas mt3 mb1">ZOJ1506 Left labyrinths &amp;&amp; ZOJ1518 This Sentence is False</h1>
+    
+    <p class="tracked">
+      By <strong>
+        
+        admin
+        
+      </strong>
+    </p>
+    
+    
+    <time class="f6 mv4 dib tracked"
+      datetime="2012-07-08T15:57:51Z">July 8, 2012</time>
+
+    
+    
+  </header>
+  <div
+    class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-100-l"><p>今天把第一场定时训练训练的C和E都过了，都是不错的题目。</p>
+<p>Left labyrinths讲的是一个迷宫，你进入迷宫后要遵守规则，优先靠右走。然后问你最后能否到中央大厅。
+我感觉有这样几个注意点：
+1、迷宫的入口如何搜寻：就是左右是‘#’但是上下是‘.’的点或者反过来。
+2、迷宫的大厅什么时候算走到了？找到田字格的‘.’块，注意2<em>2就算了，我一开始想象着要3</em>3才算，果断WA了。
+3、规则说靠右走，但是没说只能靠右走，其实必要的时候还是要往别的方向走的。
+4、每个格子不是只能走一次，而是每个格子的每个方向只能走一次。</p>
+<p>有了这几个注意点，基本上AC就没问题了。这题主要是题目理解上的问题了吧，一开始我无论怎样都WA，后来去<a href="http://watashi.ws/">watashi</a>的blog上一看<a href="http://blog.watashi.ws/991/gougou40/attachment/1038/">他的代码</a>，才知道了这些个注意点。然后发现大神的代码写得各种简洁，巧妙的利用了memset对字符串的块刷新和用位运算来表示一个点的四个方向有没有访问过，让我看了各种佩服。不愧是曾经的final冠军~</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;memory.h&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+int n,m;
+char map[120][120];
+bool vis[120][120][5];
+int dir[4][2] = {-1,0,0,1,1,0,0,-1};//上右下左
+int fdir[8][2] = {0,1,0,-1,1,0,-1,0,1,1,1,-1,-1,1,-1,-1};
+int sa,sb,sd;
+
+bool check(int a,int b)
+{
+	int num1 = 0,num2=0;
+	int ta,tb;
+	for(int i=0;i&lt;4;i++)
+	{
+		ta = a+dir[i][0];
+		tb = b+dir[i][1];
+		if(ta&gt;=0&amp;&amp;ta&lt;n&amp;&amp;tb&gt;=0&amp;&amp;tb&lt;m&amp;&amp;map[ta][tb]=='#')
+		{
+			if(i%2)num1++;
+			else num2++;
+		}
+	}
+	if((num1==2&amp;&amp;num2==0)||(num1==0&amp;&amp;num2==2))
+	{
+	//	cout&lt;&lt;num1&lt;&lt;&quot; &quot;&lt;&lt;num2&lt;&lt;&quot; &quot;&lt;&lt;a&lt;&lt;&quot; &quot;&lt;&lt;b&lt;&lt;endl;
+		return true;
+	}
+	return false;
+}
+
+bool finalfind(int a,int b)
+{
+	return (a&gt;0&amp;&amp;b&gt;0&amp;&amp;map[a - 1][b - 1] != '#' &amp;&amp; map[a - 1][b] != '#' &amp;&amp; map[a][b - 1] != '#')
+        || (a&gt;0&amp;&amp;b&lt;m-1&amp;&amp;map[a - 1][b + 1] != '#' &amp;&amp; map[a - 1][b] != '#' &amp;&amp; map[a][b + 1] != '#')
+        || (a&lt;n-1&amp;&amp;b&gt;0&amp;&amp;map[a + 1][b - 1] != '#' &amp;&amp; map[a + 1][b] != '#' &amp;&amp; map[a][b - 1] != '#')
+        || (a&lt;n-1&amp;&amp;b&lt;m-1&amp;&amp;map[a + 1][b + 1] != '#' &amp;&amp; map[a + 1][b] != '#' &amp;&amp; map[a][b + 1] != '#');
+	
+}
+
+void dfs(int a,int b,int dirs)
+{
+	vis[a][b][4]=true;
+	if(check(a,b))
+	{
+		sa = a;
+		sb = b;
+		sd = dirs;
+	//	cout&lt;&lt;a&lt;&lt;&quot; &quot;&lt;&lt;b&lt;&lt;&quot; &quot;&lt;&lt;sd&lt;&lt;endl;
+		return ;
+	}
+	int ta,tb;
+	for(int i=0;i&lt;4;i++)
+	{
+		ta = a+dir[i][0];
+		tb = b+dir[i][1];
+		if(ta&gt;=0&amp;&amp;ta&lt;n&amp;&amp;tb&gt;=0&amp;&amp;tb&lt;m&amp;&amp;!vis[ta][tb][4]&amp;&amp;map[ta][tb]=='.')
+		{
+			dfs(ta,tb,i);
+		}
+	}
+}
+
+bool formal_dfs(int a,int b,int dirs)
+{
+	vis[a][b][dirs] = true;
+	if(finalfind(a,b))
+	{
+		//cout&lt;&lt;a&lt;&lt;&quot; &quot;&lt;&lt;b&lt;&lt;endl;
+		return true;
+	}
+	int ta,tb;
+	for(int i=-1;i&lt;3;i++)
+	{
+		ta = a+dir[(4+i+dirs)%4][0];
+		tb = b+dir[(4+i+dirs)%4][1];
+		if(ta&gt;=0&amp;&amp;ta&lt;n&amp;&amp;tb&gt;=0&amp;&amp;tb&lt;m&amp;&amp;!vis[ta][tb][4]&amp;&amp;
+				!vis[ta][tb][(4+i+dirs)%4]&amp;&amp;map[ta][tb]=='.')
+		{
+			return formal_dfs(ta,tb,(4+dirs+i)%4);
+		}
+	}
+	return false;
+}
+
+int main()
+{
+	while(scanf(&quot;%d%d&quot;,&amp;n,&amp;m)!=EOF)
+	{
+		for(int i=0;i&lt;n;i++)
+			scanf(&quot;%s&quot;,map[i]);
+		memset(vis,0,sizeof(vis));
+		dfs(0,0,0);
+		//cout&lt;&lt;sa&lt;&lt;&quot; &quot;&lt;&lt;sb&lt;&lt;&quot; &quot;&lt;&lt;sd&lt;&lt;endl;
+		vis[sa][sb][4] = true;
+		if(formal_dfs(sa,sb,sd))printf(&quot;YES\n&quot;);
+		else printf(&quot;NO\n&quot;);
+	}
+
+	return 0;
+}
+</code></pre><p>This Sentence is False这题是个图论题，阿森跟我说了一种方法，老高跟我说了一种方法。
+我自己根据理解写了一下，最后写成了老高的方法。
+题目就是让你找出现在的话里面有没有自相矛盾的地方，如果暂时没有自相矛盾的，那么问你最多有几句话是真的。</p>
+<p>做法有两种，建立的都是无向图，建边就是建的双向的，下面就不赘述了，先写阿森的方法：
+基于图顶点的染色，首先每句话都是没有染色的点，如果一句话说另外一句话是真的，那么这句话到另外一句话连一条边，权值为0，如果这句话说另外一句话是假的，那么也连一条边，权值为1。最后我其实就是要给这张图的每个点染色。边的权值为0的两个端点颜色必须相同，权值不为0的两个点，颜色必须不同。然后在染色的过程中，可以发现如果颜色出现冲突，那么明显是出现了自相矛盾的情况了。再然后对于每个被染色的连通块，其实起点只要随便选择一种染颜色就可以了。对于每个连通块，统计两种颜色的个数，最后的答案加上每个连通块颜色数多的各种颜色的个数。就是真话最多的可能情况。</p>
+<p>然后说下我的，也就是老高一开始想到的解法：
+对于每个句子，拆分成两个结点，一个是代表这句话是真的，一个代表这句话是假的。然后对于每个句子所代表的情况，如果本句话说另外一个句子是真的，那么代表本句话真的结点和代表另外一句话是真的结点连一条无向边，同时，代表本句话是假的的结点和代表另外一句话是假的的结点也连一条无向边。为什么呢？因为一句话说另外一句话是对的，如果这句话是对的，那么同时也证明了另外一句话是对的；如果这句话是假的，那么也间接的说明了另外一句话是假的。同样的情况对于另外一种“本句话说另外一句话是假的”也是适用的，就是代表本句话是真的的结点和代表另外一句话是假的的结点连边，然后对称的再互相连边。总之最后构成的是一个对称的图。
+怎么判自相矛盾呢？我是另外写了个并查集，连边的时候不断的在合并点，如果一个结点的真和假出现在了同一个集合内，那么必然是自相矛盾的。当然，如果不用并查集其实也可以的，就是如果一个点的真和假出现在了同一个连通块内，代表是自相矛盾的。
+最后剩下的就是怎么算真话的个数了。很简单，就是对于每个连通块，算代表真话成立的结点和代表假话的结点各有多少个，取多的那个。注意，每个点只访问一次！访问一种情况的时候，同时把另外一种情况的点也标记。因为两种是对称的，所以也变相的证明了为什么选择代表假话的结点多的时候也可以用。
+这题AC的还算顺利。</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;memory.h&gt;
+#include&lt;cstdio&gt;
+#include&lt;vector&gt;
+using namespace std;
+#define NODE 2010
+
+int n;
+char str1[100],str2[10],str3[100];
+bool vis[NODE];
+int num;
+
+int father[NODE];//奇数表示该点正确，偶数表示该点错误
+vector&lt;int&gt;edge[NODE];
+
+void init()
+{
+	for(int i=1;i&lt;=2*n;i++)
+	{
+		father[i] = i;
+		edge[i].clear();
+	}
+}
+
+int find_set(int x)
+{
+	if(x!=father[x])father[x] = find_set(father[x]);
+	return father[x];
+}
+
+void union_set(int x,int y)
+{
+	if(find_set(x)!=find_set(y))
+		father[x] = father[y];
+}
+
+void insert(int a,int b)
+{
+	edge[a].push_back(b);
+	edge[b].push_back(a);
+}
+
+int odd,even;
+
+void dfs(int index)
+{
+	vis[index] = true;
+	if(index%2)vis[index+1] = true;
+	else vis[index-1] = true;
+	if(index%2)odd++;
+	else even++;
+	//cout&lt;&lt;index&lt;&lt;&quot; &quot;;
+	for(int i=0;i&lt;edge[index].size();i++)
+	{
+		if(!vis[edge[index][i]])dfs(edge[index][i]);
+	}
+}
+
+int main()
+{
+	while(scanf(&quot;%d&quot;,&amp;n)&amp;&amp;n)
+	{
+		init();
+		for(int i=1;i&lt;=n;i++)
+		{
+			scanf(&quot;%s%d%s%s&quot;,str1,&amp;num,str2,str3);
+			switch(str3[0])
+			{
+				case 'f':
+					union_set(i*2-1,2*num);
+					union_set(i*2,2*num-1);
+					insert(i*2-1,2*num);
+					insert(i*2,2*num-1);
+					break;
+				default:
+					union_set(i*2-1,2*num-1);
+					union_set(i*2-1,2*num-1);
+					insert(i*2-1,2*num-1);
+					insert(i*2,2*num);
+					break;
+			}
+		}
+		bool over = false;
+		for(int i=1;i&lt;=n;i++)
+		{
+			if(find_set(2*i-1)==find_set(2*i))
+			{
+				over = true;
+				break;
+			}
+		}
+		if(over)
+		{
+			printf(&quot;Inconsistent\n&quot;);
+			continue;
+		}
+		memset(vis,0,sizeof(vis));
+		int ans = 0;
+		for(int i=1;i&lt;=2*n;i++)
+		{
+			if(!vis[i])
+			{
+				odd = even = 0;
+				dfs(i);
+				ans+=max(odd,even);
+			}
+		}
+		printf(&quot;%d\n&quot;,ans);
+	}
+
+}
+</code></pre><p>在最后，祝薛斌今天生日快乐~今天还为他唱歌了呢。算是够哥们了吧~</p>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/acm" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">ACM</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/zoj" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Zoj</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E7%8B%97%E7%8B%97%E5%9B%9B%E5%8D%81%E9%A2%98" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">狗狗四十题</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">解题报告</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+    </div>
+  </div>
+
+  <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/posts/2012/07/07/zoj1460-the-partition-of-a-cake/">&#39;ZOJ1460 The Partition of a Cake &#39;</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/06/zoj1504-slots-of-fun-zoj1423-yourtermproject/">ZOJ1504 Slots of Fun &amp;&amp; ZOJ1423 (Your)((Term)((Project)))</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/05/usaco-a-game-e5928c-zoj-brackets-sequence/">USACO A GAME 和 ZOJ1463 Brackets Sequence</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/06/usaco-american-heritage-e6a091e79a84e9818de58e86/">USACO American Heritage 树的遍历</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/03/usaco-riding-the-fences/">USACO Riding the Fences</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+</article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info" >
+    &copy;  奇迹之流WonderfloW 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

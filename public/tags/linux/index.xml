@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/linux/</link>
+    <description>Recent content in linux on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 18 Oct 2013 08:18:21 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ubuntu源的本地化</title>
+      <link>https://wonderflow.info/posts/2013/10/18/ubuntue79a84e6ba90/</link>
+      <pubDate>Fri, 18 Oct 2013 08:18:21 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2013/10/18/ubuntue79a84e6ba90/</guid>
+      <description>最近，为了装个runit，装了2天，各种问题都出现了，始终无法解决，都快装哭了。 最后用排除法，一个个排除问题，发现是使用的网易ubuntu源的问题。 哎，看来从研究设计到工程细节，还是有很大的技术距离的。 静默安装方法 {% codeblock %} sudo DEBIAN_FRONTEND=noninteractive apt-get install -f -y &amp;ndash;force-yes &amp;ndash;no-install-recommends runit {% endcodeblock %} 最后为了安全稳定，决定自己建立ubuntu的局域网源，这样后面安装软件也会更快。 1、安装依赖软件 {% codeblock %} sudo apt-get install dpkg-dev {% endcodeblock %} 2、将 /var/cache/apt/archives/下的所有deb文件拷到(cp命令，图形界面都没问题) 你想要的地方，拷贝前建议执行一下 {% codeblock %} sudo apt-get autoclean {% endcodeblock %} 比方说拷至home下新建的deb文件夹 {% codeblock %} sudo cp /var/cache/apt/archives/*.deb /var/www/deb/ {% endcodeblock %} 3、拷贝完成后到/var/</description>
+    </item>
+    
+    <item>
+      <title>UNIX之ss命令</title>
+      <link>https://wonderflow.info/posts/2013/08/06/unixe4b98bsse591bde4bba4/</link>
+      <pubDate>Tue, 06 Aug 2013 02:31:59 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2013/08/06/unixe4b98bsse591bde4bba4/</guid>
+      <description>ss命令用来进行统计socket连接的统计。与netstat命令相似。 这个命令之前不常用，甚至没怎么听过，直到有一天不小心想要输入ssh的时候打了ss就回车，结果出来意想不到的好东西，让我决定去学习一下。 SS能提供的信息包括： TCP连接 UDP连接 已经建立的 ssh/ftp/http/https连接 本地进程连向X服务器的连接 筛选状态(例如connected, synchronized, SYN-RECV, SYN-SENT,TIME-WAIT)、地址和端口 所有在FIN-WAIT-1状态下的TCP连接。 大多数linux发行版都涵盖ss命令以及其他一些工具，熟悉这些命令有助于多网络状态的掌握。 下面罗列出一些常用的方法。 {% codeblock %} $ ss -s #列出所有的so</description>
+    </item>
+    
+    <item>
+      <title>UNIX之lsof命令</title>
+      <link>https://wonderflow.info/posts/2013/08/05/unixe4b98blsofe591bde4bba4/</link>
+      <pubDate>Mon, 05 Aug 2013 09:04:25 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2013/08/05/unixe4b98blsofe591bde4bba4/</guid>
+      <description>据说lsof命令很强大，就学习了一下。这个网站讲的最好,翻译如下： **lsof（list open files）**是一个列出当前系统打开文件的工具。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。所以lsof被称为unix系统检测的瑞士军刀。 那怎么用呢? 接下来我们一个个来看。 罗列出所有的文件设备情况. {% codeblock %} $ lsof {% endcodeblock %} 不带参数的运行 lsof 就是列出所有被进程打开的文件。 查看文件被谁使用. {% codeblock %} $ lsof /path/to/file {% endcodeblock %} 如果把文件路径作为参数，lsof命令会把用到这个文件的所有进程都罗列出来。 也可以加多个路径在后面，它会把所涉及到这些文件的进程都罗列出来: {% codeblock %} $ lsof /path/to/file1</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu12.04LTS Install Record</title>
+      <link>https://wonderflow.info/posts/2013/08/02/ubuntu12-04-install-record/</link>
+      <pubDate>Fri, 02 Aug 2013 11:50:12 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2013/08/02/ubuntu12-04-install-record/</guid>
+      <description>一、软件源更新 {% codeblock %} $vi /etc/apt/sources.list {% endcodeblock %} 二、定制命令提示符： {% codeblock %} $vi ~/.bashrc $PS1=&amp;quot;[\e]0;\u@\h: \w\a\e[32;1m]\W$[\e[0m] &amp;quot; #效果:仅高亮显示短路径和$符号 {% endcodeblock %} 三、安装chrome 登录，同步相应配置，这样浏览器方面的各种配置就齐全了 四、github相关 安装git: {% codeblock %} $ sudo apt-get install git {% endcodeblock %} github：配置SSH 五、中文输入法ibus 找到language support这个应用，然后找到keyboard input method system设置项（默认的是none），选择ibus项就可以了。 六、vim (配置ruby插件，拿的别人的方案) {% codeblock %} $ sudo apt-get install ctags {% endcodeblock %} start from:git clone 七、字体设置： download consolas.tty {% codeblock %} $ sudo mkdir -p /usr/share/fonts/vista $ sudo cp Yahei.ttf /usr/share/fonts/vista/ #改变权限： $sudo chmod 644 /usr/share/fonts/vista/*.ttf #安装： $cd /usr/share/fonts/vista/ $sudo mkfontscale $sudo mkfontdir $sudo fc-cache -fv {% endcodeblock %} 八、安装ruby wiki</description>
+    </item>
+    
+    <item>
+      <title>linux多线程编程pthread</title>
+      <link>https://wonderflow.info/posts/2012/09/28/linuxe5a49ae7babfe7a88be7bc96e7a88bpthread/</link>
+      <pubDate>Fri, 28 Sep 2012 03:24:16 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/09/28/linuxe5a49ae7babfe7a88be7bc96e7a88bpthread/</guid>
+      <description>在linux下面使用多线程编程要用到pthread.h头文件，因为linux是不存在线程概念的，所以它其实是用进程模拟线程，产生出线程的效果。即linux中的多线程实际上是多进程。 那么为什么linux下有了进程还要再引入线程呢？原因有很多，首先，线程小巧，不需要单独分配地址空间，也不需要维护各种数据表单，然后线程间共享数据，通信起来非常方便. 不过，正因为linux下线程共享数据，如果线程胡乱修改数据的话，会出现一些灾难性的错误，所以就需要操纵系统中所强调的同步、互斥机制来控制。 除了上述一些区别，进程和线程还有如下共同的一些优点： 提高应用程序响应。这对图形界面的程序尤其有意义，当一个操作耗时很长</description>
+    </item>
+    
+    <item>
+      <title>《unix&amp;linux大学教程》 推荐</title>
+      <link>https://wonderflow.info/posts/2012/08/31/e68ea8e88d90/</link>
+      <pubDate>Fri, 31 Aug 2012 05:54:35 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/08/31/e68ea8e88d90/</guid>
+      <description>最近把这本书看完了，觉得讲述的非常好，有志于学习linux的青年们都该阅读一下，着实是一本linux的入门好书。 这是一本神奇的书。作者用诙谐幽默而又细致详实的手法，书写了这本让人一拿起来开始阅读就不愿意放下的书。也许你以前可能会觉得技术书籍都是枯燥乏味的，但是看完这本书，你绝对会对这种思想改观。 作者不再像是对着纸张陈述一个技术事实，而更像一个老师，一个老朋友在向你讲述linux里面的这些细节故事。除了技术以外，他会告诉你每个名称是怎么来的，这里面包含了一个什么样的故事背景，又包含了一种什么样的思想。在这样的描述下，你可能很容易的就记住了这些指令的用法，并被linux自由的精神所深深的折服。 li</description>
+    </item>
+    
+    <item>
+      <title>fedora装机操作记录</title>
+      <link>https://wonderflow.info/posts/2012/07/28/fedorae8a385e69cbae6938de4bd9ce8aeb0e5bd95/</link>
+      <pubDate>Sat, 28 Jul 2012 16:04:20 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/28/fedorae8a385e69cbae6938de4bd9ce8aeb0e5bd95/</guid>
+      <description>最近ubuntu玩腻了，并且觉得风格太红，不适合我，就决定换个linux发行版试试，正好小方老师tsfn用的就是fedora，然后就一路请教它，把fedora装了一下。 1、搞张光盘或者烧制一个u盘rom。 2、选择替换之前的linux系统选项（因为我是抱着试一试的心态来的，所以之前已经把东西都备份好了。由此花了我今天大量的时间，让我得以看了几部电影） 3、一路next过去，直到安装好，没什么异常。 4、安装axel、fastestmirror并更新(axel自行google) sudo yum install axel &amp;amp;&amp;amp; sudo yum -y install yum-fastestmirror &amp;amp;&amp;amp; sudo yum upgrade 5、关闭selinux.为什么？ 关掉SELinux:修改/etc/selinux/config。设</description>
+    </item>
+    
+  </channel>
+</rss>

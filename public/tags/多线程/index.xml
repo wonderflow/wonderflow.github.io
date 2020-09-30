@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>多线程 on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+    <description>Recent content in 多线程 on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 28 Sep 2012 03:24:16 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>linux多线程编程pthread</title>
+      <link>https://wonderflow.info/posts/2012/09/28/linuxe5a49ae7babfe7a88be7bc96e7a88bpthread/</link>
+      <pubDate>Fri, 28 Sep 2012 03:24:16 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/09/28/linuxe5a49ae7babfe7a88be7bc96e7a88bpthread/</guid>
+      <description>在linux下面使用多线程编程要用到pthread.h头文件，因为linux是不存在线程概念的，所以它其实是用进程模拟线程，产生出线程的效果。即linux中的多线程实际上是多进程。 那么为什么linux下有了进程还要再引入线程呢？原因有很多，首先，线程小巧，不需要单独分配地址空间，也不需要维护各种数据表单，然后线程间共享数据，通信起来非常方便. 不过，正因为linux下线程共享数据，如果线程胡乱修改数据的话，会出现一些灾难性的错误，所以就需要操纵系统中所强调的同步、互斥机制来控制。 除了上述一些区别，进程和线程还有如下共同的一些优点： 提高应用程序响应。这对图形界面的程序尤其有意义，当一个操作耗时很长</description>
+    </item>
+    
+  </channel>
+</rss>
