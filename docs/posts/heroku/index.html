@@ -197,7 +197,7 @@ Heroku 无疑是一家伟大的公司，它关注应用与开发者，“以应�
 <p>另一方面，你也许能自定义 或者 找到第三方的 Buildpack 满足需求，但是没有人来保证它的稳定。一旦出了问题，你很难在本地运行 Buildpack 排查问题，而 Heroku 平台的错误信息透出方式并不直接，日志排查更是不便。</p>
 <p>2017年9月份，Heroku 最终还是支持了基于 Docker 镜像的运行时部署，然而至今为止依旧有不少<a href="https://devcenter.heroku.com/articles/container-registry-and-runtime#unsupported-dockerfile-commands">限制</a>，其中最大的限制是存储，只能使用 Heroku 的临时存储，这几乎就决定了你不可能自己编写像etcd、TiDB这类复杂的有状态应用。</p>
 <p>一切的本质，都在于 Heroku 给用户提供的体验是黑盒化的，为用户屏蔽基础设施的同时，也使得用户失去了改造的自由。这也是为什么即便像 Cloudfoundry 这样理念极其类似的 PaaS 平台，即便是开源的，依旧存在同样的弊病。 <strong>事实上用户喜欢的是“白盒”，他们希望能够自定义基础设施，可以平行的替换或改造平台的已有功能，而非只能局限在平台提供的能力之上构建</strong>。就像我们买了一辆车，在雨雪的极端天气下，<strong>我们希望可以换雪地胎，而不是只能加装防滑链</strong>。</p>
-<p><img src="https://wonderflow.info/images/2020-03-01-heroku/3.png" alt="undefined"></p>
+<p><img src="/images/2020-03-01-heroku/3.png" alt="undefined"></p>
 <h1 id="kubernetes-的出现">Kubernetes 的出现</h1>
 <p>而 Kubernetes 正是这样一个白盒化体验，它从未尝试去屏蔽基础设施，而是作为一个标准化接入层，把基础设施层的能力通过声明式 API 暴露出来，将选择权留给了用户。正是在这样一个开放世界里，复杂有状态应用的管理也终于得以在云上落地了。</p>
 <p>另一方面， Kubernetes 并不是 PaaS。相比于 Heroku 官方提供了将近两百个<a href="https://elements.heroku.com/addons">add-ons（插件））</a> 用于增强包括数据库、监控、日志、缓存、搜索、分析、权限等能力，而 Kubernetes 则强调强可扩展能力，希望用户自己可以通过编写 CRD Operator 新增任意能力。</p>
@@ -206,7 +206,7 @@ Heroku 无疑是一家伟大的公司，它关注应用与开发者，“以应�
 <p>众所周知，Heroku 一直是一个“主观”的 PaaS 平台，12-factor 代表了应用必须云原生化的强硬观点，这一点毋庸置疑是正确的，而且非常了不起。但如果观念不能与时俱进，那么“主观”就会变得危险。就比如容器和虚拟机都已经相当普及的今天，Heroku 依旧坚持应用只能运行在 <a href="https://www.heroku.com/dynos">Heroku Dynos</a> 上面。虽然这种统一很大程度上为管理提供了便利，但是这也使得用户丢掉了很多灵活性，更重要的是，运行时的巨大差异，开始让很多用户觉得自己与更广泛的社区“格格不入”。</p>
 <p>不过，Heroku 有属于自己的封闭生态，除了上文提到官方维护的 Add-ons 以外，还有方便用户一键部署到Heroku平台的 4700多个 <a href="https://elements.heroku.com/buttons">Buttons 应用</a>  和 用于自定义运行时和构建流程的 6300 多个 <a href="https://elements.heroku.com/buildpacks">Buildpacks</a>，这两大功能都允许用户自定义并可以申请注册到官方的应用市场中，数量着实惊人。这样繁荣的社区怎会被人诟病？出于好奇，笔者整体分析了一下这些项目。</p>
 <p>下面两张图分别是 Heroku Buildpack 和 Buttons 的项目统计：</p>
-<p><img src="https://wonderflow.info/images/2020-03-01-heroku/2.png" alt="undefined"></p>
+<p><img src="/images/2020-03-01-heroku/2.png" alt="undefined"></p>
 <p><img src="https://wonderflow.info/images/2020-03-01-heroku/1.png" alt="undefined"></p>
 <p>我们可以看到，Buildpack 只能在Heroku 平台使用，所以 star 数量代表了大家对项目的关心，而下载量则代表了用户的使用频度。 图中，6000多个 Buildpack 的 star 数和下载安装量均在 50 以内，而超过 500 个 star 和 500 次下载部署的项目均只有 30 个左右。再来看 Buttons 中的项目，由于这些项目本身还可以部署到 Heroku 以外的其他平台，所以就只看在 Heroku 的部署下载量反映大家的使用频度，而图中超过 500 次部署的 Buttons 项目只有 6 个。原来这一切竟只是表面繁荣。</p>
 <p><strong>面对这样一个统计数据，我们很难说 Heroku 的封闭生态是成功的</strong>。</p>
