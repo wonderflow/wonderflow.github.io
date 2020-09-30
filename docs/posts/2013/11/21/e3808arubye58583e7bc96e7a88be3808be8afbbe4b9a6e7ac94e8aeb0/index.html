@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>《ruby元编程》读书笔记 | 奇迹之流WonderfloW</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.75.1" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="《ruby元编程》读书笔记" />
+<meta property="og:description" content="总的来说，《ruby元编程》是一本好书。 当我拿到这本书的时候，第一反应是什么叫元编程？书上的定义是这样的：“元编程是写出编写代码的代码”。 而我认为，元编程是ruby语言的一些高级特性，是属于ruby的奇技淫巧。 有意思的是，这本书不是枯燥的一章一章给你灌输这些知识，而是描述公司里一个老程序员一对一带一个年轻程序员的故事。就是所谓的mentor/buddy制度，大部分IT公司都有，就是不知道贯彻的怎么样。不管书中描述的这样的工作情况是不是真的，都很令人神往。 我觉得一个IT行业的大公司就该有这样的气度，把新员工当朋友、兄弟一样培养，毕竟IT行业中，人才是最大的财富。这样带起来的团队，相比凝聚力也是极" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wonderflow.info/posts/2013/11/21/e3808arubye58583e7bc96e7a88be3808be8afbbe4b9a6e7ac94e8aeb0/" />
+<meta property="article:published_time" content="2013-11-21T16:27:21+00:00" />
+<meta property="article:modified_time" content="2013-11-21T16:27:21+00:00" />
+<meta itemprop="name" content="《ruby元编程》读书笔记">
+<meta itemprop="description" content="总的来说，《ruby元编程》是一本好书。 当我拿到这本书的时候，第一反应是什么叫元编程？书上的定义是这样的：“元编程是写出编写代码的代码”。 而我认为，元编程是ruby语言的一些高级特性，是属于ruby的奇技淫巧。 有意思的是，这本书不是枯燥的一章一章给你灌输这些知识，而是描述公司里一个老程序员一对一带一个年轻程序员的故事。就是所谓的mentor/buddy制度，大部分IT公司都有，就是不知道贯彻的怎么样。不管书中描述的这样的工作情况是不是真的，都很令人神往。 我觉得一个IT行业的大公司就该有这样的气度，把新员工当朋友、兄弟一样培养，毕竟IT行业中，人才是最大的财富。这样带起来的团队，相比凝聚力也是极">
+<meta itemprop="datePublished" content="2013-11-21T16:27:21+00:00" />
+<meta itemprop="dateModified" content="2013-11-21T16:27:21+00:00" />
+<meta itemprop="wordCount" content="2397">
+
+
+
+<meta itemprop="keywords" content="ruby," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="《ruby元编程》读书笔记"/>
+<meta name="twitter:description" content="总的来说，《ruby元编程》是一本好书。 当我拿到这本书的时候，第一反应是什么叫元编程？书上的定义是这样的：“元编程是写出编写代码的代码”。 而我认为，元编程是ruby语言的一些高级特性，是属于ruby的奇技淫巧。 有意思的是，这本书不是枯燥的一章一章给你灌输这些知识，而是描述公司里一个老程序员一对一带一个年轻程序员的故事。就是所谓的mentor/buddy制度，大部分IT公司都有，就是不知道贯彻的怎么样。不管书中描述的这样的工作情况是不是真的，都很令人神往。 我觉得一个IT行业的大公司就该有这样的气度，把新员工当朋友、兄弟一样培养，毕竟IT行业中，人才是最大的财富。这样带起来的团队，相比凝聚力也是极"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        奇迹之流WonderfloW
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/archives/" title="Archives page">
+              Archives
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
+              Posts
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
+  <header class="mt4 w-100">
+    <aside class="instapaper_ignoref b helvetica tracked">
+      
+      POSTS
+    </aside>
+    
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://wonderflow.info/posts/2013/11/21/e3808arubye58583e7bc96e7a88be3808be8afbbe4b9a6e7ac94e8aeb0/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2013/11/21/e3808arubye58583e7bc96e7a88be3808be8afbbe4b9a6e7ac94e8aeb0/&amp;text=%e3%80%8aruby%e5%85%83%e7%bc%96%e7%a8%8b%e3%80%8b%e8%af%bb%e4%b9%a6%e7%ac%94%e8%ae%b0" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://wonderflow.info/posts/2013/11/21/e3808arubye58583e7bc96e7a88be3808be8afbbe4b9a6e7ac94e8aeb0/&amp;title=%e3%80%8aruby%e5%85%83%e7%bc%96%e7%a8%8b%e3%80%8b%e8%af%bb%e4%b9%a6%e7%ac%94%e8%ae%b0" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+    <h1 class="f1 athelas mt3 mb1">《ruby元编程》读书笔记</h1>
+    
+    <p class="tracked">
+      By <strong>
+        
+        admin
+        
+      </strong>
+    </p>
+    
+    
+    <time class="f6 mv4 dib tracked"
+      datetime="2013-11-21T16:27:21Z">November 21, 2013</time>
+
+    
+    
+  </header>
+  <div
+    class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-100-l"><p>总的来说，《ruby元编程》是一本好书。 当我拿到这本书的时候，第一反应是什么叫元编程？书上的定义是这样的：<strong>“元编程是写出编写代码的代码”</strong>。 而我认为，元编程是ruby语言的一些高级特性，是属于ruby的<strong>奇技淫巧</strong>。</p>
+<p>有意思的是，这本书不是枯燥的一章一章给你灌输这些知识，而是描述公司里一个老程序员一对一带一个年轻程序员的故事。就是所谓的mentor/buddy制度，大部分IT公司都有，就是不知道贯彻的怎么样。不管书中描述的这样的工作情况是不是真的，都很令人神往。</p>
+<p>我觉得一个IT行业的大公司就该有这样的气度，把新员工当朋友、兄弟一样培养，毕竟IT行业中，人才是最大的财富。这样带起来的团队，相比凝聚力也是极强的。</p>
+<p>书中的内容也根据工作日的划分成了周一到周五5个部分，分别以“对象模型”，“方法”，“代码块”，“类定义”以及“编写代码的代码”这5个点作为话题描述。</p>
+<p>整本书都值得一看，书中很多技术给了我不少启发，挑几个有意思的记一记。</p>
+<ul>
+<li>
+<p>ruby的class关键字更像是一个作用域操作符而不是类型声明语句。它的确可以创建一个还不存在的类，不过也可以把这看成是一种副作用。对于class关键字，其核心任务是把你带到类的上下文中，让你可以在其中定义方法。</p>
+</li>
+<li>
+<p>打开类这样的技术也有隐患：如果你粗心地为某个类添加了某些功能，就可能把类本身的一些方法替换到，造成bug，人们给这张方式起了一个不太好听的名字：<strong>猴子补丁（Monkeypatch）</strong>，这就是著名的猴子补丁的由来了。当然，有时候一些临时性的猴子补丁可是有救场的奇效的。</p>
+</li>
+<li>
+<p>如何以大写字母开头的引用（包括类名和模块名），都是常量。</p>
+</li>
+<li>
+<p><strong>动态派发</strong>：当你调用一个方法时，实际上是给一个对象发送了一条消息。ruby用自身的语法完美的解释了这个关于类执行方法的概念。</p>
+</li>
+</ul>
+<p>{% codeblock %}
+class MyClass
+def my_method(my_arg)
+my_arg * 2
+end
+end
+obj = MyClass.new
+obj.my_method(3) # =&gt; 6
+obj.send(:my_method, 3) # =&gt; 6</p>
+<p>{% endcodeblock %}</p>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p>关于符号，symbol，是一个很不错的定义，它跟string的用法有相似性，但是它不是string。</p>
+</li>
+<li>
+<p><strong>幽灵方法</strong>，在ruby中，编译器并不强制方法调用时的行为，这意味着你可以调用一个并不存在的方法。而接收这个不存在方法的函数，就是method_missing方法，你可以覆写这个方法，并使用动态派发技术，来实现幽灵方法。 7. yield关键字可以回调一个你定义的块，相当好用。</p>
+</li>
+</ul>
+<p>{% codeblock %}
+def a_method
+return yield if block_given? &lsquo;no block&rsquo;
+end
+a_method # =&gt; &ldquo;no block&rdquo;
+a_method { &ldquo;here&rsquo;s a block!&rdquo; } # =&gt; &ldquo;here&rsquo;s a block!&rdquo;</p>
+<p>{% endcodeblock %}</p>
+<ul>
+<li>
+<p><strong>闭包</strong>：当定义一个块时，它会获取当时环境中的绑定，并且把它传给一个方法时，它会带着这些绑定一起进入该方法。</p>
+</li>
+<li>
+<p><strong>变量的作用域</strong>：ruby是不存在嵌套作用域的。class、module、def三个关键字把ruby的作用域截然分开，哪怕他们是嵌套的。在某个class里def一个方法，这里面不同层次的变量是互不相通的。</p>
+</li>
+<li>
+<p>但是ruby中由扁平化作用域的技术。定义class、方法可以这样写：</p>
+</li>
+</ul>
+<p>{% codeblock %}
+my_var = &ldquo;success&rdquo;
+MyClass = Class.new do
+puts &ldquo;#{my_var} in the class definition!&rdquo;
+define_method :my_method do
+puts &ldquo;#{my_var} in the method!&rdquo;
+end
+end
+MyClass.new.my_method
+=&gt; Success in the class definition!
+Success in the method!</p>
+<p>{% endcodeblock %}</p>
+<ul>
+<li>
+<p><strong>上下文探针技术</strong>：instance_eval()方法，它能让你通过对象进入到类的环境中执行代码。</p>
+</li>
+<li>
+<p>块不是对象，但是可以通过lambda()、proc()和Proc.new()这三个方法转化为对象进行存储，然后通过Proc#call()方法来执行这个块。</p>
+</li>
+<li>
+<p><strong>&amp;操作符</strong>：将块作为参数传递，附加到一个绑定上，这个参数必须是参数列表中的最后一个，且以&amp;符号开头。</p>
+</li>
+<li>
+<p><strong>类实例变量</strong>：仅能被类本身所访问，写在类定义里面，方法定义外面的@var。</p>
+</li>
+<li>
+<p><strong>单件方法</strong>：只属于某个实例对象的方法。</p>
+</li>
+</ul>
+<p>{% codeblock %}
+str = &ldquo;just a regular string&rdquo;
+def str.title?
+self.upcase == self
+end
+str.title? # =&gt; false
+str.methods.grep(/title?/) # =&gt; [&ldquo;title?&quot;]
+str.singleton_methods # =&gt; [&ldquo;title?&quot;]</p>
+<p>{% endcodeblock %}</p>
+<p>而关于类方法的真相其实就是：类只是对象，而类名只是常量，类方法其实就是最基础那个类的单件方法。多么巧妙的设计。</p>
+<p><strong>类宏</strong>：类似attr_accessor()方法这样，所有的attr_*()方法都定义在Module类中，Module包含在Object中，因此不管self是类还是模块，都可以使用它们。虽然它们看起来很像关键字，但其实它们只是普通方法，只是可以用在类定义中。</p>
+<ul>
+<li><strong>eigenclass</strong>：是一个对象单件方法的存活之所，它是一个特殊的类。ruby中还有一种特殊的语法可以让你进入某个类的eigenclass。</li>
+</ul>
+<p>{% codeblock %}
+class &laquo; an_object</p>
+<h1 id="这里是你自己的代码">这里是你自己的代码</h1>
+<p>end</p>
+<p>{% endcodeblock %}</p>
+<p>所以ruby中方法查找的过程是先进入eigenclass，再进入该类本身，再进入他的一个个supercalss。</p>
+<ul>
+<li>环绕别名：使用alias可以给ruby方法取别名。语法是第一个出现的是方法的新名字，第二个出现的是原始的名字。alias是一个关键字而非一个方法，所以两个方法名之间没有逗号。</li>
+</ul>
+<p>{% codeblock %}
+#一个简单的用法示例
+class String
+alias :real_length :length
+def length
+real_length &gt; 5 ? &lsquo;long&rsquo; : &lsquo;short&rsquo;
+end
+end
+&ldquo;War and Peace&rdquo;.length # =&gt; &ldquo;long&rdquo;
+&ldquo;War and Peace&rdquo;.real_length # =&gt; 13</p>
+<p>{% endcodeblock %}</p>
+<p>环绕别名的两个注意点： 1）环绕别名是一个猴子补丁，他可能会破坏已有代码。 2）永远不要把一个环绕别名加载两次。</p>
+<ul>
+<li><strong>here文档（here document）</strong>：用以描述一个占多行的代码字符串。它以一个双小于号（&laquo;）打头，后面紧跟“结束序列（terminination sequence）”的字符组。在此之后可以定义字符串的内容，直到碰到第一个只包含结束序列的行时，字符串定义才结束。</li>
+</ul>
+<p>{% codeblock %}
+s = &laquo; END This is a &ldquo;muti-line&rdquo; string wishing you a great #{Time.now.year + 1}
+END
+puts s This is a &ldquo;muti-line&rdquo; string wishing you a great 2014</p>
+<p>{% endcodeblock %}</p>
+<ul>
+<li>eRB标准库是ruby默认的模板系统，他是一个代码处理器，使用它你可以把ruby代码嵌入到如何文件中，加载的时候，ruby会把&lt;%=&hellip;&gt;这个特殊符号中嵌入的ruby代码进行执行。</li>
+</ul>
+<p>{% codeblock %}
+require &lsquo;erb&rsquo;
+erb = ERB.new(File.read(&lsquo;xx.file&rsquo;)) # xx.file 存放了包含&lt;%=&hellip;&gt;嵌入ruby代码的文档内容
+erb.run #然后执行结果会自动把xx.file中&lt;%=&hellip;&gt;符号里嵌入的ruby代码执行。</p>
+<p>{% endcodeblock %}</p>
+<p><strong>最后，ruby是一个极具表现力的语言，相当灵活多变。关键还是要多写多看。</strong></p>
+<p>以上。</p>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/ruby" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">ruby</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+    </div>
+  </div>
+
+  <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/posts/2013/07/29/eventmachine-introduction-translation/">Eventmachine Introduction Translation</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2013/07/25/guide-for-cloud-foundry-new-teamer-2/">Guide for Cloud Foundry New Teamer</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+</article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info" >
+    &copy;  奇迹之流WonderfloW 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

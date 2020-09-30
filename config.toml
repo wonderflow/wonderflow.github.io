@@ -3,6 +3,8 @@ baseURL = "https://wonderflow.info"
 languageCode = "zh-cn"
 theme = "ananke"
 
+publishDir = "docs"
+
 DefaultContentLanguage = "en"
 SectionPagesMenu = "main"
 Paginate = 8 # this is set low for demonstrating with dummy content. Set to a higher number
@@ -25,3 +27,4 @@ summaryLength = 300
   background_color_class = "bg-black"
   featured_image = "/images/gohugo-default-sample-hero-image.jpg"
   recent_posts_number = 8
+

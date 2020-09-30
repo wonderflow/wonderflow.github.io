@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>OAM v1alpha2 新版：平衡标准与可扩展性 | 奇迹之流WonderfloW</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.75.1" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="OAM v1alpha2 新版：平衡标准与可扩展性" />
+<meta property="og:description" content="OAM Spec 经历了近 3 个月的迭代，v1alpha2 版本终于发布啦。新版本在坚持 OAM Spec 平台无关的基础上，整体变得更 Kubernetes 友好化，很大程度上平衡了标准与可扩展性，更好的支持 CRD。如果你已经编写了现成的 CRD Operator，可以平滑的接入到 OAM 体系中，并且享受到 OAM 模型的红利。 目前 OAM 已经成为了包括阿里、微软、Upbond、谐云等多家公司构建云产品的核心架构。他们通过 OAM 构建了“以应用为中心”、用户友好化的 Kubernetes PaaS；充分发挥 OAM 的标准化与可扩展性，实现 OAM 核心Controller的同时，快速接入了已有的 Operator 能力；通过 OAM 横向打通多个模块，破除了原有 Operator 彼此孤立、无法复用的窘境。 了解 OAM 的背景及由来，可以参考文章《深度解读 - 阿里巴巴" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wonderflow.info/posts/oam-v1alpha2/" />
+<meta property="article:published_time" content="2020-03-30T21:54:33+08:00" />
+<meta property="article:modified_time" content="2020-03-30T21:54:33+08:00" />
+<meta itemprop="name" content="OAM v1alpha2 新版：平衡标准与可扩展性">
+<meta itemprop="description" content="OAM Spec 经历了近 3 个月的迭代，v1alpha2 版本终于发布啦。新版本在坚持 OAM Spec 平台无关的基础上，整体变得更 Kubernetes 友好化，很大程度上平衡了标准与可扩展性，更好的支持 CRD。如果你已经编写了现成的 CRD Operator，可以平滑的接入到 OAM 体系中，并且享受到 OAM 模型的红利。 目前 OAM 已经成为了包括阿里、微软、Upbond、谐云等多家公司构建云产品的核心架构。他们通过 OAM 构建了“以应用为中心”、用户友好化的 Kubernetes PaaS；充分发挥 OAM 的标准化与可扩展性，实现 OAM 核心Controller的同时，快速接入了已有的 Operator 能力；通过 OAM 横向打通多个模块，破除了原有 Operator 彼此孤立、无法复用的窘境。 了解 OAM 的背景及由来，可以参考文章《深度解读 - 阿里巴巴">
+<meta itemprop="datePublished" content="2020-03-30T21:54:33+08:00" />
+<meta itemprop="dateModified" content="2020-03-30T21:54:33+08:00" />
+<meta itemprop="wordCount" content="4092">
+
+
+
+<meta itemprop="keywords" content="oam," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="OAM v1alpha2 新版：平衡标准与可扩展性"/>
+<meta name="twitter:description" content="OAM Spec 经历了近 3 个月的迭代，v1alpha2 版本终于发布啦。新版本在坚持 OAM Spec 平台无关的基础上，整体变得更 Kubernetes 友好化，很大程度上平衡了标准与可扩展性，更好的支持 CRD。如果你已经编写了现成的 CRD Operator，可以平滑的接入到 OAM 体系中，并且享受到 OAM 模型的红利。 目前 OAM 已经成为了包括阿里、微软、Upbond、谐云等多家公司构建云产品的核心架构。他们通过 OAM 构建了“以应用为中心”、用户友好化的 Kubernetes PaaS；充分发挥 OAM 的标准化与可扩展性，实现 OAM 核心Controller的同时，快速接入了已有的 Operator 能力；通过 OAM 横向打通多个模块，破除了原有 Operator 彼此孤立、无法复用的窘境。 了解 OAM 的背景及由来，可以参考文章《深度解读 - 阿里巴巴"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        奇迹之流WonderfloW
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/archives/" title="Archives page">
+              Archives
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
+              Posts
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
+  <header class="mt4 w-100">
+    <aside class="instapaper_ignoref b helvetica tracked">
+      
+      POSTS
+    </aside>
+    
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://wonderflow.info/posts/oam-v1alpha2/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://wonderflow.info/posts/oam-v1alpha2/&amp;text=OAM%20v1alpha2%20%e6%96%b0%e7%89%88%ef%bc%9a%e5%b9%b3%e8%a1%a1%e6%a0%87%e5%87%86%e4%b8%8e%e5%8f%af%e6%89%a9%e5%b1%95%e6%80%a7" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://wonderflow.info/posts/oam-v1alpha2/&amp;title=OAM%20v1alpha2%20%e6%96%b0%e7%89%88%ef%bc%9a%e5%b9%b3%e8%a1%a1%e6%a0%87%e5%87%86%e4%b8%8e%e5%8f%af%e6%89%a9%e5%b1%95%e6%80%a7" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+    <h1 class="f1 athelas mt3 mb1">OAM v1alpha2 新版：平衡标准与可扩展性</h1>
+    
+    
+    <time class="f6 mv4 dib tracked"
+      datetime="2020-03-30T21:54:33+08:00">March 30, 2020</time>
+
+    
+    
+  </header>
+  <div
+    class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-100-l"><p>OAM Spec 经历了近 3 个月的迭代，<a href="https://github.com/oam-dev/spec/releases/tag/v1.0.0-alpha.2">v1alpha2</a> 版本终于发布啦。新版本在坚持 OAM Spec 平台无关的基础上，整体变得更 Kubernetes 友好化，很大程度上平衡了标准与可扩展性，更好的支持 CRD。如果你已经编写了现成的 CRD Operator，可以平滑的接入到 OAM 体系中，并且享受到 OAM 模型的红利。</p>
+<!-- raw HTML omitted -->
+<p>目前 OAM 已经成为了包括阿里、微软、Upbond、谐云等多家公司构建云产品的核心架构。他们通过 OAM 构建了“以应用为中心”、用户友好化的 Kubernetes PaaS；充分发挥 OAM 的标准化与可扩展性，实现 OAM 核心Controller的同时，快速接入了已有的 Operator 能力；通过 OAM 横向打通多个模块，破除了原有 Operator 彼此孤立、无法复用的窘境。</p>
+<ul>
+<li>了解 OAM 的背景及由来，可以参考文章<a href="https://mp.weixin.qq.com/s/rRaHl5a5PU9Xg5psMservA?from=timeline&amp;isappinstalled=0&amp;scene=2&amp;clicktime=1585550092&amp;enterid=1585550092">《深度解读 - 阿里巴巴基于 K8s 与 OAM 推进统一应用管理架构升级的教训与实践》</a></li>
+<li>OAM能为终端用户带来哪些价值可以参考文章 <a href="https://mp.weixin.qq.com/s/7nkUqDNXzehIUnbGBPG8dQ">《OAM 深入解读：OAM 为云原生应用带来哪些价值？》</a></li>
+</ul>
+<p>下面言归正传，让我们来看一下 v1alpha2 到底做了哪些改动？</p>
+<h1 id="主要改动说明">主要改动说明</h1>
+<p>为了方便大家阅读，这里只罗列了最主要的改动点，一些细节还是以上游 <a href="https://github.com/oam-dev/spec">OAM Spec Github</a> 仓库为准。</p>
+<h2 id="术语说明">术语说明</h2>
+<ul>
+<li>CRD（Custom Resource Definition），在 OAM 中说的 CRD 是一种泛指的自定义资源描述定义。在 K8s 的 OAM 实现中可以完全对应 K8s 的 CRD，在非 K8s 的实现中，OAM 的 CRD 需要包含 APIVersion/Kind 并且能够描述字段进行校验。</li>
+<li>CR （Custom Resource），OAM 中的 CR 是 CRD 的一个实例，是符合 CRD 中字段格式定义的一个资源描述。在 K8s 的 OAM 实现中可以完全对应 K8s 的 CR，在 非 K8s 的实现中，可以需要对齐 APIVersion/Kind  和字段格式定义。</li>
+</ul>
+<h2 id="主要改动1-使用-reference-模型定义-workloadtrait-和-scope">主要改动1 使用 Reference 模型定义 Workload、Trait 和 Scope</h2>
+<p> v1alpha1 原先的方式是这样的：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">// 老版本，仅对比使用</span>
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">WorkloadType</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">OpenFaaS</span>
+  <span style="color:#f92672">annotations</span>:
+    <span style="color:#f92672">version</span>: <span style="color:#ae81ff">v1.0.0</span>
+    <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;OpenFaaS a Workload which can serve workload running as functions&#34;</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">group</span>: <span style="color:#ae81ff">openfaas.com</span>
+  <span style="color:#f92672">version</span>: <span style="color:#ae81ff">v1alpha2</span>
+  <span style="color:#f92672">names</span>:
+    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Function</span>
+    <span style="color:#f92672">singular</span>: <span style="color:#ae81ff">function</span>
+    <span style="color:#f92672">plural</span>: <span style="color:#ae81ff">functions</span>
+  <span style="color:#f92672">workloadSettings</span>: <span style="color:#e6db74">|
+</span><span style="color:#e6db74">    {
+</span><span style="color:#e6db74">      &#34;$schema&#34;: &#34;http://json-schema.org/draft-07/schema#&#34;,
+</span><span style="color:#e6db74">      &#34;type&#34;: &#34;object&#34;,
+</span><span style="color:#e6db74">      &#34;required&#34;: [
+</span><span style="color:#e6db74">        &#34;name&#34;, &#34;image&#34;
+</span><span style="color:#e6db74">      ],
+</span><span style="color:#e6db74">      &#34;properties&#34;: {
+</span><span style="color:#e6db74">        &#34;name&#34;: {
+</span><span style="color:#e6db74">          &#34;type&#34;: &#34;string&#34;,
+</span><span style="color:#e6db74">          &#34;description&#34;: &#34;the name to the function&#34;
+</span><span style="color:#e6db74">        },
+</span><span style="color:#e6db74">        &#34;image&#34;: {
+</span><span style="color:#e6db74">          &#34;type&#34;: &#34;string&#34;,
+</span><span style="color:#e6db74">          &#34;description&#34;: &#34;the docker image of the function&#34;
+</span><span style="color:#e6db74">        }
+</span><span style="color:#e6db74">      }
+</span><span style="color:#e6db74">    }
+</span></code></pre></div><p>在原先的模式中，group/version/kind 分别是字段，spec 的校验通过 jsonschema 表示，整体的格式实际上类似 CRD，但不完全一致。</p>
+<hr>
+<p>新版 v1alpha2 中彻底改为了引用模型，通过 <code>WorkloadDefinition</code>  <code>TraitDefinition</code>  <code>ScopeDefinition</code> 的形式，描述了一个引用关系。可以直接引用一个 CRD，name 就是 CRD 的名称。对于非 K8s 的 OAM 实现来说，这里的名字则是一个索引，可以找到类似 CRD 的校验文件，校验文件中包含 apiVersion 和 kind，以及相应的 schema 校验。</p>
+<ul>
+<li>Workload</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">WorkloadDefinition</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">containerisedworkload.core.oam.dev</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">definitionRef</span>:
+    <span style="color:#75715e"># Name of CRD. </span>
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">containerisedworkload.core.oam.dev</span>
+</code></pre></div><ul>
+<li>Trait</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">TraitDefinition</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">manualscalertrait.core.oam.dev</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">appliesToWorkloads</span>:
+    - <span style="color:#ae81ff">containerizedworkload.core.oam.dev</span>
+  <span style="color:#f92672">definitionRef</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">manualscalertrait.core.oam.dev</span>
+</code></pre></div><ul>
+<li>Scope</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ScopeDefinition</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">networkscope.core.oam.dev</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">allowComponentOverlap</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">definitionRef</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">networkscope.core.oam.dev</span>
+</code></pre></div><p>注意：</p>
+<ol>
+<li> 这里对于 K8s 的 OAM 实现来说，name 就是 K8s 里面 CRD 的name，由 <code>&lt;plural-kind&gt;.&lt;group&gt;</code> 组成。社区的最佳实践是一个 CRD 只有一个 version 在集群中运行，一般新 version 都会向前兼容，升级时都一次性替换到最新version。如果确实有 2 个 version 同时存在的场景，用户也可以通过 <code>kubectl get crd &lt;name&gt;</code> 的方式进一步选择。</li>
+<li>Definition 这一层不面向 end user，主要给平台实现使用，对于非 K8s实现来说，如果存在多个 version 的场景，OAM 的实现平台可以给终端用户展示不同 version 的选择。</li>
+</ol>
+<h2 id="主要改动2-直接嵌入-k8s-cr-作为-component-和-trait-实例">主要改动2 直接嵌入 K8s CR 作为 Component 和 Trait 实例</h2>
+<p>原先的方式在 Workload 和 Trait 层面我们都只把 CR 的 spec 部分拿出来，分别放在 <code>workloadSettings</code> 和 <code>properties</code> 字段里。</p>
+<p>这样的方式虽然已经可以“推导”出 K8s CR，但是不利于 K8s 生态内的 CRD 接入，需要换种格式重新定义一遍 spec。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">// 老版本，仅对比使用</span>
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ComponentSchematic</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">rediscluster</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">workloadType</span>: <span style="color:#ae81ff">cache.crossplane.io/v1alpha1.RedisCluster</span>
+  <span style="color:#f92672">workloadSettings</span>:
+    <span style="color:#f92672">engineVersion</span>: <span style="color:#ae81ff">1.0</span>
+    <span style="color:#f92672">region</span>: <span style="color:#ae81ff">cn</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">// 老版本，仅对比使用</span>
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ApplicationConfiguration</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">custom-single-app</span>
+  <span style="color:#f92672">annotations</span>:
+    <span style="color:#f92672">version</span>: <span style="color:#ae81ff">v1.0.0</span>
+    <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Customized version of single-app&#34;</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">variables</span>:
+  <span style="color:#f92672">components</span>:
+    - <span style="color:#f92672">componentName</span>: <span style="color:#ae81ff">frontend</span>
+      <span style="color:#f92672">instanceName</span>: <span style="color:#ae81ff">web-front-end</span>
+      <span style="color:#f92672">parameterValues</span>:
+      <span style="color:#f92672">traits</span>:
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">manual-scaler</span>
+          <span style="color:#f92672">properties</span>:
+            <span style="color:#f92672">replicaCount</span>: <span style="color:#ae81ff">5</span>
+</code></pre></div><hr>
+<p>现在的方式则直接嵌入 CR，可以看到，在 <code>workload</code> 和 <code>trait</code> 字段下面是完整的 CR 描述。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Component</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">example-server</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">prameters</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">xxx</span>
+      <span style="color:#f92672">fieldPaths</span>: 
+        - <span style="color:#e6db74">&#34;spec.osType&#34;</span>
+  <span style="color:#f92672">workload</span>:
+    <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Server</span>
+    <span style="color:#f92672">spec</span>:
+      <span style="color:#f92672">osType</span>: <span style="color:#ae81ff">linux</span>
+      <span style="color:#f92672">containers</span>:
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-cool-server</span>
+        <span style="color:#f92672">image</span>:
+          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">example/very-cool-server:1.0.0</span>
+        <span style="color:#f92672">ports</span>:
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">http</span>
+          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">8080</span>
+        <span style="color:#f92672">env</span>:
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">CACHE_SECRET</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ApplicationConfiguration</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cool-example</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">components</span>:
+  - <span style="color:#f92672">componentName</span>: <span style="color:#ae81ff">example-server</span>
+    <span style="color:#f92672">traits</span>:
+    - <span style="color:#f92672">trait</span>:
+        <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+        <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ManualScalerTrait</span>
+        <span style="color:#f92672">spec</span>:
+          <span style="color:#f92672">replicaCount</span>: <span style="color:#ae81ff">3</span>
+</code></pre></div><p>这样的好处很明显：</p>
+<ol>
+<li>可以很容易的对接现有 K8s 体系里的 CRD，甚至包括 K8s 原生的 <code>Deployment</code> （作为自定义 workload 接入）等资源。</li>
+<li>K8s CR 层面的字段定义是成熟的，解析和校验也完全交由 CRD 体系。</li>
+</ol>
+<p>这里大家注意到 traits 下面是 <code>[]trait{CR}</code> 而不是 <code>[]CR</code>  的结构，多了一层看似无用的 <code>trait</code> 字段，主要由如下2个原因：</p>
+<ol>
+<li>为后续在trait这个维度做扩展留下空间，比如可能的编排（ <code>ordering</code> ） 等。</li>
+<li>非K8s体系在这一层可以不严格按照CR的写法来，完全自定义，不绑定K8s描述格式。</li>
+</ol>
+<h2 id="主要改动3-参数传递使用-jsonpath-替换原先的-fromparam">主要改动3 参数传递使用 jsonPath 替换原先的 fromParam</h2>
+<p><strong>研发能够留出字段给运维覆盖</strong>，一直是OAM很重要的功能。体现在 OAM Spec 的流程上就是研发在 Component 里面定义 parameter，运维在 AppConfig 里面通过 parameterValue 去覆盖对应的参数。</p>
+<p>最初的参数传递，是在每个字段后面有个 <code>fromParam</code>  字段，对于支持了自定义schema后，这样的方式显然是无法覆盖所有场景的：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">// 老版本，仅对比使用</span>
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ComponentSchematic</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">rediscluster</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">workloadType</span>: <span style="color:#ae81ff">cache.crossplane.io/v1alpha1.RedisCluster</span>
+  <span style="color:#f92672">parameters</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">engineVersion</span>
+    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
+  <span style="color:#f92672">workloadSettings</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">engineVersion</span>
+      <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
+      <span style="color:#f92672">fromParam</span>: <span style="color:#ae81ff">engineVersion</span>
+</code></pre></div><p> 
+后来我们曾经提议过这样的方案：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">// 老版本，仅对比使用</span>
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ComponentSchematic</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">rediscluster</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">workloadType</span>: <span style="color:#ae81ff">cache.crossplane.io/v1alpha1.RedisCluster</span>
+  <span style="color:#f92672">parameters</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">engineVersion</span>
+    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
+  <span style="color:#f92672">workloadSettings</span>:
+    <span style="color:#f92672">engineVersion</span>: <span style="color:#e6db74">&#34;[fromParam(engineVersion)]&#34;</span>
+</code></pre></div><p>这个方案最大的问题是 静态的 IaD (Infrastructure as Data) 里面加入了动态的函数，给理解和使用带来了复杂性。</p>
+<hr>
+<p>经过多方面的讨论，在新方案里我们通过 JsonPath 的形式描述要注入的参数位置，在用户理解上保证了AppConfig 是静态的。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Component</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">example-server</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">workload</span>:
+    <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Server</span>
+    <span style="color:#f92672">spec</span>:
+      <span style="color:#f92672">containers</span>:
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-cool-server</span>
+        <span style="color:#f92672">image</span>:
+          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">example/very-cool-server:1.0.0</span>
+        <span style="color:#f92672">ports</span>:
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">http</span>
+          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">8080</span>
+        <span style="color:#f92672">env</span>:
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">CACHE_SECRET</span>
+          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">cache</span>
+  <span style="color:#f92672">parameters</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">instanceName</span>
+    <span style="color:#f92672">required</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#f92672">fieldPaths</span>:
+    - <span style="color:#e6db74">&#34;.metadata.name&#34;</span>
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cacheSecret</span>
+    <span style="color:#f92672">required</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#f92672">fieldPaths</span>:
+    - <span style="color:#e6db74">&#34;.workload.spec.containers[0].env[0].value&#34;</span>
+</code></pre></div><p>fieldPaths 是个数组，每个元素定义了参数和对应 Workload 里的字段。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ApplicationConfiguration</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-app-deployment</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">components</span>:
+    - <span style="color:#f92672">componentName</span>: <span style="color:#ae81ff">example-server</span>
+      <span style="color:#f92672">parameterValues</span>:
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cacheSecret</span>
+          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">new-cache</span>
+</code></pre></div><p>在 AppConfig 中还是走 parameterValues 去覆盖 Component 中的 parameter。</p>
+<h2 id="主要改动4-componentschematic-名称改为-component">主要改动4 ComponentSchematic 名称改为 Component</h2>
+<p>原先组件这个概念叫 ComponentSchematic，这样命名的主要原因是里面混了一些语法描述和选择，比如针对Core Workload（ <code>container</code>）和针对扩展 Workload （ <code>workloadSettings</code> ），写法上不一样的，<code>container</code>里是定义具体的参数，<code>workloadSettings</code>更像是 schema（参数怎么填的说明）。 v1alpha1 版本的 WorkloadSetting 还融入了 type/description之类的，更显得模棱两可。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">// 老版本，仅对比使用</span>
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ComponentSchematic</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">rediscluster</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">containers</span>:
+     <span style="color:#ae81ff">...</span>
+  <span style="color:#f92672">workloadSettings</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">engineVersion</span>
+      <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
+      <span style="color:#f92672">description</span>: <span style="color:#ae81ff">engine version</span>
+      <span style="color:#f92672">fromParam</span>: <span style="color:#ae81ff">engineVersion</span>
+     <span style="color:#ae81ff">...</span>
+</code></pre></div><hr>
+<p>在 v1alpha2 版本中，组件这个概念改为 Component，明确为 Workload 的实例，所有语法定义都是在WorkloadDefinition 中引用的实际 CRD 定义的。</p>
+<p>在 K8s 实现中，WorkloadDefinition 就是引用 CRD ，Component.spec.workload 里就是写 CRD 对应的实例 CR。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Component</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">example-server</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">workload</span>:
+    <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Server</span>
+    <span style="color:#f92672">spec</span>:
+   <span style="color:#ae81ff">...</span>
+</code></pre></div><h2 id="主要改动5-scope-由-cr-单独创建不再由-appconfig-创建">主要改动5 Scope 由 CR 单独创建，不再由 AppConfig 创建</h2>
+<p>v1alpha1 中的 Scope 是由 AppConfig 创建的，从例子中可以看出，本质上它也是个 CR，可以“推导”创建出 CR来。但是由于 Scope 的定位是可以容纳不同 AppConfig 中的 Component，且Scope 本身并非一个App，所以使用 AppConfig 创建 Scope 一直是不太合适的。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">// 老版本，仅对比使用</span>
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ApplicationConfiguration</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-vpc-network</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">variables</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">networkName</span>
+      <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;my-vpc&#34;</span>
+  <span style="color:#f92672">scopes</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">network</span>
+      <span style="color:#f92672">type</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha1.Network</span>
+      <span style="color:#f92672">properties</span>:
+        <span style="color:#f92672">network-id</span>: <span style="color:#e6db74">&#34;[fromVariable(networkName)]&#34;</span>
+        <span style="color:#f92672">subnet-ids</span>: <span style="color:#e6db74">&#34;my-subnet1, my-subnet2&#34;</span>
+</code></pre></div><hr>
+<p>v1alpha2 新版本全面使用 CR 来对应实例，为了让Scope的概念更清晰，更方便对应不同类型的Scope，将 Scope 拿出来直接由ScopeDefinition 定义的CRD 对应的 CR 创建。例子如下所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ScopeDefinition</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">networkscope.core.oam.dev</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">allowComponentOverlap</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">definitionRef</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">networkscope.core.oam.dev</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">NetworkScope</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">example-vpc-network</span>
+  <span style="color:#f92672">labels</span>:
+    <span style="color:#f92672">region</span>: <span style="color:#ae81ff">us-west</span>
+    <span style="color:#f92672">environment</span>: <span style="color:#ae81ff">production</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">networkId</span>: <span style="color:#ae81ff">cool-vpc-network</span>
+  <span style="color:#f92672">subnetIds</span>:
+  - <span style="color:#ae81ff">cool-subnetwork</span>
+  - <span style="color:#ae81ff">cooler-subnetwork</span>
+  - <span style="color:#ae81ff">coolest-subnetwork</span>
+  <span style="color:#f92672">internetGatewayType</span>: <span style="color:#ae81ff">nat</span>
+</code></pre></div><p>在AppConfig中使用 scope 引用如下所示:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ApplicationConfiguration</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">custom-single-app</span>
+  <span style="color:#f92672">annotations</span>:
+    <span style="color:#f92672">version</span>: <span style="color:#ae81ff">v1.0.0</span>
+    <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Customized version of single-app&#34;</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">components</span>:
+    - <span style="color:#f92672">componentName</span>: <span style="color:#ae81ff">frontend</span>
+      <span style="color:#f92672">scopes</span>:
+        - <span style="color:#f92672">scopeRef</span>:
+            <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+            <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">NetworkScope</span>
+            <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-vpc-network</span>
+    - <span style="color:#f92672">componentName</span>: <span style="color:#ae81ff">backend</span>
+      <span style="color:#f92672">scopes</span>:
+        - <span style="color:#f92672">scopeRef</span>:
+            <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+            <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">NetworkScope</span>
+            <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-vpc-network</span>
+</code></pre></div><h2 id="主要改动6-移除-variable-列表和-fromvariable-动态函数">主要改动6 移除 Variable 列表和 [fromVariable()] 动态函数</h2>
+<p>v1alpha1 版本中有 Variable 是为了 AppConfig 里开源引用一些公共变量减少冗余，所以加入了 Variable 列表。但实践来看，减少的冗余并没有明显减少 OAM spec 的复杂性，相反，增加动态的函数显著增加了复杂性。</p>
+<p>另一方面，fromVariable 这样的能力完全可以通过 helm template/ kustomiz 等工具来做，由这些工具渲染出完整的 OAM spec，再进行使用。</p>
+<p>所以这里 variables 列表和相关的 fromVariable 均去掉，并不影响任何功能。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">// 老版本，仅对比使用</span>
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ApplicationConfiguration</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-app-deployment</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">variables</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">VAR_NAME</span>
+      <span style="color:#f92672">value</span>: <span style="color:#ae81ff">SUPPLIED_VALUE</span>
+  <span style="color:#f92672">components</span>:
+    - <span style="color:#f92672">componentName</span>: <span style="color:#ae81ff">my-web-app-component</span>
+      <span style="color:#f92672">instanceName</span>: <span style="color:#ae81ff">my-app-frontent</span>
+      <span style="color:#f92672">parameterValues</span>:
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ANOTHER_PARAMETER</span>
+          <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;[fromVariable(VAR_NAME)]&#34;</span>
+      <span style="color:#f92672">traits</span>:
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ingress</span>
+          <span style="color:#f92672">properties</span>:
+            <span style="color:#f92672">DATA</span>: <span style="color:#e6db74">&#34;[fromVariable(VAR_NAME)]&#34;</span>
+</code></pre></div><h2 id="主要改动7-用-containerizedworkload-替代原来的六种核心workload">主要改动7 用 ContainerizedWorkload 替代原来的六种核心Workload</h2>
+<p>因为现在已经统一用 WorkloadDefinition 定义 Workload，Component 变成了实例，所以原先的六种核心Workload 实际上都变成了同一个 WorkloadDefinition，字段描述完全一样，唯一的不同是对 trait 约束和诉求不一样。所以原先的六种核心 Workload 的 spec，统一修改为一种名为 ContainerizedWorkload 的 Workload 类型。</p>
+<p>同时，这里计划要通过增加 policy 这样的概念，来让研发表达对运维策略的诉求，即 Component 中可以表达希望增加哪些 trait。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">WorkloadDefinition</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">containerizedworkloads.core.oam.dev</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">definitionRef</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">containerizedworkloads.core.oam.dev</span>
+</code></pre></div><p>一个使用 ContainerizedWorkload 示例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Component</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">frontend</span>
+  <span style="color:#f92672">annotations</span>:
+    <span style="color:#f92672">version</span>: <span style="color:#ae81ff">v1.0.0</span>
+    <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;A simple webserver&#34;</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">workload</span>:
+    <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1alpha2</span>
+    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ContainerizedWorkload</span>
+    <span style="color:#f92672">metadata</span>:
+      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">sample-workload</span>
+    <span style="color:#f92672">spec</span>:
+      <span style="color:#f92672">osType</span>: <span style="color:#ae81ff">linux</span>
+      <span style="color:#f92672">containers</span>:
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">web</span>
+        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">example/charybdis-single:latest@@sha256:verytrustworthyhash</span>
+        <span style="color:#f92672">resources</span>:
+          <span style="color:#f92672">cpu</span>:
+            <span style="color:#f92672">required</span>: <span style="color:#ae81ff">1.0</span>
+          <span style="color:#f92672">memory</span>:
+            <span style="color:#f92672">required</span>: <span style="color:#ae81ff">100MB</span>
+        <span style="color:#f92672">env</span>:
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">MESSAGE</span>
+          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">default</span>
+  <span style="color:#f92672">parameters</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">message</span>
+    <span style="color:#f92672">description</span>: <span style="color:#ae81ff">The message to display in the web app.  </span>
+    <span style="color:#f92672">required</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
+    <span style="color:#f92672">fieldPaths</span>:
+    - <span style="color:#e6db74">&#34;.spec.containers[0].env[0].value&#34;</span>
+</code></pre></div><h1 id="下一步计划">下一步计划</h1>
+<ol>
+<li>应用级别的组件间参数传递和依赖关系（workflow）<a href="https://github.com/oam-dev/spec/pull/326">https://github.com/oam-dev/spec/pull/326</a></li>
+<li>Policy方案，便于研发在 Component 对 trait 提出诉求。<a href="https://docs.google.com/document/d/1d3kVBFyf7yf-YzmVqkL1hr_qcIVXf6BUJLWKu9NJwvE/edit#heading=h.hh69i79bk4p3">https://docs.google.com/document/d/1d3kVBFyf7yf-YzmVqkL1hr_qcIVXf6BUJLWKu9NJwvE/edit#heading=h.hh69i79bk4p3</a></li>
+<li>Component 增加版本的概念，同时给出 OAM 解决应用版本发布相关方式。 <a href="https://github.com/oam-dev/spec/issues/336">https://github.com/oam-dev/spec/issues/336</a> <a href="https://github.com/oam-dev/spec/issues/341">https://github.com/oam-dev/spec/issues/341</a></li>
+</ol>
+<h1 id="常见-faq">常见 FAQ</h1>
+<ol>
+<li>我们原有平台改造为 OAM 模型实现需要做什么？</li>
+</ol>
+<p>对于原先是 K8s 上的应用管理平台，接入改造为 OAM 实现可以分为两个阶段：
+1）实现 OAM ApplicationConfiguration Controller（简称AppConfig Controller），这个Controller 同时包含 OAM 的 Component、WorkloadDefinition、TraitDefinition、ScopeDefinition 等 CRD。AppConfig Controller 根据 OAM AppConfig中的描述，拉起原有平台的 CRD Operator.
+2) 逐渐将 原先的 CRD Operator 根据关注点分离的思想，分为 Workload 和 Trait。同时接入和复用 OAM 社区中更多的Workload、Trait，丰富更多场景下的功能。
+ </p>
+<ol start="2">
+<li>现有的 CRD Operator 为接入 OAM 需要做什么改变？</li>
+</ol>
+<p>**
+**    现有的 CRD Operator** 功能上可以平滑接入OAM体系，比如作为一个独立扩展 Workload 接入。但是为了更好的让终端用户体会到 OAM 关注点分离的好处，我们强烈建议 CRD Operator 根据研发和运维不同的关注点分离为不同的 CRD，研发关注的 CRD 作为 Workload 接入 OAM，运维关注的 CRD 作为 Trait 接入 OAM。</p>
+<h1 id="作者简介">作者简介</h1>
+<p>孙健波 阿里云技术专家，是 OAM 规范的主要制定者之一，致力于推动云原生应用标准化。同时也在阿里巴巴参与大规模云原生应用交付与应用管理相关工作。团队诚邀应用交付、Serverless、PaaS 领域的专家加入，欢迎联系  jianbo.sjb AT alibaba-inc.com</p>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/oam" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">oam</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+    </div>
+  </div>
+
+  <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+</article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info" >
+    &copy;  奇迹之流WonderfloW 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

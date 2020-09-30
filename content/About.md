@@ -1,7 +1,8 @@
 ---
 title: About
 omit_header_text: true
-type: archive
+layout: page
+type: other
 menu: main
 
 ---

@@ -1,36 +1,31 @@
-{{ define "title" -}}
-Blog List | {{ .Site.Title }}
-{{- end }}
-{{ define "header" }}
-{{ partial "masthead.html" . }}
-{{ end }}
+{{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
 {{ define "main" }}
-<header>
-  <h1>{{ .Title }}</h1>
-</header>
+<div class="flex-l mt2 mw8 center">
+  <article class="center cf pv5 ph3 ph4-ns mw7">
+    <header>
+      <p class="f6 b helvetica tracked">
+        {{ humanize .Section | upper  }}
+      </p>
+      <h1 class="f1">
+        {{ .Title }}
+      </h1>
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
 
-<section>
-  {{ $prev := 3000}}
-  {{range .Site.RegularPages}}
-  {{if .Date}}
-  {{if gt $prev (.Date.Format "2006")}}
-  {{ if ne $prev 3000}}
-  </table>
-  {{ end }}
-  <h2>{{ .Date.Format "2006" }}</h2>
-  <table class="all-posts">
-    {{end}}
-    <tr>
-      <td>{{.Date.Format "02 Jan"}}</td>
-      <td><a class="no-underline" href="{{.Permalink}}">{{.Title}}</a></td>
-    </tr>
-    {{ $prev = .Date.Format "2006"}}
-    {{end}}
-    {{end}}
-  </table>
-</section>
+      {{ range (.Site.RegularPages.GroupByDate "2006") }}
+      <h3>{{ .Key }}</h3>
 
-{{ end }}
-{{ define "footer" }}
-{{ partial "powered-by.html" . }}
+      <ul class="archive-list">
+        {{ range (where .Pages "Type" "!=" "other") }}
+        <li>
+          {{ .PublishDate.Format "2006-01-02" }}
+          ->
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
+        {{ end }}
+      </ul>
+      {{ end }}
+    </div>
+  </article>
+</div>
 {{ end }}

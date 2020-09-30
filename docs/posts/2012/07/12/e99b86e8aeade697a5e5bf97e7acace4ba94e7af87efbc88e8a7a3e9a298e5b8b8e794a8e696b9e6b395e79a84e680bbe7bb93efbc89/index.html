@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>集训日志第五篇（解题常用方法的总结） | 奇迹之流WonderfloW</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.75.1" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="集训日志第五篇（解题常用方法的总结）" />
+<meta property="og:description" content="集训的时光不知不觉，其实已经过去了一半了，十三天。 每天做一到二个题，总结、思考。看重的不是做出的题目是用的什么方法，看重的是怎么想到的这个做题的方法，思路是怎么来的。那么今天顺势总结下思考问题的一些方法。 题目做的多了，就会自然而然的产生一些经验，比如看到数据的范围，就能想到最终的解法是什么复杂度的，然后根据复杂度，就可以套一些模型，一些常用的算法。 再根据常用的方法的多种应用，思考针对该题的解决方案。 这是很常见的一种方法，我喜欢称之为“经验教训”法。 面对一个问题，先从小规模着手，如果这个问题的数据非常小，从1个、2个、3个、、这样以此类推的往多处叠加，那么这个问题的解法会不会思考出来。要知道，如" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wonderflow.info/posts/2012/07/12/e99b86e8aeade697a5e5bf97e7acace4ba94e7af87efbc88e8a7a3e9a298e5b8b8e794a8e696b9e6b395e79a84e680bbe7bb93efbc89/" />
+<meta property="article:published_time" content="2012-07-12T16:48:13+00:00" />
+<meta property="article:modified_time" content="2012-07-12T16:48:13+00:00" />
+<meta itemprop="name" content="集训日志第五篇（解题常用方法的总结）">
+<meta itemprop="description" content="集训的时光不知不觉，其实已经过去了一半了，十三天。 每天做一到二个题，总结、思考。看重的不是做出的题目是用的什么方法，看重的是怎么想到的这个做题的方法，思路是怎么来的。那么今天顺势总结下思考问题的一些方法。 题目做的多了，就会自然而然的产生一些经验，比如看到数据的范围，就能想到最终的解法是什么复杂度的，然后根据复杂度，就可以套一些模型，一些常用的算法。 再根据常用的方法的多种应用，思考针对该题的解决方案。 这是很常见的一种方法，我喜欢称之为“经验教训”法。 面对一个问题，先从小规模着手，如果这个问题的数据非常小，从1个、2个、3个、、这样以此类推的往多处叠加，那么这个问题的解法会不会思考出来。要知道，如">
+<meta itemprop="datePublished" content="2012-07-12T16:48:13+00:00" />
+<meta itemprop="dateModified" content="2012-07-12T16:48:13+00:00" />
+<meta itemprop="wordCount" content="1358">
+
+
+
+<meta itemprop="keywords" content="life,njust,思维,方法,暑假集训,策略,集训日志," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="集训日志第五篇（解题常用方法的总结）"/>
+<meta name="twitter:description" content="集训的时光不知不觉，其实已经过去了一半了，十三天。 每天做一到二个题，总结、思考。看重的不是做出的题目是用的什么方法，看重的是怎么想到的这个做题的方法，思路是怎么来的。那么今天顺势总结下思考问题的一些方法。 题目做的多了，就会自然而然的产生一些经验，比如看到数据的范围，就能想到最终的解法是什么复杂度的，然后根据复杂度，就可以套一些模型，一些常用的算法。 再根据常用的方法的多种应用，思考针对该题的解决方案。 这是很常见的一种方法，我喜欢称之为“经验教训”法。 面对一个问题，先从小规模着手，如果这个问题的数据非常小，从1个、2个、3个、、这样以此类推的往多处叠加，那么这个问题的解法会不会思考出来。要知道，如"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        奇迹之流WonderfloW
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/archives/" title="Archives page">
+              Archives
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
+              Posts
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
+  <header class="mt4 w-100">
+    <aside class="instapaper_ignoref b helvetica tracked">
+      
+      POSTS
+    </aside>
+    
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://wonderflow.info/posts/2012/07/12/e99b86e8aeade697a5e5bf97e7acace4ba94e7af87efbc88e8a7a3e9a298e5b8b8e794a8e696b9e6b395e79a84e680bbe7bb93efbc89/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2012/07/12/e99b86e8aeade697a5e5bf97e7acace4ba94e7af87efbc88e8a7a3e9a298e5b8b8e794a8e696b9e6b395e79a84e680bbe7bb93efbc89/&amp;text=%e9%9b%86%e8%ae%ad%e6%97%a5%e5%bf%97%e7%ac%ac%e4%ba%94%e7%af%87%ef%bc%88%e8%a7%a3%e9%a2%98%e5%b8%b8%e7%94%a8%e6%96%b9%e6%b3%95%e7%9a%84%e6%80%bb%e7%bb%93%ef%bc%89" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://wonderflow.info/posts/2012/07/12/e99b86e8aeade697a5e5bf97e7acace4ba94e7af87efbc88e8a7a3e9a298e5b8b8e794a8e696b9e6b395e79a84e680bbe7bb93efbc89/&amp;title=%e9%9b%86%e8%ae%ad%e6%97%a5%e5%bf%97%e7%ac%ac%e4%ba%94%e7%af%87%ef%bc%88%e8%a7%a3%e9%a2%98%e5%b8%b8%e7%94%a8%e6%96%b9%e6%b3%95%e7%9a%84%e6%80%bb%e7%bb%93%ef%bc%89" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+    <h1 class="f1 athelas mt3 mb1">集训日志第五篇（解题常用方法的总结）</h1>
+    
+    <p class="tracked">
+      By <strong>
+        
+        admin
+        
+      </strong>
+    </p>
+    
+    
+    <time class="f6 mv4 dib tracked"
+      datetime="2012-07-12T16:48:13Z">July 12, 2012</time>
+
+    
+    
+  </header>
+  <div
+    class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-100-l"><p>集训的时光不知不觉，其实已经过去了一半了，十三天。
+每天做一到二个题，总结、思考。看重的不是做出的题目是用的什么方法，看重的是怎么想到的这个做题的方法，思路是怎么来的。那么今天顺势总结下思考问题的一些方法。</p>
+<p>题目做的多了，就会自然而然的产生一些经验，比如看到数据的范围，就能想到最终的解法是什么复杂度的，然后根据复杂度，就可以套一些模型，一些常用的算法。
+再根据常用的方法的多种应用，思考针对该题的解决方案。
+这是很常见的一种方法，我喜欢称之为“经验教训”法。</p>
+<p>面对一个问题，先从小规模着手，如果这个问题的数据非常小，从1个、2个、3个、、这样以此类推的往多处叠加，那么这个问题的解法会不会思考出来。要知道，如果能找到一种递推的方法，那么无论是logN的转移还是N的扫描都是计算机可以承受的。这种方法叫“以小见大”法。类似的方法就是极限法，就是当问题在平时由于参数的原因让人眼花缭乱的时候，我们不妨把这些都极限化，以此来获得一些有用的提示。</p>
+<p>面对一份需求，仔细阅读里面的需求报告，把问题的描述揣摩清楚，深刻发掘问题的本质，或者说从问题本身描述的模型中抽离出一些性质。也是解决问题的一种方法。之前看《编程之美》，发现里面大量的告诫：一定要理解清楚题目描述的意思，我们做程序就是为了让使用者满意，但是如果连使用者的意图都不搞清楚的话，根本就谈不上出一个好的作品。这种方法可以称为“观察”法。</p>
+<p>还有一种比较好的方法，就是“联想法”了。遇到一个问题，联想到自己之前遇到过的一些问题，用类似的方法解决。这个其实跟第一种也是类似的，但是又有所区别。</p>
+<p>逆向思维，有的时候正难则反，如果正面去解决问题很困难，那么我就反着来。就像求最大流==最小割。</p>
+<p>分治、分解（分层、分模块），把大规模的问题化解为一个个小规模的问题，是计算机里极为常用的一种方法。这种思路的本质是：通过合并减少问题数量，通过拆分减少问题间的联系，从而能做到“批量”、“宏观”地解决问题。<br>
+危险是，有时候底层细节并不能简单地忽略，但分层会造成一种“可以忽略底层”的假象。比如网络中每层都可能存在安全问题，并不容易“封”住不暴露给上层。</p>
+<p>缓存思想，通俗的说，就是预处理。或者用空间换时间。很多宅男都喜欢一次性买很多吃的，然后可以减少去超市的次数。（在这上面，ZYZ绝对是个典型啊！）这其实就是一个缓存思想。
+缓存的本质是：在能够预测未来使用的前提下，预先存储一些处理结果提供快速访问，从而做到用空间换时间或缓解瓶颈。
+而缓存从逻辑上就会存在数据陈旧的问题，比如电话本里的号码可能已经停机了。</p>
+<!-- raw HTML omitted -->
+<p>化简、近似求解，有时候一个精确的值可能需要花费的代价太大，那么我们就求解近似值，这方面，模拟脱火算法绝对是个典型。而有时瞎搞也能有意想不到的好处~</p>
+<p>简洁的美。记得刚学计算机程序的时候就知道了程序界有名的“KISS”原则，keep it simple and stupid。我觉得解决问题也是这样，有时一个问题不能想的太复杂。同样的，在编码的时候，如果时间效率允许的话，能用STL，还是尽量用STL库为好。</p>
+<p>这大概就是我的一个初步的总结，知乎上的有一篇文章<a href="http://www.zhihu.com/question/19996012?nr=1&amp;thread_id=1_178404">《哪些你熟知的重要知识或方法，业外人士却常常因不了解而陷入困境？》</a>写的很好，有兴趣的话可以花半个小时阅读一下。</p>
+<p>最后不得不说的就是：注重细节。bug有的时候，就是出在小地方上的！！</p>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/life" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">life</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/njust" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">njust</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E6%80%9D%E7%BB%B4" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">思维</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E6%96%B9%E6%B3%95" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">方法</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E6%9A%91%E5%81%87%E9%9B%86%E8%AE%AD" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">暑假集训</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E7%AD%96%E7%95%A5" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">策略</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E9%9B%86%E8%AE%AD%E6%97%A5%E5%BF%97" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">集训日志</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+    </div>
+  </div>
+
+  <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/posts/2012/07/09/e99b86e8aeade697a5e5bf97e7acace4b889e7af87/">集训日志第三篇</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/08/e99b86e8aeade697a5e5bf97e7acace4ba8ce7af87/">集训日志第二篇</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/07/e99b86e8aeade697a5e5bf97e7acace4b880e7af87/">集训日志第一篇</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/10/e99b86e8aeade697a5e5bf97e7acace59b9be7af87/">集训日志第四篇</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/04/e7bd91e7bb9ce694bbe998b2e4b88epython/">网络攻防与Python</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/03/e68891e889b9-e58699e7bb99e6989fe5a790e79a84e4b880e5b081e4bfa1/">“我艹”——写给星姐的一封信</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/07/02/hello-world/">Hello world!</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2012/01/07/2012efbc8ce696b0e79a84e5bc80e5a78b/">2012，新的开始</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2011/12/07/e7acace59b9be5b18ae4b8ade585b4e59bbee781b5e69daf-e68891e79a84lost_island/">第四届中兴图灵杯——我的Lost_Island</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2011/10/30/dze997aeefbc9ae6808ee6a0b7e79a84e5a4a7e5ada6e6898de698afe5ae8ce695b4e79a84efbc9f/">DZ问：怎样的大学才是完整的？</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2010/05/18/e5a5bde5909fe593a5e5898de4bca0/">好吟哥前传</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+</article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info" >
+    &copy;  奇迹之流WonderfloW 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

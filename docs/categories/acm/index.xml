@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ACM on 奇迹之流WonderfloW</title>
+    <link>https://wonderflow.info/categories/acm/</link>
+    <description>Recent content in ACM on 奇迹之流WonderfloW</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 05 Sep 2012 05:45:23 +0000</lastBuildDate><atom:link href="https://wonderflow.info/categories/acm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>我的字符串报告（AC自动机详，后缀数组无）</title>
+      <link>https://wonderflow.info/posts/2012/09/05/e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/</link>
+      <pubDate>Wed, 05 Sep 2012 05:45:23 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/09/05/e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/</guid>
+      <description>上个学期开学的时候做的字符串报告，觉得还有些价值，做了些补充发上来，也许以后用得着。 1 KMP 1.1 概念： KMP是一种用来处理字符串匹配的算法。通俗的讲就是给你一个串A（ababababbc）和一个串B（ababbc），问你A串中是否包含B串。 解决这类问题的朴素算法就是枚举A串开始的位置，然后逐个位置对B串进行匹配。这样的算法复杂度是O（n*m）。而这里我们要介绍的KMP算法，就是解决这类问题最坏复杂度只要O（n+m）的算法。 KMP是由三个人共同提出的，他们的名字分别是Knuth、Morris、Pratt，这也是为什么这个算法叫KMP的原因，就是取了三个人的首字母。 1.2 原理： 现假设我们有两个串A（abab</description>
+    </item>
+    
+    <item>
+      <title>几种简单类型的动态规划</title>
+      <link>https://wonderflow.info/posts/2012/08/08/e587a0e7a78de7ae80e58d95e7b1bbe59e8be79a84dp/</link>
+      <pubDate>Wed, 08 Aug 2012 10:44:28 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/08/08/e587a0e7a78de7ae80e58d95e7b1bbe59e8be79a84dp/</guid>
+      <description>今天又被鱼头拉着校验集训队的书，正好看了一下动态规划(DP)这块，顺便总结一下。发现几道POJ上的例题正好是自己没有做过的，正好拿来试试手，写写题解。 线性动态规划： 1、最长递增（减）子序列：给出一个数列，求最长不下降（上升）子序列的长度。poj2533 这个经典的DP问题有两种解法，复杂度分别为O（n^2）和O（nlogn）。 O(n^2)的算法比较容易理解，就是用dp[i]表示数列到i位置的最长递增（减）子序列的长度。 第一重循环自然就是枚举i的位置，第二重循环就是从0到i-1，选择一个数字比num[i]小（大）的数的dp值加1，看能否更新dp[i]。 以最长递增子序列为例，就是dp[i] = max(</description>
+    </item>
+    
+    <item>
+      <title>扯 &amp;&amp; 最短路floyd的DP解法解释</title>
+      <link>https://wonderflow.info/posts/2012/08/02/e689af-e69c80e79fade8b7affloyde79a84dpe8a7a3e6b395e8a7a3e9878a/</link>
+      <pubDate>Thu, 02 Aug 2012 14:42:06 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/08/02/e689af-e69c80e79fade8b7affloyde79a84dpe8a7a3e6b395e8a7a3e9878a/</guid>
+      <description>帮鱼头整理集训队训练教程，据说要出书，瞬间感到压力巨大。就那些平时大家随便写写，只是给自己看看的，非常散漫的解题报告，和专题上很多算法本质都不理解的各种报告组成的一个文档。我真的，压力巨大。那么尽自己力量去整理吧。 整本书的结构就是： 章节（专题介绍-&amp;gt;讲的参差不齐）；子目录（该专题算法介绍-&amp;gt;伪代码(反正不是通俗易懂)）; 子目录：例题-&amp;gt;题意-&amp;gt;思路-&amp;gt;代码（这就导致小半本书代码）。 我也不知道这样是好是坏，是否适合读者入门。反正我最讨厌大段大段贴代码的书了。 然后尽力整理吧，其实这本书倒更像是一个模板库，对于把所有专题都了解过的人，是一本很好的复习资料。我就花了一个晚</description>
+    </item>
+    
+    <item>
+      <title>2012多校第一、第二场（hdu4300~hdu4319）</title>
+      <link>https://wonderflow.info/posts/2012/07/27/2012e5a49ae6a0a1e7acace4b880e38081e7acace4ba8ce59cbaefbc88hdu4300hdu4319efbc89/</link>
+      <pubDate>Fri, 27 Jul 2012 12:59:12 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/07/27/2012e5a49ae6a0a1e7acace4b880e38081e7acace4ba8ce59cbaefbc88hdu4300hdu4319efbc89/</guid>
+      <description>说一下自己搞出来的题目吧，感觉多校其实比较水的，题目也不难，模板题，陈题很多，不过两场我们队的名次都很烂诶，30开外了都，抗不住啊！出现的问题就是队里的模板太少、不全。不过也好，做一场补一场的模板。 hdu4300《Clairewd’s message》是个字符串，利用next数组求解，小trick就是next数组求出来的值要小于(len-1)/2才取。即：while(len-next[dx]&amp;lt;=(len-1)/2)dx = next[dx]; #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;cstdio&amp;gt; using namespace std; int map[30]; int len; int s[101000]; int next[101000]; char str[101000]; void get_next() { int i,j;i=0;next[0]=-1;j=-1; while(i&amp;lt;len) { if(j==-1||map[s[j]]==s[i]) { ++i;++j; next[i]=j; } else j=next[j]; } } int main() { int T; scanf(&amp;quot;%d&amp;quot;,&amp;amp;T); while(T--){ scanf(&amp;quot;%s&amp;quot;,str); len = strlen(str); for(int i=0;i&amp;lt;len;i++){ map[str[i]-&#39;a&#39;] = i; } scanf(&amp;quot;%s&amp;quot;,str); len = strlen(str); for(int i=0;i&amp;lt;len;i++){ s[i] = str[i] - &#39;a&#39;; } get_next(); // cout&amp;lt;&amp;lt;next[len]&amp;lt;&amp;lt;endl; int dx = len; while(len-next[dx]&amp;lt;=(len-1)/2)dx = next[dx]; // cout&amp;lt;&amp;lt;next[dx]&amp;lt;&amp;lt;endl; for(int i=0;i&amp;lt;len-next[dx];i++){ printf(&amp;quot;%c&amp;quot;,s[i]+&#39;a&#39;); } for(int i=0;i&amp;lt;len-next[dx];i++){ printf(&amp;quot;%c&amp;quot;,map[s[i]]+&#39;a&#39;); } printf(&amp;quot;\n&amp;quot;); } return 0;</description>
+    </item>
+    
+    <item>
+      <title>2012，新的开始</title>
+      <link>https://wonderflow.info/posts/2012/01/07/2012efbc8ce696b0e79a84e5bc80e5a78b/</link>
+      <pubDate>Sat, 07 Jan 2012 08:34:28 +0000</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2012/01/07/2012efbc8ce696b0e79a84e5bc80e5a78b/</guid>
+      <description>早上醒来，盯着日历看了好一会，总觉得有点别扭，想不到，大家口中说了这么久的2012就这么来了。而它的一月、它的开头，却像是往常任何一年的开头一样，稀松平常。大家依旧是忙着复习考试，忙着回家，忙着过年。但我总觉得，它该有所不同。 大三也就在我们这帮人不断的呐喊着“我们也大三了！”的声音中悄悄过去了一半。暑假里我是提前过来的，所以我对开学没有什么清晰的概念。但是我记得好吟开学那天来，我去一号门接了他，他还请我在那吃了饭，我问他，怎么提前来了几天，他说来学开车了。然后前天，他回家前那晚上，我问好吟，学车的进度怎么样了，好吟说，还是那样。当时笑的前仰后合的。后来细想想，这开学前、学期结束一前一后两番对话</description>
+    </item>
+    
+  </channel>
+</rss>

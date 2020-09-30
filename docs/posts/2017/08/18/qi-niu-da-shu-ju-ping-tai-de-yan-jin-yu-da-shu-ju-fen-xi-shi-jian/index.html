@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>七牛大数据平台的演进与大数据分析实践 | 奇迹之流WonderfloW</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.75.1" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="七牛大数据平台的演进与大数据分析实践" />
+<meta property="og:description" content="原文首发自InfoQ，《七牛大数据平台的演进与大数据分析实践》
+图 1 大数据生态体系
+看着图 1 大家可能会感到熟悉，又或者会觉得部分有些陌生，这是一张汇集了目前大数据生态下大多数成熟组件的架构图。众所周知，大数据生态很复杂，对于个人来说，要全部学会可能要花费好几年时间。而对于企业来说，要最大程度发挥其价值，构建一个成熟稳定、功能多样的大数据平台，期间花费的时间以及人力成本着实难以估量，更何况还需要考虑持续维护的问题。这就是七牛的Pandora大数据平台灵感的来源，我们构建一个大数据平台，作为产品提供给用户，快速帮助用户挖掘数据价值。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wonderflow.info/posts/2017/08/18/qi-niu-da-shu-ju-ping-tai-de-yan-jin-yu-da-shu-ju-fen-xi-shi-jian/" />
+<meta property="article:published_time" content="2017-08-18T10:43:17+00:00" />
+<meta property="article:modified_time" content="2017-08-18T10:43:17+00:00" />
+<meta itemprop="name" content="七牛大数据平台的演进与大数据分析实践">
+<meta itemprop="description" content="原文首发自InfoQ，《七牛大数据平台的演进与大数据分析实践》
+图 1 大数据生态体系
+看着图 1 大家可能会感到熟悉，又或者会觉得部分有些陌生，这是一张汇集了目前大数据生态下大多数成熟组件的架构图。众所周知，大数据生态很复杂，对于个人来说，要全部学会可能要花费好几年时间。而对于企业来说，要最大程度发挥其价值，构建一个成熟稳定、功能多样的大数据平台，期间花费的时间以及人力成本着实难以估量，更何况还需要考虑持续维护的问题。这就是七牛的Pandora大数据平台灵感的来源，我们构建一个大数据平台，作为产品提供给用户，快速帮助用户挖掘数据价值。">
+<meta itemprop="datePublished" content="2017-08-18T10:43:17+00:00" />
+<meta itemprop="dateModified" content="2017-08-18T10:43:17+00:00" />
+<meta itemprop="wordCount" content="10164">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="七牛大数据平台的演进与大数据分析实践"/>
+<meta name="twitter:description" content="原文首发自InfoQ，《七牛大数据平台的演进与大数据分析实践》
+图 1 大数据生态体系
+看着图 1 大家可能会感到熟悉，又或者会觉得部分有些陌生，这是一张汇集了目前大数据生态下大多数成熟组件的架构图。众所周知，大数据生态很复杂，对于个人来说，要全部学会可能要花费好几年时间。而对于企业来说，要最大程度发挥其价值，构建一个成熟稳定、功能多样的大数据平台，期间花费的时间以及人力成本着实难以估量，更何况还需要考虑持续维护的问题。这就是七牛的Pandora大数据平台灵感的来源，我们构建一个大数据平台，作为产品提供给用户，快速帮助用户挖掘数据价值。"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        奇迹之流WonderfloW
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/archives/" title="Archives page">
+              Archives
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
+              Posts
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
+  <header class="mt4 w-100">
+    <aside class="instapaper_ignoref b helvetica tracked">
+      
+      POSTS
+    </aside>
+    
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://wonderflow.info/posts/2017/08/18/qi-niu-da-shu-ju-ping-tai-de-yan-jin-yu-da-shu-ju-fen-xi-shi-jian/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2017/08/18/qi-niu-da-shu-ju-ping-tai-de-yan-jin-yu-da-shu-ju-fen-xi-shi-jian/&amp;text=%e4%b8%83%e7%89%9b%e5%a4%a7%e6%95%b0%e6%8d%ae%e5%b9%b3%e5%8f%b0%e7%9a%84%e6%bc%94%e8%bf%9b%e4%b8%8e%e5%a4%a7%e6%95%b0%e6%8d%ae%e5%88%86%e6%9e%90%e5%ae%9e%e8%b7%b5" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://wonderflow.info/posts/2017/08/18/qi-niu-da-shu-ju-ping-tai-de-yan-jin-yu-da-shu-ju-fen-xi-shi-jian/&amp;title=%e4%b8%83%e7%89%9b%e5%a4%a7%e6%95%b0%e6%8d%ae%e5%b9%b3%e5%8f%b0%e7%9a%84%e6%bc%94%e8%bf%9b%e4%b8%8e%e5%a4%a7%e6%95%b0%e6%8d%ae%e5%88%86%e6%9e%90%e5%ae%9e%e8%b7%b5" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+    <h1 class="f1 athelas mt3 mb1">七牛大数据平台的演进与大数据分析实践</h1>
+    
+    
+    <time class="f6 mv4 dib tracked"
+      datetime="2017-08-18T10:43:17Z">August 18, 2017</time>
+
+    
+    
+  </header>
+  <div
+    class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-100-l"><p>原文首发自InfoQ，<a href="http://www.infoq.com/cn/articles/qiniu-big-data-platform-evolution-and-analysis">《七牛大数据平台的演进与大数据分析实践》</a></p>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/Picture1.png" alt=" 图1大数据生态体系">图 1 大数据生态体系</p>
+<p>看着图 1 大家可能会感到熟悉，又或者会觉得部分有些陌生，这是一张汇集了目前大数据生态下大多数成熟组件的架构图。众所周知，大数据生态很复杂，对于个人来说，要全部学会可能要花费好几年时间。而对于企业来说，要最大程度发挥其价值，构建一个成熟稳定、功能多样的大数据平台，期间花费的时间以及人力成本着实难以估量，更何况还需要考虑持续维护的问题。这就是七牛的Pandora大数据平台灵感的来源，我们构建一个大数据平台，作为产品提供给用户，快速帮助用户挖掘数据价值。</p>
+<h2 id="1-pandora的背景和解决的问题">1. Pandora的背景和解决的问题</h2>
+<p>七牛是以云存储起家的公司，平台上有着大量的数据、业务日志以及运维监控数据，基于对这些数据的管理以及分析的需求，Pandora诞生了。我们搭建了一个可靠的大数据平台，将大数据生态中的各个组件配套成一个体系发挥作用，用来解决实际业务中碰到的繁琐、复杂、多样化的问题。这个大数据平台的工作从数据的采集便已开始，通过一条数据总线，再根据业务需求分流到不同的下游产品，从存储到数据可视化，从实时的数据变换到离线的算法分析，我们构建一个全栈的大数据分析产品。</p>
+<p>与此同时，我们在大数据平台之上构建了业务工作流的概念，让用户只需关心构建符合他们业务模型的工作流，而无需具备大数据技术背景。不仅大大降低了用户挖掘大数据价值的成本，更为重要的是去除了大数据技术门槛，使得各行各业的专家可以更好的施展自己对业务的深度理解。</p>
+<p>在工作流上，用户不仅可以清晰的监控自己的数据流动，轻松构建各类实时、离线的数据变化与自定义计算，还可以按需弹性扩容、快速调度云端资源，降低了运维的成本。与此同时，我们集成了社区中大量的优秀开源软件，对其进行优化及定制，一方面以便发挥其更强大的功能，另一方面，也让熟悉使用这类开源软件的用户可以做到快速迁移，无缝切换使用。</p>
+<h2 id="2-pandora的功能特点与应用场景">2. Pandora的功能特点与应用场景</h2>
+<p>那么，Pandora到底是一个怎样的平台呢？工作流又是怎样的呢？让我们首先来直观的看一下工作流的使用形态，如图 2 所示。</p>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/Picture2.png" alt="图 2 工作流形态">图 2 工作流形态</p>
+<p>最左边的数据源是工作流的起点，数据源可以是一个，也可以是多个。在实时计算的工作流中，我们只能有一个数据源，这个数据源就是数据收集汇聚的中心，也可以理解为数据总线，所有不同终端的数据打向数据源，再通过数据源根据业务需求分发到不同下游；在离线工作流中，我们可以有多个数据源，不同的数据源代表的是存储在不同地方的离线数据，可以是七牛云存储中的不同文件，又或是HDFS等不同类型的数据仓库。</p>
+<p>不管是实时还是离线，从数据源开始，你就可以根据需要做不同类型的处理。</p>
+<p>最基本的处理是对数据进行一些定制化的计算，比如你可能需要对每天海量的数据进行一个定时分析汇聚的功能，计算每分钟有多少条数据、每小时有多少条数据，从而缩减数据规模节约存储成本，或者从中生成一份数据日报、周报等等；又比如在这个信息爆炸的时代，你从网上抓取了海量的数据，需要对数据进行一些清洗、过滤、删选，以此分析社会热点或其他有价值的信息；又比如你想对数据做一个延伸或扩展，最常见的就是对一个IP获取它的运营商、所在区域等信息。那么你就可以创建一个计算任务，最简单的编写一些SQL语句就可以做数据变换；进阶一些的使用方式就是编写一些UDF(用户自定义的函数)，做一些较为复杂的变化；更高阶的就是直接编写一类插件，直接使用大量Java的类库对数据进行操作。当然，在离线计算中，除了单个数据源的计算任务以外，你还可以对两个数据源，亦或是两个计算任务的结果进行聚合，然后再进行计算等等。计算任务可以满足你对于整个工作流的完整数据处理需求。</p>
+<p>在进行过一个基本的计算以后，可能最常见的一个需求就是对这些计算后的数据进行检索，直白的说就可以查询你的数据。那么你可以创建一个导出到日志检索，在这里你就可以搜索你的计算结果。当然，你的数据在数据源中也完全可以不经过任何计算任务，直接导向日志检索。又或者你希望对数据进行更完善的实时监控和数据可视化处理，那么就可以导出到时序数据库，针对带有时间戳的数据做高性能数据写入和查询优化，满足你针对实时海量数据的即席查询需求。</p>
+<p>另一方面，你工作流计算后的结果，可以直接再次导出到七牛云存储进行永久保存，或者与后续的数据结合进行分析。你也可以理解为通过大数据服务，七牛的云存储变成了一个数据仓库为客户提供服务。之前已经存储在七牛云上的数据(如CDN日志等)，完全可以直接使用我们的大数据平台进行计算，无需任何接入过程。</p>
+<p>为了方便用户充分利用自己的数据，我们甚至提供了导出到 HTTP 服务，用户可以构建自己的 HTTP 服务器来接受经过Pandora大数据平台计算后的数据。</p>
+<h2 id="3-pandora的系统架构与变迁">3. Pandora的系统架构与变迁</h2>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/archpandora.png" alt="图 3 产品架构图">图 3 产品架构图</p>
+<p>图 3 是 Pandora的产品架构图，基本的功能在第 2 节中均已介绍，在此不再赘述，在讲解系统架构之前，让我们对照产品架构进行一些基本的系统组件技术名称的对照说明，以便下文描述简洁便于理解。数据通过我们提供的数据上报工具logkit、各类SDK或者用户直接调用开放API接入，数据进入后无论是数据源本身还是经过计算任务后的临时数据存储节点，我们都一称作消息队列，技术上称之为Pipeline，像不同下游提供导出服务的组件我们称之为Export，在Pipeline中承担各类计算任务处理的组件我们称之为Transform，下游的时序数据库服务我们称之为TSDB，下游的日志检索服务我们称之为LogDB。</p>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/picture4.png" alt="图 4 Pandora系统架构图"> 图 4 Pandora系统架构图</p>
+<p>有了这些基本概念后，让我们对照图 4 Panora系统架构图，开启我们的Pandora架构演进之旅。</p>
+<h3 id="31-数据上报">3.1 数据上报</h3>
+<p>最左侧的组件是数据收集的部分，数据来源于客户各种各样的系统。相信大部分用户在接入大数据平台时，都会面临数据收集这一难题，一方面希望数据不重不漏全部收集上来，一方面又要数据收集尽可能高效且不太消耗机器的各类资源，同时还要满足场景各异的不同情况下的数据收集需求。熟悉这块的朋友可能也早已了解，社区已经有很多不同类型的开源数据收集工具，知名的包括flume、logstash、fluentd、telegraf等等，他们各有利弊，功能上大都满足需求，但是在性能上和一些非通用需求的场景上不尽如人意。为了更好的满足用户不同类型的需求，我们自主研发了一个可以收集各种各样数据源数据的工具<a href="https://github.com/qiniu/logkit">logkit</a>，图 5 是logkit的功能架构示意图。logkit使用go语言编写，以插件的形式定制不同的数据收集解析需求，处理高效、性能损耗低，同时也已经开源（https://github.com/qiniu/logkit/wiki），我们非常欢迎大家一起参与到logkit的使用和代码开发定制中来，为logkit 提提PR，当然，也非常乐意接受您关于logkit的任何意见或建议，只需在github提issues即可。</p>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/picture5.png" alt="图 5 logkit功能架构示意图"> 图 5 logkit功能架构示意图</p>
+<p>有了这样一款数据收集工具，几乎 90% 的数据收集场景我们已经解决了，但是还会有诸如ios、android客户端数据直接上报、页面请求点击数据直接上报等需求，为此我们提供了各类语言的SDK方便用户使用，以弥补logkit功能上无法满足的需求。</p>
+<h3 id="32-大数据总线pipline">3.2 大数据总线Pipline</h3>
+<p>数据收集上来后，就正式进入我们的Pandora大数据平台了。所有上报的数据无论最终是否计算或存储，都会统一暂存进入我们的大数据总线Pipeline。相信经过上面的介绍，很多读者早已发现，Pandora帮助用户根据不同场景选择最适合的大数据分析方式。而这套模式的核心，毋庸置疑，就是处理数据在不同大数据产品间的流转。</p>
+<p>Pipeline就是这样一条数据总线，在数据总线的基础上我们打通一条条管，根据所需的场景导出到后端相应的存储服务上。同时据此来进行资源分配和任务管理。这样一来，就可以避免用户技术选型及技术架构与使用姿势和业务场景不匹配的情况，同时也可以利用云计算的优势，按需分配、快速扩容。</p>
+<h4 id="321-基于confluent的初版">3.2.1 基于confluent的初版</h4>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/Picture6.png" alt="图 6 Pipeline第一版">图 6 Pipeline第一版</p>
+<p>如图 6 所示是我们的第一版架构，实现上我们通过定制开源版本的confluent，并把它作为我们这个架构系统的核心。数据要流入系统，我们首先构建了一个 Points Gate（API 服务器），Points Gate 解析校验用户的数据格式并调用confluent中kafka-Rest提供的rest API 将数据写入到kafka，利用schema-registry完成数据格式的校验以及数据解析，通过kafka获得数据管道的能力。</p>
+<p>在进行元数据创建时，我们的调度器在元数据服务器上创建一个用户元数据存储在MongoDB当中。对于MongoDB的元数据访问，我们构建了一个二级缓存系统（即图中qconf），数据在进入或者导出时都会通过二级缓存访问元数据，这样数据就可以快速得到校验，扛住海量的数据吞吐。Kafka本身包含了Zookeeper组件，我们也借此来保证整体系统组件的服务发现以及数据一致性这两个问题。</p>
+<p>然而，随着应用的增加，数据量越来越大，这样，单个定制版的 Confluent 并不能满足这些数据量增长的业务压力，以及用户不断增加的场景需求。kafka topic(partition)不断增长导致整体响应变慢，无法快速切换灾备等待问题日益凸显。在这个基础上，我们对原本的系统架构进行了调整。</p>
+<h4 id="322-pipeline的升级">3.2.2 Pipeline的升级</h4>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/Picture7.png" alt="图 7 pipeline的升级">图 7 pipeline的升级</p>
+<p>如图 7 所示，我们对Pipeline的第一次整体升级包含了大量的组件基础架构的调整。首先我们构建了Confluent的多集群系统，将单个Confluent集群规模控制在100台机器以内，分区数量控制在1万以内，根据需求对集群进行路由。</p>
+<p>可见通过多集群系统，我们可以合理控制每个confluent集群的规模，同时根据我们的调度器按照需要切换用户到不同的集群上，实现快速切换、扩容、容灾、隔离等调度需求。</p>
+<p>其次我们对Points Gate、Transform、Export中无状态组件进行了容器化处理，利用我们七牛内部的容器云平台，实现了无状态服务的快速部署、扩容以及灰度发布等需求。</p>
+<p>这次架构的调整效果显著，我们成功抗住了每天上百TB，千亿级数据点的数据增量。</p>
+<p>不止于此，为了更高的性能提升以及节约成本，我们在上述升级之后进行了第二次的架构升级。这次升级主要体现在对Confluent的进一步定制（或者说替换），我们不再使用kafka-rest，同时对打点的数据格式进一步优化，又一次节约了近一半的机器成本。</p>
+<h3 id="33-数据导出服务export">3.3 数据导出服务Export</h3>
+<p>在解决了数据总线问题以后，问题的重中之重自然是如何处理数据导出的问题。众所周知，数据导出其实就是从一个上游系统拉取数据，然后将数据再发送到下游系统的过程。但这里面涉及的难点和调整可能大多数都是不为人知的了。在介绍我们的导出服务架构之前，非常有必要描述一下针对海量数据导出，到底有哪些挑战？</p>
+<h4 id="331-数据导出的挑战">3.3.1 数据导出的挑战</h4>
+<p>首先面对的第一大挑战自然是<strong>高吞吐量</strong>的问题，海量数据不断涌入带来的必然问题就是网卡和CPU分配的问题，一旦流量分配不均，就会出现大量因网卡、CPU负载过高带来的延迟，严重影响服务可用性。</p>
+<p>显然，<strong>保证低延迟</strong>就是第二个挑战，一旦各个链路有一个环节配合不均衡，就会带来大量延迟，如何保证导出的上下游始终保持较高的吞吐量，从而保证较低的延迟，是一个非常大的调整。</p>
+<p>为了保证低延迟，就要更好地<strong>适配多种下游</strong>，使其始终保证高吞吐，了解下游不同服务的特性，并针对这些特性动态的调整资源，亦是一个很大的挑战。</p>
+<p>除此之外还有分布式系统的常见问题，需要保证<strong>服务高可用</strong>，以及<strong>水平扩展</strong>的能力。保证任务单元标准化，任务粒度可以切分扩展；保证调度任务节点故障不影响其他节点的正常导出等等。</p>
+<p>最为重要的是<strong>自动化运维</strong>，当导出的任务涵盖数十上百台机器后，人力已经无法精细化处理每台机器的任务分配，资源必须可以自动调度、调整以及构建统一的任务监控。</p>
+<h4 id="332-导出服务功能介绍及架构演进">3.3.2 导出服务功能介绍及架构演进</h4>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/export2x.jpeg" alt="图 8 导出服务功能架构图">图 8 导出服务功能架构图</p>
+<p>让我们来看一下导出服务的功能架构图，如图 8 所示。我们的导出服务主要涉及三个层级，一个是元数据管理，在这一层保证任务的分配以及监控展示；第二层则是任务管理层，除了基本的任务切分、并发管理以及通信协议之外，还包含了压力预估模块，根据之前的数据量预估下一阶段的数据流量，从而调整资源分配；再下一层则是数据处理层，在这一层完成诸如数据预取、数据校验、压缩以及推送到下游等任务。</p>
+<p>在最初的版本中，我们会在 zookeeper 上面创建一个任务(task) ，Export 通过分布式锁对task进行争抢，被抢到的任务则开始直接导出，如图 9 所示。</p>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/Picture8.png" alt="图 9 初版导出服务架构">图 9 初版导出服务架构</p>
+<p>在这样一个初步架构中，我们基本完成了水平扩展以及高可用的需求，同时做了诸如数据预取，延迟报警、数据监控等多种功能和优化。但是流量上来以后，很容易出现某个机器争取的任务流量变大，导致大量数据打到同一台机器上，导致网卡和CPU负载过高，延迟急剧升高。本质上就是流量分布不均匀，导致导出性能低下，机器资源的平均利用率也低。</p>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/Picture9.png" alt="图 10 第一次导出服务架构升级"> 图 10 第一次导出服务架构升级</p>
+<p>此时，我们对该方案进行第一次架构升级，如图 10 所示。我们将原来topic级别的任务按照parition进行分布式消费。为了使得每个partition粒度的任务大体是均等的，我们将partition承载的数据量按照标准化处理，并根据历史流量进行预测，预测结果超过当前我们定制的标准符合的对应容量即触发扩容，这样的标准化有效简化了调度的难度。</p>
+<p>同时我们将原来纯粹的export改为master/worker结构，Master对收集到的任务进行主动权衡分配，根据任务的历史流量进行流量预测、对任务的partition数量、每个export worker的机器资源剩余情况，进行综合调度。对于一些特殊任务做机器黑白名单绑定等功能。</p>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/Picture10.png" alt="图 11 第二次架构升级的导出服务"> 图 11 第二次架构升级的导出服务</p>
+<p>在做了上述工作以后，我们机器的整体利用率有了很大的提升，但是由于下游系统的不同，写入吞吐量始终参差不齐，无法始终保持在一个较高的水平。为了解决该问题，我们再次对架构进行小范围升级，如图 11 所示，我们在导出的export worker端增加了一套对下游系统的适配加速模块。其核心思路就是按照下游的吞吐能力进行自动调节请求体大小以及并发度。这个主要是为了解决上下游传输数据速度不匹配，以及下游吞吐量不稳定的问题。</p>
+<p>类似于Flume的思想，我们构建了一个内存队列，以事务的形式从队列中获取数据（或者失败回滚），根据下游的情况调整单次数据请求的大小和并发度，以及调整出错等待时间等。这样一来，整个导出的吞吐量就可以很有效的进行控制，去除了毛刺，极大的提高了机器资源的使用率以及导出效率。</p>
+<p>解决了数据的导出问题，基本上绝大部分数据流转的问题也都解决了。下面我们开始关注Pandora下游的一系列服务。</p>
+<h3 id="34-时序数据库服务tsdb">3.4 时序数据库服务TSDB</h3>
+<p>TSDB是七牛完全自主研发的分布式时序数据库服务。TSDB针对时序数据定制存储引擎，根据时序数据带有时间戳的特性，我们针对时间戳做特殊的索引，实现数据高速汇入和实时查询获取的能力；同时构建了简单且高性能的HTTP写点和查询接口，为查询聚合数据量身定制了类SQL语言，完全兼容开源社区InfluxDB的API，支持无缝对接到Grafana，对数据进行高比例压缩，实现低成本存储。除此之外，TSDB拥有开源社区版本的InfluxDB所没有的分布式、多集群、高可用，水平扩容、以及分库分表能力。</p>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/Picture11.png" alt="图 12 TSDB 基本结构示意图">图 12 TSDB 基本结构示意图</p>
+<p>如图 12 所示，TSDB是我们基于tsm构建的分布式时序数据库，拥有每秒60万条记录的写入性能以及实时查询聚合分析的能力。在分布式方面，除了基本的多集群、多租户隔离的概念以外，我们还针对性的做了两个强大的扩容功能，一个是根据时序进行纵向集群切割，解决海量数据写入时磁盘的快速扩容问题；另一个则是根据用户的标签进行数据库表横向切割，类似传统数据的分库分表能力。在进行了这两大扩展能力变换后，数据的写入和查询依旧高效，甚至查询速度在分库分表后性能有所提升。</p>
+<p>为了实现这样的扩容功能，我们基于此构建了一个分布式计算引擎，解析用户的SQL并变成一个个执行计划，将执行计划下推至不同的TSM计算引擎实例中进行计算，最后再进行数据reduce计算反馈给用户。</p>
+<p>除了数据写入性能高以外，还支持数据即时查询，数据写入成功即可查询，数据零延迟；同时支持InfluxDB的持续聚合功能，类似于定时任务一样将持续写入的数据不断进行聚合计算；当单个用户数据量过大时，拥有横向拓展能力，集群扩展后写入性能不打折，查询效率更高。针对时序数据的特性，我们将数据进行冷热分离， 对数据按照时间分片，使最近的数据查询性能更高。</p>
+<h3 id="35-日志检索服务logdb">3.5 日志检索服务LogDB</h3>
+<p>在了解完我们的时序数据库以后，让我们来看一下下游的另一大服务，日志检索服务，又称LogDB。日志搜索其实是几乎所有技术开发人员都会需要的服务，传统解决方案(ELK，Elasticsearch、Logstash、Kibana) 针对小数据量不会出现任何问题。但是当数据量过于庞大时，这些方案也就不那么适用了。</p>
+<p>我们LogDB的底层可以通过插件的形式接入不同类型的搜索引擎，包括Solr、Elasticsearch（简称ES）等，目前承载海量数据搜索任务的底层引擎主要使用的是ES。与单纯的使用ES不同，LogDB本身是一套分布式系统，管理的单元可以是一个ES节点，也可以是一个ES集群，所以我们构建了大量的ES集群，不同的集群用以适配不同的用户以及不同的搜索需求。</p>
+<p>大体上我们将搜索的需求分为两类，一类是ELK类需求，针对如程序运行日志、业务访问日志等收集索引，这类需求的普遍特点是数据量大，时效性高，带有时间熟悉，无需存储太长时间，无需更新；另一类需求类似于搜索引擎，数据存在更新需要，且强依赖于不同类型的分词器，数据冷热不明显，不带有明显的时间属性，我们称之为通用检索需求。这两类需求，LogDB都是完全支持的，但是针对这两类需求，我们做的优化不同。</p>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/Picture12.png" alt="图 13 LogDB架构图">图 13 LogDB架构图</p>
+<p>在我们讨论具体的优化之前，让我们先来看一下LogDB的架构图，
+如图 13 所示。首先是数据的写入，LogDB是Pandora平台下游服务，上游主要是之前提到的Pipeline以及Export。Export导出的数据通过apisever将数据导入到不同的ES集群当中，根据不同用户的需求给他们提供不同的集群服务，集群之间也可以相互进行切换。</p>
+<p>那么如何确认数据到底数据哪个集群呢？为了使得海量的数据快速确认，我们对元数据进行了多级缓存，包括MongoDB的实际存储、memcached的二级缓存，以及本地的缓存，极大提高了数据校验的速度。除此之外，LogDB本身也是Pandora的用户，使用了TSDB对自身数据进行监控，使用七牛云存储进行数据快照与备份。同时将计费数据导出到云存储，利用我们的XSpark机器进行离线计算。</p>
+<p>架构中剩下的部分都是我们针对不同索引做的优化。简而言之，我们首先构建了一个高性能队列，可以让外部的数据持续高吞吐写入；同时我们还会根据历史流量进行动态索引平衡、不同集群的索引跨集群平衡、索引定时清理、VIP集群隔离等功能；并且会对 ES 的搜索进行分步搜索控制，缓存历史搜索，优化用户搜索的效率和体验等等。关于这一块的详细内容，我们团队在之前已经分享过，可以阅读这篇<a href="https://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=2653548856&amp;idx=1&amp;sn=eda083752319e317c6903017c84d849d&amp;chksm=813a60a0b64de9b61d13bd889511d0e8e77b3354be3fffaf701e71c92d878a9661ef101e368c&amp;mpshare=1&amp;scene=1&amp;srcid=0707Brg3flFvbTTiMcm964N7&amp;key=3ca3acd7b7e7948679c67e2518bdce3c2e0e94872c6db219e2d49a46ea12b83c037ad5763bd5cfb7eb257d5ae44bbdbd8e62230b64e7f9a7c4a9ff975deda6c176fca62b6c89ffe44368e4d2eae328d0&amp;ascene=0&amp;uin=NzA1NjA1MDIw&amp;devicetype=iMac+MacBookPro12%2C1+OSX+OSX+10.12.3+build(16D32)&amp;version=12020810&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=5gBytdtlUoFWshY%2FtouMVkdHhvk%2FyIK3bG6da%2FPeEFVbCbtLm1rwsRWOC1V0cpSW">《基于Elasticsearch构建千亿流量日志搜索平台实战》</a>公众号文章了解更详细的内容。</p>
+<h3 id="36-xspark">3.6 XSpark</h3>
+<p>最后有读者看到这里，也许会忍不住想问，如果只是纯粹的想使用一个高度灵活的Spark集群，不希望经过Pandora各类复杂的计算、导出，甚至数据都没存储在七牛，可不可以享受七牛的Spark大数据服务呢？是的，完全可以，这就是我们的XSpark！</p>
+<p>XSpark不仅与Pandora整体完全打通，可以把七牛云存储当成一个数据仓库使用，又完全可以独立使用。即用户除了在Pipeline里面做离线计算之外，你还可以选择直接一键生成一个基于容器云的个人专属Spark集群，直接读取你自己的数据源，只要Spark支持的数据格式，XSpark都支持。如果你的数据已经存储在七牛云存储上，XSpark可以直接高效读取并计算，XSpark是Pandora提供给大数据高端用户的一个高度灵活的离线计算产品。</p>
+<p>显然，容器云所具有的优势XSpark全都具备，你完全可以根据需要动态伸缩的XSpark资源数量与规格，按需启停等等。</p>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/XSpark%E6%9E%B6%E6%9E%84.png" alt="图 14 XSpark 架构图 ">图 14 XSpark 架构图</p>
+<p>图 14 是 XSpark 的架构图。我们将Spark的master和worker分为不同的容器，首先启动Spark的master容器，获取master地址，然后再根据用户的配置，启动相应数量的worker容器，worker容器自动向master注册。同时容器云的支撑使得我们的XSpark可以在运行过程中进行缩容扩容。</p>
+<p>同时XSpark也开放了完整的Spark监控以及管理控制页面，完全兼容开源社区的Zepplin使用方式。</p>
+<h2 id="4-基于pandora的大数据实战">4 基于Pandora的大数据实战</h2>
+<p>那么我们这样的一套系统，用户体验到底是怎么样的呢？下面我们以收集最常见的nginx日志为例来看下实际体验。</p>
+<p>首先，为了让用户最舒适的将数据上传到我们平台，用户可以直接部署我们的 logkit 工具，然后打开logkit配置页面，如图15所示。</p>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/logkit1.png" alt="图 15 logkit 配置页面">图 15 logkit 配置页面</p>
+<p>根据需要一步步选择数据源、配置解析方式、发送方式最后确认并添加。当然，在配置解析方式的页面，你还可以通过页面预先尝试解析器配置是否正确，如图16所示。</p>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/logkit2.png" alt="图 16 logkit 配置解析器">图 16 logkit 配置解析器</p>
+<p>通过简单的几步配置后，你的数据便已经上传到Pandora平台，并自动生成了工作流，并且创建好了导出到日志检索服务，如图 17 所示。</p>
+<p><img src="http://op26gaeek.bkt.clouddn.com/logdbexport.png" alt="图 17 自动创建的实时工作流">图 17 自动创建的实时工作流</p>
+<p>在工作流中，你还可以创建一些计算任务做一些分析计算，导出到云存储作为数据计算，导出到时序数据库进行复杂的SQL查询。之后的大数据分析工作也就会相对容易一些。有了这些准备工作，我们就可以开始进行日志检索查询（图 18 所示）、数据可视化（如图 19 所示）、离线分析（如图 20 所示）等工作。</p>
+<p><img src="http://op26gaeek.bkt.clouddn.com/logdbsearch.png" alt="图18 日志检索示意图">图18 日志检索示意图</p>
+<p><img src="http://op26gaeek.bkt.clouddn.com/logdbgrafanawhole.png" alt="图 19 Grafana数据可视化">图 19 Grafana数据可视化</p>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/xspark12.png" alt="图 20 使用XSpark离线分析">图 20 使用XSpark离线分析</p>
+<h3 id="41-实时数据分析实战">4.1 实时数据分析实战</h3>
+<p>在我们这仅仅两三步简单的操作以后，就可以看到哪些十分有价值的数据呢？</p>
+<ul>
+<li>
+<p>实时总用户访问量(请求数统计)，如图 21 所示
+<img src="http://ou3jgt6kj.bkt.clouddn.com/totalrequest.png" alt="图 21 实时总用户访问量">图 21 实时总用户访问量</p>
+</li>
+<li>
+<p>机器请求数随时间变化趋势，如图 22 所示</p>
+</li>
+</ul>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/requestnum.png" alt="图 22 机器请求数随时间变化趋势">图 22 机器请求数随时间变化趋势</p>
+<ul>
+<li>实时请求状态码占比，如图 23 所示</li>
+</ul>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/statscode.png" alt="图 23 实时请求状态码占比">图 23 实时请求状态码占比</p>
+<ul>
+<li>实时请求TOP排名，如图 24 所示</li>
+</ul>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/toprequest.png" alt="图 24 实时请求TOP排名">图 24 实时请求TOP排名</p>
+<ul>
+<li>实时请求来源IP TOP排名，如图 25 所示</li>
+</ul>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/topip.png" alt="图 25 实时请求来源IP TOP排名">图 25 实时请求来源IP TOP排名</p>
+<ul>
+<li>响应时间随时间变化趋势图，如图 26 所示</li>
+</ul>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/responsetime.png" alt="图 26 响应时间随时间变化趋势图">图 26 响应时间随时间变化趋势图</p>
+<ul>
+<li>实时用户请求的客户端TOP排名，如图 27 所示</li>
+</ul>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/topagent.png" alt="图 27 实时用户请求的客户端TOP排名">图 27 实时用户请求的客户端TOP排名</p>
+<ul>
+<li>实时根据不同情况进行具体数据的查询，包括状态码、响应时间范围进行筛选等，如图 28 所示</li>
+</ul>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/detail.png" alt="图 28 实时根据不同情况进行具体数据的查询">图 28 实时根据不同情况进行具体数据的查询</p>
+<ul>
+<li>其他更多自定义配置&hellip;</li>
+</ul>
+<p>自定义的 Grafana DashBoard 配置示例，如图 29 所示</p>
+<p><img src="http://op26gaeek.bkt.clouddn.com/nginxrespcode.png" alt="图 29 Grafana DashBoard配置示例">图 29 Grafana DashBoard配置示例</p>
+<p>可见，仅仅几步简单的操作，你就借助Pandora实现了海量日志的实时监控，通过 nginx日志 完整而详尽的 了解业务的流量入口的各类情况。</p>
+<h3 id="42--实时数据报警">4.2  实时数据报警</h3>
+<p>有了实时的数据监控，怎么能少得了报警呢，我们还提供了包括 Slack， Email邮箱，Webhook等十来种报警方式。</p>
+<p>比如说如图 30 ，我们设置了一个响应时间大于1000ms的报警</p>
+<p><img src="http://op26gaeek.bkt.clouddn.com/alerting.png" alt="图 30 响应时间大于1000ms报警">图 30 响应时间大于1000ms报警</p>
+<p><strong>LogDB采用的是基于Elasticsearch协议的报警，这个基于Elasticsearch协议的Grafana报警功能是七牛独家哦！TSDB是基于InfluxDB协议，使用TSDB同样具备上述实时监控报警功能噢。</strong></p>
+<p>那么您可以看到报警形式是怎么样的呢？</p>
+<p><img src="http://op26gaeek.bkt.clouddn.com/slackalerting.png" alt="图 31 Slack报警示意图">图 31 Slack报警示意图</p>
+<p>看到图 31 Slack上的报警了吗？除了基本的文字，还会带上酷炫的报警图片！图片都会被存储到您七牛云存储的bucket里面！</p>
+<p><img src="http://op26gaeek.bkt.clouddn.com/nginxalert.png" alt="图 32 邮件报警示意图">图 32 邮件报警示意图</p>
+<p>如图 32 所示，常规的邮件报警内容也一样酷炫！</p>
+<h3 id="43-离线分析">4.3 离线分析</h3>
+<p>如果你使用离线分析，那么可以获得的内容就更多了，只要你数据拥有的维度，就可以统计出来，比如我们以CDN日志为例。</p>
+<ul>
+<li>用户地区分布，如图 33 所示</li>
+</ul>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/xspark1.png" alt="图 33 用户地区分布">图 33 用户地区分布</p>
+<ul>
+<li>用户机型分布，如图 34 所示</li>
+</ul>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/XSpark2.png" alt="图 34 用户机型分布述">图 34 用户机型分布述</p>
+<ul>
+<li>活跃用户数随时间变化趋势，如图 35 所示</li>
+</ul>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/XSpark3.png" alt="图 35 活跃用户数随时间变化趋势">图 35 活跃用户数随时间变化趋势</p>
+<ul>
+<li>各类手机图片下载数，如图 36 所示</li>
+</ul>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/XSpark4.png" alt="图 36 各类手机图片下载数">图 36 各类手机图片下载数</p>
+<ul>
+<li>不同时间平均下载速度，如图 37 所示</li>
+</ul>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/XSpark5.png" alt="图 37 不同时间平均下载速度">图 37 不同时间平均下载速度</p>
+<ul>
+<li>不同时间正常响应比重，如图 38 所示</li>
+</ul>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/XSpark6.png" alt="图 38 不同时间正常响应比重">图 38 不同时间正常响应比重</p>
+<ul>
+<li>查询用户系统分布，如图 39 所示</li>
+</ul>
+<p><img src="http://ou3jgt6kj.bkt.clouddn.com/XSpark7.png" alt="图 39 查询用户系统分布">图 39 查询用户系统分布</p>
+<p>除了上述这些，还支持更细粒度的下钻功能，可以全方位无死角分析你的海量数据。</p>
+<h2 id="5-总结">5 总结</h2>
+<p>至此，本次的Pandora大数据平台的架构演进与使用实战算是介绍完了，但是我们Pandora大数据产品的迭代还在不断向前，还有大量大数据平台建设的细节等待我们去完善。欢迎广大朋友来使用我们Pandora的大数据产品，同时也欢迎给我们提提建议，我们非常愿意倾听您的观点！</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+    </div>
+  </div>
+
+  <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+</article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info" >
+    &copy;  奇迹之流WonderfloW 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

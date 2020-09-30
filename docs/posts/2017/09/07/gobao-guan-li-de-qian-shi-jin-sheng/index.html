@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Go包管理的前世今生 | 奇迹之流WonderfloW</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.75.1" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Go包管理的前世今生" />
+<meta property="og:description" content="原文首发自InfoQ，《Go包管理的前世今生》 说实话，Golang对一个新人真的挺不友善的，因为一上手要了解的概念。你看人家Java，上来一个项目mvn install一下就完事了，赶紧利落。但是Golang就麻烦了，你得先了解什么是GOPATH。我当年刚接触Golang真正开始做项目的时候，只知道按要求配置环境变量，对GOPATH真正理解可能都是好几个月以后的事情了。说白了，还是因为懒。真正做项目的人，有多少有耐心砍柴磨刀，出现一个东西就研究半天啊，我们只是想要Copy-Paste而已。 但是不得不承认，对于今天讨论的Go包管理的话题，如果你想理解Golang的包管理机制，连GOPATH都不想充" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wonderflow.info/posts/2017/09/07/gobao-guan-li-de-qian-shi-jin-sheng/" />
+<meta property="article:published_time" content="2017-09-07T10:19:43+00:00" />
+<meta property="article:modified_time" content="2017-09-07T10:19:43+00:00" />
+<meta itemprop="name" content="Go包管理的前世今生">
+<meta itemprop="description" content="原文首发自InfoQ，《Go包管理的前世今生》 说实话，Golang对一个新人真的挺不友善的，因为一上手要了解的概念。你看人家Java，上来一个项目mvn install一下就完事了，赶紧利落。但是Golang就麻烦了，你得先了解什么是GOPATH。我当年刚接触Golang真正开始做项目的时候，只知道按要求配置环境变量，对GOPATH真正理解可能都是好几个月以后的事情了。说白了，还是因为懒。真正做项目的人，有多少有耐心砍柴磨刀，出现一个东西就研究半天啊，我们只是想要Copy-Paste而已。 但是不得不承认，对于今天讨论的Go包管理的话题，如果你想理解Golang的包管理机制，连GOPATH都不想充">
+<meta itemprop="datePublished" content="2017-09-07T10:19:43+00:00" />
+<meta itemprop="dateModified" content="2017-09-07T10:19:43+00:00" />
+<meta itemprop="wordCount" content="5535">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go包管理的前世今生"/>
+<meta name="twitter:description" content="原文首发自InfoQ，《Go包管理的前世今生》 说实话，Golang对一个新人真的挺不友善的，因为一上手要了解的概念。你看人家Java，上来一个项目mvn install一下就完事了，赶紧利落。但是Golang就麻烦了，你得先了解什么是GOPATH。我当年刚接触Golang真正开始做项目的时候，只知道按要求配置环境变量，对GOPATH真正理解可能都是好几个月以后的事情了。说白了，还是因为懒。真正做项目的人，有多少有耐心砍柴磨刀，出现一个东西就研究半天啊，我们只是想要Copy-Paste而已。 但是不得不承认，对于今天讨论的Go包管理的话题，如果你想理解Golang的包管理机制，连GOPATH都不想充"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        奇迹之流WonderfloW
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/archives/" title="Archives page">
+              Archives
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
+              Posts
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
+  <header class="mt4 w-100">
+    <aside class="instapaper_ignoref b helvetica tracked">
+      
+      POSTS
+    </aside>
+    
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://wonderflow.info/posts/2017/09/07/gobao-guan-li-de-qian-shi-jin-sheng/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2017/09/07/gobao-guan-li-de-qian-shi-jin-sheng/&amp;text=Go%e5%8c%85%e7%ae%a1%e7%90%86%e7%9a%84%e5%89%8d%e4%b8%96%e4%bb%8a%e7%94%9f" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://wonderflow.info/posts/2017/09/07/gobao-guan-li-de-qian-shi-jin-sheng/&amp;title=Go%e5%8c%85%e7%ae%a1%e7%90%86%e7%9a%84%e5%89%8d%e4%b8%96%e4%bb%8a%e7%94%9f" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+    <h1 class="f1 athelas mt3 mb1">Go包管理的前世今生</h1>
+    
+    
+    <time class="f6 mv4 dib tracked"
+      datetime="2017-09-07T10:19:43Z">September 7, 2017</time>
+
+    
+    
+  </header>
+  <div
+    class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-100-l"><p>原文首发自InfoQ，<a href="http://www.infoq.com/cn/articles/history-go-package-management">《Go包管理的前世今生》</a></p>
+<p>说实话，Golang对一个新人真的挺不友善的，因为一上手要了解的概念。你看人家Java，上来一个项目<code>mvn install</code>一下就完事了，赶紧利落。但是Golang就麻烦了，你得先了解什么是GOPATH。我当年刚接触Golang真正开始做项目的时候，只知道按要求配置环境变量，对GOPATH真正理解可能都是好几个月以后的事情了。说白了，还是因为懒。真正做项目的人，有多少有耐心砍柴磨刀，出现一个东西就研究半天啊，我们只是想要Copy-Paste而已。</p>
+<p>但是不得不承认，对于今天讨论的Go包管理的话题，如果你想理解Golang的包管理机制，连GOPATH都不想充分理解一下，那可能真的不需要看这篇文章，下次遇到了照着README一步步老老实实来就行了。照着README文档搞不定怎么办？给项目维护者提BUG啊！</p>
+<h2 id="gopath">GOPATH</h2>
+<p>言归正传，还是回到GOPATH的理解上来。那么，GOPATH是什么？有什么用？本质上GOPATH是一个系统的环境变量，就是Go语言用来存放代码依赖的地方。</p>
+<p>很多人搞不清 GOPATH 、 GOROOT 的区别，其实没必要理解的很复杂。当Go语言的安装包刚下载完毕的时候，你把它解压或者直接安装到的那个目录，就是 GOROOT 目录，此时你需要做一些额外的配置，将GOROOT这个环境变量设置一下。当然，对应的bin目录你也得设置一下，否则操作系统找不到<code>go</code>的执行文件。</p>
+<p>比如你解压后安装到 <code>/opt/go/</code> 目录下了，又或者在Windows下面你安装到了C盘 <code>C:\\GO</code>，都是OK的，区别只是不同操作系统环境下设置的方法不同而已。具体怎么设置我就不赘述了。</p>
+<p>到此为止，你已经可以忘记 <code>GOROOT</code> 这个事情了，因为已经解决了所有跟它有关的事情。但是我们还是要解释下，为什么要设置这个东西？道理很简单，Golang的很多默认机制都很喜欢从环境变量里面去读内容，设置了 <code>GOROOT</code> 环境变量，相当于告诉所有读取这个变量的程序我们Golang的源码位置，便于代码的引用。可以理解为 GOROOT 就是三原色，用它可以组合出很多不同的色彩，是最初始的代码依赖。GOROOT 里面的很多代码都是系统驱动程序以及系统调用。</p>
+<p>那么我们有了三原色，想要配出更多的颜色，我们调配颜色的过程中组合出的颜色，也就是新写出来的代码包放在哪里呢？ 你一定已经猜到了，这就是 <code>GOPATH</code> 目录的作用。所有Golang安装包以外的代码，无论是你自己写的，还是第三方的无比成熟的包，都需要放置在<code>GOPATH</code>下面。</p>
+<p>所以你不要再问为什么我直接 <code>git clone</code> 下来的代码怎么各种报错说找不到依赖啦，你设置 <code>GOPATH</code> 了吗？</p>
+<p>那么怎么设置 <code>GOPATH</code> 呢？ 这就根据个人口味定了，很随意。有的人选择用隐藏目录，比如 <code>~/.go/</code> 作为<code>GOPATH</code>，也有的人设置在<code>GOROOT</code>的隔壁，新建了个目录叫<code>/opt/gopath</code>，对于Windows用户来说也是如此，当然你完全可以设置环境变量把自己在自己的D盘下也创建一个叫gopath的目录<code>D:\\Gopath</code>，然后设置下环境变量。而我个人则更偏爱<code>/home/sunjianbo/gopath</code>这个目录，也就是<code>~/gopath</code>。</p>
+<p>那么我可不可以有多个GOPATH目录呢？当然可以，设置系统环境变量的时候就是可以放多个值的嘛。</p>
+<p>你完全可以设置 <code>export GOPATH=~/gopath1:~/gopath2:~/gopath3</code>。在配置的这些目录中，Go程序会依次去寻找有没有对应的依赖包。</p>
+<p>所以是不是有的读者已经想明白最原始的包管理方法了呢？</p>
+<p>公布答案，就是每个项目做一个 <code>GOPATH</code>。</p>
+<p>具体而言，假设我们有个项目叫 <code>tastego</code>,我们在里面写个脚步，内容如下：</p>
+<pre><code>export GOPATH=$PWD/tastego:$GOPATH
+</code></pre><p>只要一行，简单到任性。当然，最好再加一行，把GOPATH下的bin路径加上，这样<code>go install</code>出来的内容也能开箱即用。</p>
+<pre><code>export PATH=$PATH:$PWD/tastego/bin
+</code></pre><p>对于每个项目的依赖，分门别类的放在对应的源码目录下。</p>
+<pre><code>tastego/
+    src/
+        github.com/
+            wonderflow/...
+        qiniu/...
+        golang.org/...
+    bin/
+    pkg/
+</code></pre><p>所以，你可能不信，最开始Go官方根本没有提供什么包管理机制的时候，好多Go语言玩家，都是用这样的方式在玩。照样玩的顺风顺水，数十上百万行代码不在话下。</p>
+<p>但是值得一提的是，我们观察到 <code>GOPATH=$PWD/logkit:$GOPATH</code> 这个结构是一个递归的结构，不仅可以这么写，换个方式<code>GOPATH=$GOPATH:$PWD/logkit</code> 也是有效的。但是这两种写法的利弊是不同的。先说结论，这两种方式我都不推荐。</p>
+<ul>
+<li><code>GOPATH=$PWD/logkit:$GOPATH</code> 这个写法是当前项目的目录在前，所以遇到新的项目，永远在gopath的最前面。这个很大的好处就是当你遇到多个包名称完全相同的时候，用的默认是最前面的包，所以包冲突的概率会降到最低。坏处也显而易见，你 <code>go get</code> 下来的代码包，会进入到最前面的这个目录，导致每次 <code>go get</code>的位置是不确定的，尤其是环境变量被无意中clean后，你甚至需要重新 <code>go get</code>一遍。</li>
+<li><code>GOPATH=$GOPATH:$PWD/logkit</code> 这个写法就保证了顺序的稳定性，后来的包一定在后面，但是弊端就是你很快就要出现包版本冲突的问题了。</li>
+</ul>
+<p>当然，上述做法还有一个巨大的缺点，就是当你的项目大了以后，你可能不得不把半个Github的代码都放在你的单个代码库（Repo）下面。</p>
+<h2 id="百花齐放">百花齐放</h2>
+<p>终于，在Golang官方面对GOPATH管理的各种乱象始终无动于衷的时候，社区看不下去了，相继出现各类包管理工具。</p>
+<p>2013年的时候，大名鼎鼎的<a href="https://github.com/tools/godep">Gedep</a>工具诞生了。这是社区第一个包管理工具，受到了大家的热烈追捧。原理非常简单，就是把我们上一节讲的方式，通过脚本来实现。把所有的源码保存到一个叫 <code>Godeps/_workspace/</code> 的目录下，然后将这个 <code>Godeps/_workspace/</code> 目录作为唯一的 <code>GOPATH</code>. 提供了一系列包括 <code>godep save</code> 、 <code>godep restore</code> 这样方便快捷的把所有依赖包都保存到 <code>Godeps/_workspace/</code> 目录下，同时又可以快速的通过<code>godep</code> 恢复 <code>GOPATH</code>，相当于对<code>GOPATH</code>及源码的版本做了一次快照。当然，它并没有解决你一次<code>git clone</code>需要下载半个github的难题。</p>
+<p>但是就在这一年，Docker开始火起来了，所以好多Golang项目构建Dockerfile做测试的起手式就是：</p>
+<pre><code>ADD . /app/xxx/
+ENV GOPATH /app/xxx/Godep/_workspace
+</code></pre><p>一下子所有依赖全都有了，确实很方便。</p>
+<p>但是在当时（2013~2014年），这个工具依然没有解决我的版本问题，依然没有解决我依赖的包如果还依赖许多别的包怎么办的问题。于是到了2014年，号称 <code>参照了其他语言的包管理工具**最佳实践**</code> 的 <a href="https://github.com/Masterminds/glide">glide</a> 包管理工具诞生了。</p>
+<p>那么它到底凭什么号称自己是<code>最佳实践</code>呢？它的<code>最佳</code>体现在它的包管理哲学上，一旦你安装完成<code>glide</code>以后，一个<code>glide create</code>命令，就会完全搞定所有包依赖的问题。至于说构建时有多个版本可以用，依赖怎么选、选哪个的问题，它会帮你搞定。</p>
+<p>那如果我希望自己指定包版本呢？当然也没问题，只要在 <code>glide.yaml</code> 配置文件中填写好你对应的包版本、或者版本的范围，glide 会在这个范围内选定。</p>
+<p>所以对于从零构建项目的新用户来说，<code>glide</code> 一定是个不错的选择，它帮你处理了所有的包依赖问题。但是对于一个已经有一些历史包袱的项目来说，使用 <code>glide</code> 可能就有些尴尬了。尤其是你的项目里本来就存在一些依赖冲突的问题，glide 还非要帮你确定使用哪个依赖，导致最终还是运行不起来。</p>
+<p>所以<a href="https://github.com/Masterminds/glide/issues/249">有人</a>就问了，“可不可以不要绝对的给我最佳实践，把我的依赖全导进来，一步步来行么？” 官方就说，&ldquo;我们的设计哲学是glide管理下的每一步都是可执行的，不能只走半步！&rdquo; 但是您没给人解决问题啊，最终还是执行不了，这就很僵……</p>
+<p>也许正是理念的不同，所以 <code>glide</code> 号称“最佳实践”但却并未一统江湖。</p>
+<p>这段时间还有诸如 <code>gopkg.in</code>、<code>gom</code> 等包管理工具诞生，其理念都比最初的<code>godep</code>先进，你说与 <code>glide</code> 比没有更多特色，都加入了包版本的概念。</p>
+<h2 id="vendor">Vendor</h2>
+<p>时间走到了2015年，Golang官方终于看不下去了，在推出go1.5版本的同时，首次实验性质的加入了 <code>vendor机制</code> 功能。当然，这个功能毕竟是实验性质的，默认情况下是关闭的，导致大多数用户实际上根本不会用它。直到2016年，在官方推出go1.6版本的时候，<code>vendor机制</code> 才默认变成开启的状态。</p>
+<p>那么到底什么是 <code>vendor机制</code> 呢？ 通俗的说，就是在你的项目中包含了一个<code>vendor</code>文件夹，go语言会把它默认为一个GOPATH。于是，你就可以在里面放你的依赖库啦。</p>
+<p>举例来说，假设你托管在github上的项目是这样的，项目名称为tastego:</p>
+<pre><code>tastego/
+    main.go
+    common/
+        common.go
+    util/
+        util.go
+</code></pre><p>其中除了 main.go 主函数以外，还包含2个自己写的库(package)，一个是common，一个是util，那么为了让项目可以正常编译，这2个库应该在GOPATH中，那么实际上在GOPATH的结构下，你的项目目录是这样的（wonderflow是我的github ID）：</p>
+<pre><code>$GOPATH/
+    src/
+        github.com/
+            wonderflow/
+                tastego/
+                    main.go
+                    common/
+                        common.go
+                    util/
+                        util.go
+</code></pre><p>然后加入了vendor机制后，你的项目目录下增加一个vendor的文件夹，里面可以放别的依赖，形式上就是：</p>
+<pre><code>$GOPATH/
+    src/
+        github.com/
+            wonderflow/
+                tastego/
+                    main.go
+                    common/
+                        common.go
+                    util/
+                        util.go
+                    vendor/
+                        github.com/
+                        qiniu/
+                            ...
+                    golang.org/
+...
+</code></pre><p>让我们再回顾一下本文刚开始描述的基于GOPATH的包管理方法：</p>
+<pre><code>tastego/
+    src/
+        github.com/
+            wonderflow/...
+        qiniu/...
+        golang.org/...
+    bin/
+    pkg/
+</code></pre><p>看上去非常相似，只是有了vendor，就有了官方的正名！并且你再也不需要手工（半手工）修改GOPATH，项目的形态也跟以前的统一起来了，好处显而易见。</p>
+<p>但是问题就真的解决了吗？实际上并没有全部解决问题，反而由于在随后2016、2017年，vendor机制成为正式的Go规则，问题日益严重。</p>
+<ol>
+<li>嵌套的vendor目录问题：vendor目录下面的项目里面的vendor目录怎么办？</li>
+<li>vendor机制本身没有版本概念，不同版本间类型不兼容问题依旧存在。</li>
+<li>与其他 GOPATH 下的包init函数冲突问题：出现了相同的包，重复的init() 函数又怎么办？</li>
+</ol>
+<p>所以Golang团队成员也召开了大会，非常赞同社区里各种包管理工具的理念，确实有必要对包管理提出一个统一的规则，来解决上面的问题。但是问题不是没有规则，而是规则太多了。往往就是一个意见不合，一下子就杀出来一个新的工具。仅官方推荐的包管理工具就有15种之多。</p>
+<ul>
+<li><a href="https://github.com/golang/dep">dep</a></li>
+<li><a href="https://github.com/kovetskiy/manul">manul</a> - Vendor packages using git submodules.</li>
+<li><a href="https://github.com/tools/godep">Godep</a></li>
+<li><a href="https://github.com/kardianos/govendor">Govendor</a></li>
+<li><a href="https://github.com/hectorj/godm">godm</a></li>
+<li><a href="https://github.com/kr/vexp">vexp</a></li>
+<li><a href="https://github.com/forestgiant/gv">gv</a></li>
+<li><a href="https://github.com/FiloSottile/gvt">gvt</a> - Recursively retrieve and vendor packages.</li>
+<li><a href="https://github.com/govend/govend">govend</a> - Manage dependencies like <code>go get</code> but for <code>/vendor</code>.</li>
+<li><a href="https://github.com/Masterminds/glide">Glide</a> - Manage packages like composer, npm, bundler, or other languages.</li>
+<li><a href="https://github.com/dpw/vendetta">Vendetta</a></li>
+<li><a href="https://github.com/rancher/trash">trash</a></li>
+<li><a href="https://github.com/toxeus/gsv">gsv</a></li>
+<li><a href="https://github.com/mattn/gom">gom</a></li>
+<li><a href="https://github.com/yaa110/rubigo">Rubigo</a> - Golang vendor utility and package manager</li>
+</ul>
+<p>具体的可以参见官方的wiki页面： <a href="https://github.com/golang/go/wiki/PackageManagementTools">https://github.com/golang/go/wiki/PackageManagementTools</a></p>
+<p>所以Go官方也开始尝试把包管理做成 go tools 工具链中的一个，官方的包管理工具就是 <a href="https://github.com/golang/dep">dep</a> 但是目前这个项目还不成熟，还没有纳入到工具链中。</p>
+<p>但是官方的建议已经很明显了，让大家尽量使用包管理工具去引入依赖，当然最好是尽量使用标准库；另一方面则是尽量使用现有的包管理工具，而不是自己再去造一套规则。</p>
+<p>所以，我们也来学习一下包管理工具该怎么用，经过多次对比调研，笔者推荐
+<a href="https://github.com/kardianos/govendor">Govendor</a> 工具，所以也以之为例介绍。</p>
+<h2 id="govendor">Govendor</h2>
+<p>Govendor 本质上就是把源码拷贝到vendor目录下，通过在vendor目录维护一个 vendor.json 的文件，指定使用的包版本。整个目录结构清晰，在同步到github时，既可以把代码直接全部包含到项目中，也可以用 <code>.gitignore</code> 忽略依赖的库并通过 <code>govendor sync</code> 同步。</p>
+<h3 id="安装">安装</h3>
+<p>安装就跟所有golang的工具一样，<code>go get</code> 即可.</p>
+<pre><code>go get -u github.com/kardianos/govendor
+</code></pre><h3 id="初始化项目">初始化项目</h3>
+<p>对于一个现有的项目，没有使用过任何包管理工具的话，开始使用Govendor 非常简单。</p>
+<p>进到项目目录下，执行初始化：</p>
+<pre><code>cd &quot;my project in GOPATH&quot;
+govendor init
+</code></pre><p>将现有依赖加入到当前项目的 vendor 中管理。</p>
+<pre><code>govendor add +external
+</code></pre><p>此时，你已经顺利将现有项目切换到govendor管理了。</p>
+<h3 id="项目过程中的常用命令">项目过程中的常用命令</h3>
+<p>初始化项目完毕后，就到了项目常规管理阶段，通常情况下，会有下列这些场景的需求。</p>
+<h4 id="添加依赖">添加依赖</h4>
+<ul>
+<li>如果你本地GOPATH中已经存在，使用 <code>govendor add</code></li>
+</ul>
+<pre><code># 指定版本的commit，包名后跟 @ 符号加上 commit ID
+govendor add golang.org/x/net/context@a4bbce9fcae005b22ae5443f6af064d80a6f5a55
+# 指定版本名称，包名后跟 @ 符号加上版本名称或分支名称
+govendor add golang.org/x/net/context@v1   # Get latest v1.*.* tag or branch.
+</code></pre><ul>
+<li>
+<p>如果你本地不存在，使用 <code>govendor fetch</code>， 其他指定版本的方式与 <code>govendor add</code> 相同</p>
+</li>
+<li>
+<p>一次性把所有项目的依赖库全加载进来，就是我们初始化时介绍的命令。</p>
+</li>
+</ul>
+<pre><code>govendor add +external
+</code></pre><h4 id="移除依赖">移除依赖</h4>
+<ul>
+<li>移除一个依赖</li>
+</ul>
+<pre><code>govendor remove golang.org/x/net/context
+</code></pre><ul>
+<li>移除所有项目已经不用的依赖</li>
+</ul>
+<pre><code>govendor remove +unused
+</code></pre><h4 id="更新依赖">更新依赖</h4>
+<p>当然你可以选择 <code>govendor remove</code> ，然后再 <code>govendor add</code>。</p>
+<p>你还可以直接使用 <code>govendor update</code> 更新本地GOPATH中已经更新的包。</p>
+<p>若本地不是最新的或不存在，请用 <code>govendor fetch</code> 更新。</p>
+<pre><code>govendor update golang.org/x/net/context@a4bbce9fcae005b22ae5443f6af064d80a6f5a55
+</code></pre><h4 id="同步govenodr包">同步govenodr包</h4>
+<p>一般情况下，开源项目的协作过程中，其他人更新了项目的govendor，那么你也要同步过来，直接使用下面的命令即可。</p>
+<pre><code>govendor sync
+</code></pre><h4 id="查看本地依赖以及包状态">查看本地依赖以及包状态</h4>
+<p>通常情况下拿到一个项目可能会想要直观的了解他有哪些依赖关系，使用 <code>govendor list</code>即可查看。</p>
+<p>纯粹使用 <code>govendor list</code> 价值不大。</p>
+<p>有意思的是，Govendor给Golang的依赖包加入了状态描述，结合各类vendor的状态参数进行各类操作就很有意思。</p>
+<ul>
+<li>状态一共有如下几类：</li>
+</ul>
+<pre><code>	+local    (l) 仅存在项目中的包
+	+external (e) 在GOPATH中有，但是项目中没有的包
+	+vendor   (v) 在项目vendor目录中的包
+	+std      (s) 使用golang标准库
+
+	+excluded (x) 项目中不包含且明确申明要排除在外的包
+	+unused   (u) 在vendor目录中，但实际项目没有用到的包
+	+missing  (m) 项目中用到但是找不到的包（此时需要govendor fetch获取）
+
+	+program  (p) 带有main函数入口的包
+
+	+outside  所有外部包组合， 包括 （+external +missing）
+	+all     列出所有的包
+</code></pre><p>这些状态信息可以与其他命令连用，比如</p>
+<pre><code>govendor add +external
+</code></pre><pre><code>govendor remove +unused
+</code></pre><p>最酷的是，状态还可以做逻辑 <code>与</code> 以及 <code>或</code> 的操作，比如：</p>
+<pre><code>+local,program (local AND program) 
+表示项目中的包同时又是主函数入口
+
++local +vendor (local OR vendor) 
+表示项目中的包以及vendor中的包
+
++vendor,program +std ((vendor AND program) OR std) 
+表示vendor中的包同时带有主函数入口，再加上标准库的包
+
++vendor,^program (vendor AND NOT program)
+表示vendor目录中的包，但是不包含有主函数入口的包
+</code></pre><ul>
+<li>查看包之间的依赖关系</li>
+</ul>
+<p>使用 <code>-v</code> 参数可以查看一个包被哪些包依赖：</p>
+<pre><code>govendor list -v
+</code></pre><p>那么反过来，你可能想知道一个包依赖了哪些包？这个是go工具链里面提供的方法，直接使用 <code>go list</code></p>
+<p>比如：</p>
+<p><code>go list -f '{{ .Imports }}' github.com/wonderflow/tastego</code></p>
+<ul>
+<li>查看包的实际路径</li>
+</ul>
+<p>通过 <code>-p</code> 参数可以看到包所在的实际文件路径，区别于import时填写的路径，实际路径可以快速找到你引用的包位置。</p>
+<p>查看所有当前项目的包：</p>
+<pre><code>govendor list -p -no-status +local
+</code></pre><p>至此，我们，Govendor的常用命令已经介绍完了，相信掌握了这些，在今后的项目中管理各种依赖包，你一定游刃有余。</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+    </div>
+  </div>
+
+  <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+</article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info" >
+    &copy;  奇迹之流WonderfloW 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

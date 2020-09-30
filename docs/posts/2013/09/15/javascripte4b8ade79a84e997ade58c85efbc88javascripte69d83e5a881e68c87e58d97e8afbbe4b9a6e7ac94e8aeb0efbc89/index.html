@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>JavaScript中的闭包（JavaScript权威指南读书笔记） | 奇迹之流WonderfloW</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.75.1" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="JavaScript中的闭包（JavaScript权威指南读书笔记）" />
+<meta property="og:description" content="最近在看javascript的书，稍微学习一些前端的东西，以便做些web应用的方便。 以前看到闭包这个概念一直不太懂，今天下定决心好好研读了一下，终于明白了一二。 像绝大多数高级编程语言，javascript也有其词法的作用域。意思是说，当函数被执行的时候，起作用的不是被调用时的变量作用域，而是在函数被定义的时候声明的变量域。所以为了实现这个词法作用域的功能，javascript必须在中间过程中不仅保存函数的代码，还需要保存当时所引用的作用域链。这个函数对象和函数变量保存起来的作用域的组合在计算机科学里的称呼就叫做闭包。 从技术角度来说，javascript里的函数都是闭包：它们都是对象，并且它们有" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wonderflow.info/posts/2013/09/15/javascripte4b8ade79a84e997ade58c85efbc88javascripte69d83e5a881e68c87e58d97e8afbbe4b9a6e7ac94e8aeb0efbc89/" />
+<meta property="article:published_time" content="2013-09-15T16:31:10+00:00" />
+<meta property="article:modified_time" content="2013-09-15T16:31:10+00:00" />
+<meta itemprop="name" content="JavaScript中的闭包（JavaScript权威指南读书笔记）">
+<meta itemprop="description" content="最近在看javascript的书，稍微学习一些前端的东西，以便做些web应用的方便。 以前看到闭包这个概念一直不太懂，今天下定决心好好研读了一下，终于明白了一二。 像绝大多数高级编程语言，javascript也有其词法的作用域。意思是说，当函数被执行的时候，起作用的不是被调用时的变量作用域，而是在函数被定义的时候声明的变量域。所以为了实现这个词法作用域的功能，javascript必须在中间过程中不仅保存函数的代码，还需要保存当时所引用的作用域链。这个函数对象和函数变量保存起来的作用域的组合在计算机科学里的称呼就叫做闭包。 从技术角度来说，javascript里的函数都是闭包：它们都是对象，并且它们有">
+<meta itemprop="datePublished" content="2013-09-15T16:31:10+00:00" />
+<meta itemprop="dateModified" content="2013-09-15T16:31:10+00:00" />
+<meta itemprop="wordCount" content="2174">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaScript中的闭包（JavaScript权威指南读书笔记）"/>
+<meta name="twitter:description" content="最近在看javascript的书，稍微学习一些前端的东西，以便做些web应用的方便。 以前看到闭包这个概念一直不太懂，今天下定决心好好研读了一下，终于明白了一二。 像绝大多数高级编程语言，javascript也有其词法的作用域。意思是说，当函数被执行的时候，起作用的不是被调用时的变量作用域，而是在函数被定义的时候声明的变量域。所以为了实现这个词法作用域的功能，javascript必须在中间过程中不仅保存函数的代码，还需要保存当时所引用的作用域链。这个函数对象和函数变量保存起来的作用域的组合在计算机科学里的称呼就叫做闭包。 从技术角度来说，javascript里的函数都是闭包：它们都是对象，并且它们有"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        奇迹之流WonderfloW
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/archives/" title="Archives page">
+              Archives
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
+              Posts
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
+  <header class="mt4 w-100">
+    <aside class="instapaper_ignoref b helvetica tracked">
+      
+      POSTS
+    </aside>
+    
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://wonderflow.info/posts/2013/09/15/javascripte4b8ade79a84e997ade58c85efbc88javascripte69d83e5a881e68c87e58d97e8afbbe4b9a6e7ac94e8aeb0efbc89/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2013/09/15/javascripte4b8ade79a84e997ade58c85efbc88javascripte69d83e5a881e68c87e58d97e8afbbe4b9a6e7ac94e8aeb0efbc89/&amp;text=JavaScript%e4%b8%ad%e7%9a%84%e9%97%ad%e5%8c%85%ef%bc%88JavaScript%e6%9d%83%e5%a8%81%e6%8c%87%e5%8d%97%e8%af%bb%e4%b9%a6%e7%ac%94%e8%ae%b0%ef%bc%89" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://wonderflow.info/posts/2013/09/15/javascripte4b8ade79a84e997ade58c85efbc88javascripte69d83e5a881e68c87e58d97e8afbbe4b9a6e7ac94e8aeb0efbc89/&amp;title=JavaScript%e4%b8%ad%e7%9a%84%e9%97%ad%e5%8c%85%ef%bc%88JavaScript%e6%9d%83%e5%a8%81%e6%8c%87%e5%8d%97%e8%af%bb%e4%b9%a6%e7%ac%94%e8%ae%b0%ef%bc%89" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+    <h1 class="f1 athelas mt3 mb1">JavaScript中的闭包（JavaScript权威指南读书笔记）</h1>
+    
+    <p class="tracked">
+      By <strong>
+        
+        admin
+        
+      </strong>
+    </p>
+    
+    
+    <time class="f6 mv4 dib tracked"
+      datetime="2013-09-15T16:31:10Z">September 15, 2013</time>
+
+    
+    
+  </header>
+  <div
+    class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-100-l"><p>最近在看javascript的书，稍微学习一些前端的东西，以便做些web应用的方便。</p>
+<p>以前看到闭包这个概念一直不太懂，今天下定决心好好研读了一下，终于明白了一二。</p>
+<p>像绝大多数高级编程语言，javascript也有其词法的作用域。意思是说，当函数被执行的时候，起作用的不是被调用时的变量作用域，而是在函数被定义的时候声明的变量域。所以为了实现这个词法作用域的功能，javascript必须在中间过程中不仅保存函数的代码，还需要保存当时所引用的作用域链。<a href="http://en.wikipedia.org/wiki/Closure_(computer_science)">这个函数对象和函数变量保存起来的作用域的组合在计算机科学里的称呼就叫做闭包。</a></p>
+<p>从技术角度来说，javascript里的函数都是闭包：它们都是对象，并且它们有一个与之关联的作用域链。大多数函数被调用的时候，影响它们的作用域与定义它们的作用域是相同的，但是这并不影响它们是闭包。只有当函数被调用的时候，影响它们的作用域与定义它们时候的不相同的时候，闭包的概念才会变得有趣起来。<strong>这个通常发生在函数的返回值本身就是一个内嵌函数的时候。</strong></p>
+<!-- raw HTML omitted -->
+<p>要理解闭包的概念，我们先来看一段内嵌函数返回相关的代码。</p>
+<p>{% codeblock %}</p>
+<p>var scope = &ldquo;global scope&rdquo;; // A global variable
+function checkscope() {
+var scope = &ldquo;local scope&rdquo;; // A local variable
+function f() { return scope; } // Return the value in scope here
+return f();
+}
+checkscope() // =&gt; &ldquo;local scope&rdquo;</p>
+<p>{% endcodeblock %}</p>
+<p>checkscope()函数在内部定义了函数f，并在返回的时候执行了f函数，所以我们得到了结果 “local scope”。</p>
+<p>再来看看下面这段：</p>
+<p>{% codeblock %}</p>
+<p>var scope = &ldquo;global scope&rdquo;; // A global variable
+function checkscope() {
+var scope = &ldquo;local scope&rdquo;; // A local variable
+function f() { return scope; } // Return the value in scope here
+return f;
+}
+checkscope()() // What does this return?</p>
+<p>{% endcodeblock %}</p>
+<p>这个函数定义了f函数以后，把这个函数对象作为返回值了，同时我们在外面执行了这个刚返回的函数本身。我们得到的结果是什么呢？大家不妨用浏览器自带的控制台试试，结果还是”local scope”。</p>
+<p>所以请记住词法作用域的这一条基本规则：<strong>javascript执行函数的时候使用的作用域环境是定义它们时候的那样。</strong></p>
+<p>但是我们忍不住会想，这个也太神奇了把，按照我们传统C或C++语言的思想，这个临时变量在函数执行完后就应该被销毁了，怎么此时还利用着临时变量的值呢？这就是我们想要说的，javascript是动态语言，是一种高级语言。如果你用一些底层语言的思想去局限它，那你就陷入了误区。javascript得知你在后面需要引用到这个局部变量，或者更准确的说，这个函数的闭包的时候，它会很神奇的帮你保存好当时的变量环境，即保存好函数的闭包。等你彻底不用的时候，javascript里面的垃圾收集器才会去销毁它。</p>
+<p>让我们再来看一段有趣的代码：</p>
+<p>{% codeblock %}</p>
+<p>var uniqueInteger = (function() { // Define and invoke
+var counter = 0; // Private state of function below
+return function() { return counter++; };
+}());</p>
+<p>{% endcodeblock %}</p>
+<p>我们仔细的看过这段代码后，发现它是执行了一个函数，函数内部定义了一个初始值为一的自增函数，并把这个函数返回。
+也就是说，最后uniqueInteger这个对象其实是一个自增函数。
+读者不妨玩一玩这个uniqueInteger，根据闭包被存储的原则，当你不断的调用uniqueInteger()得到的是不同的值。并且这里有个额外的优点就是，一旦这个uniqueInteger被定义完后，就再也没有途径去修改counter值了。</p>
+<p>再来看一段代码：</p>
+<p>{% codeblock %}</p>
+<p>function counter() {
+var n = 0;
+return {
+count: function() { return n++; },
+reset: function() { n = 0; }
+};
+}
+var c = counter(), d = counter(); // Create two counters
+c.count() // =&gt; 0
+d.count() // =&gt; 0: they count independently
+c.reset() // reset() and count() methods share state
+c.count() // =&gt; 0: because we reset c
+d.count() // =&gt; 1: d was not reset</p>
+<p>{% endcodeblock %}</p>
+<p>这里值得说明的是亮点：1、c和d同时共享着私有变量n。2、每次我们调用counter()的时候，都生成了新的私有变量和作用域链。
+所以虽然c和d通向n的途径是一样的，但是它们执行count或reset函数的时候，互相不影响n的值。</p>
+<p>最后有意思的是这段代码：</p>
+<p>{% codeblock %}</p>
+<p>// This function adds property accessor methods for a property with
+// the specified name to the object o. The methods are named get
+// and set. If a predicate function is supplied, the setter
+// method uses it to test its argument for validity before storing it.
+// If the predicate returns false, the setter method throws an exception.
+//
+// The unusual thing about this function is that the property value
+// that is manipulated by the getter and setter methods is not stored in
+// the object o. Instead, the value is stored only in a local variable
+// in this function. The getter and setter methods are also defined
+// locally to this function and therefore have access to this local variable.
+// This means that the value is private to the two accessor methods, and it
+// cannot be set or modified except through the setter method.
+function addPrivateProperty(o, name, predicate) {
+var value; // This is the property value</p>
+<p>// The getter method simply returns the value.
+o[&ldquo;get&rdquo; + name] = function() { return value; };</p>
+<p>// The setter method stores the value or throws an exception if
+// the predicate rejects the value.
+o[&ldquo;set&rdquo; + name] = function(v) {
+if (predicate &amp;&amp; !predicate(v))
+throw Error(&ldquo;set&rdquo; + name + &ldquo;: invalid value &quot; + v);
+else
+value = v;
+};
+}</p>
+<p>// The following code demonstrates the addPrivateProperty() method.
+var o = {}; // Here is an empty object</p>
+<p>// Add property accessor methods getName and setName()
+// Ensure that only string values are allowed
+addPrivateProperty(o, &ldquo;Name&rdquo;, function(x) { return typeof x == &ldquo;string&rdquo;; });</p>
+<p>o.setName(&ldquo;Frank&rdquo;); // Set the property value
+console.log(o.getName()); // Get the property value
+o.setName(0); // Try to set a value of the wrong type</p>
+<p>{% endcodeblock %}</p>
+<p>一旦这个addPrivateProperty函数执行完毕后，这个private的效果就彻底成功了，除了setName和getName以外，你就再也没有别的途径来搞到value的值了。</p>
+<p>最后再来看一下下面这两段代码的区别：</p>
+<p>{% codeblock %}</p>
+<p>// This function returns a function that always returns v
+function constfunc(v) { return function() { return v; }; }</p>
+<p>// Create an array of constant functions:
+var funcs = [];
+for(var i = 0; i &lt; 10; i++) funcs[i] = constfunc(i);</p>
+<p>// The function at array element 5 returns the value 5.
+funcs<a href="">5</a> // =&gt; 5</p>
+<p>{% endcodeblock %}</p>
+<p>以及下面这段代码：</p>
+<p>{% codeblock %}</p>
+<p>// Return an array of functions that return the values 0-9
+function constfuncs() {
+var funcs = [];
+for(var i = 0; i &lt; 10; i++)
+funcs[i] = function() { return i; };
+return funcs;
+}</p>
+<p>var funcs = constfuncs();
+funcs<a href="">5</a> // What does this return?</p>
+<p>{% endcodeblock %}</p>
+<p>如果你运行了这两段代码以后看了结果，就会明白，在第二段代码中，当时影响它的作用域变量i其实在执行完这个函数后还在变化。所以最后所有funcs里的函数里的i都是最后的10。</p>
+<p>最后要说的是，this是一个关键词，而不是一个局部变量，所以你要用var self = this来保存这个值，与此相同的是arguments变量。</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+    </div>
+  </div>
+
+  <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+</article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info" >
+    &copy;  奇迹之流WonderfloW 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>
