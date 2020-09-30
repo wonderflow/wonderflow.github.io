@@ -19,7 +19,7 @@ summaryLength = 300
   filename = "sitemap.xml"
 
 [params]
-  favicon = ""
+  favicon = "favicon_io/favicon.ico"
   site_logo = ""
   description = "The last theme you'll ever need. Maybe."
   github = "https://github.com/wonderflow"
