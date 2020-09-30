@@ -1,7 +1,7 @@
 ---
 title: "Heroku 的“得”与“失”"
 date: 2020-02-10T21:58:54+08:00
-draft: true
+Tags: ["oam","heroku","paas"]
 ---
 
 2011年，Heroku 的联合创始人  Adam Wiggins 根据针对上百万应用托管和运维的经验，发布了著名的 [“十二要素应用宣言（The Twelve-Factor App）”](https://12factor.net/)。不知那时候他们有没有想到，这份宣言会在今后数年时间里，成为 SaaS 应用开发的启蒙书。同时也奠定了 Heroku 在 PaaS 领域的地位，成为了云上应用开发规范化的基石。
