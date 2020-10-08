@@ -222,6 +222,33 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="https://wonderflow.info/posts/2019-12-31-k8s-kill-paas/" class="color-inherit dim link">
+            Kubernetes 会不会“杀死” DevOps？
+          </a>
+        </h1>
+
+        <span class="f6 mv2 dib tracked">posted at 2019-12-31 - 8 minutes read</span>
+
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          DevOps 这个概念最早是在 2007 年提出的，那时云计算基础设施的概念也才刚刚提出没多久，而随着互联网的逐渐普及，应用软件的需求爆发式增长，软件开发的理念也逐渐从瀑布模型（waterfall）转向敏捷开发（agile）。传统的软件交付模式（应用开发人员专注于软件开发、IT运维人员负责将软件部署到服务器运行），再也无法满足互联网软件快速迭代的需求。于是，DevOps 作为一种打破研发和运维之间隔阂、加快软件交付流程、提高软件交付质量的文化理念和最佳实践逐渐普及至今。 DevOps 的现状 DevOps 的流行得益于业界对于应用软件敏捷开发、高质量交付的诉求，所以为开发和运维开辟了一块“公共的空间”，让双方可以在这里紧密合作。那时软件研发依旧
+        </div>
+        <a href="https://wonderflow.info/posts/2019-12-31-k8s-kill-paas/"
+          class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+    </div>
+    
+    <div class="relative w-100 mb4">
+      
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="https://wonderflow.info/posts/2017/10/18/shu-ju-shou-ji-gong-ju-de-she-ji-yu-zui-jia-shi-jian/" class="color-inherit dim link">
             数据收集工具的设计与最佳实践
           </a>
@@ -366,82 +393,18 @@
 </article>
     </div>
     
-    <div class="relative w-100 mb4">
-      
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="https://wonderflow.info/posts/2015/03/18/docker-namespace/" class="color-inherit dim link">
-            Docker背后的内核知识——Namespace资源隔离
-          </a>
-        </h1>
-
-        <span class="f6 mv2 dib tracked">posted at 2015-03-18 - 31 minutes read</span>
-
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          <p>孙健波</p>
-<p>Docker这么火，喜欢技术的朋友可能也会想，如果要自己实现一个资源隔离的容器，应该从哪些方面下手呢？也许你第一反应可能就是<code>chroot</code>命令，这条命令给用户最直观的感觉就是使用后根目录<code>/</code>的挂载点切换了，即文件系统被隔离了。然后，为了在分布式的环境下进行通信和定位，容器必然需要一个独立的IP、端口、路由等等，自然就想到了网络的隔离。同时，你的容器还需要一个独立的主机名以便在网络中标识自己。想到网络，顺其自然就想到通信，也就想到了进程间通信的隔离。可能你也想到了权限的问题，对用户和用户组的隔离就实现了用户权限的隔离。最后，运行在容器中的应用需要有自己的<code>PID</code>,自然也需要与宿主机中的<code>PID</code>进行隔离。</p>
-<p>由此，我们基本上完成了一个容器所需要做的六项隔离，Linux内核中就提供了这六种namespace隔离的系统调用，如下表所示。</p>
-<table>
-<thead>
-<tr>
-<th>Namespace</th>
-<th>系统调用参数</th>
-<th>隔离内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>UTS</td>
-<td>CLONE_NEWUTS</td>
-<td>主机名与域名</td>
-</tr>
-<tr>
-<td>IPC</td>
-<td>CLONE_NEWIPC</td>
-<td>信号量、消息队列和共享内存</td>
-</tr>
-<tr>
-<td>PID</td>
-<td>CLONE_NEWPID</td>
-<td>进程编号</td>
-</tr>
-<tr>
-<td>Network</td>
-<td>CLONE_NEWNET</td>
-<td>网络设备、网络栈、端口等等</td>
-</tr>
-<tr>
-<td>Mount</td>
-<td>CLONE_NEWNS</td>
-<td>挂载点（文件系统）</td>
-</tr>
-<tr>
-<td>User</td>
-<td>CLONE_NEWUSER</td>
-<td>用户和用户组</td>
-</tr>
-</tbody>
-</table>
-        </div>
-        <a href="https://wonderflow.info/posts/2015/03/18/docker-namespace/"
-          class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-    </div>
-    
   </section>
 
   
   <section class="w-100">
     <h1 class="f3">More</h1>
     
+    
+    <h2 class="f5 fw4 mb4 dib mr3">
+      <a href="https://wonderflow.info/posts/2015/03/18/docker-namespace/" class="link black dim">
+        Docker背后的内核知识——Namespace资源隔离
+      </a>
+    </h2>
     
     <h2 class="f5 fw4 mb4 dib mr3">
       <a href="https://wonderflow.info/posts/2015/02/02/dive-into-etcd/" class="link black dim">
@@ -458,12 +421,6 @@
     <h2 class="f5 fw4 mb4 dib mr3">
       <a href="https://wonderflow.info/posts/2014/12/17/cf-releasee7bb93e69e84e8a7a3e69e90/" class="link black dim">
         cf-release结构解析
-      </a>
-    </h2>
-    
-    <h2 class="f5 fw4 mb4 dib mr3">
-      <a href="https://wonderflow.info/posts/2014/11/13/e69caae69da5e79a84e69f90e4b880e5a4a9-e699aee98082e8aea1e7ae97e5b195e69c9be5b08fe4bd9ce4b89a/" class="link black dim">
-        未来的某一天——普适计算展望小作业
       </a>
     </h2>
     

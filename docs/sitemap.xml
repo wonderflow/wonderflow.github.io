@@ -59,6 +59,20 @@
   </url>
   
   <url>
+    <loc>https://wonderflow.info/tags/devops/</loc>
+    <lastmod>2019-12-31T19:41:43+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://wonderflow.info/posts/2019-12-31-k8s-kill-paas/</loc>
+    <lastmod>2019-12-31T19:41:43+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://wonderflow.info/posts/2017/10/18/shu-ju-shou-ji-gong-ju-de-she-ji-yu-zui-jia-shi-jian/</loc>
     <lastmod>2017-10-18T10:48:47+00:00</lastmod>
     <changefreq>monthly</changefreq>

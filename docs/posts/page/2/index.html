@@ -141,6 +141,64 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="https://wonderflow.info/posts/2015/03/18/docker-namespace/" class="link black dim">
+        Docker背后的内核知识——Namespace资源隔离
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>孙健波</p>
+<p>Docker这么火，喜欢技术的朋友可能也会想，如果要自己实现一个资源隔离的容器，应该从哪些方面下手呢？也许你第一反应可能就是<code>chroot</code>命令，这条命令给用户最直观的感觉就是使用后根目录<code>/</code>的挂载点切换了，即文件系统被隔离了。然后，为了在分布式的环境下进行通信和定位，容器必然需要一个独立的IP、端口、路由等等，自然就想到了网络的隔离。同时，你的容器还需要一个独立的主机名以便在网络中标识自己。想到网络，顺其自然就想到通信，也就想到了进程间通信的隔离。可能你也想到了权限的问题，对用户和用户组的隔离就实现了用户权限的隔离。最后，运行在容器中的应用需要有自己的<code>PID</code>,自然也需要与宿主机中的<code>PID</code>进行隔离。</p>
+<p>由此，我们基本上完成了一个容器所需要做的六项隔离，Linux内核中就提供了这六种namespace隔离的系统调用，如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th>Namespace</th>
+<th>系统调用参数</th>
+<th>隔离内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UTS</td>
+<td>CLONE_NEWUTS</td>
+<td>主机名与域名</td>
+</tr>
+<tr>
+<td>IPC</td>
+<td>CLONE_NEWIPC</td>
+<td>信号量、消息队列和共享内存</td>
+</tr>
+<tr>
+<td>PID</td>
+<td>CLONE_NEWPID</td>
+<td>进程编号</td>
+</tr>
+<tr>
+<td>Network</td>
+<td>CLONE_NEWNET</td>
+<td>网络设备、网络栈、端口等等</td>
+</tr>
+<tr>
+<td>Mount</td>
+<td>CLONE_NEWNS</td>
+<td>挂载点（文件系统）</td>
+</tr>
+<tr>
+<td>User</td>
+<td>CLONE_NEWUSER</td>
+<td>用户和用户组</td>
+</tr>
+</tbody>
+</table>
+    </div>
+  </div>
+</div>
+</div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="https://wonderflow.info/posts/2015/02/02/dive-into-etcd/" class="link black dim">
         Dive into etcd
       </a>
@@ -244,21 +302,6 @@
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       CloudFoundry是对域名强依赖的云计算集群，没有域名的话几乎无法访问。但是域名备案等事宜所耗时间较长，在上线较为紧急的情况下，就需要实现直接通过“IP+端口”的形式，在公网访问CF集群上部署的APP。 解决方案 配置两层Haproxy，第一层的Haproxy与公网地址绑定。 对第一层的Haproxy进行配置，把外部通过IP+PORT访问的地址映射到后端第二层Haproxy，并把其访问的http Head修改，把Host字段改成能被Cloudfoundry接受的url字符串。 第二层Haproxy就跟CloudFoundry官方配置相同，作为负载均衡把流量导向下层多个gorouter。 Haprox
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://wonderflow.info/posts/2014/10/24/e3808ae7a88be5ba8fe59198e4bfaee782bce4b98be98193e3808be79a84e7ac94e8aeb0/" class="link black dim">
-        《程序员修炼之道》的笔记
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      老样子：印象笔记链接 责任：Provide Options, Don’t Make Lame Excuses. 什么是负责？就是在出了问题时，要提供各种选择，而不是找借口。不要说事情做不到；要说明能够做什么来挽回局面。 软件的熵：Don’t Live with Broken Windows. 不要留着“破窗户”（低劣的设计、错误的决策、糟糕的代码）不修。发现一个修一个，如果没有时间整理，就把出问题的代码放在注释里或者显示未实现。 足够好的软件：Make Quality a Requirements Issue 让用户参与权衡质量的需求 知识资产：Invest Regularly in Your Knowledge Portfolio 经营你的知识资产: 定期投资：尽管每次投资量小，但是要保持习惯 多元化：你知道的不同的事情越多，你就越有价值。你掌握的技术越多，你就越能更好地进行调整，赶上变化。 管理风险：不要把所有的技术
     </div>
   </div>
 </div>

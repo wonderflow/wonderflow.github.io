@@ -141,6 +141,21 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="https://wonderflow.info/posts/2012/07/27/2012e5a49ae6a0a1e7acace4b880e38081e7acace4ba8ce59cbaefbc88hdu4300hdu4319efbc89/" class="link black dim">
+        2012多校第一、第二场（hdu4300~hdu4319）
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      说一下自己搞出来的题目吧，感觉多校其实比较水的，题目也不难，模板题，陈题很多，不过两场我们队的名次都很烂诶，30开外了都，抗不住啊！出现的问题就是队里的模板太少、不全。不过也好，做一场补一场的模板。 hdu4300《Clairewd’s message》是个字符串，利用next数组求解，小trick就是next数组求出来的值要小于(len-1)/2才取。即：while(len-next[dx]&lt;=(len-1)/2)dx = next[dx]; #include&lt;iostream&gt; #include&lt;cstring&gt; #include&lt;cstdio&gt; using namespace std; int map[30]; int len; int s[101000]; int next[101000]; char str[101000]; void get_next() { int i,j;i=0;next[0]=-1;j=-1; while(i&lt;len) { if(j==-1||map[s[j]]==s[i]) { ++i;++j; next[i]=j; } else j=next[j]; } } int main() { int T; scanf(&quot;%d&quot;,&amp;T); while(T--){ scanf(&quot;%s&quot;,str); len = strlen(str); for(int i=0;i&lt;len;i++){ map[str[i]-'a'] = i; } scanf(&quot;%s&quot;,str); len = strlen(str); for(int i=0;i&lt;len;i++){ s[i] = str[i] - 'a'; } get_next(); // cout&lt;&lt;next[len]&lt;&lt;endl; int dx = len; while(len-next[dx]&lt;=(len-1)/2)dx = next[dx]; // cout&lt;&lt;next[dx]&lt;&lt;endl; for(int i=0;i&lt;len-next[dx];i++){ printf(&quot;%c&quot;,s[i]+'a'); } for(int i=0;i&lt;len-next[dx];i++){ printf(&quot;%c&quot;,map[s[i]]+'a'); } printf(&quot;\n&quot;); } return 0;
+    </div>
+  </div>
+</div>
+</div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="https://wonderflow.info/posts/2012/07/25/e99b86e8aeade697a5e5bf97e7acace58d81e4b880e7af87-e99b86e8aeade7bb93e69d9f/" class="link black dim">
         集训日志第十一篇——集训结束
       </a>
@@ -237,21 +252,6 @@
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       最近听好多队员都反应说，集训似乎进入的瓶颈期，感到特别疲惫，做不出题目，一直犯困等等。每天早晨准时到来的人也越来越少了。 其实有这个过程也属于正常的情况，几乎人人都会碰到这样的瓶颈吧。就像长跑，再厉害的运动员，中间也会碰到一个高原期，也就是俗称的瓶颈，这个时候他们就会缓缓的深呼吸，调整自己的节奏。而我们搞ACM，其实也是一个长跑。遇到瓶颈的时候，就该调整自己的状态。 那么今天就来励志一把吧。 以前看过徐宥的博客，发现里面有一篇非常好的文章的中文翻译，名字叫《十年学会程序设计》，其英文原文是《Teach Yourself Programming in Ten Years》。讲的就是，要做好一项事业，需要十年的时间，准确的说，是10000个小时。 浙大的
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://wonderflow.info/posts/2012/07/12/e99b86e8aeade697a5e5bf97e7acace4ba94e7af87efbc88e8a7a3e9a298e5b8b8e794a8e696b9e6b395e79a84e680bbe7bb93efbc89/" class="link black dim">
-        集训日志第五篇（解题常用方法的总结）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      集训的时光不知不觉，其实已经过去了一半了，十三天。 每天做一到二个题，总结、思考。看重的不是做出的题目是用的什么方法，看重的是怎么想到的这个做题的方法，思路是怎么来的。那么今天顺势总结下思考问题的一些方法。 题目做的多了，就会自然而然的产生一些经验，比如看到数据的范围，就能想到最终的解法是什么复杂度的，然后根据复杂度，就可以套一些模型，一些常用的算法。 再根据常用的方法的多种应用，思考针对该题的解决方案。 这是很常见的一种方法，我喜欢称之为“经验教训”法。 面对一个问题，先从小规模着手，如果这个问题的数据非常小，从1个、2个、3个、、这样以此类推的往多处叠加，那么这个问题的解法会不会思考出来。要知道，如
     </div>
   </div>
 </div>

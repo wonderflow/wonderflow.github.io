@@ -172,6 +172,21 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="https://wonderflow.info/posts/2019-12-31-k8s-kill-paas/" class="link black dim">
+        Kubernetes 会不会“杀死” DevOps？
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      DevOps 这个概念最早是在 2007 年提出的，那时云计算基础设施的概念也才刚刚提出没多久，而随着互联网的逐渐普及，应用软件的需求爆发式增长，软件开发的理念也逐渐从瀑布模型（waterfall）转向敏捷开发（agile）。传统的软件交付模式（应用开发人员专注于软件开发、IT运维人员负责将软件部署到服务器运行），再也无法满足互联网软件快速迭代的需求。于是，DevOps 作为一种打破研发和运维之间隔阂、加快软件交付流程、提高软件交付质量的文化理念和最佳实践逐渐普及至今。 DevOps 的现状 DevOps 的流行得益于业界对于应用软件敏捷开发、高质量交付的诉求，所以为开发和运维开辟了一块“公共的空间”，让双方可以在这里紧密合作。那时软件研发依旧
+    </div>
+  </div>
+</div>
+</div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="https://wonderflow.info/posts/2017/10/18/shu-ju-shou-ji-gong-ju-de-she-ji-yu-zui-jia-shi-jian/" class="link black dim">
         数据收集工具的设计与最佳实践
       </a>
@@ -255,64 +270,6 @@
 <p>当我们谈论Docker时，我们常常会聊到Docker的实现方式。很多开发者都会知道，Docker的本质实际上是宿主机上的一个进程，通过namespace实现了资源隔离，通过cgroup实现了资源限制，通过UnionFS实现了Copy on Write的文件操作。但是当我们再深入一步的提出，namespace和cgroup实现细节时，知道的人可能就所剩无几了。<a href="http://www.sel.zju.edu.cn/">浙江大学SEL/VLIS实验室</a>的<a href="http://wonderflow.github.io">孙健波</a>同学在docker基础研究工作中着重对内核的cgroup技术做了细致的分析和梳理，希望能对读者深入理解Docker有所帮助</p>
 <h2 id="正文">正文</h2>
 <p>上一篇中，我们了解了Docker背后使用的资源隔离技术namespace，通过系统调用构建一个相对隔离的shell环境，也可以称之为一个简单的“容器”。本文我们则要开始讲解另一个强大的内核工具——cgroups。他不仅可以限制被namespace隔离起来的资源，还可以为资源设置权重、计算使用量、操控进程启停等等。在介绍完基本概念后，我们将详细讲解Docker中使用到的cgroups内容。希望通过本文，让读者对Docker有更深入的了解。</p>
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://wonderflow.info/posts/2015/03/18/docker-namespace/" class="link black dim">
-        Docker背后的内核知识——Namespace资源隔离
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>孙健波</p>
-<p>Docker这么火，喜欢技术的朋友可能也会想，如果要自己实现一个资源隔离的容器，应该从哪些方面下手呢？也许你第一反应可能就是<code>chroot</code>命令，这条命令给用户最直观的感觉就是使用后根目录<code>/</code>的挂载点切换了，即文件系统被隔离了。然后，为了在分布式的环境下进行通信和定位，容器必然需要一个独立的IP、端口、路由等等，自然就想到了网络的隔离。同时，你的容器还需要一个独立的主机名以便在网络中标识自己。想到网络，顺其自然就想到通信，也就想到了进程间通信的隔离。可能你也想到了权限的问题，对用户和用户组的隔离就实现了用户权限的隔离。最后，运行在容器中的应用需要有自己的<code>PID</code>,自然也需要与宿主机中的<code>PID</code>进行隔离。</p>
-<p>由此，我们基本上完成了一个容器所需要做的六项隔离，Linux内核中就提供了这六种namespace隔离的系统调用，如下表所示。</p>
-<table>
-<thead>
-<tr>
-<th>Namespace</th>
-<th>系统调用参数</th>
-<th>隔离内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>UTS</td>
-<td>CLONE_NEWUTS</td>
-<td>主机名与域名</td>
-</tr>
-<tr>
-<td>IPC</td>
-<td>CLONE_NEWIPC</td>
-<td>信号量、消息队列和共享内存</td>
-</tr>
-<tr>
-<td>PID</td>
-<td>CLONE_NEWPID</td>
-<td>进程编号</td>
-</tr>
-<tr>
-<td>Network</td>
-<td>CLONE_NEWNET</td>
-<td>网络设备、网络栈、端口等等</td>
-</tr>
-<tr>
-<td>Mount</td>
-<td>CLONE_NEWNS</td>
-<td>挂载点（文件系统）</td>
-</tr>
-<tr>
-<td>User</td>
-<td>CLONE_NEWUSER</td>
-<td>用户和用户组</td>
-</tr>
-</tbody>
-</table>
     </div>
   </div>
 </div>
