@@ -37,7 +37,7 @@
 <meta property="og:description" content="Nothing Replaces Hard Work!" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://wonderflow.info/posts/" />
-<meta property="og:updated_time" content="2020-03-30T21:54:33+08:00" />
+<meta property="og:updated_time" content="2020-11-02T17:39:57+08:00" />
 <meta itemprop="name" content="Posts">
 <meta itemprop="description" content="Nothing Replaces Hard Work!">
 <meta name="twitter:card" content="summary"/>
@@ -141,6 +141,51 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="https://wonderflow.info/posts/2013/08/06/unixe4b98bsse591bde4bba4/" class="link black dim">
+        UNIX之ss命令
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      ss命令用来进行统计socket连接的统计。与netstat命令相似。 这个命令之前不常用，甚至没怎么听过，直到有一天不小心想要输入ssh的时候打了ss就回车，结果出来意想不到的好东西，让我决定去学习一下。 SS能提供的信息包括： TCP连接 UDP连接 已经建立的 ssh/ftp/http/https连接 本地进程连向X服务器的连接 筛选状态(例如connected, synchronized, SYN-RECV, SYN-SENT,TIME-WAIT)、地址和端口 所有在FIN-WAIT-1状态下的TCP连接。 大多数linux发行版都涵盖ss命令以及其他一些工具，熟悉这些命令有助于多网络状态的掌握。 下面罗列出一些常用的方法。 {% codeblock %} $ ss -s #列出所有的so
+    </div>
+  </div>
+</div>
+</div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="https://wonderflow.info/posts/2013/08/05/unixe4b98blsofe591bde4bba4/" class="link black dim">
+        UNIX之lsof命令
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      据说lsof命令很强大，就学习了一下。这个网站讲的最好,翻译如下： **lsof（list open files）**是一个列出当前系统打开文件的工具。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。所以lsof被称为unix系统检测的瑞士军刀。 那怎么用呢? 接下来我们一个个来看。 罗列出所有的文件设备情况. {% codeblock %} $ lsof {% endcodeblock %} 不带参数的运行 lsof 就是列出所有被进程打开的文件。 查看文件被谁使用. {% codeblock %} $ lsof /path/to/file {% endcodeblock %} 如果把文件路径作为参数，lsof命令会把用到这个文件的所有进程都罗列出来。 也可以加多个路径在后面，它会把所涉及到这些文件的进程都罗列出来: {% codeblock %} $ lsof /path/to/file1
+    </div>
+  </div>
+</div>
+</div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="https://wonderflow.info/posts/2013/08/02/ubuntu12-04-install-record/" class="link black dim">
+        Ubuntu12.04LTS Install Record
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      一、软件源更新 {% codeblock %} $vi /etc/apt/sources.list {% endcodeblock %} 二、定制命令提示符： {% codeblock %} $vi ~/.bashrc $PS1=&quot;[\e]0;\u@\h: \w\a\e[32;1m]\W$[\e[0m] &quot; #效果:仅高亮显示短路径和$符号 {% endcodeblock %} 三、安装chrome 登录，同步相应配置，这样浏览器方面的各种配置就齐全了 四、github相关 安装git: {% codeblock %} $ sudo apt-get install git {% endcodeblock %} github：配置SSH 五、中文输入法ibus 找到language support这个应用，然后找到keyboard input method system设置项（默认的是none），选择ibus项就可以了。 六、vim (配置ruby插件，拿的别人的方案) {% codeblock %} $ sudo apt-get install ctags {% endcodeblock %} start from:git clone 七、字体设置： download consolas.tty {% codeblock %} $ sudo mkdir -p /usr/share/fonts/vista $ sudo cp Yahei.ttf /usr/share/fonts/vista/ #改变权限： $sudo chmod 644 /usr/share/fonts/vista/*.ttf #安装： $cd /usr/share/fonts/vista/ $sudo mkfontscale $sudo mkfontdir $sudo fc-cache -fv {% endcodeblock %} 八、安装ruby wiki
+    </div>
+  </div>
+</div>
+</div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="https://wonderflow.info/posts/2013/07/30/learning-english/" class="link black dim">
         Learning English...
       </a>
@@ -215,51 +260,6 @@ At last still that motto for myself : Never give up , and nothing replaces hard 
 </div>
 </div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://wonderflow.info/posts/2013/07/19/e5889de69da5e4b98de588b0efbc88e59b9befbc89/" class="link black dim">
-        初来乍到（四）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      又是一个周五，感觉又像是回到中小学那会，非常期待周末的来临，其实每天去上班也没那么讨厌，就是每天要在固定的时间起床，要在班车上来回坐两个小时，实在让人不舒服。 渐渐习惯了这里的生活，每天七点半起床，八点半坐上班车，九点半开始对着电脑学习，十一点半吃饭，然后继续看资料，五点半坐上班车，六点半吃晚饭，七点坐在实验室的位子上继续看会资讯，实在没地方去啊。 值得高兴的是，这种公司终于换地方了，有了自己的座位和机器，不用每天背着笔记本来来回回了。而且用上纯粹的linux机器还有一种莫名的爽感，虽然无法上QQ了，但是linux精神更加感染我了。说实话，工作确实更适合linux，邮件也确实更适合交流。 终于在两个
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://wonderflow.info/posts/2013/07/14/e5889de69da5e4b98de588b0efbc88e4b889efbc89/" class="link black dim">
-        初来乍到（三）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      今天在韩莉师姐的组织下，NJUST_ACM驻浙大小分队聚在一起吃饭了。 瞬间又感受到集训队的好啊，要不是集训队，怎么会有这么一帮师兄师姐如此关照呢。而且是到哪都有一帮人的关照，无论是北京、上海、南京还是杭州。 我们一共四个人，在环境优雅的御野江鲜馆吃了两百多。。。主要是阿登师兄点菜点的略多，最后由最大的王镇师兄结了帐。 通过聊天才知道，其实他们之间也不常联系，确实，大家都是各忙各的，都有自己的圈子，哪有那么多时间呀。 然后发现其实其他实验室的情况也都差不多，用王镇师兄的话说就是，硕士嘛，做做项目上上课，也就毕业了，不用关心太多。 字里行间分明感受到了读博士的压力啊。 想想也是，当年王镇学长一度因为是NJU
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://wonderflow.info/posts/2013/07/13/e5889de69da5e4b98de588b0efbc88e4ba8cefbc89/" class="link black dim">
-        初来乍到（二）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      今天新买的小米2A到货了，虽然刚下单没几天就出现了小米2s降价甩卖的剧情，觉得小米很不厚道，但是用用还可以，反正就是过渡机，觉得对得起这个价格就好。 一直惦记的细面终于在我的细心发掘之下在食堂找到了，虽然它是被煮烂了的，但是吃起来还是略微有一点熟悉的味道。现在每天喝喝粥、吃吃杂粮，偶尔吃吃鱼，感觉也挺不错。添宇跟我说，他两个月不吃荤菜瘦了20斤，我觉得我可以效仿。 今天去老同学PC家里玩了一圈，发现他家里真心不错，有空调，有洗衣机、有冰箱、有厨房、有电视、有网、有热水器，一切该有的都有，还有个美女一起合租，确实不错，而且最主要的是热闹，大家每天回家在一起看看电视聊聊天，多开心啊！ PC的室友也有一个
-    </div>
-  </div>
-</div>
-</div>
-      
     </section>
 <ul class="pagination">
   <li class="page-item">
@@ -293,13 +293,13 @@ At last still that motto for myself : Never give up , and nothing replaces hard 
     <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
   </li>
   <li class="page-item">
-    <a class="page-link" href="/posts/page/16/">16</a>
+    <a class="page-link" href="/posts/page/17/">17</a>
   </li>
   <li class="page-item">
     <a href="/posts/page/10/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
   </li>
   <li class="page-item">
-    <a href="/posts/page/16/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <a href="/posts/page/17/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
   </li>
 </ul>
 

@@ -37,7 +37,7 @@
 <meta property="og:description" content="Nothing Replaces Hard Work!" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://wonderflow.info/posts/" />
-<meta property="og:updated_time" content="2020-03-30T21:54:33+08:00" />
+<meta property="og:updated_time" content="2020-11-02T17:39:57+08:00" />
 <meta itemprop="name" content="Posts">
 <meta itemprop="description" content="Nothing Replaces Hard Work!">
 <meta name="twitter:card" content="summary"/>
@@ -136,6 +136,47 @@
   <article class="pa3 pa4-ns nested-copy-line-height nested-img">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray"></section>
     <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="https://wonderflow.info/posts/2015/06/03/docker-container-management-libcontainer-depth-analysis/" class="link black dim">
+        Docker背后的容器管理——libcontainer深度解析
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <blockquote>
+<p>原文首发于InfoQ <a href="http://www.infoq.com/cn/articles/docker-container-management-libcontainer-depth-analysis">http://www.infoq.com/cn/articles/docker-container-management-libcontainer-depth-analysis</a></p>
+</blockquote>
+<p>libcontainer 是Docker中用于容器管理的包，它基于Go语言实现，通过管理<code>namespaces</code>、<code>cgroups</code>、<code>capabilities</code>以及文件系统来进行容器控制。你可以使用libcontainer创建容器，并对容器进行生命周期管理。</p>
+<blockquote>
+<p>容器是一个可管理的执行环境，与主机系统共享内核，可与系统中的其他容器进行隔离。</p>
+</blockquote>
+<p>在2013年Docker刚发布的时候，它是一款基于LXC的开源容器管理引擎。把LXC复杂的容器创建与使用方式简化为Docker自己的一套命令体系。随着Docker的不断发展，它开始有了更为远大的目标，那就是反向定义容器的实现标准，将底层实现都抽象化到libcontainer的接口。这就意味着，底层容器的实现方式变成了一种可变的方案，无论是使用namespace、cgroups技术抑或是使用systemd等其他方案，只要实现了libcontainer定义的一组接口，Docker都可以运行。这也为Docker实现全面的跨平台带来了可能。</p>
+    </div>
+  </div>
+</div>
+</div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="https://wonderflow.info/posts/2015/04/22/cgroups/" class="link black dim">
+        Docker背后的内核知识——cgroups资源限制
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>原文首发自InfoQ，<a href="http://www.infoq.com/cn/articles/docker-kernel-knowledge-cgroups-resource-isolation">《Docker背后的内核知识——cgroups资源限制》</a></p>
+<h2 id="摘要">摘要</h2>
+<p>当我们谈论Docker时，我们常常会聊到Docker的实现方式。很多开发者都会知道，Docker的本质实际上是宿主机上的一个进程，通过namespace实现了资源隔离，通过cgroup实现了资源限制，通过UnionFS实现了Copy on Write的文件操作。但是当我们再深入一步的提出，namespace和cgroup实现细节时，知道的人可能就所剩无几了。<a href="http://www.sel.zju.edu.cn/">浙江大学SEL/VLIS实验室</a>的<a href="http://wonderflow.github.io">孙健波</a>同学在docker基础研究工作中着重对内核的cgroup技术做了细致的分析和梳理，希望能对读者深入理解Docker有所帮助</p>
+<h2 id="正文">正文</h2>
+<p>上一篇中，我们了解了Docker背后使用的资源隔离技术namespace，通过系统调用构建一个相对隔离的shell环境，也可以称之为一个简单的“容器”。本文我们则要开始讲解另一个强大的内核工具——cgroups。他不仅可以限制被namespace隔离起来的资源，还可以为资源设置权重、计算使用量、操控进程启停等等。在介绍完基本概念后，我们将详细讲解Docker中使用到的cgroups内容。希望通过本文，让读者对Docker有更深入的了解。</p>
+    </div>
+  </div>
+</div>
+</div>
       
         <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
   <div class="bg-white mb3 pa4 gray overflow-hidden">
@@ -277,36 +318,6 @@
 </div>
 </div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://wonderflow.info/posts/2014/10/31/e58d81e69c88e79a84e5b0bee5b7b4/" class="link black dim">
-        十月的尾巴
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      本来今天这篇日志准备用“社交减肥”这四个字做题目的，但是转念一想这样实在太高调了。一定会招来各种像我这样常年寻找减肥良方而不得的人满怀希冀的点进来，结果发现这狗屁不通的内容而对我嗤之以鼻。然后发现今天不仅是周五，还是十月的尾巴，然后就愉快的定下来这个标题。但是今天的主题，确确实实就是社交减肥。 社交减肥这个新鲜词汇起初我是从champion那里听来的。那天他笑嘻嘻的告诉我，可以用这种方法减肥，通过社交的力量来监督自己减肥。然后我研究了一下社交减肥的起源，原来是2011年美国的科学家用小鼠做的一组对照试验。跟一大群同类生活在一起的小鼠饭量增加的同时，腹部脂肪还是减少了一半。然后研究人员就提出参加更
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="https://wonderflow.info/posts/2014/10/28/haproxye7abafe58fa3e698a0e5b084efbc88cliente5a4b4e4b8adurlhoste4bfaee694b9e5908ee8bdace58f91efbc89/" class="link black dim">
-        Haproxy端口映射（client头中URL/HOST修改后转发）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      CloudFoundry是对域名强依赖的云计算集群，没有域名的话几乎无法访问。但是域名备案等事宜所耗时间较长，在上线较为紧急的情况下，就需要实现直接通过“IP+端口”的形式，在公网访问CF集群上部署的APP。 解决方案 配置两层Haproxy，第一层的Haproxy与公网地址绑定。 对第一层的Haproxy进行配置，把外部通过IP+PORT访问的地址映射到后端第二层Haproxy，并把其访问的http Head修改，把Host字段改成能被Cloudfoundry接受的url字符串。 第二层Haproxy就跟CloudFoundry官方配置相同，作为负载均衡把流量导向下层多个gorouter。 Haprox
-    </div>
-  </div>
-</div>
-</div>
-      
     </section>
 <ul class="pagination">
   <li class="page-item">
@@ -328,13 +339,13 @@
     <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
   </li>
   <li class="page-item">
-    <a class="page-link" href="/posts/page/16/">16</a>
+    <a class="page-link" href="/posts/page/17/">17</a>
   </li>
   <li class="page-item">
     <a href="/posts/page/3/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
   </li>
   <li class="page-item">
-    <a href="/posts/page/16/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <a href="/posts/page/17/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
   </li>
 </ul>
 
