@@ -9,7 +9,7 @@
     <meta name="generator" content="Hugo 0.75.1" />
     
     
-      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     
 
     
@@ -47,12 +47,10 @@
 <meta name="twitter:title" content="linux多线程编程pthread"/>
 <meta name="twitter:description" content="在linux下面使用多线程编程要用到pthread.h头文件，因为linux是不存在线程概念的，所以它其实是用进程模拟线程，产生出线程的效果。即linux中的多线程实际上是多进程。 那么为什么linux下有了进程还要再引入线程呢？原因有很多，首先，线程小巧，不需要单独分配地址空间，也不需要维护各种数据表单，然后线程间共享数据，通信起来非常方便. 不过，正因为linux下线程共享数据，如果线程胡乱修改数据的话，会出现一些灾难性的错误，所以就需要操纵系统中所强调的同步、互斥机制来控制。 除了上述一些区别，进程和线程还有如下共同的一些优点： 提高应用程序响应。这对图形界面的程序尤其有意义，当一个操作耗时很长"/>
 
-      
-    
 	
   </head>
 
-  <body class="ma0 avenir bg-near-white production">
+  <body class="ma0 avenir bg-near-white">
 
     
 
