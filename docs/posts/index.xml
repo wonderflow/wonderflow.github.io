@@ -26,15 +26,6 @@
     </item>
     
     <item>
-      <title>长沙武功山之行</title>
-      <link>https://wonderflow.info/posts/2020-10-08-changsha-wugongshan/</link>
-      <pubDate>Thu, 08 Oct 2020 20:06:37 +0800</pubDate>
-      
-      <guid>https://wonderflow.info/posts/2020-10-08-changsha-wugongshan/</guid>
-      <description>这个国庆遇到了罕见的国庆中秋双节合体，罕见的八天长假，比正常的春节还长。出去旅游了，跟翔子他们一家一起玩，挺开心的。</description>
-    </item>
-    
-    <item>
       <title>OAM v1alpha2 新版：平衡标准与可扩展性</title>
       <link>https://wonderflow.info/posts/oam-v1alpha2/</link>
       <pubDate>Mon, 30 Mar 2020 21:54:33 +0800</pubDate>
@@ -559,15 +550,6 @@
       
       <guid>https://wonderflow.info/posts/2013/10/14/rubye78988e79a84crash_recoverye887aae58aa8e58c96e6b58be8af95e5b7a5e585b7/</guid>
       <description>高可靠性（High availability）是个相当有意义课题，在现有大型集群机器上，有着广泛的应用。如今，针对这个命题的实现，各大公司都提供了方方面面的方式。针对高可靠性的测试，也就有了意义。 正好近期在学ruby，于是就尝试着用ruby做了一个crash——recovery测试工具。 工具分为两块，第一块是破坏虚拟机，使虚拟机突然宕机。第二块就是杀虚拟机中相应的进程。 最终都是要看进行了这些破坏以后，系统是否能够自动恢复。 破坏虚拟机，使其突然宕机，用到的是我之前博客中写到的方法《Linux Magic Key — SysRq》，使用&amp;quot;echo c &amp;gt; /proc/sysrq-trigger&amp;quot;命令让虚拟</description>
-    </item>
-    
-    <item>
-      <title>泡面加鸡蛋（二）</title>
-      <link>https://wonderflow.info/posts/2013/10/10/e6b3a1e99da2e58aa0e9b8a1e89b8befbc88e4ba8cefbc89/</link>
-      <pubDate>Thu, 10 Oct 2013 15:58:16 +0000</pubDate>
-      
-      <guid>https://wonderflow.info/posts/2013/10/10/e6b3a1e99da2e58aa0e9b8a1e89b8befbc88e4ba8cefbc89/</guid>
-      <description>十月一号回家，各处人山人海，回家不容易。 在家里和小伙伴们吃饭，听到了很多的故事，觉得要记下来： 1）小学同学a，男，在网上找到一个女朋友，见面一个月怀上了孩子，结婚了。同学a矮小瘦弱，女朋友虎背熊腰。结婚后女方发现同学a实在是软弱无能，还不听话，天天暴打。甚至拿着菜刀在村里追着打骂，街坊邻居都不敢去劝。最后被喊去女方家里当苦力。同学a瘦弱的老父亲依靠捡拾垃圾把同学a拉扯大，如今依旧还要靠捡拾垃圾供养同学a，每个月还要给女方寄上千元的奶粉钱。 2）小学同学b，男，小时候经常骗家里的钱，长大后也没改掉这个习惯。有一次抱回一个女婴，说是自己在外面生的女儿，让帮忙养着。自己继续在外面厮混。不久后又跟老父亲</description>
     </item>
     
     <item>
