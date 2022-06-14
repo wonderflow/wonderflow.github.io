@@ -1,7 +1,8 @@
 ---
 name: "\U0001F680 Comment"
 about: Add a comment for some blog
-title: "[Comment]"
+title: "posts/<blog-link>/"
+labels: Comment
 assignees: ''
 
 ---
