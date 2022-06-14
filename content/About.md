@@ -7,7 +7,9 @@ menu: main
 
 ---
 
-Contact: wonderflow.sun@gmail.com
+Contact: wonderflow@icloud.com
+
+如果你对博客内容有任何评论，欢迎[留言](https://github.com/wonderflow/wonderflow.github.io/issues/new/choose)。
 
 [WonderfloW](https://github.com/wonderflow)，目前就职于阿里巴巴，热爱Golang、容器、大数据相关技术。
 

@@ -6,19 +6,65 @@
     
     <title>Docker背后的内核知识——Namespace资源隔离 | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="description" content="孙健波
+Docker这么火，喜欢技术的朋友可能也会想，如果要自己实现一个资源隔离的容器，应该从哪些方面下手呢？也许你第一反应可能就是chroot命令，这条命令给用户最直观的感觉就是使用后根目录/的挂载点切换了，即文件系统被隔离了。然后，为了在分布式的环境下进行通信和定位，容器必然需要一个独立的IP、端口、路由等等，自然就想到了网络的隔离。同时，你的容器还需要一个独立的主机名以便在网络中标识自己。想到网络，顺其自然就想到通信，也就想到了进程间通信的隔离。可能你也想到了权限的问题，对用户和用户组的隔离就实现了用户权限的隔离。最后，运行在容器中的应用需要有自己的PID,自然也需要与宿主机中的PID进行隔离。
+由此，我们基本上完成了一个容器所需要做的六项隔离，Linux内核中就提供了这六种namespace隔离的系统调用，如下表所示。
+
+
+
+Namespace
+系统调用参数
+隔离内容
+
+
+
+
+UTS
+CLONE_NEWUTS
+主机名与域名
+
+
+IPC
+CLONE_NEWIPC
+信号量、消息队列和共享内存
+
+
+PID
+CLONE_NEWPID
+进程编号
+
+
+Network
+CLONE_NEWNET
+网络设备、网络栈、端口等等
+
+
+Mount
+CLONE_NEWNS
+挂载点（文件系统）
+
+
+User
+CLONE_NEWUSER
+用户和用户组
+
+
+">
+    <meta name="generator" content="Hugo 0.92.2" />
     
     
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+    
+      <meta name="robots" content="noindex, nofollow">
     
 
     
-    
-      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
-    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
 
     
-
+    
     
       
 <link rel="shortcut icon" href="/favicon_io/favicon.ico" type="image/x-icon" />
@@ -74,9 +120,10 @@ CLONE_NEWUSER
 
 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://wonderflow.info/posts/2015/03/18/docker-namespace/" />
+<meta property="og:url" content="https://wonderflow.info/posts/2015/03/18/docker-namespace/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2015-03-18T08:36:27+00:00" />
 <meta property="article:modified_time" content="2015-03-18T08:36:27+00:00" />
+
 <meta itemprop="name" content="Docker背后的内核知识——Namespace资源隔离">
 <meta itemprop="description" content="孙健波
 Docker这么火，喜欢技术的朋友可能也会想，如果要自己实现一个资源隔离的容器，应该从哪些方面下手呢？也许你第一反应可能就是chroot命令，这条命令给用户最直观的感觉就是使用后根目录/的挂载点切换了，即文件系统被隔离了。然后，为了在分布式的环境下进行通信和定位，容器必然需要一个独立的IP、端口、路由等等，自然就想到了网络的隔离。同时，你的容器还需要一个独立的主机名以便在网络中标识自己。想到网络，顺其自然就想到通信，也就想到了进程间通信的隔离。可能你也想到了权限的问题，对用户和用户组的隔离就实现了用户权限的隔离。最后，运行在容器中的应用需要有自己的PID,自然也需要与宿主机中的PID进行隔离。
@@ -121,15 +168,10 @@ CLONE_NEWUSER
 用户和用户组
 
 
-">
-<meta itemprop="datePublished" content="2015-03-18T08:36:27+00:00" />
+"><meta itemprop="datePublished" content="2015-03-18T08:36:27+00:00" />
 <meta itemprop="dateModified" content="2015-03-18T08:36:27+00:00" />
 <meta itemprop="wordCount" content="15120">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker背后的内核知识——Namespace资源隔离"/>
 <meta name="twitter:description" content="孙健波
 Docker这么火，喜欢技术的朋友可能也会想，如果要自己实现一个资源隔离的容器，应该从哪些方面下手呢？也许你第一反应可能就是chroot命令，这条命令给用户最直观的感觉就是使用后根目录/的挂载点切换了，即文件系统被隔离了。然后，为了在分布式的环境下进行通信和定位，容器必然需要一个独立的IP、端口、路由等等，自然就想到了网络的隔离。同时，你的容器还需要一个独立的主机名以便在网络中标识自己。想到网络，顺其自然就想到通信，也就想到了进程间通信的隔离。可能你也想到了权限的问题，对用户和用户组的隔离就实现了用户权限的隔离。最后，运行在容器中的应用需要有自己的PID,自然也需要与宿主机中的PID进行隔离。
@@ -221,30 +263,21 @@ CLONE_NEWUSER
         </ul>
       
       
-
-
-
-
-
-
-
-
-<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
-  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<div class="ananke-socials">
+  
+    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
   <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
 </svg>
-
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
 </svg>
 </span></a>
-
-
-
-
-
-
-
+  
+</div>
 
     </div>
   </div>
@@ -269,28 +302,14 @@ CLONE_NEWUSER
 
 
 
-  <div id="sharing" class="mt3">
 
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
     
-    <a href="https://www.facebook.com/sharer.php?u=https://wonderflow.info/posts/2015/03/18/docker-namespace/" class="facebook no-underline" aria-label="share on Facebook">
-      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-
-    </a>
-
-    
-    
-    <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2015/03/18/docker-namespace/&amp;text=Docker%e8%83%8c%e5%90%8e%e7%9a%84%e5%86%85%e6%a0%b8%e7%9f%a5%e8%af%86%e2%80%94%e2%80%94Namespace%e8%b5%84%e6%ba%90%e9%9a%94%e7%a6%bb" class="twitter no-underline" aria-label="share on Twitter">
-      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
-
-    </a>
-
-    
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://wonderflow.info/posts/2015/03/18/docker-namespace/&amp;title=Docker%e8%83%8c%e5%90%8e%e7%9a%84%e5%86%85%e6%a0%b8%e7%9f%a5%e8%af%86%e2%80%94%e2%80%94Namespace%e8%b5%84%e6%ba%90%e9%9a%94%e7%a6%bb" class="linkedin no-underline" aria-label="share on LinkedIn">
-      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
-</svg>
-
-    </a>
   </div>
 
 
@@ -358,7 +377,7 @@ CLONE_NEWUSER
 <p>namespace的API包括<code>clone()</code>、<code>setns()</code>以及<code>unshare()</code>，还有<code>/proc</code>下的部分文件。为了确定隔离的到底是哪种namespace，在使用这些API时，通常需要指定以下六个常数的一个或多个，通过<code>|（位或）</code>操作来实现。你可能已经在上面的表格中注意到，这六个参数分别是<code>CLONE_NEWIPC</code>、<code>CLONE_NEWNS</code>、<code>CLONE_NEWNET</code>、<code>CLONE_NEWPID</code>、 <code>CLONE_NEWUSER</code>和<code>CLONE_NEWUTS</code>。</p>
 <h3 id="1通过clone创建新进程的同时创建namespace"><strong>（1）通过<code>clone()</code>创建新进程的同时创建namespace</strong></h3>
 <p>使用<code>clone()</code>来创建一个独立namespace的进程是最常见做法，它的调用方式如下。</p>
-<pre><code>int clone(int (*child_func)(void *), void *child_stack, int flags, void *arg);
+<pre tabindex="0"><code>int clone(int (*child_func)(void *), void *child_stack, int flags, void *arg);
 </code></pre><p><code>clone()</code>实际上是传统UNIX系统调用<code>fork()</code>的一种更通用的实现方式，它可以通过<code>flags</code>来控制使用多少功能。一共有二十多种<code>CLONE_*</code>的<code>flag（标志位）</code>参数用来控制<code>clone</code>进程的方方面面（如是否与父进程共享虚拟内存等等），下面外面逐一讲解<code>clone</code>函数传入的参数。</p>
 <ul>
 <li>参数<code>child_func</code>传入子进程运行的程序主函数。</li>
@@ -369,7 +388,7 @@ CLONE_NEWUSER
 <p>在后续的内容中将会有使用<code>clone()</code>的实际程序可供大家参考。</p>
 <h3 id="2查看procpidns文件"><strong>（2）查看/proc/[pid]/ns文件</strong></h3>
 <p>从3.8版本的内核开始，用户就可以在<code>/proc/[pid]/ns</code>文件下看到指向不同namespace号的文件，效果如下所示，形如<code>[4026531839]</code>者即为namespace号。</p>
-<pre><code>$ ls -l /proc/$$/ns         &lt;&lt;-- $$ 表示应用的PID
+<pre tabindex="0"><code>$ ls -l /proc/$$/ns         &lt;&lt;-- $$ 表示应用的PID
 total 0
 lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 ipc -&gt; ipc:[4026531839]
 lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 mnt -&gt; mnt:[4026531840]
@@ -378,26 +397,26 @@ lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 pid -&gt; pid:[4026531836]
 lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 user-&gt;user:[4026531837]
 lrwxrwxrwx. 1 mtk mtk 0 Jan  8 04:12 uts -&gt; uts:[4026531838]
 </code></pre><p>如果两个进程指向的namespace编号相同，就说明他们在同一个namespace下，否则则在不同namespace里面。<code>/proc/[pid]/ns</code>的另外一个作用是，一旦文件被打开，只要打开的文件描述符（fd）存在，那么就算<code>PID</code>所属的所有进程都已经结束，创建的namespace就会一直存在。那如何打开文件描述符呢？把<code>/proc/[pid]/ns</code>目录挂载起来就可以达到这个效果，命令如下。</p>
-<pre><code># touch ~/uts
+<pre tabindex="0"><code># touch ~/uts
 # mount --bind /proc/27514/ns/uts ~/uts
 </code></pre><p>如果你看到的内容与本文所描述的不符，那么说明你使用的内核在3.8版本以前。该目录下存在的只有<code>ipc</code>、<code>net</code>和<code>uts</code>，并且以硬链接存在。</p>
 <h3 id="3通过setns加入一个已经存在的namespace"><strong>（3）通过<code>setns()</code>加入一个已经存在的namespace</strong></h3>
 <p>上文刚提到，在进程都结束的情况下，也可以通过挂载的形式把namespace保留下来，保留namespace的目的自然是为以后有进程加入做准备。通过<code>setns()</code>系统调用，你的进程从原先的namespace加入我们准备好的新namespace，使用方法如下。</p>
-<pre><code>int setns(int fd, int nstype);
+<pre tabindex="0"><code>int setns(int fd, int nstype);
 </code></pre><ul>
 <li>参数<code>fd</code>表示我们要加入的namespace的文件描述符。上文已经提到，它是一个指向<code>/proc/[pid]/ns</code>目录的文件描述符，可以通过直接打开该目录下的链接或者打开一个挂载了该目录下链接的文件得到。</li>
 <li>参数<code>nstype</code>让调用者可以去检查<code>fd</code>指向的namespace类型是否符合我们实际的要求。如果填<code>0</code>表示不检查。</li>
 </ul>
 <p>为了把我们创建的namespace利用起来，我们需要引入<code>execve()</code>系列函数，这个函数可以执行用户命令，最常用的就是调用<code>/bin/bash</code>并接受参数，运行起一个<code>shell</code>，用法如下。</p>
-<pre><code>fd = open(argv[1], O_RDONLY);   /* 获取namespace文件描述符 */
+<pre tabindex="0"><code>fd = open(argv[1], O_RDONLY);   /* 获取namespace文件描述符 */
 setns(fd, 0);                   /* 加入新的namespace */
 execvp(argv[2], &amp;argv[2]);      /* 执行程序 */
 </code></pre><p>假设编译后的程序名称为<code>setns</code>。</p>
-<pre><code># ./setns ~/uts /bin/bash   # ~/uts 是绑定的/proc/27514/ns/uts
+<pre tabindex="0"><code># ./setns ~/uts /bin/bash   # ~/uts 是绑定的/proc/27514/ns/uts
 </code></pre><p>至此，你就可以在新的命名空间中执行<code>shell</code>命令了，在下文中会多次使用这种方式来演示隔离的效果。</p>
 <h3 id="4通过unshare在原先进程上进行namespace隔离"><strong>（4）通过<code>unshare()</code>在原先进程上进行namespace隔离</strong></h3>
 <p>最后要提的系统调用是<code>unshare()</code>，它跟<code>clone()</code>很像，不同的是，<code>unshare()</code>运行在原先的进程上，不需要启动一个新进程，使用方法如下。</p>
-<pre><code>int unshare(int flags);
+<pre tabindex="0"><code>int unshare(int flags);
 </code></pre><p>调用<code>unshare()</code>的主要作用就是不启动一个新进程就可以起到隔离的效果，相当于跳出原先的namespace进行操作。这样，你就可以在原进程进行一些需要隔离的操作。Linux中自带的<code>unshare</code>命令，就是通过<code>unshare()</code>系统调用实现的，有兴趣的读者可以在网上搜索一下这个命令的作用。</p>
 <h3 id="5延伸阅读fork系统调用">（5）延伸阅读：<code>fork（）</code>系统调用</h3>
 <p>系统调用函数<code>fork()</code>并不属于namespace的API，所以这部分内容属于延伸阅读，如果读者已经对<code>fork()</code>有足够的了解，那大可跳过。</p>
@@ -409,7 +428,7 @@ execvp(argv[2], &amp;argv[2]);      /* 执行程序 */
 <li>如果出现错误，fork返回一个负值</li>
 </ul>
 <p>下面给出一段实例代码，命名为<code>fork_example.c</code>。</p>
-<pre><code>#include &lt;unistd.h&gt;
+<pre tabindex="0"><code>#include &lt;unistd.h&gt;
 #include &lt;stdio.h&gt;
 int main (){
   pid_t fpid; //fpid表示fork函数返回的值
@@ -425,7 +444,7 @@ int main (){
   return 0;
 }
 </code></pre><p>编译并执行，结果如下。</p>
-<pre><code>root@local:~# gcc -Wall fork_example.c &amp;&amp; ./a.out
+<pre tabindex="0"><code>root@local:~# gcc -Wall fork_example.c &amp;&amp; ./a.out
 I am parent. Process id is 28365
 I am child. Process id is 28366
 </code></pre><p>使用<code>fork()</code>后，父进程有义务监控子进程的运行状态，并在子进程退出后自己才能正常退出，否则子进程就会成为“孤儿”进程。</p>
@@ -433,7 +452,7 @@ I am child. Process id is 28366
 <h2 id="2-utsunix-time-sharing-systemnamespace"><strong>2. UTS（UNIX Time-sharing System）namespace</strong></h2>
 <p>UTS namespace提供了主机名和域名的隔离，这样每个容器就可以拥有了独立的主机名和域名，在网络上可以被视作一个独立的节点而非宿主机上的一个进程。</p>
 <p>下面我们通过代码来感受一下UTS隔离的效果，首先需要一个程序的骨架，如下所示。打开编辑器创建<code>uts.c</code>文件，输入如下代码。</p>
-<pre><code>#define _GNU_SOURCE
+<pre tabindex="0"><code>#define _GNU_SOURCE
 #include &lt;sys/types.h&gt;
 #include &lt;sys/wait.h&gt;
 #include &lt;stdio.h&gt;
@@ -463,7 +482,7 @@ int main() {
   return 0;
 }
 </code></pre><p>编译并运行上述代码，执行如下命令，效果如下。</p>
-<pre><code>root@local:~# gcc -Wall uts.c -o uts.o &amp;&amp; ./uts.o
+<pre tabindex="0"><code>root@local:~# gcc -Wall uts.c -o uts.o &amp;&amp; ./uts.o
 程序开始:
 在子进程中!
 root@local:~# exit
@@ -471,7 +490,7 @@ exit
 已退出
 root@local:~#
 </code></pre><p>下面，我们将修改代码，加入UTS隔离。<strong>运行代码需要root权限</strong>，为了防止普通用户任意修改系统主机名导致<code>set-user-ID</code>相关的应用运行出错。</p>
-<pre><code>//[...]
+<pre tabindex="0"><code>//[...]
 int child_main(void* arg) {
   printf(&quot;在子进程中!\n&quot;);
   sethostname(&quot;Changed Namespace&quot;, 12);
@@ -486,7 +505,7 @@ int child_pid = clone(child_main, child_stack+STACK_SIZE,
 //[...]
 }
 </code></pre><p>再次运行可以看到hostname已经变化。</p>
-<pre><code>root@local:~# gcc -Wall namespace.c -o main.o &amp;&amp; ./main.o
+<pre tabindex="0"><code>root@local:~# gcc -Wall namespace.c -o main.o &amp;&amp; ./main.o
 程序开始:
 在子进程中!
 root@NewNamespace:~# exit
@@ -498,20 +517,20 @@ root@local:~#  &lt;- 回到原来的hostname
 <h2 id="3-ipcinterprocess-communicationnamespace"><strong>3. IPC（Interprocess Communication）namespace</strong></h2>
 <p>容器中进程间通信采用的方法包括常见的信号量、消息队列和共享内存。然而与虚拟机不同的是，容器内部进程间通信对宿主机来说，实际上是具有相同PID namespace中的进程间通信，因此需要一个唯一的标识符来进行区别。申请IPC资源就申请了这样一个全局唯一的32位ID，所以IPC namespace中实际上包含了系统IPC标识符以及实现POSIX消息队列的文件系统。在同一个IPC namespace下的进程彼此可见，而与其他的IPC namespace下的进程则互相不可见。</p>
 <p>IPC namespace在代码上的变化与UTS namespace相似，只是标识位有所变化，需要加上<code>CLONE_NEWIPC</code>参数。主要改动如下，其他部位不变，程序名称改为<code>ipc.c</code>。{测试方法参考自：http://crosbymichael.com/creating-containers-part-1.html}</p>
-<pre><code>//[...]
+<pre tabindex="0"><code>//[...]
 int child_pid = clone(child_main, child_stack+STACK_SIZE,
            CLONE_NEWIPC | CLONE_NEWUTS | SIGCHLD, NULL);
 //[...]
 </code></pre><p>我们首先在shell中使用<code>ipcmk -Q</code>命令创建一个message queue。</p>
-<pre><code>root@local:~# ipcmk -Q
+<pre tabindex="0"><code>root@local:~# ipcmk -Q
 Message queue id: 32769
 </code></pre><p>通过<code>ipcs -q</code>可以查看到已经开启的message queue，序号为<code>32769</code>。</p>
-<pre><code>root@local:~# ipcs -q
+<pre tabindex="0"><code>root@local:~# ipcs -q
 ------ Message Queues --------
 key        msqid   owner   perms   used-bytes   messages
 0x4cf5e29f 32769   root    644     0            0
 </code></pre><p>然后我们可以编译运行加入了IPC namespace隔离的<code>ipc.c</code>，在新建的子进程中调用的<code>shell</code>中执行<code>ipcs -q</code>查看message queue。</p>
-<pre><code>root@local:~# gcc -Wall ipc.c -o ipc.o &amp;&amp; ./ipc.o
+<pre tabindex="0"><code>root@local:~# gcc -Wall ipc.c -o ipc.o &amp;&amp; ./ipc.o
 程序开始:
 在子进程中!
 root@NewNamespace:~# ipcs -q
@@ -532,13 +551,13 @@ exit
 </ul>
 <p>到这里，可能你已经联想到一种在外部监控Docker中运行程序的方法了，就是监控Docker Daemon所在的PID namespace下的所有进程即其子进程，再进行删选即可。</p>
 <p>下面我们通过运行代码来感受一下PID namespace的隔离效果。修改上文的代码，加入PID namespace的标识位，并把程序命名为<code>pid.c</code>。</p>
-<pre><code>//[...]
+<pre tabindex="0"><code>//[...]
 int child_pid = clone(child_main, child_stack+STACK_SIZE,
            CLONE_NEWPID | CLONE_NEWIPC | CLONE_NEWUTS 
            | SIGCHLD, NULL);
 //[...]
 </code></pre><p>编译运行可以看到如下结果。</p>
-<pre><code>root@local:~# gcc -Wall pid.c -o pid.o &amp;&amp; ./pid.o
+<pre tabindex="0"><code>root@local:~# gcc -Wall pid.c -o pid.o &amp;&amp; ./pid.o
 程序开始:
 在子进程中!
 root@NewNamespace:~# echo $$
@@ -547,7 +566,7 @@ root@NewNamespace:~# exit
 exit
 已退出
 </code></pre><p>打印<code>$$</code>可以看到shell的PID，退出后如果再次执行可以看到效果如下。</p>
-<pre><code>root@local:~# echo $$
+<pre tabindex="0"><code>root@local:~# echo $$
 17542
 </code></pre><p>已经回到了正常状态。可能有的读者在子进程的shell中执行了<code>ps aux</code>/<code>top</code>之类的命令，发现还是可以看到所有父进程的PID，那是因为我们还没有对文件系统进行隔离，<code>ps</code>/<code>top</code>之类的命令调用的是真实系统下的<code>/proc</code>文件内容，看到的自然是所有的进程。</p>
 <p>此外，与其他的namespace不同的是，为了实现一个稳定安全的容器，PID namespace还需要进行一些额外的工作才能确保其中的进程运行顺利。</p>
@@ -561,7 +580,7 @@ exit
 <p>我们常说，Docker一旦启动就有进程在运行，不存在不包含任何进程的Docker，也就是这个道理。</p>
 <h3 id="3挂载proc文件系统">（3）挂载<code>proc</code>文件系统</h3>
 <p>前文中已经提到，如果你在新的PID namespace中使用<code>ps</code>命令查看，看到的还是所有的进程，因为与PID直接相关的<code>/proc</code>文件系统（<code>procfs</code>）没有挂载到与原<code>/proc</code>不同的位置。所以如果你只想看到PID namespace本身应该看到的进程，需要重新挂载<code>/proc</code>，命令如下。</p>
-<pre><code>root@NewNamespace:~# mount -t proc proc /proc
+<pre tabindex="0"><code>root@NewNamespace:~# mount -t proc proc /proc
 root@NewNamespace:~# ps a
   PID TTY      STAT   TIME COMMAND
     1 pts/1    S      0:00 /bin/bash
@@ -595,20 +614,20 @@ root@NewNamespace:~# ps a
 <strong>图1 mount各类挂载状态示意图</strong></p>
 <p>共享挂载的应用场景非常明显，就是为了文件数据的共享所必须存在的一种挂载方式；从属挂载更大的意义在于某些“只读”场景；私有挂载其实就是纯粹的隔离，作为一个独立的个体而存在；不可绑定挂载则有助于防止没有必要的文件拷贝，如某个用户数据目录，当根目录被递归式的复制时，用户目录无论从隐私还是实际用途考虑都需要有一个不可被复制的选项。</p>
 <p>默认情况下，所有挂载都是私有的。设置为共享挂载的命令如下。</p>
-<pre><code>mount --make-shared &lt;mount-object&gt;
+<pre tabindex="0"><code>mount --make-shared &lt;mount-object&gt;
 </code></pre><p>从共享挂载克隆的挂载对象也是共享的挂载；它们相互传播挂载事件。</p>
 <p>设置为从属挂载的命令如下。</p>
-<pre><code>mount --make-slave &lt;shared-mount-object&gt;
+<pre tabindex="0"><code>mount --make-slave &lt;shared-mount-object&gt;
 </code></pre><p>从从属挂载克隆的挂载对象也是从属的挂载，它也从属于原来的从属挂载的主挂载对象。</p>
 <p>将一个从属挂载对象设置为共享/从属挂载，可以执行如下命令或者将其移动到一个共享挂载对象下。</p>
-<pre><code>mount --make-shared &lt;slave-mount-object&gt;
+<pre tabindex="0"><code>mount --make-shared &lt;slave-mount-object&gt;
 </code></pre><p>如果你想把修改过的挂载对象重新标记为私有的，可以执行如下命令。</p>
-<pre><code>mount --make-private &lt;mount-object&gt;
+<pre tabindex="0"><code>mount --make-private &lt;mount-object&gt;
 </code></pre><p>通过执行以下命令，可以将挂载对象标记为不可绑定的。</p>
-<pre><code>mount --make-unbindable &lt;mount-object&gt;
+<pre tabindex="0"><code>mount --make-unbindable &lt;mount-object&gt;
 </code></pre><p>这些设置都可以递归式地应用到所有子目录中，如果读者感兴趣可以搜索到相关的命令。</p>
 <p>在代码中实现mount namespace隔离与其他namespace类似，加上<code>CLONE_NEWNS</code>标识位即可。让我们再次修改代码，并且另存为<code>mount.c</code>进行编译运行。</p>
-<pre><code>//[...]
+<pre tabindex="0"><code>//[...]
 int child_pid = clone(child_main, child_stack+STACK_SIZE,
            CLONE_NEWNS | CLONE_NEWPID | CLONE_NEWIPC 
            | CLONE_NEWUTS | SIGCHLD, NULL);
@@ -624,23 +643,23 @@ int child_pid = clone(child_main, child_stack+STACK_SIZE,
 <strong>图2 Docker网络示意图</strong></p>
 <p>跟其他namespace类似，对network namespace的使用其实就是在创建的时候添加<code>CLONE_NEWNET</code>标识位。也可以通过命令行工具<code>ip</code>创建network namespace。在代码中建立和测试network namespace较为复杂，所以下文主要通过<code>ip</code>命令直观的感受整个network namespace网络建立和配置的过程。</p>
 <p>首先我们可以创建一个命名为<code>test_ns</code>的network namespace。</p>
-<pre><code># ip netns add test_ns
+<pre tabindex="0"><code># ip netns add test_ns
 </code></pre><p>当<code>ip</code>命令工具创建一个network namespace时，会默认创建一个回环设备（loopback interface：<code>lo</code>），并在<code>/var/run/netns</code>目录下绑定一个挂载点，这就保证了就算network namespace中没有进程在运行也不会被释放，也给系统管理员对新创建的network namespace进行配置提供了充足的时间。</p>
 <p>通过<code>ip netns exec</code>命令可以在新创建的network namespace下运行网络管理命令。</p>
-<pre><code># ip netns exec test_ns ip link list
+<pre tabindex="0"><code># ip netns exec test_ns ip link list
 3: lo: &lt;LOOPBACK&gt; mtu 16436 qdisc noop state DOWN
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
 </code></pre><p>上面的命令为我们展示了新建的namespace下可见的网络链接，可以看到状态是<code>DOWN</code>,需要再通过命令去启动。可以看到，此时执行<code>ping</code>命令是无效的。</p>
-<pre><code># ip netns exec test_ns ping 127.0.0.1
+<pre tabindex="0"><code># ip netns exec test_ns ping 127.0.0.1
 connect: Network is unreachable
 </code></pre><p>启动命令如下，可以看到启动后再测试就可以ping通。</p>
-<pre><code># ip netns exec test_ns ip link set dev lo up
+<pre tabindex="0"><code># ip netns exec test_ns ip link set dev lo up
 # ip netns exec test_ns ping 127.0.0.1
 PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
 64 bytes from 127.0.0.1: icmp_req=1 ttl=64 time=0.050 ms
 ...
 </code></pre><p>这样只是启动了本地的回环，要实现与外部namespace进行通信还需要再建一个网络设备对，命令如下。</p>
-<pre><code># ip link add veth0 type veth peer name veth1
+<pre tabindex="0"><code># ip link add veth0 type veth peer name veth1
 # ip link set veth1 netns test_ns
 # ip netns exec test_ns ifconfig veth1 10.1.1.1/24 up
 # ifconfig veth0 10.1.1.2/24 up
@@ -650,7 +669,7 @@ PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
 <li>第三、第四条命令分别给<code>test_ns</code>内部和外部的网络设备配置IP，<code>veth1</code>的IP为<code>10.1.1.1</code>，<code>veth0</code>的IP为<code>10.1.1.2</code>。</li>
 </ul>
 <p>此时两边就可以互相连通了，效果如下。</p>
-<pre><code># ping 10.1.1.1
+<pre tabindex="0"><code># ping 10.1.1.1
 PING 10.1.1.1 (10.1.1.1) 56(84) bytes of data.
 64 bytes from 10.1.1.1: icmp_req=1 ttl=64 time=0.095 ms
 ...
@@ -659,11 +678,11 @@ PING 10.1.1.2 (10.1.1.2) 56(84) bytes of data.
 64 bytes from 10.1.1.2: icmp_req=1 ttl=64 time=0.049 ms
 ...
 </code></pre><p>读者有兴趣可以通过下面的命令查看，新的<code>test_ns</code>有着自己独立的路由和iptables。</p>
-<pre><code>ip netns exec test_ns route
+<pre tabindex="0"><code>ip netns exec test_ns route
 ip netns exec test_ns iptables -L
 </code></pre><p>路由表中只有一条通向<code>10.1.1.2</code>的规则，此时如果要连接外网肯定是不可能的，你可以通过建立网桥或者NAT映射来决定这个问题。如果你对此非常感兴趣，可以阅读Docker网络相关文章进行更深入的讲解。</p>
 <p>做完这些实验，你还可以通过下面的命令删除这个network namespace。</p>
-<pre><code># ip netns delete netns1
+<pre tabindex="0"><code># ip netns delete netns1
 </code></pre><p>这条命令会移除之前的挂载，但是如果namespace本身还有进程运行，namespace还会存在下去，直到进程运行结束。</p>
 <p>通过network namespace我们可以了解到，实际上内核创建了network namespace以后，真的是得到了一个被隔离的网络。但是我们实际上需要的不是这种完全的隔离，而是一个对用户来说透明独立的网络实体，我们需要与这个实体通信。所以Docker的网络在起步阶段给人一种非常难用的感觉，因为一切都要自己去实现、去配置。你需要一个网桥或者NAT连接广域网，你需要配置路由规则与宿主机中其他容器进行必要的隔离，你甚至还需要配置防火墙以保证安全等等。所幸这一切已经有了较为成熟的方案，我们会在Docker网络部分进行详细的讲解。</p>
 <h2 id="7-user-namespaces"><strong>7. User namespaces</strong></h2>
@@ -671,9 +690,9 @@ ip netns exec test_ns iptables -L
 <p>User namespace是目前的六个namespace中最后一个支持的，并且直到Linux内核3.8版本的时候还未完全实现（还有部分文件系统不支持）。因为user namespace实际上并不算完全成熟，很多发行版担心安全问题，在编译内核的时候并未开启<code>USER_NS</code>。**实际上目前Docker也还不支持user namespace，但是预留了相应接口，相信在不久后就会支持这一特性。**所以在进行接下来的代码实验时，请确保你系统的Linux内核版本高于3.8并且内核编译时开启了<code>USER_NS</code>（如果你不会选择，可以使用Ubuntu14.04）。</p>
 <p>Linux中，特权用户的user ID就是0，演示的最终我们将看到user ID非0的进程启动user namespace后user ID可以变为0。使用user namespace的方法跟别的namespace相同，即调用<code>clone()</code>或<code>unshare()</code>时加入<code>CLONE_NEWUSER</code>标识位。老样子，修改代码并另存为<code>userns.c</code>，为了看到用户<a href="http://man7.org/linux/man-pages/man7/capabilities.7.html">权限(Capabilities)</a>，可能你还需要安装一下<code>libcap-dev</code>包。</p>
 <p>首先包含以下头文件以调用<code>Capabilities</code>包。</p>
-<pre><code>#include &lt;sys/capability.h&gt;
+<pre tabindex="0"><code>#include &lt;sys/capability.h&gt;
 </code></pre><p>其次在子进程函数中加入<code>geteuid()</code>和<code>getegid()</code>得到namespace内部的user ID，其次通过<code>cap_get_proc()</code>得到当前进程的用户拥有的权限，并通过<code>cap_to_text（）</code>输出。</p>
-<pre><code>int child_main(void* args) {
+<pre tabindex="0"><code>int child_main(void* args) {
         printf(&quot;在子进程中!\n&quot;);
         cap_t caps;
         printf(&quot;eUID = %ld;  eGID = %ld;  &quot;,
@@ -684,17 +703,17 @@ ip netns exec test_ns iptables -L
         return 1;
 }
 </code></pre><p>在主函数的<code>clone()</code>调用中加入我们熟悉的标识符。</p>
-<pre><code>//[...]
+<pre tabindex="0"><code>//[...]
 int child_pid = clone(child_main, child_stack+STACK_SIZE,
             CLONE_NEWUSER | SIGCHLD, NULL);
 //[...]
 </code></pre><p>至此，第一部分的代码修改就结束了。在编译之前我们先查看一下当前用户的<code>uid</code>和<code>guid</code>，请注意此时我们是普通用户。</p>
-<pre><code>$ id -u
+<pre tabindex="0"><code>$ id -u
 1000
 $ id -g
 1000
 </code></pre><p>然后我们开始编译运行，并进行新建的user namespace，你会发现shell提示符前的用户名已经变为<code>nobody</code>。</p>
-<pre><code>sun@ubuntu$ gcc userns.c -Wall -lcap -o userns.o &amp;&amp; ./userns.o
+<pre tabindex="0"><code>sun@ubuntu$ gcc userns.c -Wall -lcap -o userns.o &amp;&amp; ./userns.o
 程序开始:
 在子进程中!
 eUID = 65534;  eGID = 65534;  capabilities: = cap_chown,cap_dac_override,[...]37+ep  &lt;&lt;--此处省略部分输出，已拥有全部权限
@@ -707,7 +726,7 @@ nobody@ubuntu$
 <li>最后，user namespace的创建其实是一个层层嵌套的树状结构。最上层的根节点就是root namespace，新创建的每个user namespace都有一个父节点user namespace以及零个或多个子节点user namespace，这一点与PID namespace非常相似。</li>
 </ul>
 <p>接下来我们就要进行用户绑定操作，通过在<code> /proc/[pid]/uid_map</code>和<code>/proc/[pid]/gid_map</code>两个文件中写入对应的绑定信息可以实现这一点，格式如下。</p>
-<pre><code>ID-inside-ns   ID-outside-ns   length
+<pre tabindex="0"><code>ID-inside-ns   ID-outside-ns   length
 </code></pre><p>写这两个文件需要注意以下几点。</p>
 <ul>
 <li>这两个文件只允许由拥有该user namespace中<code>CAP_SETUID</code>权限的进程写入一次，不允许修改。</li>
@@ -715,7 +734,7 @@ nobody@ubuntu$
 <li>第一个字段<code>ID-inside-ns</code>表示新建的user namespace中对应的user/group ID，第二个字段<code>ID-outside-ns</code>表示namespace外部映射的user/group ID。最后一个字段表示映射范围，通常填1，表示只映射一个，如果填大于1的值，则按顺序建立一一映射。</li>
 </ul>
 <p>明白了上述原理，我们再次修改代码，添加设置uid和guid的函数。</p>
-<pre><code>//[...]
+<pre tabindex="0"><code>//[...]
 void set_uid_map(pid_t pid, int inside_id, int outside_id, int length) {
     char path[256];
     sprintf(path, &quot;/proc/%d/uid_map&quot;, getpid());
@@ -744,7 +763,7 @@ int child_main(void* args) {
 }
 //[...]
 </code></pre><p>编译后即可看到user已经变成了<code>root</code>。</p>
-<pre><code>$ gcc userns.c -Wall -lcap -o usernc.o &amp;&amp; ./usernc.o
+<pre tabindex="0"><code>$ gcc userns.c -Wall -lcap -o usernc.o &amp;&amp; ./usernc.o
 程序开始:
 在子进程中!
 eUID = 0;  eGID = 0;  capabilities: = [...],37+ep
@@ -776,41 +795,27 @@ root@ubuntu:~#
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
     <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info">
-      &copy;  奇迹之流WonderfloW 2021 
+      &copy;  奇迹之流WonderfloW 2022 
     </a>
     <div>
-
-
-
-
-
-
-
-
-<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
-  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<div class="ananke-socials">
+  
+    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
   <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
 </svg>
-
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
 </svg>
 </span></a>
-
-
-
-
-
-
-
+  
+</div>
 </div>
     <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
   </div>
 </footer>
-    
-
-  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
-
-
   </body>
 </html>

@@ -6,19 +6,26 @@
     
     <title>Docker背后的内核知识——cgroups资源限制 | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="description" content="原文首发自InfoQ，《Docker背后的内核知识——cgroups资源限制》
+摘要
+当我们谈论Docker时，我们常常会聊到Docker的实现方式。很多开发者都会知道，Docker的本质实际上是宿主机上的一个进程，通过namespace实现了资源隔离，通过cgroup实现了资源限制，通过UnionFS实现了Copy on Write的文件操作。但是当我们再深入一步的提出，namespace和cgroup实现细节时，知道的人可能就所剩无几了。浙江大学SEL/VLIS实验室的孙健波同学在docker基础研究工作中着重对内核的cgroup技术做了细致的分析和梳理，希望能对读者深入理解Docker有所帮助
+正文
+上一篇中，我们了解了Docker背后使用的资源隔离技术namespace，通过系统调用构建一个相对隔离的shell环境，也可以称之为一个简单的“容器”。本文我们则要开始讲解另一个强大的内核工具——cgroups。他不仅可以限制被namespace隔离起来的资源，还可以为资源设置权重、计算使用量、操控进程启停等等。在介绍完基本概念后，我们将详细讲解Docker中使用到的cgroups内容。希望通过本文，让读者对Docker有更深入的了解。">
+    <meta name="generator" content="Hugo 0.92.2" />
     
     
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+    
+      <meta name="robots" content="noindex, nofollow">
     
 
     
-    
-      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
-    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
 
     
-
+    
     
       
 <link rel="shortcut icon" href="/favicon_io/favicon.ico" type="image/x-icon" />
@@ -35,23 +42,19 @@
 正文
 上一篇中，我们了解了Docker背后使用的资源隔离技术namespace，通过系统调用构建一个相对隔离的shell环境，也可以称之为一个简单的“容器”。本文我们则要开始讲解另一个强大的内核工具——cgroups。他不仅可以限制被namespace隔离起来的资源，还可以为资源设置权重、计算使用量、操控进程启停等等。在介绍完基本概念后，我们将详细讲解Docker中使用到的cgroups内容。希望通过本文，让读者对Docker有更深入的了解。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://wonderflow.info/posts/2015/04/22/cgroups/" />
+<meta property="og:url" content="https://wonderflow.info/posts/2015/04/22/cgroups/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2015-04-22T10:05:38+00:00" />
 <meta property="article:modified_time" content="2015-04-22T10:05:38+00:00" />
+
 <meta itemprop="name" content="Docker背后的内核知识——cgroups资源限制">
 <meta itemprop="description" content="原文首发自InfoQ，《Docker背后的内核知识——cgroups资源限制》
 摘要
 当我们谈论Docker时，我们常常会聊到Docker的实现方式。很多开发者都会知道，Docker的本质实际上是宿主机上的一个进程，通过namespace实现了资源隔离，通过cgroup实现了资源限制，通过UnionFS实现了Copy on Write的文件操作。但是当我们再深入一步的提出，namespace和cgroup实现细节时，知道的人可能就所剩无几了。浙江大学SEL/VLIS实验室的孙健波同学在docker基础研究工作中着重对内核的cgroup技术做了细致的分析和梳理，希望能对读者深入理解Docker有所帮助
 正文
-上一篇中，我们了解了Docker背后使用的资源隔离技术namespace，通过系统调用构建一个相对隔离的shell环境，也可以称之为一个简单的“容器”。本文我们则要开始讲解另一个强大的内核工具——cgroups。他不仅可以限制被namespace隔离起来的资源，还可以为资源设置权重、计算使用量、操控进程启停等等。在介绍完基本概念后，我们将详细讲解Docker中使用到的cgroups内容。希望通过本文，让读者对Docker有更深入的了解。">
-<meta itemprop="datePublished" content="2015-04-22T10:05:38+00:00" />
+上一篇中，我们了解了Docker背后使用的资源隔离技术namespace，通过系统调用构建一个相对隔离的shell环境，也可以称之为一个简单的“容器”。本文我们则要开始讲解另一个强大的内核工具——cgroups。他不仅可以限制被namespace隔离起来的资源，还可以为资源设置权重、计算使用量、操控进程启停等等。在介绍完基本概念后，我们将详细讲解Docker中使用到的cgroups内容。希望通过本文，让读者对Docker有更深入的了解。"><meta itemprop="datePublished" content="2015-04-22T10:05:38+00:00" />
 <meta itemprop="dateModified" content="2015-04-22T10:05:38+00:00" />
 <meta itemprop="wordCount" content="16061">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker背后的内核知识——cgroups资源限制"/>
 <meta name="twitter:description" content="原文首发自InfoQ，《Docker背后的内核知识——cgroups资源限制》
 摘要
@@ -104,30 +107,21 @@
         </ul>
       
       
-
-
-
-
-
-
-
-
-<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
-  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<div class="ananke-socials">
+  
+    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
   <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
 </svg>
-
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
 </svg>
 </span></a>
-
-
-
-
-
-
-
+  
+</div>
 
     </div>
   </div>
@@ -152,28 +146,14 @@
 
 
 
-  <div id="sharing" class="mt3">
 
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
     
-    <a href="https://www.facebook.com/sharer.php?u=https://wonderflow.info/posts/2015/04/22/cgroups/" class="facebook no-underline" aria-label="share on Facebook">
-      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-
-    </a>
-
-    
-    
-    <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2015/04/22/cgroups/&amp;text=Docker%e8%83%8c%e5%90%8e%e7%9a%84%e5%86%85%e6%a0%b8%e7%9f%a5%e8%af%86%e2%80%94%e2%80%94cgroups%e8%b5%84%e6%ba%90%e9%99%90%e5%88%b6" class="twitter no-underline" aria-label="share on Twitter">
-      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
-
-    </a>
-
-    
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://wonderflow.info/posts/2015/04/22/cgroups/&amp;title=Docker%e8%83%8c%e5%90%8e%e7%9a%84%e5%86%85%e6%a0%b8%e7%9f%a5%e8%af%86%e2%80%94%e2%80%94cgroups%e8%b5%84%e6%ba%90%e9%99%90%e5%88%b6" class="linkedin no-underline" aria-label="share on LinkedIn">
-      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
-</svg>
-
-    </a>
   </div>
 
 
@@ -307,7 +287,7 @@
 <h2 id="7-cgroups的使用方法简介"><strong>7. cgroups的使用方法简介</strong></h2>
 <p>###（1）安装cgroups工具库
 本节主要针对Ubuntu14.04版本系统进行介绍，其他Linux发行版命令略有不同，原理是一样的。不安装cgroups工具库也可以使用cgroups，安装它只是为了更方便的在用户态对cgroups进行管理，同时也方便初学者理解和使用，本节对cgroups的操作和使用都基于这个工具库。</p>
-<pre><code>apt-get install cgroup-bin
+<pre tabindex="0"><code>apt-get install cgroup-bin
 </code></pre><p>安装的过程会自动创建<code>/cgroup</code>目录，如果没有自动创建也不用担心，使用 <code>mkdir /cgroup</code> 手动创建即可。在这个目录下你就可以挂载各类子系统。安装完成后，你就可以使用<code>lssubsys</code>（罗列所有的subsystem挂载情况）等命令。</p>
 <p>说明：也许你在其他文章中看到的cgroups工具库教程，会在/etc目录下生成一些初始化脚本和配置文件，默认的cgroup配置文件为<code>/etc/cgconfig.conf</code>，但是因为存在使LXC无法运行的bug，所以在新版本中把这个配置移除了，详见：https://bugs.launchpad.net/ubuntu/+source/libcgroup/+bug/1096771。</p>
 <h3 id="2查询cgroup及子系统挂载状态">（2）查询cgroup及子系统挂载状态</h3>
@@ -320,50 +300,50 @@
 </ul>
 <h3 id="3创建hierarchy层级并挂载子系统">（3）创建hierarchy层级并挂载子系统</h3>
 <p>在组织结构与规则一节中我们提到了hierarchy层级和subsystem子系统的关系，我们知道使用cgroup的最佳方式是：为想要管理的每个或每组资源创建单独的cgroup层级结构。而创建hierarchy并不神秘，实际上就是做一个标记，通过挂载一个tmpfs{![基于内存的临时文件系统，详见：http://en.wikipedia.org/wiki/Tmpfs]}文件系统，并给一个好的名字就可以了，系统默认挂载的cgroup就会进行如下操作。</p>
-<pre><code>mount -t tmpfs cgroups /sys/fs/cgroup
+<pre tabindex="0"><code>mount -t tmpfs cgroups /sys/fs/cgroup
 </code></pre><p>其中<code>-t</code>即指定挂载的文件系统类型，其后的<code>cgroups</code>是会出现在<code>mount</code>展示的结果中用于标识，可以选择一个有用的名字命名，最后的目录则表示文件的挂载点位置。</p>
 <p>挂载完成<code>tmpfs</code>后就可以通过<code>mkdir</code>命令创建相应的文件夹。</p>
-<pre><code>mkdir /sys/fs/cgroup/cg1
+<pre tabindex="0"><code>mkdir /sys/fs/cgroup/cg1
 </code></pre><p>再把子系统挂载到相应层级上，挂载子系统也使用mount命令，语法如下。</p>
-<pre><code>mount -t cgroup -o subsystems name /cgroup/name
+<pre tabindex="0"><code>mount -t cgroup -o subsystems name /cgroup/name
 </code></pre><p>其​​​中​​​ subsystems 是​​​使​​​用​​​<code>,</code>（逗号）​​​分​​​开​​​的​​​子​​​系​​​统​​​列​​​表，name 是​​​层​​​级​​​名​​​称​​​。具体我们以挂载cpu和memory的子系统为例，命令如下。</p>
-<pre><code>mount –t cgroup –o cpu,memory cpu_and_mem /sys/fs/cgroup/cg1
+<pre tabindex="0"><code>mount –t cgroup –o cpu,memory cpu_and_mem /sys/fs/cgroup/cg1
 </code></pre><p>从<code>mount</code>命令开始，<code>-t</code>后面跟的是挂载的文件系统类型，即<code>cgroup</code>文件系统。<code>-o</code>后面跟要挂载的子系统种类如<code>cpu</code>、<code>memory</code>，用逗号隔开，其后的<code>cpu_and_mem</code>不被cgroup代码的解释，但会出现在/proc/mounts里，可以使用任何有用的标识字符串。最后的参数则表示挂载点的目录位置。</p>
 <p>说明：如果挂载时提示<code>mount: agent already mounted or /cgroup busy</code>，则表示子系统已经挂载，需要先卸载原先的挂载点，通过第二条中描述的命令可以定位挂载点。</p>
 <h3 id="4卸载cgroup">（4）卸载cgroup</h3>
 <p>目前<code>cgroup</code>文件系统虽然支持重新挂载，但是官方不建议使用，重新挂载虽然可以改变绑定的子系统和<code>release agent</code>，但是它要求对应的hierarchy是空的并且release_agent会被传统的<code>fsnotify</code>（内核默认的文件系统通知）代替，这就导致重新挂载很难生效，未来重新挂载的功能可能会移除。你可以通过卸载，再挂载的方式处理这样的需求。</p>
 <p>卸载cgroup非常简单，你可以通过<code>cgdelete</code>命令，也可以通过<code>rmdir</code>，以刚挂载的cg1为例，命令如下。</p>
-<pre><code>rmdir /sys/fs/cgroup/cg1
+<pre tabindex="0"><code>rmdir /sys/fs/cgroup/cg1
 </code></pre><p><code>rmdir</code>执行成功的必要条件是cg1下层没有创建其它cgroup，cg1中没有添加任何task，并且它也没有被别的cgroup所引用。</p>
-<pre><code>cgdelete cpu,memory:/
+<pre tabindex="0"><code>cgdelete cpu,memory:/
 </code></pre><p>使用<code>cgdelete</code>命令可以递归的删除cgroup及其命令下的后代cgroup，并且如果cgroup中有task，那么task会自动移到上一层没有被删除的cgroup中，如果所有的cgroup都被删除了，那task就不被cgroups控制。但是一旦再次创建一个新的cgroup，所有进程都会被放进新的cgroup中。</p>
 <h3 id="5设置cgroups参数">（5）设置cgroups参数</h3>
 <p>设置cgroups参数非常简单，直接对之前创建的cgroup对应文件夹下的文件写入即可，举例如下。</p>
 <ul>
 <li>设置task允许使用的cpu为0和1.</li>
 </ul>
-<pre><code>echo 0-1 &gt; /sys/fs/cgroup/cg1/cpuset.cpus
+<pre tabindex="0"><code>echo 0-1 &gt; /sys/fs/cgroup/cg1/cpuset.cpus
 </code></pre><p>使用<code>cgset</code>命令也可以进行参数设置，对应上述允许使用0和1cpu的命令为：</p>
-<pre><code>cgset -r cpuset.cpus=0-1 cpu,memory:/
+<pre tabindex="0"><code>cgset -r cpuset.cpus=0-1 cpu,memory:/
 </code></pre><h3 id="6添加task到cgroup">（6）添加task到cgroup</h3>
 <ul>
 <li>通过文件操作进行添加</li>
 </ul>
-<pre><code>echo [PID] &gt; /path/to/cgroup/tasks
+<pre tabindex="0"><code>echo [PID] &gt; /path/to/cgroup/tasks
 </code></pre><p>上述命令就是把进程ID打印到tasks中，如果tasks文件中已经有进程，需要使用<code>&quot;&gt;&gt;&quot;</code>向后添加。</p>
 <ul>
 <li>通过<code>cgclassify</code>将进程添加到cgroup</li>
 </ul>
-<pre><code>cgclassify -g subsystems:path_to_cgroup pidlist
+<pre tabindex="0"><code>cgclassify -g subsystems:path_to_cgroup pidlist
 </code></pre><p>这个命令中，<code>subsystems</code>指的就是子系统（如果使用man命令查看，可能也会使用controllers表示）​​​，如果mount了多个，就是用<code>&quot;,&quot;</code>隔开的子系统名字作为名称，类似<code>cgset</code>命令。</p>
 <ul>
 <li>通过<code>cgexec</code>直接在cgroup中启动并执行进程</li>
 </ul>
-<pre><code>cgexec -g subsystems:path_to_cgroup command arguments
+<pre tabindex="0"><code>cgexec -g subsystems:path_to_cgroup command arguments
 </code></pre><p><code>command</code>和<code>arguments</code>就表示要在cgroup中执行的命令和参数。<code>cgexec</code>常用于执行临时的任务。</p>
 <h3 id="7权限管理">（7）权限管理</h3>
 <p>与文件的权限管理类似，通过<code>chown</code>就可以对cgroup文件系统进行权限管理。</p>
-<pre><code>chown uid:gid /path/to/cgroup
+<pre tabindex="0"><code>chown uid:gid /path/to/cgroup
 </code></pre><p><code>uid</code>和<code>gid</code>分别表示所属的用户和用户组。</p>
 <h2 id="8-subsystem配置参数用法"><strong>8. subsystem配置参数用法</strong></h2>
 <h3 id="1blkio---block-io资源控制">（1）blkio - BLOCK IO资源控制</h3>
@@ -545,41 +525,27 @@
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
     <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info">
-      &copy;  奇迹之流WonderfloW 2021 
+      &copy;  奇迹之流WonderfloW 2022 
     </a>
     <div>
-
-
-
-
-
-
-
-
-<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
-  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<div class="ananke-socials">
+  
+    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
   <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
 </svg>
-
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
 </svg>
 </span></a>
-
-
-
-
-
-
-
+  
+</div>
 </div>
     <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
   </div>
 </footer>
-    
-
-  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
-
-
   </body>
 </html>

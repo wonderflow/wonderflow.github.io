@@ -6,19 +6,22 @@
     
     <title>几种简单类型的动态规划 | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="description" content="今天又被鱼头拉着校验集训队的书，正好看了一下动态规划(DP)这块，顺便总结一下。发现几道POJ上的例题正好是自己没有做过的，正好拿来试试手，写写题解。 线性动态规划： 1、最长递增（减）子序列：给出一个数列，求最长不下降（上升）子序列的长度。poj2533 这个经典的DP问题有两种解法，复杂度分别为O（n^2）和O（nlogn）。 O(n^2)的算法比较容易理解，就是用dp[i]表示数列到i位置的最长递增（减）子序列的长度。 第一重循环自然就是枚举i的位置，第二重循环就是从0到i-1，选择一个数字比num[i]小（大）的数的dp值加1，看能否更新dp[i]。 以最长递增子序列为例，就是dp[i] = max(">
+    <meta name="generator" content="Hugo 0.92.2" />
     
     
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-    
-
     
     
-      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+      <meta name="robots" content="noindex, nofollow">
     
 
     
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
 
+
+
+    
+    
     
       
 <link rel="shortcut icon" href="/favicon_io/favicon.ico" type="image/x-icon" />
@@ -31,19 +34,15 @@
     <meta property="og:title" content="几种简单类型的动态规划" />
 <meta property="og:description" content="今天又被鱼头拉着校验集训队的书，正好看了一下动态规划(DP)这块，顺便总结一下。发现几道POJ上的例题正好是自己没有做过的，正好拿来试试手，写写题解。 线性动态规划： 1、最长递增（减）子序列：给出一个数列，求最长不下降（上升）子序列的长度。poj2533 这个经典的DP问题有两种解法，复杂度分别为O（n^2）和O（nlogn）。 O(n^2)的算法比较容易理解，就是用dp[i]表示数列到i位置的最长递增（减）子序列的长度。 第一重循环自然就是枚举i的位置，第二重循环就是从0到i-1，选择一个数字比num[i]小（大）的数的dp值加1，看能否更新dp[i]。 以最长递增子序列为例，就是dp[i] = max(" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://wonderflow.info/posts/2012/08/08/e587a0e7a78de7ae80e58d95e7b1bbe59e8be79a84dp/" />
+<meta property="og:url" content="https://wonderflow.info/posts/2012/08/08/e587a0e7a78de7ae80e58d95e7b1bbe59e8be79a84dp/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2012-08-08T10:44:28+00:00" />
 <meta property="article:modified_time" content="2012-08-08T10:44:28+00:00" />
+
 <meta itemprop="name" content="几种简单类型的动态规划">
-<meta itemprop="description" content="今天又被鱼头拉着校验集训队的书，正好看了一下动态规划(DP)这块，顺便总结一下。发现几道POJ上的例题正好是自己没有做过的，正好拿来试试手，写写题解。 线性动态规划： 1、最长递增（减）子序列：给出一个数列，求最长不下降（上升）子序列的长度。poj2533 这个经典的DP问题有两种解法，复杂度分别为O（n^2）和O（nlogn）。 O(n^2)的算法比较容易理解，就是用dp[i]表示数列到i位置的最长递增（减）子序列的长度。 第一重循环自然就是枚举i的位置，第二重循环就是从0到i-1，选择一个数字比num[i]小（大）的数的dp值加1，看能否更新dp[i]。 以最长递增子序列为例，就是dp[i] = max(">
-<meta itemprop="datePublished" content="2012-08-08T10:44:28+00:00" />
+<meta itemprop="description" content="今天又被鱼头拉着校验集训队的书，正好看了一下动态规划(DP)这块，顺便总结一下。发现几道POJ上的例题正好是自己没有做过的，正好拿来试试手，写写题解。 线性动态规划： 1、最长递增（减）子序列：给出一个数列，求最长不下降（上升）子序列的长度。poj2533 这个经典的DP问题有两种解法，复杂度分别为O（n^2）和O（nlogn）。 O(n^2)的算法比较容易理解，就是用dp[i]表示数列到i位置的最长递增（减）子序列的长度。 第一重循环自然就是枚举i的位置，第二重循环就是从0到i-1，选择一个数字比num[i]小（大）的数的dp值加1，看能否更新dp[i]。 以最长递增子序列为例，就是dp[i] = max("><meta itemprop="datePublished" content="2012-08-08T10:44:28+00:00" />
 <meta itemprop="dateModified" content="2012-08-08T10:44:28+00:00" />
 <meta itemprop="wordCount" content="3276">
-
-
-
-<meta itemprop="keywords" content="DP,poj,解题报告," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="DP,poj,解题报告," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="几种简单类型的动态规划"/>
 <meta name="twitter:description" content="今天又被鱼头拉着校验集训队的书，正好看了一下动态规划(DP)这块，顺便总结一下。发现几道POJ上的例题正好是自己没有做过的，正好拿来试试手，写写题解。 线性动态规划： 1、最长递增（减）子序列：给出一个数列，求最长不下降（上升）子序列的长度。poj2533 这个经典的DP问题有两种解法，复杂度分别为O（n^2）和O（nlogn）。 O(n^2)的算法比较容易理解，就是用dp[i]表示数列到i位置的最长递增（减）子序列的长度。 第一重循环自然就是枚举i的位置，第二重循环就是从0到i-1，选择一个数字比num[i]小（大）的数的dp值加1，看能否更新dp[i]。 以最长递增子序列为例，就是dp[i] = max("/>
 
@@ -92,30 +91,21 @@
         </ul>
       
       
-
-
-
-
-
-
-
-
-<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
-  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<div class="ananke-socials">
+  
+    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
   <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
 </svg>
-
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
 </svg>
 </span></a>
-
-
-
-
-
-
-
+  
+</div>
 
     </div>
   </div>
@@ -140,28 +130,14 @@
 
 
 
-  <div id="sharing" class="mt3">
 
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
     
-    <a href="https://www.facebook.com/sharer.php?u=https://wonderflow.info/posts/2012/08/08/e587a0e7a78de7ae80e58d95e7b1bbe59e8be79a84dp/" class="facebook no-underline" aria-label="share on Facebook">
-      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-
-    </a>
-
-    
-    
-    <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2012/08/08/e587a0e7a78de7ae80e58d95e7b1bbe59e8be79a84dp/&amp;text=%e5%87%a0%e7%a7%8d%e7%ae%80%e5%8d%95%e7%b1%bb%e5%9e%8b%e7%9a%84%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92" class="twitter no-underline" aria-label="share on Twitter">
-      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
-
-    </a>
-
-    
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://wonderflow.info/posts/2012/08/08/e587a0e7a78de7ae80e58d95e7b1bbe59e8be79a84dp/&amp;title=%e5%87%a0%e7%a7%8d%e7%ae%80%e5%8d%95%e7%b1%bb%e5%9e%8b%e7%9a%84%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92" class="linkedin no-underline" aria-label="share on LinkedIn">
-      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
-</svg>
-
-    </a>
   </div>
 
 
@@ -193,7 +169,7 @@
 <p>O(n^2)的算法比较容易理解，就是用dp[i]表示数列到i位置的最长递增（减）子序列的长度。
 第一重循环自然就是枚举i的位置，第二重循环就是从0到i-1，选择一个数字比num[i]小（大）的数的dp值加1，看能否更新dp[i]。
 以最长递增子序列为例，就是dp[i] = max(dp[j]+1),(j=0..i-1,且num[j] &lt; num[i])。</p>
-<pre><code>#include&lt;iostream&gt;
+<pre tabindex="0"><code>#include&lt;iostream&gt;
 using namespace std;
 int n,k,c,ans[1100],maxx,i,j,data[1100];
 int main(){
@@ -215,7 +191,7 @@ int main(){
 然后我们会发现，ls数组本身就是一组符合条件的最长递增子序列的解，里面的数本身就是有序的，然后更新的时候，我们就可以用到二分查找来进行优化了。
 一开始的时候，ls数组长度为0，数字自动填充到ls数组中的第一个位置，长度变为1，然后后面每来一个数，都用二分搜索，找到ls数组中比当前插入值大的最小一个数的位置，然后替换它，如果找不到（即当前要插入的值是最大的），自然就是添加到ls数组末尾，使数组长度增加。
 因为我是按照原始数组的顺序进行DP的，那么我当前要插入的值要找到在最终答案里的位置，由于是最长递增序列，那么我前面的数一定比我小，所以我插入的位置一定就是恰好所有前面的数都比我小的位置，替换掉的就是跟我有相同递增长度的那个值，但是我比那个数小，更有前途与后面的数构成更长的递增子序列。</p>
-<pre><code>////二分查找优化 nlogn
+<pre tabindex="0"><code>////二分查找优化 nlogn
 #include&lt;stdio.h&gt;
 #include&lt;string.h&gt;
 #include&lt;math.h&gt;
@@ -250,7 +226,7 @@ int main(){
 <p>这个dp的算法也很经典，在算法导论上有详细的描述。
 我们构建一个二维数组dp[N][N],dp[i][j]用来表示串A的第i位为止和串B到第j位为止所拥有的最长公共子序列的长度。
 如果stra[i]和strb[j]相等的话，那么显然dp[i][j] = max(dp[i][j],dp[i-1][j-1]+1)，否则就是从dp[i][j-1]和dp[i-1][j]中取个较大的值。（从dp[i-1][j-1]递推过来的情况已经包含在dp[i][j-1]和dp[i-1][j]里面了。）</p>
-<pre><code>#include&lt;iostream&gt;
+<pre tabindex="0"><code>#include&lt;iostream&gt;
 using namespace std;
 char a[300],b[300];
 int c[300][300];
@@ -286,7 +262,7 @@ O（n^2）的暴力解法大家应该都很容易想到，我就不说了。
 然后我们自然要想着优化，那么分治的思想就可以让我们联想到O（nlogn）的算法。
 (A[0],..,A[n-1])的最大子段和无非包含在3种情况内，由数组的左半部分组成，由数组的右半部分组成，横跨数组左右两边。
 对于前两种情况，就是递归解决。对于第三种情况，因为它一定包含A数组最中间，即A[n/2-1]这个数,那么我们只要从这个数向左右两边伸展开去，找个最大值即可。</p>
-<pre><code>float maxsum(float *A,int l,int r){
+<pre tabindex="0"><code>float maxsum(float *A,int l,int r){
 	if(l&gt;r)return 0;
 	if(l==r)return max(0,A[l]);
 	int mid = (l+r)/2;
@@ -304,7 +280,7 @@ O（n^2）的暴力解法大家应该都很容易想到，我就不说了。
 	return max(lmax+rmax,maxsum(l,mid),maxsum(mid+1,r));
 }
 </code></pre><p>实际上还有O（N）的算法，而它也是最简单，只要扫一遍数组即可。从左向右，计算当前的和，如果当前的和一直是正的，那么不管是大是小，我后面的最大字段和加上当前这一段非负的，也没有亏，还是最大字段和。如果当前的和出现了负值，那么当前值就置为0。肯定是不要了啊，最次我什么都不选，也是0.就这样一路扫到最后即可。</p>
-<pre><code>float maxsum(float *A,int n){
+<pre tabindex="0"><code>float maxsum(float *A,int n){
 	double nstart = A[n-1];
 	double nall = A[n-1];
 	for(int i=n-2;i&gt;=0;i--){
@@ -323,7 +299,7 @@ O（n^2）的暴力解法大家应该都很容易想到，我就不说了。
 显然如果一个子树的根节点不放士兵的话，那么与其相连的所有子树的根节点一定要放士兵，否则那条边就没有士兵看管了。
 反之，如果一个子树的根节点放士兵的话，那么与其相连的所有子树可以选择放士兵，或者不放士兵。
 理解了这个，记忆化的过程，或者说状态转移的过程就一目了然了。</p>
-<pre><code>#include&lt;iostream&gt;
+<pre tabindex="0"><code>#include&lt;iostream&gt;
 #include&lt;cstdio&gt;
 #include&lt;cstring&gt;
 #include&lt;vector&gt;
@@ -374,7 +350,7 @@ int main(){
 那么这题其实也是这样的，按照1号先和2号打，3号先和4号打.. 然后第二轮，1号和3、4中的胜者打（由于是概率，所以3、4都有可能胜，所以就是和3、4都计算），以此类推。
 那么为什么要把这个题目放在这里呢？
 价值就在于中间计算的过程。我们可以想象一下，其实淘汰赛的比赛过程就是一颗满二叉树，而满二叉树有这样一个性质，父亲节点相同的两个左右子树，其序号映射到二进制位上比较的话，他们只相差1位。第n轮比赛其实就是子树向上去的第n层，然后我要取的就是该层的兄弟节点子树包含的所有最底层的节点。怎么找到这些点呢？操作很简单，2^n~2^(n+1)之间所有的点与当前点异或一下，就出来啦。（实际上就是自底向上第n层那个点相反的变化了一下而已。）</p>
-<pre><code>#include&lt;iostream&gt;
+<pre tabindex="0"><code>#include&lt;iostream&gt;
 #include&lt;cstdio&gt;
 #include&lt;cstring&gt;
 #include&lt;vector&gt;
@@ -419,15 +395,15 @@ int main(){
 <p>几类简单的DP类型大致就是这样了吧，其实DP千变万化，最主要的还是要看出问题的子结构，想清楚里面的状态转移，以及想清楚如何优化。</p>
 <ul class="pa0">
   
-   <li class="list">
+   <li class="list di">
      <a href="/tags/dp" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">DP</a>
    </li>
   
-   <li class="list">
+   <li class="list di">
      <a href="/tags/poj" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">poj</a>
    </li>
   
-   <li class="list">
+   <li class="list di">
      <a href="/tags/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">解题报告</a>
    </li>
   
@@ -470,41 +446,27 @@ int main(){
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
     <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info">
-      &copy;  奇迹之流WonderfloW 2021 
+      &copy;  奇迹之流WonderfloW 2022 
     </a>
     <div>
-
-
-
-
-
-
-
-
-<a href="https://github.com/wonderflow" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
-  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<div class="ananke-socials">
+  
+    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
   <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
 </svg>
-
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
 </svg>
 </span></a>
-
-
-
-
-
-
-
+  
+</div>
 </div>
     <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
   </div>
 </footer>
-    
-
-  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
-
-
   </body>
 </html>
