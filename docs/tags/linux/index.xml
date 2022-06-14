@@ -31,7 +31,7 @@
       <pubDate>Mon, 05 Aug 2013 09:04:25 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2013/08/05/unixe4b98blsofe591bde4bba4/</guid>
-      <description>据说lsof命令很强大，就学习了一下。这个网站讲的最好,翻译如下： **lsof（list open files）**是一个列出当前系统打开文件的工具。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。所以lsof被称为unix系统检测的瑞士军刀。 那怎么用呢? 接下来我们一个个来看。 罗列出所有的文件设备情况. {% codeblock %} $ lsof {% endcodeblock %} 不带参数的运行 lsof 就是列出所有被进程打开的文件。 查看文件被谁使用. {% codeblock %} $ lsof /path/to/file {% endcodeblock %} 如果把文件路径作为参数，lsof命令会把用到这个文件的所有进程都罗列出来。 也可以加多个路径在后面，它会把所涉及到这些文件的进程都罗列出来: {% codeblock %} $ lsof /path/to/file1</description>
+      <description>据说lsof命令很强大，就学习了一下。这个网站讲的最好,翻译如下： **lsof（list open files）**是一个列出当前系统打开文件的工具。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。所以lsof被称为unix系统检测的瑞士军刀。 # 那怎么用呢? 接下来我们一个个来看。 # 罗列出所有的文件设备情况. {% codeblock %} $ lsof {% endcodeblock %} 不带参数的运行 lsof 就是列出所有被进程打开的文件。 # 查看文件被谁使用. {% codeblock %} $ lsof /path/to/file {% endcodeblock %} 如果把文件路径作为参数，lsof命令会把用到这个文件的所有进程都罗列出来。 也可以加多个路径在后面，它会把所涉及到这些文件的进程都罗列出来: {% codeblock %}</description>
     </item>
     
     <item>

@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="【本文首先发布于InfoQ】《数据收集工具的设计与最佳实践》
 笔者之前在《七牛大数据平台的演进与大数据分析实践》中提到了已经开源的数据收集工具logkit。本文将深入介绍数据收集的设计思路以及大数据收集背后的细节，为大家提供大数据实战中第一步数据采集的最佳实践。
-数据收集工具对比
+
+    数据收集工具对比#
 目前社区就不乏存在大量优秀的数据收集工具，如有名的Elastic Stack(Elasticsearch、Logstash、Kibana)中的Logstash；CNCF基金会里面有名的Fluentd；InfluxData公司TICK Stack中的Telegraf；Google 出品为Kubernetes定制的cAdvisor；Apache基金会中的顶级项目Flume。除了早期诞生的诸如Fluentd、Flume等项目，其他项目都是为特定的平台业务定制而成，然后在随后的开源中不断进化，变得更为通用。所以针对特定业务，量身定制一款数据收集工具，是一个较为普遍的需求，也是出现如此众多“轮子”的主要原因。
 让我们先来看看这几种知名开源数据收集工具有哪些特点。">
     <meta name="generator" content="Hugo 0.92.2" />
@@ -38,7 +39,8 @@
     <meta property="og:title" content="数据收集工具的设计与最佳实践" />
 <meta property="og:description" content="【本文首先发布于InfoQ】《数据收集工具的设计与最佳实践》
 笔者之前在《七牛大数据平台的演进与大数据分析实践》中提到了已经开源的数据收集工具logkit。本文将深入介绍数据收集的设计思路以及大数据收集背后的细节，为大家提供大数据实战中第一步数据采集的最佳实践。
-数据收集工具对比
+
+    数据收集工具对比#
 目前社区就不乏存在大量优秀的数据收集工具，如有名的Elastic Stack(Elasticsearch、Logstash、Kibana)中的Logstash；CNCF基金会里面有名的Fluentd；InfluxData公司TICK Stack中的Telegraf；Google 出品为Kubernetes定制的cAdvisor；Apache基金会中的顶级项目Flume。除了早期诞生的诸如Fluentd、Flume等项目，其他项目都是为特定的平台业务定制而成，然后在随后的开源中不断进化，变得更为通用。所以针对特定业务，量身定制一款数据收集工具，是一个较为普遍的需求，也是出现如此众多“轮子”的主要原因。
 让我们先来看看这几种知名开源数据收集工具有哪些特点。" />
 <meta property="og:type" content="article" />
@@ -49,16 +51,18 @@
 <meta itemprop="name" content="数据收集工具的设计与最佳实践">
 <meta itemprop="description" content="【本文首先发布于InfoQ】《数据收集工具的设计与最佳实践》
 笔者之前在《七牛大数据平台的演进与大数据分析实践》中提到了已经开源的数据收集工具logkit。本文将深入介绍数据收集的设计思路以及大数据收集背后的细节，为大家提供大数据实战中第一步数据采集的最佳实践。
-数据收集工具对比
+
+    数据收集工具对比#
 目前社区就不乏存在大量优秀的数据收集工具，如有名的Elastic Stack(Elasticsearch、Logstash、Kibana)中的Logstash；CNCF基金会里面有名的Fluentd；InfluxData公司TICK Stack中的Telegraf；Google 出品为Kubernetes定制的cAdvisor；Apache基金会中的顶级项目Flume。除了早期诞生的诸如Fluentd、Flume等项目，其他项目都是为特定的平台业务定制而成，然后在随后的开源中不断进化，变得更为通用。所以针对特定业务，量身定制一款数据收集工具，是一个较为普遍的需求，也是出现如此众多“轮子”的主要原因。
 让我们先来看看这几种知名开源数据收集工具有哪些特点。"><meta itemprop="datePublished" content="2017-10-18T10:48:47+00:00" />
 <meta itemprop="dateModified" content="2017-10-18T10:48:47+00:00" />
-<meta itemprop="wordCount" content="10001">
+<meta itemprop="wordCount" content="10018">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="数据收集工具的设计与最佳实践"/>
 <meta name="twitter:description" content="【本文首先发布于InfoQ】《数据收集工具的设计与最佳实践》
 笔者之前在《七牛大数据平台的演进与大数据分析实践》中提到了已经开源的数据收集工具logkit。本文将深入介绍数据收集的设计思路以及大数据收集背后的细节，为大家提供大数据实战中第一步数据采集的最佳实践。
-数据收集工具对比
+
+    数据收集工具对比#
 目前社区就不乏存在大量优秀的数据收集工具，如有名的Elastic Stack(Elasticsearch、Logstash、Kibana)中的Logstash；CNCF基金会里面有名的Fluentd；InfluxData公司TICK Stack中的Telegraf；Google 出品为Kubernetes定制的cAdvisor；Apache基金会中的顶级项目Flume。除了早期诞生的诸如Fluentd、Flume等项目，其他项目都是为特定的平台业务定制而成，然后在随后的开源中不断进化，变得更为通用。所以针对特定业务，量身定制一款数据收集工具，是一个较为普遍的需求，也是出现如此众多“轮子”的主要原因。
 让我们先来看看这几种知名开源数据收集工具有哪些特点。"/>
 
@@ -109,6 +113,16 @@
       
 <div class="ananke-socials">
   
+    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
     <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
       
         <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
@@ -154,26 +168,34 @@
 
   <div id="sharing" class="mt3 ananke-socials">
     
+      
+      <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2017/10/18/shu-ju-shou-ji-gong-ju-de-she-ji-yu-zui-jia-shi-jian/&amp;text=%e6%95%b0%e6%8d%ae%e6%94%b6%e9%9b%86%e5%b7%a5%e5%85%b7%e7%9a%84%e8%ae%be%e8%ae%a1%e4%b8%8e%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
+        
+        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+        
+      </a>
+    
   </div>
 
 
     <h1 class="f1 athelas mt3 mb1">数据收集工具的设计与最佳实践</h1>
     
     
-    <time class="f6 mv4 dib tracked"
-      datetime="2017-10-18T10:48:47Z">October 18, 2017</time>
+    <time class="f6 mv4 dib tracked" datetime="2017-10-18T10:48:47Z" >October 18, 2017</time>
 
     
     
     <span class="f6 mv4 dib tracked"> - 20 minutes read</span>
-    <span class="f6 mv4 dib tracked"> - 10001 words</span>
+    <span class="f6 mv4 dib tracked"> - 10018 words</span>
     
   </header>
-  <div
-    class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-100-l"><p>【本文首先发布于InfoQ】<a href="http://www.infoq.com/cn/articles/data-collection-tool">《数据收集工具的设计与最佳实践》</a></p>
+  <div class="nested-copy-line-height lh-copy serif f4 nested-links
+    nested-img mid-gray pr4-l w-100-l"><p>【本文首先发布于InfoQ】<a href="http://www.infoq.com/cn/articles/data-collection-tool">《数据收集工具的设计与最佳实践》</a></p>
 <p>笔者之前在<a href="http://www.infoq.com/cn/articles/qiniu-big-data-platform-evolution-and-analysis">《七牛大数据平台的演进与大数据分析实践》</a>中提到了已经开源的数据收集工具logkit。本文将深入介绍数据收集的设计思路以及大数据收集背后的细节，为大家提供大数据实战中第一步数据采集的最佳实践。</p>
-<h2 id="数据收集工具对比">数据收集工具对比</h2>
-<p>目前社区就不乏存在大量优秀的数据收集工具，如有名的Elastic Stack(Elasticsearch、Logstash、Kibana)中的<a href="https://github.com/elastic/logstash">Logstash</a>；CNCF基金会里面有名的<a href="https://github.com/fluent/fluentd">Fluentd</a>；InfluxData公司TICK Stack中的<a href="https://github.com/influxdata/telegraf">Telegraf</a>；Google 出品为Kubernetes定制的<a href="https://github.com/google/cadvisor">cAdvisor</a>；Apache基金会中的顶级项目<a href="https://github.com/apache/flume">Flume</a>。除了早期诞生的诸如Fluentd、Flume等项目，其他项目都是为特定的平台业务定制而成，然后在随后的开源中不断进化，变得更为通用。所以针对特定业务，量身定制一款数据收集工具，是一个较为普遍的需求，也是出现如此众多“轮子”的主要原因。</p>
+<h2 id="数据收集工具对比">
+    数据收集工具对比<a class="hash-link" href="#%e6%95%b0%e6%8d%ae%e6%94%b6%e9%9b%86%e5%b7%a5%e5%85%b7%e5%af%b9%e6%af%94" title="Direct link to heading">#</a>
+</h2><p>目前社区就不乏存在大量优秀的数据收集工具，如有名的Elastic Stack(Elasticsearch、Logstash、Kibana)中的<a href="https://github.com/elastic/logstash">Logstash</a>；CNCF基金会里面有名的<a href="https://github.com/fluent/fluentd">Fluentd</a>；InfluxData公司TICK Stack中的<a href="https://github.com/influxdata/telegraf">Telegraf</a>；Google 出品为Kubernetes定制的<a href="https://github.com/google/cadvisor">cAdvisor</a>；Apache基金会中的顶级项目<a href="https://github.com/apache/flume">Flume</a>。除了早期诞生的诸如Fluentd、Flume等项目，其他项目都是为特定的平台业务定制而成，然后在随后的开源中不断进化，变得更为通用。所以针对特定业务，量身定制一款数据收集工具，是一个较为普遍的需求，也是出现如此众多“轮子”的主要原因。</p>
 <p>让我们先来看看这几种知名开源数据收集工具有哪些特点。</p>
 <ul>
 <li>
@@ -194,19 +216,24 @@ Fluentd由CRuby实现，性能表现优良但依赖ruby环境；相较于前面�
 </li>
 </ul>
 <p>了解了以上这些开源软件的特点后，下面我们开始深入介绍构建一款数据收集工具会遇到哪些设计与挑战，以此为你的业务量身定制。</p>
-<h2 id="数据收集工具设计">数据收集工具设计</h2>
-<h3 id="架构设计">架构设计</h3>
-<p>主流的数据收集工具其主架构都分为reader、parser，以及sender三部分，如图1所示。除了这三个日志收集常规组成部分，还应该包含可选的模块，如基于解析过后的数据转换(filter/transformer)以及数据暂存管道(Channel/Buffer)。为了尽可能复用，每个组成部分都应该是插件式的，可以编写不同类型插件并且灵活的组装。Channel/Buffer部分也应该提供基于内存或者基于磁盘的选择。</p>
+<h2 id="数据收集工具设计">
+    数据收集工具设计<a class="hash-link" href="#%e6%95%b0%e6%8d%ae%e6%94%b6%e9%9b%86%e5%b7%a5%e5%85%b7%e8%ae%be%e8%ae%a1" title="Direct link to heading">#</a>
+</h2><h3 id="架构设计">
+    架构设计<a class="hash-link" href="#%e6%9e%b6%e6%9e%84%e8%ae%be%e8%ae%a1" title="Direct link to heading">#</a>
+</h3><p>主流的数据收集工具其主架构都分为reader、parser，以及sender三部分，如图1所示。除了这三个日志收集常规组成部分，还应该包含可选的模块，如基于解析过后的数据转换(filter/transformer)以及数据暂存管道(Channel/Buffer)。为了尽可能复用，每个组成部分都应该是插件式的，可以编写不同类型插件并且灵活的组装。Channel/Buffer部分也应该提供基于内存或者基于磁盘的选择。</p>
 <p><img src="http://oet7by1sp.bkt.clouddn.com/logkit_arch.png" alt="数据收集架构">
 图1 数据收集架构设计</p>
 <p>对于Reader、Parser、Sender等插件共同组装的业务数据收集单元，我们称之为一个运行单元(Runner)，数据收集工具必须可以同时运行多个Runner，且每个Runner可以支持更新。</p>
 <p>更新可以通过多种方式实现，最常规的是手动更新配置然后重启；更好的设计是支持热更新，不需要重启，自动识别配置文件的变化；还可以设计一个漂亮的web界面做配置的变更，以此引导用户使用，解决数据收集配置复杂用户使用门槛高的难题。所以在整体之上还应该构建一个简单的API层，支持web界面的功能。</p>
-<h3 id="语言选择">语言选择</h3>
-<p>数据收集属于轻量级的agent服务，一般选择的语言为C/C++或者近年来特别火热的Go，而Go语言已经成为这类数据收集工具编写的大众选择，如Logstash新开发的一个beats工具，Telegraf，cAdvisor等等，均使用Go语言开发。</p>
+<h3 id="语言选择">
+    语言选择<a class="hash-link" href="#%e8%af%ad%e8%a8%80%e9%80%89%e6%8b%a9" title="Direct link to heading">#</a>
+</h3><p>数据收集属于轻量级的agent服务，一般选择的语言为C/C++或者近年来特别火热的Go，而Go语言已经成为这类数据收集工具编写的大众选择，如Logstash新开发的一个beats工具，Telegraf，cAdvisor等等，均使用Go语言开发。</p>
 <p>社区已经有很多文章描述使用Go语言的好处，在此也就不再赘述。总体而言用Go语言开发门槛较低，性能优良，支持跨多种操作系统平台，部署也极为简便。</p>
-<h3 id="分模块设计">分模块设计</h3>
-<h4 id="数据读取模块reader">数据读取模块（Reader）</h4>
-<p>顾名思义，数据读取模块负责从不同数据源中读取数据，设计Reader模块的时候，必须支持插件式数据源接入，且将接口设计的足够简单，方便大家一同贡献更多的读取数据源驱动。</p>
+<h3 id="分模块设计">
+    分模块设计<a class="hash-link" href="#%e5%88%86%e6%a8%a1%e5%9d%97%e8%ae%be%e8%ae%a1" title="Direct link to heading">#</a>
+</h3><h4 id="数据读取模块reader">
+    数据读取模块（Reader）<a class="hash-link" href="#%e6%95%b0%e6%8d%ae%e8%af%bb%e5%8f%96%e6%a8%a1%e5%9d%97reader" title="Direct link to heading">#</a>
+</h4><p>顾名思义，数据读取模块负责从不同数据源中读取数据，设计Reader模块的时候，必须支持插件式数据源接入，且将接口设计的足够简单，方便大家一同贡献更多的读取数据源驱动。</p>
 <p>自定义数据源，最基本的只需要实现如下两个方法即可。</p>
 <pre tabindex="0"><code>ReadLine() string
 SyncMeta() error
@@ -227,8 +254,9 @@ SyncMeta() error
 <p>除此之外，还应支持包括多文件编码格式支持、读取限速等多种功能。</p>
 <p><strong>从数据存储服务中读取数据</strong>，可以采用时间戳策略，在诸如MongoDB、MySQL中记录的数据，包含一个时间戳的字段，每次读取数据均按这个时间戳字段排序，以此获得新增的数据或者数据更新。另一方面，需要为用户设计类似定时器等策略，方便用户可以多次运行，不断同步收集服务器中的数据。</p>
 <p><strong>从消息队列中读取数据</strong>，这个最为简单，直接从消息队列中消费数据即可。注意记录读取的Offset，防止数据丢失。</p>
-<h4 id="解析模块parser">解析模块(Parser)</h4>
-<p>解析模块应该负责将数据源中读取的数据解析到对应的字段及类型，目前常见的解析器包括：</p>
+<h4 id="解析模块parser">
+    解析模块(Parser)<a class="hash-link" href="#%e8%a7%a3%e6%9e%90%e6%a8%a1%e5%9d%97parser" title="Direct link to heading">#</a>
+</h4><p>解析模块应该负责将数据源中读取的数据解析到对应的字段及类型，目前常见的解析器包括：</p>
 <ol>
 <li>csv parser: 按照分隔符解析成对应字段和类型，分隔符可以自定义，如常见的制表符(<code>\t</code>)、空格(<code> </code>)、逗号(<code>,</code>)等等。</li>
 <li>json parser: 解析json格式的数据，json是一种自带字段名称及类型的序列化协议，解析json格式仅需反序列化即可。</li>
@@ -239,8 +267,9 @@ SyncMeta() error
 <p>除了以上几种内置的解析器，同Reader一样，你也需要实现自定义解析器的插件功能，而Parser极为简单，只需要实现最基本的Parse方法即可。</p>
 <pre tabindex="0"><code>Parse(lines []string) (datas []sender.Data, err error)
 </code></pre><p>每一种Parser都是插件式的结构，可以复用，并任意选择。在不考虑解析性能的情况下，上述几种解析器基本可以满足所有数据解析的需求，将一行行数据解析为带有Schema(具备字段名称及类型)的数据。但是当你希望对某个字段做操作时，纯粹的解析器可能不够用。于是作为补充，数据收集工具还需要提供Transformer/Filter的功能。</p>
-<h4 id="transformer">Transformer</h4>
-<p>Transformer是Parser的补充，针对字段进行数据变化。</p>
+<h4 id="transformer">
+    Transformer<a class="hash-link" href="#transformer" title="Direct link to heading">#</a>
+</h4><p>Transformer是Parser的补充，针对字段进行数据变化。</p>
 <p>举例来说，如果你有个字段想做字符串替换，比如将所有字段名称为&quot;name&quot;的数据中，值为&quot;Tom&quot;的数据改为&quot;Tim&quot;，那么可以添加一个字符串替换的Transformer，针对&quot;name&quot;这个字段做替换。</p>
 <p>又比如说，你的字段中有个&quot;IP&quot;，你希望将这个IP解析出运营商、城市等信息，那么你就可以添加一个Transformer做这个IP信息的转换。</p>
 <p>当然，Transformer应该可以多个连接到一起连动合作。</p>
@@ -251,8 +280,9 @@ SyncMeta() error
 <li>如何将上述两个问题尽可能简单的解决，让用户编写Transformer插件时关注尽可能少的问题？</li>
 </ol>
 <p>这里我们留个悬念，感兴趣的朋友可以阅读<a href="https://github.com/qiniu/logkit/tree/develop/transforms">logkit Transformer相关</a>的源码寻求答案，笔者后续也会在logkit的wiki页面中描述。</p>
-<h4 id="channel">Channel</h4>
-<p>经过解析和变换完成后的数据，就认为已经是处理好的，此时就会进入待发送队列，即我们的Channel部分。Channel的好坏决定了一个数据收集发送工具的性能及可靠程度，是数据收集工具中最具技术含量的一环。</p>
+<h4 id="channel">
+    Channel<a class="hash-link" href="#channel" title="Direct link to heading">#</a>
+</h4><p>经过解析和变换完成后的数据，就认为已经是处理好的，此时就会进入待发送队列，即我们的Channel部分。Channel的好坏决定了一个数据收集发送工具的性能及可靠程度，是数据收集工具中最具技术含量的一环。</p>
 <p>数据收集工具，顾名思义，就是将数据收集起来，再发送到指定位置，而为了将性能最优化，我们必须把收集和发送解耦，中间提供一个缓冲带，而Channel就是负责这个数据暂存的地方。有了Channel，读取和发送就解耦了，可以利用多核优势，多线程发送数据，提高数据吞吐量。</p>
 <p><img src="http://oet7by1sp.bkt.clouddn.com/ft_sender.png" alt="ft_sender">
 图2 ft sender</p>
@@ -261,19 +291,23 @@ SyncMeta() error
 <p>如果追求最高的可靠性，那么就使用磁盘队列，数据会暂存到本地磁盘中，发送后自动删除，即使突然宕机也不怕丢失数据。</p>
 <p>如果追求更高的性能，可以使用内存队列，其实现方式就是Go语言的Channel机制，稳定而简单，在关停过程中，也需要将Channel中的数据落地到磁盘，在随后重新启动时载入，正常使用过程中也没有数据丢失的风险。得益于Go语言的同步Channel机制，你甚至可以把内存队列的大小设置为0，以此实现多线程发送，这样使用内存队列即使宕机，也没有了数据丢失的风险。</p>
 <p>除了正常的作为待发送数据的等待队列以外，Channel如下一些非常有趣而实用的功能。</p>
-<h5 id="错误数据筛选">错误数据筛选</h5>
-<p>并不是所有解析完毕的数据发送到服务端就一定是正确的，有时服务端指定的数据格式和解析完毕的格式存在出入，或者数据中含有一些非法字符等情况，则数据不能发送成功，此时，如果一批数据中只有一条这样错误的数据，就很容易导致这一整批都失败。</p>
+<h5 id="错误数据筛选">
+    错误数据筛选<a class="hash-link" href="#%e9%94%99%e8%af%af%e6%95%b0%e6%8d%ae%e7%ad%9b%e9%80%89" title="Direct link to heading">#</a>
+</h5><p>并不是所有解析完毕的数据发送到服务端就一定是正确的，有时服务端指定的数据格式和解析完毕的格式存在出入，或者数据中含有一些非法字符等情况，则数据不能发送成功，此时，如果一批数据中只有一条这样错误的数据，就很容易导致这一整批都失败。</p>
 <p>错误数据筛选的作用就在于，把这一整批数据中对的数据筛选出来，留下错误的数据，将正确的发送出去。</p>
 <p>做法很简单，当发送时遇到服务端返回存在格式错误的数据时，将这一批数据平均拆分为两批（二分），再放入队列，等待下次发送。再遇到错误时则再拆分，这样不断二分，直到一个批次中只有一条数据，且发送失败，那我们就找到了这个错误数据，可以选择丢弃或记录。</p>
 <p>借助队列，我们很容易就能将错误数据筛选出来。</p>
-<h5 id="包拆分大包拆小包">包拆分（大包拆小包）</h5>
-<p>包拆分的由来是服务端不可能无限制开放每个批次数据传输的大小，出于服务器性能、传输性能等原因，总有会有一些限制。</p>
+<h5 id="包拆分大包拆小包">
+    包拆分（大包拆小包）<a class="hash-link" href="#%e5%8c%85%e6%8b%86%e5%88%86%e5%a4%a7%e5%8c%85%e6%8b%86%e5%b0%8f%e5%8c%85" title="Direct link to heading">#</a>
+</h5><p>包拆分的由来是服务端不可能无限制开放每个批次数据传输的大小，出于服务器性能、传输性能等原因，总有会有一些限制。</p>
 <p>当一个批次的数据过大时，就会导致传输失败。此时的做法与错误筛选的方法相似，只要将包二分即可，如果还是太大就再次二分，以此类推。</p>
-<h5 id="限速">限速</h5>
-<p>相信限速的功能最容易理解，数据统统经过Channel，那么只要限制这个Channel传输介质的速度即可。例如磁盘队列，只需要限制磁盘的IO读写速度；内存队列则限制队列大小以此达到限速的目的。</p>
+<h5 id="限速">
+    限速<a class="hash-link" href="#%e9%99%90%e9%80%9f" title="Direct link to heading">#</a>
+</h5><p>相信限速的功能最容易理解，数据统统经过Channel，那么只要限制这个Channel传输介质的速度即可。例如磁盘队列，只需要限制磁盘的IO读写速度；内存队列则限制队列大小以此达到限速的目的。</p>
 <p>常见的流量控制的算法有<a href="https://en.wikipedia.org/wiki/Leaky_bucket">漏桶算法(Leaky bucket)</a>和<a href="https://en.wikipedia.org/wiki/Token_bucket">令牌桶算法(Token bucket)</a>两种，比较推荐采用令牌桶算法实现该功能，感兴趣的朋友可以阅读一下<a href="https://github.com/qiniu/logkit/tree/develop/rateio">logkit 的 rateio 包</a>。</p>
-<h4 id="sender">Sender</h4>
-<p>Sender的主要作用是将队列中的数据发送至Sender支持的各类服务，一个最基本的实现同样应该设计的尽可能简单，理论上仅需实现一个Send接口即可。</p>
+<h4 id="sender">
+    Sender<a class="hash-link" href="#sender" title="Direct link to heading">#</a>
+</h4><p>Sender的主要作用是将队列中的数据发送至Sender支持的各类服务，一个最基本的实现同样应该设计的尽可能简单，理论上仅需实现一个Send接口即可。</p>
 <pre tabindex="0"><code>Send([]Data) error
 </code></pre><p>那么实现一个发送端有哪些注意事项呢？</p>
 <ol>
@@ -288,13 +322,15 @@ SyncMeta() error
 <li><strong>简单、简单、简单</strong>：除了上述这些，剩下的就是尽可能的让用户使用简单。比如假设我们要写一个 mysql sender，mysql的数据库和表如果不存在，可能数据会发送失败，那就可以考虑提前创建；又比如数据如果有更新了，那么就需要将针对这些更新的字段去更新服务的Schema等等。</li>
 </ol>
 <p>logkit针对上述这些要点都做了大量细节的改进和优化。</p>
-<h4 id="metrics">Metrics</h4>
-<p>除了基本的自定义的数据收集，数据收集工具作为一个机器的agent，还可以采集机器的基本数据，例如CPU、内存、网络等信息，通过这些信息，可以全面掌控机器的状态。</p>
+<h4 id="metrics">
+    Metrics<a class="hash-link" href="#metrics" title="Direct link to heading">#</a>
+</h4><p>除了基本的自定义的数据收集，数据收集工具作为一个机器的agent，还可以采集机器的基本数据，例如CPU、内存、网络等信息，通过这些信息，可以全面掌控机器的状态。</p>
 <p>具体的内容也可以参考logkit文档：<a href="https://github.com/qiniu/logkit/wiki/Runner%E4%B9%8B%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E9%87%87%E9%9B%86%E9%85%8D%E7%BD%AE">Runner之系统信息采集配置</a>。</p>
 <p>至此，一个完整的数据收集工具的设计要点都已经介绍完。</p>
 <p>而我们开源的logkit，就是完全按照这样的设计实现的，我们集合了多种开源数据收集工具的优点，聚焦易用性，致力于打造产品级别的开源软件。</p>
-<h2 id="数据收集工具--logkit">数据收集工具&ndash;logkit</h2>
-<p>logkit(<a href="https://github.com/qiniu/logkit">https://github.com/qiniu/logkit</a>)是七牛大数据团队开源的一个通用的日志收集工具，可以从多种不同的数据源中采集数据，并对数据进行一系列的解析、变换、裁减，最终发送到多种不同的数据下游，其中就包括了<a href="https://pandora-docs.qiniu.com">七牛的大数据平台Pandora</a>。除了基本的数据采集、解析以及发送功能之外，logkit集合了多种同类开源软件的优势，涵盖了容错、并发、热加载、断点续传等高级功能，更提供了页面方便用户配置、监控以及管理自己的数据采集业务，是一款产品级别的开源软件。</p>
+<h2 id="数据收集工具--logkit">
+    数据收集工具&ndash;logkit<a class="hash-link" href="#%e6%95%b0%e6%8d%ae%e6%94%b6%e9%9b%86%e5%b7%a5%e5%85%b7--logkit" title="Direct link to heading">#</a>
+</h2><p>logkit(<a href="https://github.com/qiniu/logkit">https://github.com/qiniu/logkit</a>)是七牛大数据团队开源的一个通用的日志收集工具，可以从多种不同的数据源中采集数据，并对数据进行一系列的解析、变换、裁减，最终发送到多种不同的数据下游，其中就包括了<a href="https://pandora-docs.qiniu.com">七牛的大数据平台Pandora</a>。除了基本的数据采集、解析以及发送功能之外，logkit集合了多种同类开源软件的优势，涵盖了容错、并发、热加载、断点续传等高级功能，更提供了页面方便用户配置、监控以及管理自己的数据采集业务，是一款产品级别的开源软件。</p>
 <p>目前支持的数据源包括：</p>
 <ol>
 <li>File Reader: 读取文件中的日志数据，如 nginx/apache 服务日志文件、业务日志等。</li>
@@ -321,10 +357,12 @@ SyncMeta() error
 </ul>
 <p>而发送到<a href="https://pandora-docs.qiniu.com">七牛的Pandora服务</a>中，不仅涵盖了上述全部的场景，还提供了大量可以快速发掘数据价值的实际应用场景的使用模板，并且可以利用七牛成本较低的云存储服务对数据进行持久备份。</p>
 <p>目前logkit支持的收集端和发送端并不多，我们非常欢迎大家来贡献更多的收集/发送端。</p>
-<h3 id="量身定制">量身定制</h3>
-<p>再回过头来聊聊量身定制的话题，本文描述了一个数据收集工具打造的完整过程，我们深知量身定制一个数据收集工具有多么重要，而量身定制也是logkit的一大特点。logkit架构中的每个组成部分(Reader、Parser、Sender、Transformer、Channel等)都是一个GO语言的package，你完全可以用logkit中的包，自己写主函数，定制一个你专属的收集工具。我们甚至给出了一个这样的<a href="https://github.com/qiniu/logkit/tree/develop/samples">代码案例</a>，方便你亲自去实践。</p>
-<h3 id="优势">优势</h3>
-<p>总体而言，logkit有如下优势：</p>
+<h3 id="量身定制">
+    量身定制<a class="hash-link" href="#%e9%87%8f%e8%ba%ab%e5%ae%9a%e5%88%b6" title="Direct link to heading">#</a>
+</h3><p>再回过头来聊聊量身定制的话题，本文描述了一个数据收集工具打造的完整过程，我们深知量身定制一个数据收集工具有多么重要，而量身定制也是logkit的一大特点。logkit架构中的每个组成部分(Reader、Parser、Sender、Transformer、Channel等)都是一个GO语言的package，你完全可以用logkit中的包，自己写主函数，定制一个你专属的收集工具。我们甚至给出了一个这样的<a href="https://github.com/qiniu/logkit/tree/develop/samples">代码案例</a>，方便你亲自去实践。</p>
+<h3 id="优势">
+    优势<a class="hash-link" href="#%e4%bc%98%e5%8a%bf" title="Direct link to heading">#</a>
+</h3><p>总体而言，logkit有如下优势：</p>
 <ul>
 <li>GO语言编写，性能优良，资源消耗低，跨平台支持。</li>
 <li>Web支持，提供<strong>页面</strong>对数据收集、解析、发送过程可视化</li>
@@ -336,17 +374,21 @@ SyncMeta() error
 <li>生态全面，数据发送到七牛的Pandora大数据平台支持包括时序数据库、日志检索以及压缩永久存储等多种数据落地方案。</li>
 </ul>
 <p>下面让我们来实践一下，看看logkit实战中是什么样子。</p>
-<h2 id="logkit实战">logkit实战</h2>
-<h3 id="下载">下载</h3>
-<p>编译完后的logkit是一个Go的二进制包，你可以在<a href="https://github.com/qiniu/logkit/wiki/Download">logkit的Download页面</a>找到对应操作系统的Release版本。</p>
+<h2 id="logkit实战">
+    logkit实战<a class="hash-link" href="#logkit%e5%ae%9e%e6%88%98" title="Direct link to heading">#</a>
+</h2><h3 id="下载">
+    下载<a class="hash-link" href="#%e4%b8%8b%e8%bd%bd" title="Direct link to heading">#</a>
+</h3><p>编译完后的logkit是一个Go的二进制包，你可以在<a href="https://github.com/qiniu/logkit/wiki/Download">logkit的Download页面</a>找到对应操作系统的Release版本。</p>
 <p>也可以参照<a href="https://github.com/qiniu/logkit/wiki/%E6%9C%AC%E5%9C%B0%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E6%8C%87%E5%8D%97">logkit源码编译指南</a>，从代码层面定制自己的专属logkit。</p>
-<h3 id="启动">启动</h3>
-<p>logkit部署非常简单，将这个binary放在系统PATH路径中就算部署完成了，推荐使用诸如supervisor等进程管理工具进行管理。</p>
+<h3 id="启动">
+    启动<a class="hash-link" href="#%e5%90%af%e5%8a%a8" title="Direct link to heading">#</a>
+</h3><p>logkit部署非常简单，将这个binary放在系统PATH路径中就算部署完成了，推荐使用诸如supervisor等进程管理工具进行管理。</p>
 <p>启动logkit工具，可以使用默认的配置文件，执行如下命令即可。</p>
 <pre tabindex="0"><code>logkit -f logkit.conf
 </code></pre><p>配置文件中默认开启了3000端口，初次使用可以通过浏览器打开logkit配置页面，配置runner并调试你的读取、解析和发送方式，浏览器访问的地址就是 http://127.0.0.1:3000 。</p>
-<h3 id="配置">配置</h3>
-<p><img src="https://raw.githubusercontent.com/qiniu/logkit/develop/resources/logkitnewconfig1.png" alt="logkit 首页">
+<h3 id="配置">
+    配置<a class="hash-link" href="#%e9%85%8d%e7%bd%ae" title="Direct link to heading">#</a>
+</h3><p><img src="https://raw.githubusercontent.com/qiniu/logkit/develop/resources/logkitnewconfig1.png" alt="logkit 首页">
 图3 logkit首页</p>
 <p>打开网址后看到如图3所示的logkit配置助手首页，在这个页面会清晰的展示你目前所有的logkit Runner运行状态，包括读取速率、发送速率、成功/失败数据条数，以及一些错误日志。你还可以在这里修改和删除Runner。</p>
 <p>点击左上角【增加Runner】按钮，可以添加新的logkit Runner。</p>
@@ -370,6 +412,9 @@ SyncMeta() error
 <div class="mt6 instapaper_ignoref">
       
       
+      <script src="https://utteranc.es/client.js" repo="wonderflow/wonderflow.github.io" issue-term="pathname"
+        label="Comment" theme="github-light" crossorigin="anonymous" async>
+        </script>
     </div>
   </div>
 
@@ -391,6 +436,16 @@ SyncMeta() error
     <div>
 <div class="ananke-socials">
   
+    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
     <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
       
         <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
@@ -406,6 +461,18 @@ SyncMeta() error
 </div>
 </div>
     <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3XG75RG8W"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Z3XG75RG8W', { 'anonymize_ip': false });
+}
+</script>
+
   </div>
 </footer>
   </body>

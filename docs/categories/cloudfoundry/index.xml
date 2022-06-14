@@ -13,7 +13,7 @@
       <pubDate>Wed, 17 Dec 2014 08:08:26 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2014/12/17/cf-releasee7bb93e69e84e8a7a3e69e90/</guid>
-      <description>1. 制作时的cf-release结构解析 此处指的release统一为CloudFoundry官方给出的cf-release，不做修改。 1.1. 通过载入cf-release文件夹下config/final.yml文件，获得需要下载release文件的远程服务器网址，默认使用的提供商是s3，地址是：blob.cfblob.com 1.2. 通过config/blobs.yml，可以得到所有blobs的object_id，通过服务器地址+object_id拼接的字符串即可下载到相对应的blob内容。 1.3. 默认存储的位置为cf-release/.blobs，存储的文件名为sha1值，下载完成后会在cf-release/bl</description>
+      <description>1. 制作时的cf-release结构解析# 此处指的release统一为CloudFoundry官方给出的cf-release，不做修改。 1.1. 通过载入cf-release文件夹下config/final.yml文件，获得需要下载release文件的远程服务器网址，默认使用的提供商是s3，地址是：blob.cfblob.com 1.2. 通过config/blobs.yml，可以得到所有blobs的object_id，通过服务器地址+object_id拼接的字符串即可下载到相对应的blob内容。 1.3. 默认存储的位置为cf-release/.blobs，存储的文件名为sha1值，下载完成后会在cf-release/b</description>
     </item>
     
     <item>
@@ -22,7 +22,7 @@
       <pubDate>Tue, 01 Jul 2014 06:05:03 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2014/07/01/cloud-foundry-e8bf90e7bbb4e585a5e997a8/</guid>
-      <description>@(CF V2相关)[guide] 之前写过一个Guide for Cloud Foundry New Teamer。不过似乎已经有些过时，那会实验室主要是针对的CF v1进行的研究，现在已经全面进入V2时代了。所以更新一下关于CloudFoundry运维的一些内容。如果有时间也可再回头看看V1的那个帖子，希望能有所帮助。 部署 关于部署，目前使用的工具一般有两种，BOSH和cf_nise_installer。BOSH适用于集群安装，cf_nise_installer适用于单节点安装。下面主要以cf_nise_installer的安装方法为主描述部署的运维流程。 cf_nise_installer实际上就是一大堆shell脚本建立起来的项目，对sh</description>
+      <description>@(CF V2相关)[guide] 之前写过一个Guide for Cloud Foundry New Teamer。不过似乎已经有些过时，那会实验室主要是针对的CF v1进行的研究，现在已经全面进入V2时代了。所以更新一下关于CloudFoundry运维的一些内容。如果有时间也可再回头看看V1的那个帖子，希望能有所帮助。 部署# 关于部署，目前使用的工具一般有两种，BOSH和cf_nise_installer。BOSH适用于集群安装，cf_nise_installer适用于单节点安装。下面主要以cf_nise_installer的安装方法为主描述部署的运维流程。 cf_nise_installer实际上就是一大堆shell脚本建立起来的项目，对s</description>
     </item>
     
     <item>
@@ -40,7 +40,7 @@
       <pubDate>Fri, 28 Feb 2014 04:14:33 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2014/02/28/cloud_controller_nge6ba90e7a081e99885e8afbbe8aeb0e5bd95/</guid>
-      <description>Cloud_Controller_NG源码阅读记录 @(CC阅读)[cloud controller] by wonderflow Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Foundry 平台用来管理控制应用和服务的组件。 官方文档是这么解释CCNG的作用的： 维护一个包含应用、服务、配置信息的数据库(CCDB)。 在blobstore中存储应用的packages和droplets。 通过NATS和其他组件进行通信，包括Droplet Execution Agents (DEAs)、Service Gateways、和 Health Manager（HM）。 其他供用户调用的后端API。 阅读该组件源码，有助于从应用管理的视角理解cloudfoundry的运行</description>
+      <description>Cloud_Controller_NG源码阅读记录# @(CC阅读)[cloud controller] by wonderflow Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Foundry 平台用来管理控制应用和服务的组件。 官方文档是这么解释CCNG的作用的： 维护一个包含应用、服务、配置信息的数据库(CCDB)。 在blobstore中存储应用的packages和droplets。 通过NATS和其他组件进行通信，包括Droplet Execution Agents (DEAs)、Service Gateways、和 Health Manager（HM）。 其他供用户调用的后端API。 阅读该组件源码，有助于从应用管理的视角理解cloudfoundry的运</description>
     </item>
     
     <item>
@@ -49,7 +49,7 @@
       <pubDate>Sun, 11 Aug 2013 05:51:54 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2013/08/11/cloudfoundrye585a5e997a8e69d90e69699e6b187e99b86/</guid>
-      <description>架构总览 深入cloudfoundry（第一版）上， 深入cloudfoundry（第一版）下, 深入cloudfoundry（一周年版）, Cloud Foundry技术全貌及核心组件分析, 以NATS为主线的CloudFoundry原理, 部署相关 ****多节点部署之配置文件全攻略, Running your own CloudFoundry based on your IaaS. Part 1, Running your own CloudFoundry based on your IaaS. Part 2. 组件细节 VMC, DEA, NATS, Router, cloudcontroller, EventMachine, Service Gateway dashboard: 1,2,3 ruby相关 Ruby socket programming in CloudFoundry,** ** How to use your GemFile.** **</description>
+      <description>架构总览# 深入cloudfoundry（第一版）上， 深入cloudfoundry（第一版）下, 深入cloudfoundry（一周年版）, Cloud Foundry技术全貌及核心组件分析, 以NATS为主线的CloudFoundry原理, # 部署相关# ****多节点部署之配置文件全攻略, Running your own CloudFoundry based on your IaaS. Part 1, Running your own CloudFoundry based on your IaaS. Part 2. 组件细节# VMC,# DEA,# NATS,# Router,# cloudcontroller,# EventMachine,# Service Gateway# dashboard: 1,2,3# ruby相关# Ruby socket programming in CloudFoundry,** ** How to use your GemFile.** **</description>
     </item>
     
     <item>
@@ -67,7 +67,7 @@
       <pubDate>Thu, 25 Jul 2013 05:41:20 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2013/07/25/guide-for-cloud-foundry-new-teamer-2/</guid>
-      <description>Preparation 1、阅读以下博客： 了解架构，阅读“深入CloudFoundry一周年” 2、请准备好一个linux的客户端，如果没有请申请一个虚拟机，并安装好ubuntu10.04（windows下使用远程连接的方式是使用putty软件。） 3、如果不熟悉linux，请阅读linux相关命令，初步了解。 Start 定位cloudfoundry集群： 请使用$ curl [your domain]。若显示出正常信息则初步表面集群配置正确，否则请找帮你配置集群的人。 配置linux源，提高下载速度。(百度一个ubuntu cn的源) {% codeblock %} $ /etc/apt/sources.list $ sudo apt-get update {% endcodeblock %} 安装git，为了下载一个基本应用，github上面的。 {% codeblock %} $ sudo apt-get install git {% endcodeblock %} 安装maven，为了</description>
+      <description>Preparation# 1、阅读以下博客： 了解架构，阅读“深入CloudFoundry一周年” 2、请准备好一个linux的客户端，如果没有请申请一个虚拟机，并安装好ubuntu10.04（windows下使用远程连接的方式是使用putty软件。） 3、如果不熟悉linux，请阅读linux相关命令，初步了解。 Start# 定位cloudfoundry集群： 请使用$ curl [your domain]。若显示出正常信息则初步表面集群配置正确，否则请找帮你配置集群的人。 配置linux源，提高下载速度。(百度一个ubuntu cn的源) {% codeblock %} $ /etc/apt/sources.list $ sudo apt-get update {% endcodeblock %} 安装git，为了下载一个基本应用，github上面的。 {% codeblock %} $ sudo apt-get install git {% endcodeblock %} 安装maven，为了</description>
     </item>
     
   </channel>

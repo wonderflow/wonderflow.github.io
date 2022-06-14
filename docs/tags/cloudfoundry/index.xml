@@ -13,7 +13,7 @@
       <pubDate>Sun, 11 Aug 2013 05:51:54 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2013/08/11/cloudfoundrye585a5e997a8e69d90e69699e6b187e99b86/</guid>
-      <description>架构总览 深入cloudfoundry（第一版）上， 深入cloudfoundry（第一版）下, 深入cloudfoundry（一周年版）, Cloud Foundry技术全貌及核心组件分析, 以NATS为主线的CloudFoundry原理, 部署相关 ****多节点部署之配置文件全攻略, Running your own CloudFoundry based on your IaaS. Part 1, Running your own CloudFoundry based on your IaaS. Part 2. 组件细节 VMC, DEA, NATS, Router, cloudcontroller, EventMachine, Service Gateway dashboard: 1,2,3 ruby相关 Ruby socket programming in CloudFoundry,** ** How to use your GemFile.** **</description>
+      <description>架构总览# 深入cloudfoundry（第一版）上， 深入cloudfoundry（第一版）下, 深入cloudfoundry（一周年版）, Cloud Foundry技术全貌及核心组件分析, 以NATS为主线的CloudFoundry原理, # 部署相关# ****多节点部署之配置文件全攻略, Running your own CloudFoundry based on your IaaS. Part 1, Running your own CloudFoundry based on your IaaS. Part 2. 组件细节# VMC,# DEA,# NATS,# Router,# cloudcontroller,# EventMachine,# Service Gateway# dashboard: 1,2,3# ruby相关# Ruby socket programming in CloudFoundry,** ** How to use your GemFile.** **</description>
     </item>
     
     <item>
@@ -31,7 +31,7 @@
       <pubDate>Thu, 25 Jul 2013 05:41:20 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2013/07/25/guide-for-cloud-foundry-new-teamer-2/</guid>
-      <description>Preparation 1、阅读以下博客： 了解架构，阅读“深入CloudFoundry一周年” 2、请准备好一个linux的客户端，如果没有请申请一个虚拟机，并安装好ubuntu10.04（windows下使用远程连接的方式是使用putty软件。） 3、如果不熟悉linux，请阅读linux相关命令，初步了解。 Start 定位cloudfoundry集群： 请使用$ curl [your domain]。若显示出正常信息则初步表面集群配置正确，否则请找帮你配置集群的人。 配置linux源，提高下载速度。(百度一个ubuntu cn的源) {% codeblock %} $ /etc/apt/sources.list $ sudo apt-get update {% endcodeblock %} 安装git，为了下载一个基本应用，github上面的。 {% codeblock %} $ sudo apt-get install git {% endcodeblock %} 安装maven，为了</description>
+      <description>Preparation# 1、阅读以下博客： 了解架构，阅读“深入CloudFoundry一周年” 2、请准备好一个linux的客户端，如果没有请申请一个虚拟机，并安装好ubuntu10.04（windows下使用远程连接的方式是使用putty软件。） 3、如果不熟悉linux，请阅读linux相关命令，初步了解。 Start# 定位cloudfoundry集群： 请使用$ curl [your domain]。若显示出正常信息则初步表面集群配置正确，否则请找帮你配置集群的人。 配置linux源，提高下载速度。(百度一个ubuntu cn的源) {% codeblock %} $ /etc/apt/sources.list $ sudo apt-get update {% endcodeblock %} 安装git，为了下载一个基本应用，github上面的。 {% codeblock %} $ sudo apt-get install git {% endcodeblock %} 安装maven，为了</description>
     </item>
     
   </channel>

@@ -7,9 +7,11 @@
     <title>Docker背后的内核知识——cgroups资源限制 | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="原文首发自InfoQ，《Docker背后的内核知识——cgroups资源限制》
-摘要
+
+    摘要#
 当我们谈论Docker时，我们常常会聊到Docker的实现方式。很多开发者都会知道，Docker的本质实际上是宿主机上的一个进程，通过namespace实现了资源隔离，通过cgroup实现了资源限制，通过UnionFS实现了Copy on Write的文件操作。但是当我们再深入一步的提出，namespace和cgroup实现细节时，知道的人可能就所剩无几了。浙江大学SEL/VLIS实验室的孙健波同学在docker基础研究工作中着重对内核的cgroup技术做了细致的分析和梳理，希望能对读者深入理解Docker有所帮助
-正文
+
+    正文#
 上一篇中，我们了解了Docker背后使用的资源隔离技术namespace，通过系统调用构建一个相对隔离的shell环境，也可以称之为一个简单的“容器”。本文我们则要开始讲解另一个强大的内核工具——cgroups。他不仅可以限制被namespace隔离起来的资源，还可以为资源设置权重、计算使用量、操控进程启停等等。在介绍完基本概念后，我们将详细讲解Docker中使用到的cgroups内容。希望通过本文，让读者对Docker有更深入的了解。">
     <meta name="generator" content="Hugo 0.92.2" />
     
@@ -37,9 +39,11 @@
     
     <meta property="og:title" content="Docker背后的内核知识——cgroups资源限制" />
 <meta property="og:description" content="原文首发自InfoQ，《Docker背后的内核知识——cgroups资源限制》
-摘要
+
+    摘要#
 当我们谈论Docker时，我们常常会聊到Docker的实现方式。很多开发者都会知道，Docker的本质实际上是宿主机上的一个进程，通过namespace实现了资源隔离，通过cgroup实现了资源限制，通过UnionFS实现了Copy on Write的文件操作。但是当我们再深入一步的提出，namespace和cgroup实现细节时，知道的人可能就所剩无几了。浙江大学SEL/VLIS实验室的孙健波同学在docker基础研究工作中着重对内核的cgroup技术做了细致的分析和梳理，希望能对读者深入理解Docker有所帮助
-正文
+
+    正文#
 上一篇中，我们了解了Docker背后使用的资源隔离技术namespace，通过系统调用构建一个相对隔离的shell环境，也可以称之为一个简单的“容器”。本文我们则要开始讲解另一个强大的内核工具——cgroups。他不仅可以限制被namespace隔离起来的资源，还可以为资源设置权重、计算使用量、操控进程启停等等。在介绍完基本概念后，我们将详细讲解Docker中使用到的cgroups内容。希望通过本文，让读者对Docker有更深入的了解。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://wonderflow.info/posts/2015/04/22/cgroups/" /><meta property="article:section" content="posts" />
@@ -48,18 +52,22 @@
 
 <meta itemprop="name" content="Docker背后的内核知识——cgroups资源限制">
 <meta itemprop="description" content="原文首发自InfoQ，《Docker背后的内核知识——cgroups资源限制》
-摘要
+
+    摘要#
 当我们谈论Docker时，我们常常会聊到Docker的实现方式。很多开发者都会知道，Docker的本质实际上是宿主机上的一个进程，通过namespace实现了资源隔离，通过cgroup实现了资源限制，通过UnionFS实现了Copy on Write的文件操作。但是当我们再深入一步的提出，namespace和cgroup实现细节时，知道的人可能就所剩无几了。浙江大学SEL/VLIS实验室的孙健波同学在docker基础研究工作中着重对内核的cgroup技术做了细致的分析和梳理，希望能对读者深入理解Docker有所帮助
-正文
+
+    正文#
 上一篇中，我们了解了Docker背后使用的资源隔离技术namespace，通过系统调用构建一个相对隔离的shell环境，也可以称之为一个简单的“容器”。本文我们则要开始讲解另一个强大的内核工具——cgroups。他不仅可以限制被namespace隔离起来的资源，还可以为资源设置权重、计算使用量、操控进程启停等等。在介绍完基本概念后，我们将详细讲解Docker中使用到的cgroups内容。希望通过本文，让读者对Docker有更深入的了解。"><meta itemprop="datePublished" content="2015-04-22T10:05:38+00:00" />
 <meta itemprop="dateModified" content="2015-04-22T10:05:38+00:00" />
-<meta itemprop="wordCount" content="16061">
+<meta itemprop="wordCount" content="16089">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker背后的内核知识——cgroups资源限制"/>
 <meta name="twitter:description" content="原文首发自InfoQ，《Docker背后的内核知识——cgroups资源限制》
-摘要
+
+    摘要#
 当我们谈论Docker时，我们常常会聊到Docker的实现方式。很多开发者都会知道，Docker的本质实际上是宿主机上的一个进程，通过namespace实现了资源隔离，通过cgroup实现了资源限制，通过UnionFS实现了Copy on Write的文件操作。但是当我们再深入一步的提出，namespace和cgroup实现细节时，知道的人可能就所剩无几了。浙江大学SEL/VLIS实验室的孙健波同学在docker基础研究工作中着重对内核的cgroup技术做了细致的分析和梳理，希望能对读者深入理解Docker有所帮助
-正文
+
+    正文#
 上一篇中，我们了解了Docker背后使用的资源隔离技术namespace，通过系统调用构建一个相对隔离的shell环境，也可以称之为一个简单的“容器”。本文我们则要开始讲解另一个强大的内核工具——cgroups。他不仅可以限制被namespace隔离起来的资源，还可以为资源设置权重、计算使用量、操控进程启停等等。在介绍完基本概念后，我们将详细讲解Docker中使用到的cgroups内容。希望通过本文，让读者对Docker有更深入的了解。"/>
 
 	
@@ -109,6 +117,16 @@
       
 <div class="ananke-socials">
   
+    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
     <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
       
         <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
@@ -154,29 +172,39 @@
 
   <div id="sharing" class="mt3 ananke-socials">
     
+      
+      <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2015/04/22/cgroups/&amp;text=Docker%e8%83%8c%e5%90%8e%e7%9a%84%e5%86%85%e6%a0%b8%e7%9f%a5%e8%af%86%e2%80%94%e2%80%94cgroups%e8%b5%84%e6%ba%90%e9%99%90%e5%88%b6" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
+        
+        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+        
+      </a>
+    
   </div>
 
 
     <h1 class="f1 athelas mt3 mb1">Docker背后的内核知识——cgroups资源限制</h1>
     
     
-    <time class="f6 mv4 dib tracked"
-      datetime="2015-04-22T10:05:38Z">April 22, 2015</time>
+    <time class="f6 mv4 dib tracked" datetime="2015-04-22T10:05:38Z" >April 22, 2015</time>
 
     
     
     <span class="f6 mv4 dib tracked"> - 33 minutes read</span>
-    <span class="f6 mv4 dib tracked"> - 16061 words</span>
+    <span class="f6 mv4 dib tracked"> - 16089 words</span>
     
   </header>
-  <div
-    class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-100-l"><p>原文首发自InfoQ，<a href="http://www.infoq.com/cn/articles/docker-kernel-knowledge-cgroups-resource-isolation">《Docker背后的内核知识——cgroups资源限制》</a></p>
-<h2 id="摘要">摘要</h2>
-<p>当我们谈论Docker时，我们常常会聊到Docker的实现方式。很多开发者都会知道，Docker的本质实际上是宿主机上的一个进程，通过namespace实现了资源隔离，通过cgroup实现了资源限制，通过UnionFS实现了Copy on Write的文件操作。但是当我们再深入一步的提出，namespace和cgroup实现细节时，知道的人可能就所剩无几了。<a href="http://www.sel.zju.edu.cn/">浙江大学SEL/VLIS实验室</a>的<a href="http://wonderflow.github.io">孙健波</a>同学在docker基础研究工作中着重对内核的cgroup技术做了细致的分析和梳理，希望能对读者深入理解Docker有所帮助</p>
-<h2 id="正文">正文</h2>
-<p>上一篇中，我们了解了Docker背后使用的资源隔离技术namespace，通过系统调用构建一个相对隔离的shell环境，也可以称之为一个简单的“容器”。本文我们则要开始讲解另一个强大的内核工具——cgroups。他不仅可以限制被namespace隔离起来的资源，还可以为资源设置权重、计算使用量、操控进程启停等等。在介绍完基本概念后，我们将详细讲解Docker中使用到的cgroups内容。希望通过本文，让读者对Docker有更深入的了解。</p>
-<h2 id="1-cgroups是什么"><strong>1. cgroups是什么</strong></h2>
-<p>cgroups（Control Groups）最初叫Process Container，由Google工程师（Paul Menage和Rohit Seth）于2006年提出，后来因为Container有多重含义容易引起误解，就在2007年更名为Control Groups，并被整合进Linux内核。顾名思义就是把进程放到一个组里面统一加以控制。官方的定义如下{![引自：https://www.kernel.org/doc/Documentation/cgroups/cgroups.txt]}。</p>
+  <div class="nested-copy-line-height lh-copy serif f4 nested-links
+    nested-img mid-gray pr4-l w-100-l"><p>原文首发自InfoQ，<a href="http://www.infoq.com/cn/articles/docker-kernel-knowledge-cgroups-resource-isolation">《Docker背后的内核知识——cgroups资源限制》</a></p>
+<h2 id="摘要">
+    摘要<a class="hash-link" href="#%e6%91%98%e8%a6%81" title="Direct link to heading">#</a>
+</h2><p>当我们谈论Docker时，我们常常会聊到Docker的实现方式。很多开发者都会知道，Docker的本质实际上是宿主机上的一个进程，通过namespace实现了资源隔离，通过cgroup实现了资源限制，通过UnionFS实现了Copy on Write的文件操作。但是当我们再深入一步的提出，namespace和cgroup实现细节时，知道的人可能就所剩无几了。<a href="http://www.sel.zju.edu.cn/">浙江大学SEL/VLIS实验室</a>的<a href="http://wonderflow.github.io">孙健波</a>同学在docker基础研究工作中着重对内核的cgroup技术做了细致的分析和梳理，希望能对读者深入理解Docker有所帮助</p>
+<h2 id="正文">
+    正文<a class="hash-link" href="#%e6%ad%a3%e6%96%87" title="Direct link to heading">#</a>
+</h2><p>上一篇中，我们了解了Docker背后使用的资源隔离技术namespace，通过系统调用构建一个相对隔离的shell环境，也可以称之为一个简单的“容器”。本文我们则要开始讲解另一个强大的内核工具——cgroups。他不仅可以限制被namespace隔离起来的资源，还可以为资源设置权重、计算使用量、操控进程启停等等。在介绍完基本概念后，我们将详细讲解Docker中使用到的cgroups内容。希望通过本文，让读者对Docker有更深入的了解。</p>
+<h2 id="1-cgroups是什么">
+    <strong>1. cgroups是什么</strong><a class="hash-link" href="#1-cgroups%e6%98%af%e4%bb%80%e4%b9%88" title="Direct link to heading">#</a>
+</h2><p>cgroups（Control Groups）最初叫Process Container，由Google工程师（Paul Menage和Rohit Seth）于2006年提出，后来因为Container有多重含义容易引起误解，就在2007年更名为Control Groups，并被整合进Linux内核。顾名思义就是把进程放到一个组里面统一加以控制。官方的定义如下{![引自：https://www.kernel.org/doc/Documentation/cgroups/cgroups.txt]}。</p>
 <blockquote>
 <p>cgroups是Linux内核提供的一种机制，这种机制可以根据特定的行为，把一系列系统任务及其子任务整合（或分隔）到按资源划分等级的不同组内，从而为系统资源管理提供一个统一的框架。</p>
 </blockquote>
@@ -189,8 +217,9 @@
 <li>子进程创建之初与其父进程处于同一个cgroups的控制组。</li>
 </ul>
 <p>本质上来说，cgroups是内核附加在程序上的一系列钩子（hooks），通过程序运行时对资源的调度触发相应的钩子以达到资源追踪和限制的目的。</p>
-<h2 id="2-cgroups的作用"><strong>2. cgroups的作用</strong></h2>
-<p>实现cgroups的主要目的是为不同用户层面的资源管理，提供一个统一化的接口。从单个进程的资源控制到操作系统层面的虚拟化。Cgroups提供了以下四大功能{![参照自：http://en.wikipedia.org/wiki/Cgroups]}。</p>
+<h2 id="2-cgroups的作用">
+    <strong>2. cgroups的作用</strong><a class="hash-link" href="#2-cgroups%e7%9a%84%e4%bd%9c%e7%94%a8" title="Direct link to heading">#</a>
+</h2><p>实现cgroups的主要目的是为不同用户层面的资源管理，提供一个统一化的接口。从单个进程的资源控制到操作系统层面的虚拟化。Cgroups提供了以下四大功能{![参照自：http://en.wikipedia.org/wiki/Cgroups]}。</p>
 <ul>
 <li>资源限制（Resource Limitation）：cgroups可以对进程组使用的资源总额进行限制。如设定应用运行时使用内存的上限，一旦超过这个配额就发出OOM（Out of Memory）。</li>
 <li>优先级分配（Prioritization）：通过分配的CPU时间片数量及硬盘IO带宽大小，实际上就相当于控制了进程运行的优先级。</li>
@@ -198,15 +227,17 @@
 <li>进程控制（Control）：cgroups可以对进程组执行挂起、恢复等操作。</li>
 </ul>
 <p>过去有一段时间，内核开发者甚至把namespace也作为一个cgroups的subsystem加入进来，也就是说cgroups曾经甚至还包含了资源隔离的能力。但是资源隔离会给cgroups带来许多问题，如PID在循环出现的时候cgroup却出现了命名冲突、cgroup创建后进入新的namespace导致脱离了控制等等{![详见：https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=a77aea92010acf54ad785047234418d5d68772e2]}，所以在2011年就被移除了。</p>
-<h2 id="3-术语表"><strong>3. 术语表</strong></h2>
-<ul>
+<h2 id="3-术语表">
+    <strong>3. 术语表</strong><a class="hash-link" href="#3-%e6%9c%af%e8%af%ad%e8%a1%a8" title="Direct link to heading">#</a>
+</h2><ul>
 <li><strong>task（任务）</strong>：cgroups的术语中，task就表示系统的一个进程。</li>
 <li><strong>cgroup（控制组）</strong>：cgroups 中的资源控制都以cgroup为单位实现。cgroup表示按某种资源控制标准划分而成的任务组，包含一个或多个子系统。一个任务可以加入某个cgroup，也可以从某个cgroup迁移到另外一个cgroup。</li>
 <li><strong>subsystem（子系统）</strong>：cgroups中的subsystem就是一个资源调度控制器（Resource Controller）。比如CPU子系统可以控制CPU时间分配，内存子系统可以限制cgroup内存使用量。</li>
 <li><strong>hierarchy（层级树）</strong>：hierarchy由一系列cgroup以一个树状结构排列而成，每个hierarchy通过绑定对应的subsystem进行资源调度。hierarchy中的cgroup节点可以包含零或多个子节点，子节点继承父节点的属性。整个系统可以有多个hierarchy。</li>
 </ul>
-<h2 id="4-组织结构与基本规则"><strong>4. 组织结构与基本规则</strong></h2>
-<p>大家在namespace技术的讲解中已经了解到，传统的Unix进程管理，实际上是先启动<code>init</code>进程作为根节点，再由<code>init</code>节点创建子进程作为子节点，而每个子节点由可以创建新的子节点，如此往复，形成一个树状结构。而cgroups也是类似的树状结构，子节点都从父节点继承属性。</p>
+<h2 id="4-组织结构与基本规则">
+    <strong>4. 组织结构与基本规则</strong><a class="hash-link" href="#4-%e7%bb%84%e7%bb%87%e7%bb%93%e6%9e%84%e4%b8%8e%e5%9f%ba%e6%9c%ac%e8%a7%84%e5%88%99" title="Direct link to heading">#</a>
+</h2><p>大家在namespace技术的讲解中已经了解到，传统的Unix进程管理，实际上是先启动<code>init</code>进程作为根节点，再由<code>init</code>节点创建子进程作为子节点，而每个子节点由可以创建新的子节点，如此往复，形成一个树状结构。而cgroups也是类似的树状结构，子节点都从父节点继承属性。</p>
 <p>它们最大的不同在于，系统中cgroup构成的hierarchy可以允许存在多个。如果进程模型是由<code>init</code>作为根节点构成的一棵树的话，那么cgroups的模型则是由多个hierarchy构成的森林。这样做的目的也很好理解，如果只有一个hierarchy，那么所有的task都要受到绑定其上的subsystem的限制，会给那些不需要这些限制的task造成麻烦。</p>
 <p>了解了cgroups的组织结构，我们再来了解cgroup、task、subsystem以及hierarchy四者间的相互关系及其基本规则{![参照自：https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Resource_Management_Guide/sec-Relationships_Between_Subsystems_Hierarchies_Control_Groups_and_Tasks.html]}。</p>
 <ul>
@@ -231,8 +262,9 @@
 <strong>图4 刚fork出的子进程在初始状态与其父进程处于同一个cgroup</strong></p>
 </li>
 </ul>
-<h2 id="5-subsystem简介"><strong>5. subsystem简介</strong></h2>
-<p>subsystem实际上就是cgroups的资源控制系统，每种subsystem独立地控制一种资源，目前Docker使用如下八种subsystem，还有一种<code>net_cls</code> subsystem在内核中已经广泛实现，但是Docker尚未使用。他们的用途分别如下。</p>
+<h2 id="5-subsystem简介">
+    <strong>5. subsystem简介</strong><a class="hash-link" href="#5-subsystem%e7%ae%80%e4%bb%8b" title="Direct link to heading">#</a>
+</h2><p>subsystem实际上就是cgroups的资源控制系统，每种subsystem独立地控制一种资源，目前Docker使用如下八种subsystem，还有一种<code>net_cls</code> subsystem在内核中已经广泛实现，但是Docker尚未使用。他们的用途分别如下。</p>
 <ul>
 <li><strong>blkio：</strong> 这个subsystem可以为块设备设定输入/输出限制，比如物理驱动设备（包括磁盘、固态硬盘、USB等）。</li>
 <li><strong>cpu：</strong> 这个subsystem使用调度程序控制task对CPU的使用。</li>
@@ -244,9 +276,11 @@
 <li><strong>perf_event</strong> 这个subsystem使用后使得cgroup中的task可以进行统一的性能测试。{![perf: Linux CPU性能探测器，详见https://perf.wiki.kernel.org/index.php/Main_Page]}</li>
 <li>*<strong>net_cls</strong> 这个subsystem Docker没有直接使用，它通过使用等级识别符(classid)标记网络数据包，从而允许 Linux 流量控制程序（TC：Traffic Controller）识别从具体cgroup中生成的数据包。</li>
 </ul>
-<h2 id="6-cgroups实现方式及工作原理简介"><strong>6. cgroups实现方式及工作原理简介</strong></h2>
-<h3 id="1cgroups实现结构讲解">（1）cgroups实现结构讲解</h3>
-<p>cgroups的实现本质上是给系统进程挂上钩子（hooks），当task运行的过程中涉及到某个资源时就会触发钩子上所附带的subsystem进行检测，最终根据资源类别的不同使用对应的技术进行资源限制和优先级分配。那么这些钩子又是怎样附加到进程上的呢？下面我们将对照结构体的图表一步步分析，请放心，描述代码的内容并不多。</p>
+<h2 id="6-cgroups实现方式及工作原理简介">
+    <strong>6. cgroups实现方式及工作原理简介</strong><a class="hash-link" href="#6-cgroups%e5%ae%9e%e7%8e%b0%e6%96%b9%e5%bc%8f%e5%8f%8a%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86%e7%ae%80%e4%bb%8b" title="Direct link to heading">#</a>
+</h2><h3 id="1cgroups实现结构讲解">
+    （1）cgroups实现结构讲解<a class="hash-link" href="#1cgroups%e5%ae%9e%e7%8e%b0%e7%bb%93%e6%9e%84%e8%ae%b2%e8%a7%a3" title="Direct link to heading">#</a>
+</h3><p>cgroups的实现本质上是给系统进程挂上钩子（hooks），当task运行的过程中涉及到某个资源时就会触发钩子上所附带的subsystem进行检测，最终根据资源类别的不同使用对应的技术进行资源限制和优先级分配。那么这些钩子又是怎样附加到进程上的呢？下面我们将对照结构体的图表一步步分析，请放心，描述代码的内容并不多。</p>
 <p><img src="https://raw.githubusercontent.com/wonderflow/pic/master/cgroups/cgroup_struct.png" alt="cgroup_struct">
 <strong>图5 cgroups相关结构体一览</strong></p>
 <p>Linux中管理task进程的数据结构为<code>task_struct</code>（包含所有进程管理的信息），其中与cgroup相关的字段主要有两个，一个是<code>css_set *cgroups</code>，表示指向<code>css_set</code>（包含进程相关的cgroups信息）的指针，一个task只对应一个<code>css_set</code>结构，但是一个<code>css_set</code>可以被多个task使用。另一个字段是<code>list_head cg_list</code>，是一个链表的头指针，这个链表包含了所有的链到同一个<code>css_set</code>的task进程（在图中使用的回环箭头，均表示可以通过该字段找到所有同类结构，获得信息）。</p>
@@ -268,8 +302,9 @@
 <p>定义子系统的结构体是<code>cgroup_subsys</code>，在图9中可以看到，<code>cgroup_subsys</code>中定义了一组函数的接口，让各个子系统自己去实现，类似的思想还被用在了<code>cgroup_subsys_state</code>中，<code>cgroup_subsys_state</code>并没有定义控制信息，只是定义了各个子系统都需要用到的公共信息，由各个子系统各自按需去定义自己的控制信息结构体，最终在自定义的结构体中把<code>cgroup_subsys_state</code>包含进去，然后内核通过<code>container_of</code>（这个宏可以通过一个结构体的成员找到结构体自身）等宏定义来获取对应的结构体。</p>
 <p><img src="https://raw.githubusercontent.com/wonderflow/pic/master/cgroups/cgroup_subsys.png" alt="cgroup_subsys">
 <strong>图9 cgroup子系统结构体</strong></p>
-<h3 id="2基于cgroups实现结构的用户层体现">（2）基于cgroups实现结构的用户层体现</h3>
-<p>了解了cgroups实现的代码结构以后，再来看用户层在使用cgroups时的限制，会更加清晰。</p>
+<h3 id="2基于cgroups实现结构的用户层体现">
+    （2）基于cgroups实现结构的用户层体现<a class="hash-link" href="#2%e5%9f%ba%e4%ba%8ecgroups%e5%ae%9e%e7%8e%b0%e7%bb%93%e6%9e%84%e7%9a%84%e7%94%a8%e6%88%b7%e5%b1%82%e4%bd%93%e7%8e%b0" title="Direct link to heading">#</a>
+</h3><p>了解了cgroups实现的代码结构以后，再来看用户层在使用cgroups时的限制，会更加清晰。</p>
 <p>在实际的使用过程中，你需要通过挂载（mount）<code>cgroup</code>文件系统新建一个层级结构，挂载时指定要绑定的子系统，缺省情况下默认绑定系统所有子系统。把cgroup文件系统挂载（mount）上以后，你就可以像操作文件一样对cgroups的hierarchy层级进行浏览和操作管理（包括权限管理、子文件管理等等）。除了cgroup文件系统以外，内核没有为cgroups的访问和操作添加任何系统调用。</p>
 <p>如果新建的层级结构要绑定的子系统与目前已经存在的层级结构完全相同，那么新的挂载会重用原来已经存在的那一套（指向相同的css_set）。否则如果要绑定的子系统已经被别的层级绑定，就会返回挂载失败的错误。如果一切顺利，挂载完成后层级就被激活并与相应子系统关联起来，可以开始使用了。</p>
 <p>目前无法将一个新的子系统绑定到激活的层级上，或者从一个激活的层级中解除某个子系统的绑定。</p>
@@ -284,22 +319,25 @@
 </ul>
 <p>除了上述几个通用的文件以外，绑定特定子系统的目录下也会有其他的文件进行子系统的参数配置。</p>
 <p>在创建的hierarchy中创建文件夹，就类似于fork中一个后代cgroup，后代cgroup中默认继承原有cgroup中的配置属性，但是你可以根据需求对配置参数进行调整。这样就把一个大的cgroup系统分割成一个个嵌套的、可动态变化的“软分区”。</p>
-<h2 id="7-cgroups的使用方法简介"><strong>7. cgroups的使用方法简介</strong></h2>
-<p>###（1）安装cgroups工具库
+<h2 id="7-cgroups的使用方法简介">
+    <strong>7. cgroups的使用方法简介</strong><a class="hash-link" href="#7-cgroups%e7%9a%84%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95%e7%ae%80%e4%bb%8b" title="Direct link to heading">#</a>
+</h2><p>###（1）安装cgroups工具库
 本节主要针对Ubuntu14.04版本系统进行介绍，其他Linux发行版命令略有不同，原理是一样的。不安装cgroups工具库也可以使用cgroups，安装它只是为了更方便的在用户态对cgroups进行管理，同时也方便初学者理解和使用，本节对cgroups的操作和使用都基于这个工具库。</p>
 <pre tabindex="0"><code>apt-get install cgroup-bin
 </code></pre><p>安装的过程会自动创建<code>/cgroup</code>目录，如果没有自动创建也不用担心，使用 <code>mkdir /cgroup</code> 手动创建即可。在这个目录下你就可以挂载各类子系统。安装完成后，你就可以使用<code>lssubsys</code>（罗列所有的subsystem挂载情况）等命令。</p>
 <p>说明：也许你在其他文章中看到的cgroups工具库教程，会在/etc目录下生成一些初始化脚本和配置文件，默认的cgroup配置文件为<code>/etc/cgconfig.conf</code>，但是因为存在使LXC无法运行的bug，所以在新版本中把这个配置移除了，详见：https://bugs.launchpad.net/ubuntu/+source/libcgroup/+bug/1096771。</p>
-<h3 id="2查询cgroup及子系统挂载状态">（2）查询cgroup及子系统挂载状态</h3>
-<p>在挂载子系统之前，可能你要先检查下目前子系统的挂载状态，如果子系统已经挂载，根据第4节中讲的规则2，你就无法把子系统挂载到新的hierarchy，此时就需要先删除相应hierarchy或卸载对应子系统后再挂载。</p>
+<h3 id="2查询cgroup及子系统挂载状态">
+    （2）查询cgroup及子系统挂载状态<a class="hash-link" href="#2%e6%9f%a5%e8%af%a2cgroup%e5%8f%8a%e5%ad%90%e7%b3%bb%e7%bb%9f%e6%8c%82%e8%bd%bd%e7%8a%b6%e6%80%81" title="Direct link to heading">#</a>
+</h3><p>在挂载子系统之前，可能你要先检查下目前子系统的挂载状态，如果子系统已经挂载，根据第4节中讲的规则2，你就无法把子系统挂载到新的hierarchy，此时就需要先删除相应hierarchy或卸载对应子系统后再挂载。</p>
 <ul>
 <li>查看所有的cgroup：<code>lscgroup</code></li>
 <li>查看所有支持的子系统：<code>lssubsys -a</code></li>
 <li>查看所有子系统挂载的位置： <code>lssubsys –m</code></li>
 <li>查看单个子系统（如memory）挂载位置：<code>lssubsys –m memory</code></li>
 </ul>
-<h3 id="3创建hierarchy层级并挂载子系统">（3）创建hierarchy层级并挂载子系统</h3>
-<p>在组织结构与规则一节中我们提到了hierarchy层级和subsystem子系统的关系，我们知道使用cgroup的最佳方式是：为想要管理的每个或每组资源创建单独的cgroup层级结构。而创建hierarchy并不神秘，实际上就是做一个标记，通过挂载一个tmpfs{![基于内存的临时文件系统，详见：http://en.wikipedia.org/wiki/Tmpfs]}文件系统，并给一个好的名字就可以了，系统默认挂载的cgroup就会进行如下操作。</p>
+<h3 id="3创建hierarchy层级并挂载子系统">
+    （3）创建hierarchy层级并挂载子系统<a class="hash-link" href="#3%e5%88%9b%e5%bb%bahierarchy%e5%b1%82%e7%ba%a7%e5%b9%b6%e6%8c%82%e8%bd%bd%e5%ad%90%e7%b3%bb%e7%bb%9f" title="Direct link to heading">#</a>
+</h3><p>在组织结构与规则一节中我们提到了hierarchy层级和subsystem子系统的关系，我们知道使用cgroup的最佳方式是：为想要管理的每个或每组资源创建单独的cgroup层级结构。而创建hierarchy并不神秘，实际上就是做一个标记，通过挂载一个tmpfs{![基于内存的临时文件系统，详见：http://en.wikipedia.org/wiki/Tmpfs]}文件系统，并给一个好的名字就可以了，系统默认挂载的cgroup就会进行如下操作。</p>
 <pre tabindex="0"><code>mount -t tmpfs cgroups /sys/fs/cgroup
 </code></pre><p>其中<code>-t</code>即指定挂载的文件系统类型，其后的<code>cgroups</code>是会出现在<code>mount</code>展示的结果中用于标识，可以选择一个有用的名字命名，最后的目录则表示文件的挂载点位置。</p>
 <p>挂载完成<code>tmpfs</code>后就可以通过<code>mkdir</code>命令创建相应的文件夹。</p>
@@ -310,23 +348,26 @@
 <pre tabindex="0"><code>mount –t cgroup –o cpu,memory cpu_and_mem /sys/fs/cgroup/cg1
 </code></pre><p>从<code>mount</code>命令开始，<code>-t</code>后面跟的是挂载的文件系统类型，即<code>cgroup</code>文件系统。<code>-o</code>后面跟要挂载的子系统种类如<code>cpu</code>、<code>memory</code>，用逗号隔开，其后的<code>cpu_and_mem</code>不被cgroup代码的解释，但会出现在/proc/mounts里，可以使用任何有用的标识字符串。最后的参数则表示挂载点的目录位置。</p>
 <p>说明：如果挂载时提示<code>mount: agent already mounted or /cgroup busy</code>，则表示子系统已经挂载，需要先卸载原先的挂载点，通过第二条中描述的命令可以定位挂载点。</p>
-<h3 id="4卸载cgroup">（4）卸载cgroup</h3>
-<p>目前<code>cgroup</code>文件系统虽然支持重新挂载，但是官方不建议使用，重新挂载虽然可以改变绑定的子系统和<code>release agent</code>，但是它要求对应的hierarchy是空的并且release_agent会被传统的<code>fsnotify</code>（内核默认的文件系统通知）代替，这就导致重新挂载很难生效，未来重新挂载的功能可能会移除。你可以通过卸载，再挂载的方式处理这样的需求。</p>
+<h3 id="4卸载cgroup">
+    （4）卸载cgroup<a class="hash-link" href="#4%e5%8d%b8%e8%bd%bdcgroup" title="Direct link to heading">#</a>
+</h3><p>目前<code>cgroup</code>文件系统虽然支持重新挂载，但是官方不建议使用，重新挂载虽然可以改变绑定的子系统和<code>release agent</code>，但是它要求对应的hierarchy是空的并且release_agent会被传统的<code>fsnotify</code>（内核默认的文件系统通知）代替，这就导致重新挂载很难生效，未来重新挂载的功能可能会移除。你可以通过卸载，再挂载的方式处理这样的需求。</p>
 <p>卸载cgroup非常简单，你可以通过<code>cgdelete</code>命令，也可以通过<code>rmdir</code>，以刚挂载的cg1为例，命令如下。</p>
 <pre tabindex="0"><code>rmdir /sys/fs/cgroup/cg1
 </code></pre><p><code>rmdir</code>执行成功的必要条件是cg1下层没有创建其它cgroup，cg1中没有添加任何task，并且它也没有被别的cgroup所引用。</p>
 <pre tabindex="0"><code>cgdelete cpu,memory:/
 </code></pre><p>使用<code>cgdelete</code>命令可以递归的删除cgroup及其命令下的后代cgroup，并且如果cgroup中有task，那么task会自动移到上一层没有被删除的cgroup中，如果所有的cgroup都被删除了，那task就不被cgroups控制。但是一旦再次创建一个新的cgroup，所有进程都会被放进新的cgroup中。</p>
-<h3 id="5设置cgroups参数">（5）设置cgroups参数</h3>
-<p>设置cgroups参数非常简单，直接对之前创建的cgroup对应文件夹下的文件写入即可，举例如下。</p>
+<h3 id="5设置cgroups参数">
+    （5）设置cgroups参数<a class="hash-link" href="#5%e8%ae%be%e7%bd%aecgroups%e5%8f%82%e6%95%b0" title="Direct link to heading">#</a>
+</h3><p>设置cgroups参数非常简单，直接对之前创建的cgroup对应文件夹下的文件写入即可，举例如下。</p>
 <ul>
 <li>设置task允许使用的cpu为0和1.</li>
 </ul>
 <pre tabindex="0"><code>echo 0-1 &gt; /sys/fs/cgroup/cg1/cpuset.cpus
 </code></pre><p>使用<code>cgset</code>命令也可以进行参数设置，对应上述允许使用0和1cpu的命令为：</p>
 <pre tabindex="0"><code>cgset -r cpuset.cpus=0-1 cpu,memory:/
-</code></pre><h3 id="6添加task到cgroup">（6）添加task到cgroup</h3>
-<ul>
+</code></pre><h3 id="6添加task到cgroup">
+    （6）添加task到cgroup<a class="hash-link" href="#6%e6%b7%bb%e5%8a%a0task%e5%88%b0cgroup" title="Direct link to heading">#</a>
+</h3><ul>
 <li>通过文件操作进行添加</li>
 </ul>
 <pre tabindex="0"><code>echo [PID] &gt; /path/to/cgroup/tasks
@@ -341,13 +382,16 @@
 </ul>
 <pre tabindex="0"><code>cgexec -g subsystems:path_to_cgroup command arguments
 </code></pre><p><code>command</code>和<code>arguments</code>就表示要在cgroup中执行的命令和参数。<code>cgexec</code>常用于执行临时的任务。</p>
-<h3 id="7权限管理">（7）权限管理</h3>
-<p>与文件的权限管理类似，通过<code>chown</code>就可以对cgroup文件系统进行权限管理。</p>
+<h3 id="7权限管理">
+    （7）权限管理<a class="hash-link" href="#7%e6%9d%83%e9%99%90%e7%ae%a1%e7%90%86" title="Direct link to heading">#</a>
+</h3><p>与文件的权限管理类似，通过<code>chown</code>就可以对cgroup文件系统进行权限管理。</p>
 <pre tabindex="0"><code>chown uid:gid /path/to/cgroup
 </code></pre><p><code>uid</code>和<code>gid</code>分别表示所属的用户和用户组。</p>
-<h2 id="8-subsystem配置参数用法"><strong>8. subsystem配置参数用法</strong></h2>
-<h3 id="1blkio---block-io资源控制">（1）blkio - BLOCK IO资源控制</h3>
-<ul>
+<h2 id="8-subsystem配置参数用法">
+    <strong>8. subsystem配置参数用法</strong><a class="hash-link" href="#8-subsystem%e9%85%8d%e7%bd%ae%e5%8f%82%e6%95%b0%e7%94%a8%e6%b3%95" title="Direct link to heading">#</a>
+</h2><h3 id="1blkio---block-io资源控制">
+    （1）blkio - BLOCK IO资源控制<a class="hash-link" href="#1blkio---block-io%e8%b5%84%e6%ba%90%e6%8e%a7%e5%88%b6" title="Direct link to heading">#</a>
+</h3><ul>
 <li><strong>限额类</strong>
 限额类是主要有两种策略，一种是基于完全公平队列调度（CFQ：Completely Fair Queuing ）的按权重分配各个cgroup所能占用总体资源的百分比，好处是当资源空闲时可以充分利用，但只能用于最底层节点cgroup的配置；另一种则是设定资源使用上限，这种限额在各个层次的cgroup都可以配置，但这种限制较为生硬，并且容器之间依然会出现资源的竞争。</li>
 </ul>
@@ -392,8 +436,9 @@
 </ol>
 </li>
 </ul>
-<h3 id="2-cpu---cpu资源控制">（2） cpu - CPU资源控制</h3>
-<p>CPU资源的控制也有两种策略，一种是完全公平调度 （CFS：Completely Fair Scheduler）策略，提供了限额和按比例分配两种方式进行资源控制；另一种是实时调度（Real-Time Scheduler）策略，针对实时进程按周期分配固定的运行时间。配置时间都以微秒（µs）为单位，文件名中用<code>us</code>表示。</p>
+<h3 id="2-cpu---cpu资源控制">
+    （2） cpu - CPU资源控制<a class="hash-link" href="#2-cpu---cpu%e8%b5%84%e6%ba%90%e6%8e%a7%e5%88%b6" title="Direct link to heading">#</a>
+</h3><p>CPU资源的控制也有两种策略，一种是完全公平调度 （CFS：Completely Fair Scheduler）策略，提供了限额和按比例分配两种方式进行资源控制；另一种是实时调度（Real-Time Scheduler）策略，针对实时进程按周期分配固定的运行时间。配置时间都以微秒（µs）为单位，文件名中用<code>us</code>表示。</p>
 <ul>
 <li><strong>CFS调度策略下的配置</strong></li>
 </ul>
@@ -419,21 +464,24 @@
 <li><strong>cpu.rt_period_us</strong> ：设定周期时间。</li>
 <li><strong>cpu.rt_runtime_us</strong>：设定周期中的运行时间。</li>
 </ol>
-<h3 id="3-cpuacct---cpu资源报告">（3） cpuacct - CPU资源报告</h3>
-<p>这个子系统的配置是<code>cpu</code>子系统的补充，提供CPU资源用量的统计，时间单位都是纳秒。</p>
+<h3 id="3-cpuacct---cpu资源报告">
+    （3） cpuacct - CPU资源报告<a class="hash-link" href="#3-cpuacct---cpu%e8%b5%84%e6%ba%90%e6%8a%a5%e5%91%8a" title="Direct link to heading">#</a>
+</h3><p>这个子系统的配置是<code>cpu</code>子系统的补充，提供CPU资源用量的统计，时间单位都是纳秒。</p>
 <ol>
 <li><strong>cpuacct.usage</strong>：统计cgroup中所有task的cpu使用时长</li>
 <li><strong>cpuacct.stat</strong>：统计cgroup中所有task的用户态和内核态分别使用cpu的时长</li>
 <li><strong>cpuacct.usage_percpu</strong>：统计cgroup中所有task使用每个cpu的时长</li>
 </ol>
-<h3 id="4cpuset---cpu绑定">（4）cpuset - CPU绑定</h3>
-<p>为task分配独立CPU资源的子系统，参数较多，这里只选讲两个必须配置的参数，同时Docker中目前也只用到这两个。</p>
+<h3 id="4cpuset---cpu绑定">
+    （4）cpuset - CPU绑定<a class="hash-link" href="#4cpuset---cpu%e7%bb%91%e5%ae%9a" title="Direct link to heading">#</a>
+</h3><p>为task分配独立CPU资源的子系统，参数较多，这里只选讲两个必须配置的参数，同时Docker中目前也只用到这两个。</p>
 <ol>
 <li><strong>cpuset.cpus</strong>：在这个文件中填写cgroup可使用的CPU编号，如<code>0-2,16</code>代表 0、1、2和16这4个CPU。</li>
 <li><strong>cpuset.mems</strong>：与CPU类似，表示cgroup可使用的<code>memory node</code>，格式同上</li>
 </ol>
-<h3 id="5-device---限制task对device的使用">（5） device - 限制task对device的使用</h3>
-<ul>
+<h3 id="5-device---限制task对device的使用">
+    （5） device - 限制task对device的使用<a class="hash-link" href="#5-device---%e9%99%90%e5%88%b6task%e5%af%b9device%e7%9a%84%e4%bd%bf%e7%94%a8" title="Direct link to heading">#</a>
+</h3><ul>
 <li>**设备黑/白名单过滤 **</li>
 </ul>
 <ol>
@@ -446,8 +494,9 @@
 <ol>
 <li><strong>devices.list</strong>：报​​​告​​​为​​​这​​​个​​​ cgroup 中​​​的​task设​​​定​​​访​​​问​​​控​​​制​​​的​​​设​​​备</li>
 </ol>
-<h3 id="6-freezer---暂停恢复cgroup中的task">（6） freezer - 暂停/恢复cgroup中的task</h3>
-<p>只有一个属性，表示进程的状态，把task放到freezer所在的cgroup，再把state改为FROZEN，就可以暂停进程。不允许在cgroup处于FROZEN状态时加入进程。</p>
+<h3 id="6-freezer---暂停恢复cgroup中的task">
+    （6） freezer - 暂停/恢复cgroup中的task<a class="hash-link" href="#6-freezer---%e6%9a%82%e5%81%9c%e6%81%a2%e5%a4%8dcgroup%e4%b8%ad%e7%9a%84task" title="Direct link to heading">#</a>
+</h3><p>只有一个属性，表示进程的状态，把task放到freezer所在的cgroup，再把state改为FROZEN，就可以暂停进程。不允许在cgroup处于FROZEN状态时加入进程。</p>
 <ul>
 <li>**freezer.state **，包括如下三种状态：</li>
 </ul>
@@ -456,8 +505,9 @@
 <li>FREEZING 正在停止，这个是只读状态，不能写入这个值。</li>
 <li>THAWED 恢复</li>
 </ul>
-<h3 id="7-memory---内存资源管理">（7） memory - 内存资源管理</h3>
-<ul>
+<h3 id="7-memory---内存资源管理">
+    （7） memory - 内存资源管理<a class="hash-link" href="#7-memory---%e5%86%85%e5%ad%98%e8%b5%84%e6%ba%90%e7%ae%a1%e7%90%86" title="Direct link to heading">#</a>
+</h3><ul>
 <li><strong>限额类</strong></li>
 </ul>
 <ol>
@@ -495,12 +545,15 @@
 <li>hierarchical_memory_limit：包​​​含​​​ memory cgroup 的​​​层​​​级​​​的​​​内​​​存​​​限​​​制​​​，单​​​位​​​为​​​字​​​节​​​</li>
 <li>hierarchical_memsw_limit：包​​​含​​​ memory cgroup 的​​​层​​​级​​​的​​​内​​​存​​​加​​​ swap 限​​​制​​​，单​​​位​​​为​​​字​​​节​​​</li>
 </ul>
-<h2 id="8-总结"><strong>8. 总结</strong></h2>
-<p>本文由浅入深的讲解了cgroups的方方面面，从cgroups是什么，到cgroups该怎么用，最后对大量的cgroup子系统配置参数进行了梳理。可以看到，内核对cgroups的支持已经较为完善，但是依旧有许多工作需要完善。如网络方面目前是通过TC（Traffic Controller）来控制，未来需要统一整合；资源限制并没有解决资源竞争，在各自限制之内的进程依旧存在资源竞争，优先级调度方面依旧有很大的改进空间。希望通过本文帮助大家了解cgroups，让更多人参与到社区的贡献中。</p>
-<h2 id="9-作者简介"><strong>9. 作者简介</strong></h2>
-<p>孙健波，<a href="http://www.sel.zju.edu.cn">浙江大学SEL实验室</a>硕士研究生，目前在云平台团队从事科研和开发工作。浙大团队对PaaS、Docker、大数据和主流开源云计算技术有深入的研究和二次开发经验，团队现将部分技术文章贡献出来，希望能对读者有所帮助。</p>
-<h2 id="参考资料">参考资料</h2>
-<p><a href="https://sysadmincasts.com/episodes/14-introduction-to-linux-control-groups-cgroups">https://sysadmincasts.com/episodes/14-introduction-to-linux-control-groups-cgroups</a>
+<h2 id="8-总结">
+    <strong>8. 总结</strong><a class="hash-link" href="#8-%e6%80%bb%e7%bb%93" title="Direct link to heading">#</a>
+</h2><p>本文由浅入深的讲解了cgroups的方方面面，从cgroups是什么，到cgroups该怎么用，最后对大量的cgroup子系统配置参数进行了梳理。可以看到，内核对cgroups的支持已经较为完善，但是依旧有许多工作需要完善。如网络方面目前是通过TC（Traffic Controller）来控制，未来需要统一整合；资源限制并没有解决资源竞争，在各自限制之内的进程依旧存在资源竞争，优先级调度方面依旧有很大的改进空间。希望通过本文帮助大家了解cgroups，让更多人参与到社区的贡献中。</p>
+<h2 id="9-作者简介">
+    <strong>9. 作者简介</strong><a class="hash-link" href="#9-%e4%bd%9c%e8%80%85%e7%ae%80%e4%bb%8b" title="Direct link to heading">#</a>
+</h2><p>孙健波，<a href="http://www.sel.zju.edu.cn">浙江大学SEL实验室</a>硕士研究生，目前在云平台团队从事科研和开发工作。浙大团队对PaaS、Docker、大数据和主流开源云计算技术有深入的研究和二次开发经验，团队现将部分技术文章贡献出来，希望能对读者有所帮助。</p>
+<h2 id="参考资料">
+    参考资料<a class="hash-link" href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" title="Direct link to heading">#</a>
+</h2><p><a href="https://sysadmincasts.com/episodes/14-introduction-to-linux-control-groups-cgroups">https://sysadmincasts.com/episodes/14-introduction-to-linux-control-groups-cgroups</a>
 <a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Resource_Management_Guide/index.html">https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Resource_Management_Guide/index.html</a>
 <a href="http://www.cnblogs.com/lisperl/archive/2013/01/14/2860353.html">http://www.cnblogs.com/lisperl/archive/2013/01/14/2860353.html</a>
 <a href="https://www.kernel.org/doc/Documentation/cgroups">https://www.kernel.org/doc/Documentation/cgroups</a></p><ul class="pa0">
@@ -509,6 +562,9 @@
 <div class="mt6 instapaper_ignoref">
       
       
+      <script src="https://utteranc.es/client.js" repo="wonderflow/wonderflow.github.io" issue-term="pathname"
+        label="Comment" theme="github-light" crossorigin="anonymous" async>
+        </script>
     </div>
   </div>
 
@@ -530,6 +586,16 @@
     <div>
 <div class="ananke-socials">
   
+    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
     <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
       
         <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
@@ -545,6 +611,18 @@
 </div>
 </div>
     <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3XG75RG8W"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Z3XG75RG8W', { 'anonymize_ip': false });
+}
+</script>
+
   </div>
 </footer>
   </body>

@@ -6,14 +6,23 @@
     <description>Recent content in Posts on 奇迹之流WonderfloW</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 24 Apr 2021 09:37:43 +0800</lastBuildDate><atom:link href="https://wonderflow.info/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 14 Jun 2022 14:02:05 +0800</lastBuildDate><atom:link href="https://wonderflow.info/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>云原生技术（1） - 如何从代码到制作并发布一个 Helm 包？</title>
+      <link>https://wonderflow.info/posts/2022-06-14-cloudnative-1/</link>
+      <pubDate>Tue, 14 Jun 2022 14:02:05 +0800</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2022-06-14-cloudnative-1/</guid>
+      <description>Helm 是什么？# 云原生领域应用打包和分发的事实标准，Helm Chart 通常包含 Docker 镜像及其基础设施配置，能够把一个 K8s 生态的应用完整封装，并且在另一个 K8s 环境正常的运行。 为什么 Helm 会流行？# 核心功能有两点： 对复杂的 Kubernetes YAML 做了打包和抽象，简化为少量参数。 给出应用的概念，并给出了完整生命周期解决方案：制作、上传（托管）、版本化、分发、部署。 真正让他流行起来的原因是： 踩准了时机，当时（2018年） K8s 生态对 YAML 深恶痛绝但是苦于没有好的工具，快速形成了丰富的生态，如今已经有 1000+ 开箱即用的 Helm Chart: https://artifacthub.io/ Helm Chart 解决了云原生应用交付所有问题了吗？# 没有，这个问题以后会逐步回答，今天的重点是怎么玩好 Helm。 如何从源代码开始制作一个 Helm 包？# 准备工</description>
+    </item>
+    
     <item>
       <title>【转载】王慧文清华产品课Allen修订版</title>
       <link>https://wonderflow.info/posts/2021-4-24-product-book/</link>
       <pubDate>Sat, 24 Apr 2021 09:37:43 +0800</pubDate>
       
       <guid>https://wonderflow.info/posts/2021-4-24-product-book/</guid>
-      <description>这篇文章是虎牙产品经理旁听王慧文在清华的产品经理课程总结的文字稿，内容非常完整，也很精彩，读完受益良多。 原文在这里 转载的原因： 原来的网站不是太稳定，经常无法访问（不是被GFW，而是502那种）。 原来的图片也没有了，我就索性去掉，找了一些链接代替。 第一课 前言 一、成功和失败的产品 一般来说在一个领域里一款产品的成功对应着无数产品的失败，根据老王个人的经验，成功和失败的比例大约是1:30，失败的原因多种多样，有些啥都没做对，有些作对了一部分，这里列举的失败案例主要讲做对了一部分的，准确说算是“成功的失败”。 iPhone vs. 诺基亚 现在的诺基亚手机业务没了，只有通信业务了。2000年左右诺基亚是手机行业里最牛的品牌，</description>
+      <description>这篇文章是虎牙产品经理旁听王慧文在清华的产品经理课程总结的文字稿，内容非常完整，也很精彩，读完受益良多。 原文在这里 转载的原因： 原来的网站不是太稳定，经常无法访问（不是被GFW，而是502那种）。 原来的图片也没有了，我就索性去掉，找了一些链接代替。 第一课 前言# 一、成功和失败的产品# 一般来说在一个领域里一款产品的成功对应着无数产品的失败，根据老王个人的经验，成功和失败的比例大约是1:30，失败的原因多种多样，有些啥都没做对，有些作对了一部分，这里列举的失败案例主要讲做对了一部分的，准确说算是“成功的失败”。 iPhone vs. 诺基亚 现在的诺基亚手机业务没了，只有通信业务了。2000年左右诺基亚是手机行业里最牛的品</description>
     </item>
     
     <item>
@@ -22,7 +31,7 @@
       <pubDate>Tue, 15 Dec 2020 14:21:16 +0800</pubDate>
       
       <guid>https://wonderflow.info/posts/2020-12-15-cuelang-template/</guid>
-      <description>磨刀不误砍柴工，在正式开始介绍 CUE 之前，可以先做下基本的准备工作。 安装：首先确保你已经安装了 cuelang： https://cuelang.org/docs/install/ 自动格式化：如果你使用 Goland 或者类似的 JetBrains IDE，还可以额外配置自动格式化的方式：https://wonderflow.info/posts/2020-11-02-goland-cuelang-format/ 基本操作 先看一下cuelang的基本数据样子。 a: 1.5 b: 1 d: [1, 2, 3] g: { h: &amp;quot;abc&amp;quot; } 我们把上面的内容写入到文件并命名为 &amp;ldquo;first.cue&amp;rdquo;. 格式化 cuelang 的文件 cue fmt first.cue 校验写法是否正确 cue vet first.cue 计算输出结果 cue eval first.cue 计算输出单个变量的结果 cue eval -e a first.cue 数据导出（默认为json） cue export first.cue 指定 yaml 格式导出 cue export first.cue --out yaml 导出某个变量 cue export first.cue -e a --out yaml 类型 与 “</description>
+      <description>磨刀不误砍柴工，在正式开始介绍 CUE 之前，可以先做下基本的准备工作。 安装：首先确保你已经安装了 cuelang： https://cuelang.org/docs/install/ 自动格式化：如果你使用 Goland 或者类似的 JetBrains IDE，还可以额外配置自动格式化的方式：https://wonderflow.info/posts/2020-11-02-goland-cuelang-format/ 基本操作# 先看一下cuelang的基本数据样子。 a: 1.5 b: 1 d: [1, 2, 3] g: { h: &amp;quot;abc&amp;quot; } 我们把上面的内容写入到文件并命名为 &amp;ldquo;first.cue&amp;rdquo;. 格式化 cuelang 的文件 cue fmt first.cue 校验写法是否正确 cue vet first.cue 计算输出结果 cue eval first.cue 计算输出单个变量的结果 cue eval -e a first.cue 数据导出（默认为json） cue export first.cue 指定 yaml 格式导出 cue export first.cue --out yaml 导出某个变量 cue export first.cue -e a --out yaml 类型 与</description>
     </item>
     
     <item>
@@ -59,7 +68,7 @@
       <pubDate>Tue, 31 Dec 2019 19:41:43 +0800</pubDate>
       
       <guid>https://wonderflow.info/posts/2019-12-31-k8s-kill-paas/</guid>
-      <description>DevOps 这个概念最早是在 2007 年提出的，那时云计算基础设施的概念也才刚刚提出没多久，而随着互联网的逐渐普及，应用软件的需求爆发式增长，软件开发的理念也逐渐从瀑布模型（waterfall）转向敏捷开发（agile）。传统的软件交付模式（应用开发人员专注于软件开发、IT运维人员负责将软件部署到服务器运行），再也无法满足互联网软件快速迭代的需求。于是，DevOps 作为一种打破研发和运维之间隔阂、加快软件交付流程、提高软件交付质量的文化理念和最佳实践逐渐普及至今。 DevOps 的现状 DevOps 的流行得益于业界对于应用软件敏捷开发、高质量交付的诉求，所以为开发和运维开辟了一块“公共的空间”，让双方可以在这里紧密合作。那时软件研发依旧</description>
+      <description>DevOps 这个概念最早是在 2007 年提出的，那时云计算基础设施的概念也才刚刚提出没多久，而随着互联网的逐渐普及，应用软件的需求爆发式增长，软件开发的理念也逐渐从瀑布模型（waterfall）转向敏捷开发（agile）。传统的软件交付模式（应用开发人员专注于软件开发、IT运维人员负责将软件部署到服务器运行），再也无法满足互联网软件快速迭代的需求。于是，DevOps 作为一种打破研发和运维之间隔阂、加快软件交付流程、提高软件交付质量的文化理念和最佳实践逐渐普及至今。 DevOps 的现状# DevOps 的流行得益于业界对于应用软件敏捷开发、高质量交付的诉求，所以为开发和运维开辟了一块“公共的空间”，让双方可以在这里紧密合作。那时软件研发依</description>
     </item>
     
     <item>
@@ -70,8 +79,9 @@
       <guid>https://wonderflow.info/posts/2017/10/18/shu-ju-shou-ji-gong-ju-de-she-ji-yu-zui-jia-shi-jian/</guid>
       <description>&lt;p&gt;【本文首先发布于InfoQ】&lt;a href=&#34;http://www.infoq.com/cn/articles/data-collection-tool&#34;&gt;《数据收集工具的设计与最佳实践》&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;笔者之前在&lt;a href=&#34;http://www.infoq.com/cn/articles/qiniu-big-data-platform-evolution-and-analysis&#34;&gt;《七牛大数据平台的演进与大数据分析实践》&lt;/a&gt;中提到了已经开源的数据收集工具logkit。本文将深入介绍数据收集的设计思路以及大数据收集背后的细节，为大家提供大数据实战中第一步数据采集的最佳实践。&lt;/p&gt;
-&lt;h2 id=&#34;数据收集工具对比&#34;&gt;数据收集工具对比&lt;/h2&gt;
-&lt;p&gt;目前社区就不乏存在大量优秀的数据收集工具，如有名的Elastic Stack(Elasticsearch、Logstash、Kibana)中的&lt;a href=&#34;https://github.com/elastic/logstash&#34;&gt;Logstash&lt;/a&gt;；CNCF基金会里面有名的&lt;a href=&#34;https://github.com/fluent/fluentd&#34;&gt;Fluentd&lt;/a&gt;；InfluxData公司TICK Stack中的&lt;a href=&#34;https://github.com/influxdata/telegraf&#34;&gt;Telegraf&lt;/a&gt;；Google 出品为Kubernetes定制的&lt;a href=&#34;https://github.com/google/cadvisor&#34;&gt;cAdvisor&lt;/a&gt;；Apache基金会中的顶级项目&lt;a href=&#34;https://github.com/apache/flume&#34;&gt;Flume&lt;/a&gt;。除了早期诞生的诸如Fluentd、Flume等项目，其他项目都是为特定的平台业务定制而成，然后在随后的开源中不断进化，变得更为通用。所以针对特定业务，量身定制一款数据收集工具，是一个较为普遍的需求，也是出现如此众多“轮子”的主要原因。&lt;/p&gt;
+&lt;h2 id=&#34;数据收集工具对比&#34;&gt;
+    数据收集工具对比&lt;a class=&#34;hash-link&#34; href=&#34;#%e6%95%b0%e6%8d%ae%e6%94%b6%e9%9b%86%e5%b7%a5%e5%85%b7%e5%af%b9%e6%af%94&#34; title=&#34;Direct link to heading&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;目前社区就不乏存在大量优秀的数据收集工具，如有名的Elastic Stack(Elasticsearch、Logstash、Kibana)中的&lt;a href=&#34;https://github.com/elastic/logstash&#34;&gt;Logstash&lt;/a&gt;；CNCF基金会里面有名的&lt;a href=&#34;https://github.com/fluent/fluentd&#34;&gt;Fluentd&lt;/a&gt;；InfluxData公司TICK Stack中的&lt;a href=&#34;https://github.com/influxdata/telegraf&#34;&gt;Telegraf&lt;/a&gt;；Google 出品为Kubernetes定制的&lt;a href=&#34;https://github.com/google/cadvisor&#34;&gt;cAdvisor&lt;/a&gt;；Apache基金会中的顶级项目&lt;a href=&#34;https://github.com/apache/flume&#34;&gt;Flume&lt;/a&gt;。除了早期诞生的诸如Fluentd、Flume等项目，其他项目都是为特定的平台业务定制而成，然后在随后的开源中不断进化，变得更为通用。所以针对特定业务，量身定制一款数据收集工具，是一个较为普遍的需求，也是出现如此众多“轮子”的主要原因。&lt;/p&gt;
 &lt;p&gt;让我们先来看看这几种知名开源数据收集工具有哪些特点。&lt;/p&gt;</description>
     </item>
     
@@ -118,10 +128,12 @@
       
       <guid>https://wonderflow.info/posts/2015/04/22/cgroups/</guid>
       <description>&lt;p&gt;原文首发自InfoQ，&lt;a href=&#34;http://www.infoq.com/cn/articles/docker-kernel-knowledge-cgroups-resource-isolation&#34;&gt;《Docker背后的内核知识——cgroups资源限制》&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;摘要&#34;&gt;摘要&lt;/h2&gt;
-&lt;p&gt;当我们谈论Docker时，我们常常会聊到Docker的实现方式。很多开发者都会知道，Docker的本质实际上是宿主机上的一个进程，通过namespace实现了资源隔离，通过cgroup实现了资源限制，通过UnionFS实现了Copy on Write的文件操作。但是当我们再深入一步的提出，namespace和cgroup实现细节时，知道的人可能就所剩无几了。&lt;a href=&#34;http://www.sel.zju.edu.cn/&#34;&gt;浙江大学SEL/VLIS实验室&lt;/a&gt;的&lt;a href=&#34;http://wonderflow.github.io&#34;&gt;孙健波&lt;/a&gt;同学在docker基础研究工作中着重对内核的cgroup技术做了细致的分析和梳理，希望能对读者深入理解Docker有所帮助&lt;/p&gt;
-&lt;h2 id=&#34;正文&#34;&gt;正文&lt;/h2&gt;
-&lt;p&gt;上一篇中，我们了解了Docker背后使用的资源隔离技术namespace，通过系统调用构建一个相对隔离的shell环境，也可以称之为一个简单的“容器”。本文我们则要开始讲解另一个强大的内核工具——cgroups。他不仅可以限制被namespace隔离起来的资源，还可以为资源设置权重、计算使用量、操控进程启停等等。在介绍完基本概念后，我们将详细讲解Docker中使用到的cgroups内容。希望通过本文，让读者对Docker有更深入的了解。&lt;/p&gt;</description>
+&lt;h2 id=&#34;摘要&#34;&gt;
+    摘要&lt;a class=&#34;hash-link&#34; href=&#34;#%e6%91%98%e8%a6%81&#34; title=&#34;Direct link to heading&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;当我们谈论Docker时，我们常常会聊到Docker的实现方式。很多开发者都会知道，Docker的本质实际上是宿主机上的一个进程，通过namespace实现了资源隔离，通过cgroup实现了资源限制，通过UnionFS实现了Copy on Write的文件操作。但是当我们再深入一步的提出，namespace和cgroup实现细节时，知道的人可能就所剩无几了。&lt;a href=&#34;http://www.sel.zju.edu.cn/&#34;&gt;浙江大学SEL/VLIS实验室&lt;/a&gt;的&lt;a href=&#34;http://wonderflow.github.io&#34;&gt;孙健波&lt;/a&gt;同学在docker基础研究工作中着重对内核的cgroup技术做了细致的分析和梳理，希望能对读者深入理解Docker有所帮助&lt;/p&gt;
+&lt;h2 id=&#34;正文&#34;&gt;
+    正文&lt;a class=&#34;hash-link&#34; href=&#34;#%e6%ad%a3%e6%96%87&#34; title=&#34;Direct link to heading&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;上一篇中，我们了解了Docker背后使用的资源隔离技术namespace，通过系统调用构建一个相对隔离的shell环境，也可以称之为一个简单的“容器”。本文我们则要开始讲解另一个强大的内核工具——cgroups。他不仅可以限制被namespace隔离起来的资源，还可以为资源设置权重、计算使用量、操控进程启停等等。在介绍完基本概念后，我们将详细讲解Docker中使用到的cgroups内容。希望通过本文，让读者对Docker有更深入的了解。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -182,10 +194,12 @@
       <pubDate>Mon, 02 Feb 2015 10:57:55 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2015/02/02/dive-into-etcd/</guid>
-      <description>&lt;h1 id=&#34;etcd从应用场景到实现原理的全方位解读&#34;&gt;etcd：从应用场景到实现原理的全方位解读&lt;/h1&gt;
-&lt;p&gt;随着CoreOS和Kubernetes等项目在开源社区日益火热，它们项目中都用到的etcd组件作为一个高可用、强一致性的服务发现存储仓库，渐渐为开发人员所关注。在云计算时代，如何让服务快速透明地接入到计算集群中，如何让共享配置信息快速被集群中的所有机器发现，更为重要的是，如何构建这样一套高可用、安全、易于部署以及响应快速的服务集群，已经成为了迫切需要解决的问题。etcd为解决这类问题带来了福音，本章将从etcd的应用场景开始，深入解读etcd的实现方式，以供开发者们更为充分地享用etcd所带来的便利。&lt;/p&gt;
-&lt;h2 id=&#34;1-etcd经典应用场景&#34;&gt;1 etcd经典应用场景&lt;/h2&gt;
-&lt;p&gt;etcd是什么？很多人对这个问题的第一反应可能是，它是一个键值存储仓库，却没有重视官方定义的后半句，用于配置共享和服务发现。&lt;/p&gt;
+      <description>&lt;h1 id=&#34;etcd从应用场景到实现原理的全方位解读&#34;&gt;
+    etcd：从应用场景到实现原理的全方位解读&lt;a class=&#34;hash-link&#34; href=&#34;#etcd%e4%bb%8e%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af%e5%88%b0%e5%ae%9e%e7%8e%b0%e5%8e%9f%e7%90%86%e7%9a%84%e5%85%a8%e6%96%b9%e4%bd%8d%e8%a7%a3%e8%af%bb&#34; title=&#34;Direct link to heading&#34;&gt;#&lt;/a&gt;
+&lt;/h1&gt;&lt;p&gt;随着CoreOS和Kubernetes等项目在开源社区日益火热，它们项目中都用到的etcd组件作为一个高可用、强一致性的服务发现存储仓库，渐渐为开发人员所关注。在云计算时代，如何让服务快速透明地接入到计算集群中，如何让共享配置信息快速被集群中的所有机器发现，更为重要的是，如何构建这样一套高可用、安全、易于部署以及响应快速的服务集群，已经成为了迫切需要解决的问题。etcd为解决这类问题带来了福音，本章将从etcd的应用场景开始，深入解读etcd的实现方式，以供开发者们更为充分地享用etcd所带来的便利。&lt;/p&gt;
+&lt;h2 id=&#34;1-etcd经典应用场景&#34;&gt;
+    1 etcd经典应用场景&lt;a class=&#34;hash-link&#34; href=&#34;#1-etcd%e7%bb%8f%e5%85%b8%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af&#34; title=&#34;Direct link to heading&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;etcd是什么？很多人对这个问题的第一反应可能是，它是一个键值存储仓库，却没有重视官方定义的后半句，用于配置共享和服务发现。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;A highly-available key value store for shared configuration and service discovery.&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -207,7 +221,7 @@
       <pubDate>Wed, 17 Dec 2014 08:08:26 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2014/12/17/cf-releasee7bb93e69e84e8a7a3e69e90/</guid>
-      <description>1. 制作时的cf-release结构解析 此处指的release统一为CloudFoundry官方给出的cf-release，不做修改。 1.1. 通过载入cf-release文件夹下config/final.yml文件，获得需要下载release文件的远程服务器网址，默认使用的提供商是s3，地址是：blob.cfblob.com 1.2. 通过config/blobs.yml，可以得到所有blobs的object_id，通过服务器地址+object_id拼接的字符串即可下载到相对应的blob内容。 1.3. 默认存储的位置为cf-release/.blobs，存储的文件名为sha1值，下载完成后会在cf-release/bl</description>
+      <description>1. 制作时的cf-release结构解析# 此处指的release统一为CloudFoundry官方给出的cf-release，不做修改。 1.1. 通过载入cf-release文件夹下config/final.yml文件，获得需要下载release文件的远程服务器网址，默认使用的提供商是s3，地址是：blob.cfblob.com 1.2. 通过config/blobs.yml，可以得到所有blobs的object_id，通过服务器地址+object_id拼接的字符串即可下载到相对应的blob内容。 1.3. 默认存储的位置为cf-release/.blobs，存储的文件名为sha1值，下载完成后会在cf-release/b</description>
     </item>
     
     <item>
@@ -225,7 +239,7 @@
       <pubDate>Sun, 09 Nov 2014 16:29:55 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2014/11/09/touching-moments/</guid>
-      <description>今天是闰九月十八，闰九月这种日子据说要一个世纪才会出现一次。我想，出生在这样日子里的孩子，如果像我一样固执的过阴历生日，那么一辈子就只有一岁啦。这就是传说中的永远年轻了吧。 在这样特殊的日子，似乎就该写点文字来纪念一下。但是转念一想，要是没有平日里的那些稀松平常，又怎么会衬托出今天的这种奇妙特殊呢。所以，今天就写点往日记录下的感悟吧。 喝茶 原来我有很长一段时间，在公司喝好的茶，在宿舍喝差的，是无形中给自己努力工作带来了一丝激励，让我对每一天去公司上班有所期待。 想不到这个道理，直到喝完了所有的茶叶，我才明白。所以，自从搬回实验室以后，我又开始了这样的安排。 驾驶员 有的路别人说是错的给你纠正过来你不以为</description>
+      <description>今天是闰九月十八，闰九月这种日子据说要一个世纪才会出现一次。我想，出生在这样日子里的孩子，如果像我一样固执的过阴历生日，那么一辈子就只有一岁啦。这就是传说中的永远年轻了吧。 在这样特殊的日子，似乎就该写点文字来纪念一下。但是转念一想，要是没有平日里的那些稀松平常，又怎么会衬托出今天的这种奇妙特殊呢。所以，今天就写点往日记录下的感悟吧。 喝茶# 原来我有很长一段时间，在公司喝好的茶，在宿舍喝差的，是无形中给自己努力工作带来了一丝激励，让我对每一天去公司上班有所期待。 想不到这个道理，直到喝完了所有的茶叶，我才明白。所以，自从搬回实验室以后，我又开始了这样的安排。 驾驶员# 有的路别人说是错的给你纠正过来你不</description>
     </item>
     
     <item>
@@ -243,7 +257,7 @@
       <pubDate>Tue, 28 Oct 2014 09:03:56 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2014/10/28/haproxye7abafe58fa3e698a0e5b084efbc88cliente5a4b4e4b8adurlhoste4bfaee694b9e5908ee8bdace58f91efbc89/</guid>
-      <description>CloudFoundry是对域名强依赖的云计算集群，没有域名的话几乎无法访问。但是域名备案等事宜所耗时间较长，在上线较为紧急的情况下，就需要实现直接通过“IP+端口”的形式，在公网访问CF集群上部署的APP。 解决方案 配置两层Haproxy，第一层的Haproxy与公网地址绑定。 对第一层的Haproxy进行配置，把外部通过IP+PORT访问的地址映射到后端第二层Haproxy，并把其访问的http Head修改，把Host字段改成能被Cloudfoundry接受的url字符串。 第二层Haproxy就跟CloudFoundry官方配置相同，作为负载均衡把流量导向下层多个gorouter。 Haprox</description>
+      <description>CloudFoundry是对域名强依赖的云计算集群，没有域名的话几乎无法访问。但是域名备案等事宜所耗时间较长，在上线较为紧急的情况下，就需要实现直接通过“IP+端口”的形式，在公网访问CF集群上部署的APP。 解决方案# 配置两层Haproxy，第一层的Haproxy与公网地址绑定。 对第一层的Haproxy进行配置，把外部通过IP+PORT访问的地址映射到后端第二层Haproxy，并把其访问的http Head修改，把Host字段改成能被Cloudfoundry接受的url字符串。 第二层Haproxy就跟CloudFoundry官方配置相同，作为负载均衡把流量导向下层多个gorouter。 Hapro</description>
     </item>
     
     <item>
@@ -261,7 +275,7 @@
       <pubDate>Wed, 22 Oct 2014 03:31:08 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2014/10/22/e58c97e4baaccontainere68a80e69cafe5a4a7e4bc9a/</guid>
-      <description>可以看我的印象笔记共享，格式更加漂亮一些。 此次去北京参加的container大会，主办方为csdn，实际会议主持为docker中文社区创始人马全一。会议时间为一天，从早上九点开始一直到晚上六点结束，共包含16个主题。虽说是container大会，但实际上基本围绕docker展开。期间也讲到了社区较为火热的IaaS平台openstack，以及PaaS平台Cloudfoundry，总的来说收获颇丰。 会议流程： 以下我将按每个有收获的主题分别讲述我的思考和总结。 Jrome（Hello Container Ops） 正如会议流程所示，第一个讲的是docker的开发工程师Jrome。我觉得他讲述了以下两点比较有意思： 1. docker con</description>
+      <description>可以看我的印象笔记共享，格式更加漂亮一些。 此次去北京参加的container大会，主办方为csdn，实际会议主持为docker中文社区创始人马全一。会议时间为一天，从早上九点开始一直到晚上六点结束，共包含16个主题。虽说是container大会，但实际上基本围绕docker展开。期间也讲到了社区较为火热的IaaS平台openstack，以及PaaS平台Cloudfoundry，总的来说收获颇丰。 会议流程： 以下我将按每个有收获的主题分别讲述我的思考和总结。 Jrome（Hello Container Ops）# 正如会议流程所示，第一个讲的是docker的开发工程师Jrome。我觉得他讲述了以下两点比较有意思： 1. docker co</description>
     </item>
     
     <item>
@@ -333,7 +347,7 @@
       <pubDate>Tue, 01 Jul 2014 06:05:03 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2014/07/01/cloud-foundry-e8bf90e7bbb4e585a5e997a8/</guid>
-      <description>@(CF V2相关)[guide] 之前写过一个Guide for Cloud Foundry New Teamer。不过似乎已经有些过时，那会实验室主要是针对的CF v1进行的研究，现在已经全面进入V2时代了。所以更新一下关于CloudFoundry运维的一些内容。如果有时间也可再回头看看V1的那个帖子，希望能有所帮助。 部署 关于部署，目前使用的工具一般有两种，BOSH和cf_nise_installer。BOSH适用于集群安装，cf_nise_installer适用于单节点安装。下面主要以cf_nise_installer的安装方法为主描述部署的运维流程。 cf_nise_installer实际上就是一大堆shell脚本建立起来的项目，对sh</description>
+      <description>@(CF V2相关)[guide] 之前写过一个Guide for Cloud Foundry New Teamer。不过似乎已经有些过时，那会实验室主要是针对的CF v1进行的研究，现在已经全面进入V2时代了。所以更新一下关于CloudFoundry运维的一些内容。如果有时间也可再回头看看V1的那个帖子，希望能有所帮助。 部署# 关于部署，目前使用的工具一般有两种，BOSH和cf_nise_installer。BOSH适用于集群安装，cf_nise_installer适用于单节点安装。下面主要以cf_nise_installer的安装方法为主描述部署的运维流程。 cf_nise_installer实际上就是一大堆shell脚本建立起来的项目，对s</description>
     </item>
     
     <item>
@@ -405,7 +419,7 @@
       <pubDate>Fri, 28 Feb 2014 14:42:37 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2014/02/28/applescripte59fbae69cace8afade6b395/</guid>
-      <description>在池老板写的《mactalk人生元编程》中了解到applescript这个东西，在徐宥博客上也看到过类似的介绍，那天路过图书馆，看到这本书，就突然来了兴致。 今天下决心花了一个晚上的时间好好了解了一下。最后发现这是个悲伤的故事。╮(╯▽╰)╭ 行 applescript是一种基于行的语言，不需要分号只有的分隔符，指令间以行结束符区分。 {% codeblock %} set x to 1 copy x + 1 to y {% endcodeblock %} 连接符 Option+Return产生连接符，类似C/C++中的“\”，为了让代码可以换行接着写 注释 单行注释就是连续两个斜杠 {% codeblock %} set a to 1 -- this is a comment {% endcodeblock %} 多行注释分界符是“(” “)” {% codeblock %} set a to 1 (* we are all ; comments. *) {% endcodeblock %} 执行结果 每一个有效执行的</description>
+      <description>在池老板写的《mactalk人生元编程》中了解到applescript这个东西，在徐宥博客上也看到过类似的介绍，那天路过图书馆，看到这本书，就突然来了兴致。 今天下决心花了一个晚上的时间好好了解了一下。最后发现这是个悲伤的故事。╮(╯▽╰)╭ 行# applescript是一种基于行的语言，不需要分号只有的分隔符，指令间以行结束符区分。 {% codeblock %} set x to 1 copy x + 1 to y {% endcodeblock %} 连接符# Option+Return产生连接符，类似C/C++中的“\”，为了让代码可以换行接着写 注释# 单行注释就是连续两个斜杠 {% codeblock %} set a to 1 -- this is a comment {% endcodeblock %} 多行注释分界符是“(” “)” {% codeblock %} set a to 1 (* we are all ; comments. *) {% endcodeblock %} 执行结果# 每一个有</description>
     </item>
     
     <item>
@@ -423,7 +437,7 @@
       <pubDate>Fri, 28 Feb 2014 04:14:33 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2014/02/28/cloud_controller_nge6ba90e7a081e99885e8afbbe8aeb0e5bd95/</guid>
-      <description>Cloud_Controller_NG源码阅读记录 @(CC阅读)[cloud controller] by wonderflow Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Foundry 平台用来管理控制应用和服务的组件。 官方文档是这么解释CCNG的作用的： 维护一个包含应用、服务、配置信息的数据库(CCDB)。 在blobstore中存储应用的packages和droplets。 通过NATS和其他组件进行通信，包括Droplet Execution Agents (DEAs)、Service Gateways、和 Health Manager（HM）。 其他供用户调用的后端API。 阅读该组件源码，有助于从应用管理的视角理解cloudfoundry的运行</description>
+      <description>Cloud_Controller_NG源码阅读记录# @(CC阅读)[cloud controller] by wonderflow Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Foundry 平台用来管理控制应用和服务的组件。 官方文档是这么解释CCNG的作用的： 维护一个包含应用、服务、配置信息的数据库(CCDB)。 在blobstore中存储应用的packages和droplets。 通过NATS和其他组件进行通信，包括Droplet Execution Agents (DEAs)、Service Gateways、和 Health Manager（HM）。 其他供用户调用的后端API。 阅读该组件源码，有助于从应用管理的视角理解cloudfoundry的运</description>
     </item>
     
     <item>
@@ -477,7 +491,7 @@
       <pubDate>Sun, 15 Dec 2013 15:48:24 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2013/12/15/e3808amapreduce-design-patternse3808be8afbbe4b9a6e7ac94e8aeb0-e6b585e8b088mapreducee8aebee8aea1e6a8a1e5bc8f/</guid>
-      <description>概述 MapReduce是一个基于Hadoop的算法框架。本文将从Hadoop开始介绍，然后重点讲述可用于Hadoop上的Map/Reduce设计模式。 Hadoop简介 Hadoop历史 Hadoop最早起源于Apache Nutch，该项目始于2002年，是Apache Lucence的子项目之一。该项目的出现源于两篇论文，一篇是2003年发表的“关于谷歌分布式文件系统”（NDFS：Nutch Distributed File System），描述了谷歌搜索引擎网页相关数据存储架构，解决Nutch遇到的网页抓取和索引过程中产生的超大文件存储需求问题。一篇是2004年发表的“关于谷歌分布式计算框架MapReduce”，描述了谷歌内部最</description>
+      <description>概述# MapReduce是一个基于Hadoop的算法框架。本文将从Hadoop开始介绍，然后重点讲述可用于Hadoop上的Map/Reduce设计模式。 Hadoop简介# Hadoop历史# Hadoop最早起源于Apache Nutch，该项目始于2002年，是Apache Lucence的子项目之一。该项目的出现源于两篇论文，一篇是2003年发表的“关于谷歌分布式文件系统”（NDFS：Nutch Distributed File System），描述了谷歌搜索引擎网页相关数据存储架构，解决Nutch遇到的网页抓取和索引过程中产生的超大文件存储需求问题。一篇是2004年发表的“关于谷歌分布式计算框架MapReduce”，描述了谷歌</description>
     </item>
     
     <item>
@@ -504,7 +518,7 @@
       <pubDate>Fri, 29 Nov 2013 16:55:43 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2013/11/29/e3808ae7ab99e59ca8e4b8a4e4b8aae4b896e7958ce79a84e8beb9e7bc98e3808befbc88e7a88be6b5a9efbc89e8afbbe4b9a6e7ac94e8aeb0/</guid>
-      <description>这本书是程浩写的，程浩是个怎么样的人呢？在七月份的时候，知乎上有了太多的讨论。在此，我只想说，他是个了不起的榜样。他自己因为残疾不会走路，但是他却教会了别人走路。他的意志给人以力量，他对生命的思考给人以警醒，他是个职业病人但是他用自己的文字获得了世界的认可。 因为程浩，我第一次购买正版的电子书。我尊重他，也被他感动。 PS：发现多看阅读很不错，打通了印象笔记，在电子书上阅读做下来的笔记可以自动导出到印象笔记，而且格式也很美。可惜了，放到博客上格式就变得难看了。 附上读书笔记内容。 昂着头的艺术 2013-11-29 00:21:16 不必可怜谁，不必同情谁。所谓生活，不过就是一种“昂着头的艺术”，仅此而已。 我和老妈那些事儿 2013-11-30 00:38:20 “在很久很久</description>
+      <description>这本书是程浩写的，程浩是个怎么样的人呢？在七月份的时候，知乎上有了太多的讨论。在此，我只想说，他是个了不起的榜样。他自己因为残疾不会走路，但是他却教会了别人走路。他的意志给人以力量，他对生命的思考给人以警醒，他是个职业病人但是他用自己的文字获得了世界的认可。 因为程浩，我第一次购买正版的电子书。我尊重他，也被他感动。 PS：发现多看阅读很不错，打通了印象笔记，在电子书上阅读做下来的笔记可以自动导出到印象笔记，而且格式也很美。可惜了，放到博客上格式就变得难看了。 附上读书笔记内容。 昂着头的艺术# 2013-11-29 00:21:16 不必可怜谁，不必同情谁。所谓生活，不过就是一种“昂着头的艺术”，仅此而已。 我和老妈那些事儿 2013-11-30 00:38:20 “在很久很</description>
     </item>
     
     <item>
@@ -639,7 +653,7 @@
       <pubDate>Sun, 11 Aug 2013 05:51:54 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2013/08/11/cloudfoundrye585a5e997a8e69d90e69699e6b187e99b86/</guid>
-      <description>架构总览 深入cloudfoundry（第一版）上， 深入cloudfoundry（第一版）下, 深入cloudfoundry（一周年版）, Cloud Foundry技术全貌及核心组件分析, 以NATS为主线的CloudFoundry原理, 部署相关 ****多节点部署之配置文件全攻略, Running your own CloudFoundry based on your IaaS. Part 1, Running your own CloudFoundry based on your IaaS. Part 2. 组件细节 VMC, DEA, NATS, Router, cloudcontroller, EventMachine, Service Gateway dashboard: 1,2,3 ruby相关 Ruby socket programming in CloudFoundry,** ** How to use your GemFile.** **</description>
+      <description>架构总览# 深入cloudfoundry（第一版）上， 深入cloudfoundry（第一版）下, 深入cloudfoundry（一周年版）, Cloud Foundry技术全貌及核心组件分析, 以NATS为主线的CloudFoundry原理, # 部署相关# ****多节点部署之配置文件全攻略, Running your own CloudFoundry based on your IaaS. Part 1, Running your own CloudFoundry based on your IaaS. Part 2. 组件细节# VMC,# DEA,# NATS,# Router,# cloudcontroller,# EventMachine,# Service Gateway# dashboard: 1,2,3# ruby相关# Ruby socket programming in CloudFoundry,** ** How to use your GemFile.** **</description>
     </item>
     
     <item>
@@ -666,7 +680,7 @@
       <pubDate>Mon, 05 Aug 2013 09:04:25 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2013/08/05/unixe4b98blsofe591bde4bba4/</guid>
-      <description>据说lsof命令很强大，就学习了一下。这个网站讲的最好,翻译如下： **lsof（list open files）**是一个列出当前系统打开文件的工具。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。所以lsof被称为unix系统检测的瑞士军刀。 那怎么用呢? 接下来我们一个个来看。 罗列出所有的文件设备情况. {% codeblock %} $ lsof {% endcodeblock %} 不带参数的运行 lsof 就是列出所有被进程打开的文件。 查看文件被谁使用. {% codeblock %} $ lsof /path/to/file {% endcodeblock %} 如果把文件路径作为参数，lsof命令会把用到这个文件的所有进程都罗列出来。 也可以加多个路径在后面，它会把所涉及到这些文件的进程都罗列出来: {% codeblock %} $ lsof /path/to/file1</description>
+      <description>据说lsof命令很强大，就学习了一下。这个网站讲的最好,翻译如下： **lsof（list open files）**是一个列出当前系统打开文件的工具。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。所以lsof被称为unix系统检测的瑞士军刀。 # 那怎么用呢? 接下来我们一个个来看。 # 罗列出所有的文件设备情况. {% codeblock %} $ lsof {% endcodeblock %} 不带参数的运行 lsof 就是列出所有被进程打开的文件。 # 查看文件被谁使用. {% codeblock %} $ lsof /path/to/file {% endcodeblock %} 如果把文件路径作为参数，lsof命令会把用到这个文件的所有进程都罗列出来。 也可以加多个路径在后面，它会把所涉及到这些文件的进程都罗列出来: {% codeblock %}</description>
     </item>
     
     <item>
@@ -714,7 +728,7 @@ At last still that motto for myself : Never give up , and nothing replaces hard 
       <pubDate>Thu, 25 Jul 2013 05:41:20 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2013/07/25/guide-for-cloud-foundry-new-teamer-2/</guid>
-      <description>Preparation 1、阅读以下博客： 了解架构，阅读“深入CloudFoundry一周年” 2、请准备好一个linux的客户端，如果没有请申请一个虚拟机，并安装好ubuntu10.04（windows下使用远程连接的方式是使用putty软件。） 3、如果不熟悉linux，请阅读linux相关命令，初步了解。 Start 定位cloudfoundry集群： 请使用$ curl [your domain]。若显示出正常信息则初步表面集群配置正确，否则请找帮你配置集群的人。 配置linux源，提高下载速度。(百度一个ubuntu cn的源) {% codeblock %} $ /etc/apt/sources.list $ sudo apt-get update {% endcodeblock %} 安装git，为了下载一个基本应用，github上面的。 {% codeblock %} $ sudo apt-get install git {% endcodeblock %} 安装maven，为了</description>
+      <description>Preparation# 1、阅读以下博客： 了解架构，阅读“深入CloudFoundry一周年” 2、请准备好一个linux的客户端，如果没有请申请一个虚拟机，并安装好ubuntu10.04（windows下使用远程连接的方式是使用putty软件。） 3、如果不熟悉linux，请阅读linux相关命令，初步了解。 Start# 定位cloudfoundry集群： 请使用$ curl [your domain]。若显示出正常信息则初步表面集群配置正确，否则请找帮你配置集群的人。 配置linux源，提高下载速度。(百度一个ubuntu cn的源) {% codeblock %} $ /etc/apt/sources.list $ sudo apt-get update {% endcodeblock %} 安装git，为了下载一个基本应用，github上面的。 {% codeblock %} $ sudo apt-get install git {% endcodeblock %} 安装maven，为了</description>
     </item>
     
     <item>
@@ -883,7 +897,7 @@ As I have spent almost three years of my college life in ACM team ， I am stron
       <pubDate>Wed, 05 Sep 2012 05:45:23 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2012/09/05/e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/</guid>
-      <description>上个学期开学的时候做的字符串报告，觉得还有些价值，做了些补充发上来，也许以后用得着。 1 KMP 1.1 概念： KMP是一种用来处理字符串匹配的算法。通俗的讲就是给你一个串A（ababababbc）和一个串B（ababbc），问你A串中是否包含B串。 解决这类问题的朴素算法就是枚举A串开始的位置，然后逐个位置对B串进行匹配。这样的算法复杂度是O（n*m）。而这里我们要介绍的KMP算法，就是解决这类问题最坏复杂度只要O（n+m）的算法。 KMP是由三个人共同提出的，他们的名字分别是Knuth、Morris、Pratt，这也是为什么这个算法叫KMP的原因，就是取了三个人的首字母。 1.2 原理： 现假设我们有两个串A（abab</description>
+      <description>上个学期开学的时候做的字符串报告，觉得还有些价值，做了些补充发上来，也许以后用得着。 1 KMP# 1.1 概念：# KMP是一种用来处理字符串匹配的算法。通俗的讲就是给你一个串A（ababababbc）和一个串B（ababbc），问你A串中是否包含B串。 解决这类问题的朴素算法就是枚举A串开始的位置，然后逐个位置对B串进行匹配。这样的算法复杂度是O（n*m）。而这里我们要介绍的KMP算法，就是解决这类问题最坏复杂度只要O（n+m）的算法。 KMP是由三个人共同提出的，他们的名字分别是Knuth、Morris、Pratt，这也是为什么这个算法叫KMP的原因，就是取了三个人的首字母。 1.2 原理：# 现假设我们有两个串A（ab</description>
     </item>
     
     <item>

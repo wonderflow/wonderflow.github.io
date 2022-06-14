@@ -5,6 +5,14 @@
 hugo new posts/<YYYY>-<MM>-<DD>-<title>.md
 ```
 
+### Images
+
+```
+cp myimage.png ./static/images/<folder>/
+```
+
+Link it by `![undefined](/images/<folder>/myimage.jpg)`
+
 ## Preview
 
 ```
@@ -16,4 +24,12 @@ hugo server -D
 
 ```
 hugo -e production
+```
+
+## Release
+
+```
+git add .
+git commit -m "my new post"
+git push origin master
 ```

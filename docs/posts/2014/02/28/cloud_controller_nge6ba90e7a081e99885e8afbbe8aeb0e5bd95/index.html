@@ -6,7 +6,7 @@
     
     <title>Cloud_Controller_NG源码阅读记录 | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="Cloud_Controller_NG源码阅读记录 @(CC阅读)[cloud controller] by wonderflow Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Foundry 平台用来管理控制应用和服务的组件。 官方文档是这么解释CCNG的作用的： 维护一个包含应用、服务、配置信息的数据库(CCDB)。 在blobstore中存储应用的packages和droplets。 通过NATS和其他组件进行通信，包括Droplet Execution Agents (DEAs)、Service Gateways、和 Health Manager（HM）。 其他供用户调用的后端API。 阅读该组件源码，有助于从应用管理的视角理解cloudfoundry的运行">
+    <meta name="description" content="Cloud_Controller_NG源码阅读记录# @(CC阅读)[cloud controller] by wonderflow Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Foundry 平台用来管理控制应用和服务的组件。 官方文档是这么解释CCNG的作用的： 维护一个包含应用、服务、配置信息的数据库(CCDB)。 在blobstore中存储应用的packages和droplets。 通过NATS和其他组件进行通信，包括Droplet Execution Agents (DEAs)、Service Gateways、和 Health Manager（HM）。 其他供用户调用的后端API。 阅读该组件源码，有助于从应用管理的视角理解cloudfoundry的运">
     <meta name="generator" content="Hugo 0.92.2" />
     
     
@@ -32,19 +32,19 @@
     
     
     <meta property="og:title" content="Cloud_Controller_NG源码阅读记录" />
-<meta property="og:description" content="Cloud_Controller_NG源码阅读记录 @(CC阅读)[cloud controller] by wonderflow Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Foundry 平台用来管理控制应用和服务的组件。 官方文档是这么解释CCNG的作用的： 维护一个包含应用、服务、配置信息的数据库(CCDB)。 在blobstore中存储应用的packages和droplets。 通过NATS和其他组件进行通信，包括Droplet Execution Agents (DEAs)、Service Gateways、和 Health Manager（HM）。 其他供用户调用的后端API。 阅读该组件源码，有助于从应用管理的视角理解cloudfoundry的运行" />
+<meta property="og:description" content="Cloud_Controller_NG源码阅读记录# @(CC阅读)[cloud controller] by wonderflow Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Foundry 平台用来管理控制应用和服务的组件。 官方文档是这么解释CCNG的作用的： 维护一个包含应用、服务、配置信息的数据库(CCDB)。 在blobstore中存储应用的packages和droplets。 通过NATS和其他组件进行通信，包括Droplet Execution Agents (DEAs)、Service Gateways、和 Health Manager（HM）。 其他供用户调用的后端API。 阅读该组件源码，有助于从应用管理的视角理解cloudfoundry的运" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://wonderflow.info/posts/2014/02/28/cloud_controller_nge6ba90e7a081e99885e8afbbe8aeb0e5bd95/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2014-02-28T04:14:33+00:00" />
 <meta property="article:modified_time" content="2014-02-28T04:14:33+00:00" />
 
 <meta itemprop="name" content="Cloud_Controller_NG源码阅读记录">
-<meta itemprop="description" content="Cloud_Controller_NG源码阅读记录 @(CC阅读)[cloud controller] by wonderflow Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Foundry 平台用来管理控制应用和服务的组件。 官方文档是这么解释CCNG的作用的： 维护一个包含应用、服务、配置信息的数据库(CCDB)。 在blobstore中存储应用的packages和droplets。 通过NATS和其他组件进行通信，包括Droplet Execution Agents (DEAs)、Service Gateways、和 Health Manager（HM）。 其他供用户调用的后端API。 阅读该组件源码，有助于从应用管理的视角理解cloudfoundry的运行"><meta itemprop="datePublished" content="2014-02-28T04:14:33+00:00" />
+<meta itemprop="description" content="Cloud_Controller_NG源码阅读记录# @(CC阅读)[cloud controller] by wonderflow Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Foundry 平台用来管理控制应用和服务的组件。 官方文档是这么解释CCNG的作用的： 维护一个包含应用、服务、配置信息的数据库(CCDB)。 在blobstore中存储应用的packages和droplets。 通过NATS和其他组件进行通信，包括Droplet Execution Agents (DEAs)、Service Gateways、和 Health Manager（HM）。 其他供用户调用的后端API。 阅读该组件源码，有助于从应用管理的视角理解cloudfoundry的运"><meta itemprop="datePublished" content="2014-02-28T04:14:33+00:00" />
 <meta itemprop="dateModified" content="2014-02-28T04:14:33+00:00" />
-<meta itemprop="wordCount" content="12454">
+<meta itemprop="wordCount" content="12478">
 <meta itemprop="keywords" content="ccng,cf," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Cloud_Controller_NG源码阅读记录"/>
-<meta name="twitter:description" content="Cloud_Controller_NG源码阅读记录 @(CC阅读)[cloud controller] by wonderflow Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Foundry 平台用来管理控制应用和服务的组件。 官方文档是这么解释CCNG的作用的： 维护一个包含应用、服务、配置信息的数据库(CCDB)。 在blobstore中存储应用的packages和droplets。 通过NATS和其他组件进行通信，包括Droplet Execution Agents (DEAs)、Service Gateways、和 Health Manager（HM）。 其他供用户调用的后端API。 阅读该组件源码，有助于从应用管理的视角理解cloudfoundry的运行"/>
+<meta name="twitter:description" content="Cloud_Controller_NG源码阅读记录# @(CC阅读)[cloud controller] by wonderflow Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Foundry 平台用来管理控制应用和服务的组件。 官方文档是这么解释CCNG的作用的： 维护一个包含应用、服务、配置信息的数据库(CCDB)。 在blobstore中存储应用的packages和droplets。 通过NATS和其他组件进行通信，包括Droplet Execution Agents (DEAs)、Service Gateways、和 Health Manager（HM）。 其他供用户调用的后端API。 阅读该组件源码，有助于从应用管理的视角理解cloudfoundry的运"/>
 
 	
   </head>
@@ -93,6 +93,16 @@
       
 <div class="ananke-socials">
   
+    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
     <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
       
         <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
@@ -138,6 +148,14 @@
 
   <div id="sharing" class="mt3 ananke-socials">
     
+      
+      <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2014/02/28/cloud_controller_nge6ba90e7a081e99885e8afbbe8aeb0e5bd95/&amp;text=Cloud_Controller_NG%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e8%ae%b0%e5%bd%95" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
+        
+        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+        
+      </a>
+    
   </div>
 
 
@@ -152,18 +170,18 @@
     </p>
     
     
-    <time class="f6 mv4 dib tracked"
-      datetime="2014-02-28T04:14:33Z">February 28, 2014</time>
+    <time class="f6 mv4 dib tracked" datetime="2014-02-28T04:14:33Z" >February 28, 2014</time>
 
     
     
     <span class="f6 mv4 dib tracked"> - 25 minutes read</span>
-    <span class="f6 mv4 dib tracked"> - 12454 words</span>
+    <span class="f6 mv4 dib tracked"> - 12478 words</span>
     
   </header>
-  <div
-    class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-100-l"><h1 id="cloud_controller_ng源码阅读记录">Cloud_Controller_NG源码阅读记录</h1>
-<p>@(CC阅读)[cloud controller] by wonderflow</p>
+  <div class="nested-copy-line-height lh-copy serif f4 nested-links
+    nested-img mid-gray pr4-l w-100-l"><h1 id="cloud_controller_ng源码阅读记录">
+    Cloud_Controller_NG源码阅读记录<a class="hash-link" href="#cloud_controller_ng%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e8%ae%b0%e5%bd%95" title="Direct link to heading">#</a>
+</h1><p>@(CC阅读)[cloud controller] by wonderflow</p>
 <hr>
 <p>Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Foundry 平台用来管理控制应用和服务的组件。</p>
 <p><a href="http://docs.cloudfoundry.com/docs/using/terms.html#ccng">官方文档</a>是这么解释CCNG的作用的：</p>
@@ -180,8 +198,9 @@
 <li>本文所阅读的源码版本为github中cf-release中V145 tag下面的CCNG项目源码。</li>
 </ol>
 <hr>
-<h1 id="ccng各模块概览">CCNG各模块概览</h1>
-<p>首先让我们看一下这张框架图：
+<h1 id="ccng各模块概览">
+    CCNG各模块概览<a class="hash-link" href="#ccng%e5%90%84%e6%a8%a1%e5%9d%97%e6%a6%82%e8%a7%88" title="Direct link to heading">#</a>
+</h1><p>首先让我们看一下这张框架图：
 <img src="https://wonderflow.info/images/2014-02-28-cloud_controller_nge6ba90e7a081e99885e8afbbe8aeb0e5bd95/ccng.png" alt="Alt text">
 <strong>图1.CCNG架构图byshlallen</strong></p>
 <p>从ccng架构图中可以看出ccng可以分为以下多个模块：</p>
@@ -199,8 +218,9 @@
 </ol>
 <p>我们按官方文档给出的组件功能介绍的顺序逐步深入各模块。</p>
 <!-- raw HTML omitted -->
-<h2 id="db模块">DB模块</h2>
-<p>众所周知，CCDB就是CC的一个postgresql数据库，用于存储CC需要的一些数据。</p>
+<h2 id="db模块">
+    DB模块<a class="hash-link" href="#db%e6%a8%a1%e5%9d%97" title="Direct link to heading">#</a>
+</h2><p>众所周知，CCDB就是CC的一个postgresql数据库，用于存储CC需要的一些数据。</p>
 <p>在CCNG的rakefile里面，有着CCDB建表的初始化信息，具体的建表内容在<code>db/migrations/*.rb</code>中。</p>
 <p>CCNG开始正常运行后，主要调用lib/sequel_plugins/update_or_create.rb里面的函数对以下信息的改变进行更新（更新的代码都在以下各部分的源码中，可以使用全文搜索update_or_create函数查看）。</p>
 <ol>
@@ -210,8 +230,9 @@
 <li>quota：一些共享信息的更新，包括sevice数量，内存限制等。@<code>lib/cloud_controller/models/quota_definition.rb</code></li>
 <li>service：存储支持的service信息。@<code>app/models/services/service_broker.rb</code></li>
 </ol>
-<h2 id="blobstore模块">Blobstore模块</h2>
-<p>**注：**blobstor相关源码都@<code>lib/cloud_controller/blobstore</code>文件夹下</p>
+<h2 id="blobstore模块">
+    Blobstore模块<a class="hash-link" href="#blobstore%e6%a8%a1%e5%9d%97" title="Direct link to heading">#</a>
+</h2><p>**注：**blobstor相关源码都@<code>lib/cloud_controller/blobstore</code>文件夹下</p>
 <p>Blobstore模块主要负责维护静态文件的存储，这部分文件主要分为三部分：</p>
 <ul>
 <li>package,通俗的讲即应用程序打包。blobstore会把应用的源码进行压缩，变为package。</li>
@@ -229,8 +250,9 @@
 <li>blobstore中文件的下载 @<code>cdb.rb</code>@<code>blobstore.rb</code></li>
 <li>blobstore创建的内容主要由@<code>lib/cloud_controller/dependency_locator.rb</code>调用</li>
 </ol>
-<h2 id="stager模块">Stager模块</h2>
-<p>通过blobstore模块的描述我们知道应用的源码和buildpack进行捆绑打包后的最终形式即为droplet，而负责管理这个过程的组件就是Stager模块。</p>
+<h2 id="stager模块">
+    Stager模块<a class="hash-link" href="#stager%e6%a8%a1%e5%9d%97" title="Direct link to heading">#</a>
+</h2><p>通过blobstore模块的描述我们知道应用的源码和buildpack进行捆绑打包后的最终形式即为droplet，而负责管理这个过程的组件就是Stager模块。</p>
 <p>在Cloud Foundry v1的版本中，整个Cloud Foundry集群只有一个Stager组件。而在Cloud Foundry v2版本中，已经不存在原来独立的Stager组件，而将和Stager功能类似的staging模块设计成DEA的一个子模块。因此，如果v2版本的Cloud Foundry 部署了多个DEA的话，那么该云平台中就会有多个Staging模块。</p>
 <p>正是由于有多个Staging模块的缘故，在ccng处设计了一个与这些Staging进行交互的模块，也就是我们这里谈论的CCNG的stager模块。</p>
 <p>stager模块分为以下三个部分：</p>
@@ -273,8 +295,9 @@
 </code></pre>
 <p>{% endcodeblock %}</p>
 <p>同时，app_stage_task在进行stage之前会从stager_pool中找出合适的stager来完成staging任务。</p>
-<h2 id="dea模块">DEA模块</h2>
-<p>DEA模块的功能是负责CCNG与众DEA之间通信。</p>
+<h2 id="dea模块">
+    DEA模块<a class="hash-link" href="#dea%e6%a8%a1%e5%9d%97" title="Direct link to heading">#</a>
+</h2><p>DEA模块的功能是负责CCNG与众DEA之间通信。</p>
 <p>在CCNG中，DEA模块也可以大致分为三个部分：</p>
 <ol>
 <li>
@@ -287,13 +310,15 @@
 <p><strong>dea_pool</strong>：负责维护Cloud Foundry中所有DEA的资源池。当Cloud Foundry中有新的DEA启动并开始工作时，都会通过NATS向CCNG发布advertise信息，而CCNG则通过发来的该部分信息向dea_pool中注册DEA信息。当有应用需要启动的时候，CCNG需要找到合适的DEA来完成启动工作，这个时候则由dea_pool通过各DEA的资源使用情况等其他重要条件完成DEAs的筛选，找出符合条件的DEA。@<code>lib/cloud_controller/dea/dea_pool.rb</code></p>
 </li>
 </ol>
-<h2 id="小结app上传流程示意图">小结：APP上传流程示意图</h2>
-<p>看完了上述几个模块后，我们可以通过下图进行上述知识的整合。</p>
+<h2 id="小结app上传流程示意图">
+    小结：APP上传流程示意图<a class="hash-link" href="#%e5%b0%8f%e7%bb%93app%e4%b8%8a%e4%bc%a0%e6%b5%81%e7%a8%8b%e7%a4%ba%e6%84%8f%e5%9b%be" title="Direct link to heading">#</a>
+</h2><p>看完了上述几个模块后，我们可以通过下图进行上述知识的整合。</p>
 <p><img src="https://wonderflow.info/images/2014-02-28-cloud_controller_nge6ba90e7a081e99885e8afbbe8aeb0e5bd95/cfpush.png" alt="Alt text">
 <strong>图3.APP上传流程示意图 by 薛伟</strong></p>
 <p>此图表现的就是执行了<code>$cf push</code>命令（原<code>$vmc push</code>命令）以后，CF集群运作的过程。圆圈中的数字表示执行顺序。</p>
-<h2 id="healthmanager模块">HealthManager模块</h2>
-<p>HealthManager(以下简称HM)模块主要负责与health_manager建立通信，并完成有关应用健康状态的监控。该部分也可以简单分为两部分：</p>
+<h2 id="healthmanager模块">
+    HealthManager模块<a class="hash-link" href="#healthmanager%e6%a8%a1%e5%9d%97" title="Direct link to heading">#</a>
+</h2><p>HealthManager(以下简称HM)模块主要负责与health_manager建立通信，并完成有关应用健康状态的监控。该部分也可以简单分为两部分：</p>
 <ol>
 <li>
 <p><strong>HealthManagerClient：</strong>：充当CCNG与HM进行通信的client端，通过NATS发消息到HM实现查询指定app的状态、 查找crash的instance、 查看所有app的健康状态这三个功能。@<code>lib/cloud_controller/health_manager_client.rb</code></p>
@@ -302,8 +327,9 @@
 <p><strong>HealthManagerRespondent：</strong>：负责接收CCNG与HM通信过程中health_manager发来启动/停止应用的信息。@<code>lib/cloud_controller/health_manager_respondent.rb</code></p>
 </li>
 </ol>
-<h2 id="service相关模块">Service相关模块</h2>
-<p>这个模块的主要代码都在<code>lib/cloud_controller/legacy_api</code>文件夹下，为什么叫legacy这个名字，我至今没有参透。正如该文件夹的名字所言，文件夹下的文件都是对外提供api的，形式就是一个http对应一个执行函数。该模块涉及到Service的只要有3个，LegacyServiceGateway、LegacyServiceLifecycle和LegacyService:</p>
+<h2 id="service相关模块">
+    Service相关模块<a class="hash-link" href="#service%e7%9b%b8%e5%85%b3%e6%a8%a1%e5%9d%97" title="Direct link to heading">#</a>
+</h2><p>这个模块的主要代码都在<code>lib/cloud_controller/legacy_api</code>文件夹下，为什么叫legacy这个名字，我至今没有参透。正如该文件夹的名字所言，文件夹下的文件都是对外提供api的，形式就是一个http对应一个执行函数。该模块涉及到Service的只要有3个，LegacyServiceGateway、LegacyServiceLifecycle和LegacyService:</p>
 <ol>
 <li>
 <p><strong>LegacyServiceGateway</strong>：service_gateway对外接口。包括获取所提供的service_gatway信息并更新、根据条件过滤service_gateway信息、删除、更新service_gateway等操作，并在ccdb中进行记录。@<code>lib/cloud_controller/legacy_api/legacy_service_gateway.rb</code></p>
@@ -315,9 +341,11 @@
 <p><strong>LegacyServiceLifecycle</strong>：上面针对的是service种类，此处针对的是某个service的一个instance的生命周期的管理。@<code>lib/cloud_controller/legacy_api/legacy_service_lifecycle.rb</code></p>
 </li>
 </ol>
-<h2 id="其他api功能一览">其他API功能一览</h2>
-<h3 id="libcloud_controllerapi目录下">lib/cloud_controller/api目录下：</h3>
-<ul>
+<h2 id="其他api功能一览">
+    其他API功能一览<a class="hash-link" href="#%e5%85%b6%e4%bb%96api%e5%8a%9f%e8%83%bd%e4%b8%80%e8%a7%88" title="Direct link to heading">#</a>
+</h2><h3 id="libcloud_controllerapi目录下">
+    lib/cloud_controller/api目录下：<a class="hash-link" href="#libcloud_controllerapi%e7%9b%ae%e5%bd%95%e4%b8%8b" title="Direct link to heading">#</a>
+</h3><ul>
 <li>
 <p>info.rb: 展示集群信息，主要是配置文件上写的信息展示</p>
 </li>
@@ -332,11 +360,13 @@
 </li>
 </ul>
 <hr>
-<h2 id="ccng-model图">CCNG Model图</h2>
-<p><img src="http://10.10.103.47/gitlab/cf_src_docs/raw/master/pictures/model.png" alt="Alt text"></p>
+<h2 id="ccng-model图">
+    CCNG Model图<a class="hash-link" href="#ccng-model%e5%9b%be" title="Direct link to heading">#</a>
+</h2><p><img src="http://10.10.103.47/gitlab/cf_src_docs/raw/master/pictures/model.png" alt="Alt text"></p>
 <hr>
-<h1 id="从ccng启动开始的程序细节">从CCNG启动开始的程序细节</h1>
-<p>整个项目从可执行脚本bin/cloud_controller开始。</p>
+<h1 id="从ccng启动开始的程序细节">
+    从CCNG启动开始的程序细节<a class="hash-link" href="#%e4%bb%8eccng%e5%90%af%e5%8a%a8%e5%bc%80%e5%a7%8b%e7%9a%84%e7%a8%8b%e5%ba%8f%e7%bb%86%e8%8a%82" title="Direct link to heading">#</a>
+</h1><p>整个项目从可执行脚本bin/cloud_controller开始。</p>
 <p>启动命令为：<code>$ ./bin/cloud_controller [-c] [-m] [-d]</code></p>
 <p>打开bin/cloud_controller这个文件，前两行就是</p>
 <p>{% codeblock %}</p>
@@ -404,10 +434,12 @@ end</p>
 <li><a href="(http://rack.rubyforge.org/doc/SPEC.html)">rack</a>发送过来的请求CCNG采用<a href="(ttp://www.sinatrarb.com/intro.html)">sinatra</a>框架处理</li>
 </ul>
 <hr>
-<h1 id="http请求处理框架">HTTP请求处理框架</h1>
-<p>启动的配置以及初始化完毕后，ccng就在thin_server上以一个rack app的形式运行，事件响应则采用sinatra的架构。</p>
-<h2 id="controller类">Controller类</h2>
-<p><strong>VCAP::CloudController::Controller</strong>继承于Sinatra::Base，是处理所有http请求的入口。</p>
+<h1 id="http请求处理框架">
+    HTTP请求处理框架<a class="hash-link" href="#http%e8%af%b7%e6%b1%82%e5%a4%84%e7%90%86%e6%a1%86%e6%9e%b6" title="Direct link to heading">#</a>
+</h1><p>启动的配置以及初始化完毕后，ccng就在thin_server上以一个rack app的形式运行，事件响应则采用sinatra的架构。</p>
+<h2 id="controller类">
+    Controller类<a class="hash-link" href="#controller%e7%b1%bb" title="Direct link to heading">#</a>
+</h2><p><strong>VCAP::CloudController::Controller</strong>继承于Sinatra::Base，是处理所有http请求的入口。</p>
 <p>一开始，Controller这个类中定义了<code>before do....end</code>，这个函数会在第一次次接收到请求的时候执行，主要进行用户请求身份验证操作，判断用户是否合法，如果用户验证失败的话，会返回错误信息码。如果成功验证通过，那么会调用VCAP::CloudController::SecurityContext的set方法设置当前登录用户信息，供后面的陆续操作进行权限判断依据。</p>
 <p>接下来，http请求根据不同的内容被不同的路由规则引导处理。从程序代码的角度看，这些路由主要被分为自定义路由和默认路由两大块。</p>
 <p>通俗的讲：</p>
@@ -415,8 +447,9 @@ end</p>
 <li>一部分是直接定义在＊.rb文件中，比如 <code>lib/cloud_controller/legacy_api/*.rb</code> 下的所有请求都是直接在脚本中定义get或者post请求处理函数，这种是直观就可以看见的</li>
 <li>还有一部分，是通过回调<code>lib/cloud_controller/rest_controller.rb</code>中的self.rest_controller这个方法，这个方法里面有一个define_routes，来定义get，post，delete，put请求，并通过调用api的dispatch函数来进行选择具体的处理函数.</li>
 </ul>
-<h3 id="自定义路由">自定义路由</h3>
-<p>自定义路由即文件被载入(require)到Controller模块时，就是rack框架可识别的路由信息。这样自定义的路由信息都被写成类似如下的格式：(以lib/cloud_controller/api/app_bits.rb为例)</p>
+<h3 id="自定义路由">
+    自定义路由<a class="hash-link" href="#%e8%87%aa%e5%ae%9a%e4%b9%89%e8%b7%af%e7%94%b1" title="Direct link to heading">#</a>
+</h3><p>自定义路由即文件被载入(require)到Controller模块时，就是rack框架可识别的路由信息。这样自定义的路由信息都被写成类似如下的格式：(以lib/cloud_controller/api/app_bits.rb为例)</p>
 <p>{% codeblock %}</p>
 <p>module VCAP::CloudController
 rest_controller :AppBits do
@@ -490,8 +523,9 @@ send后面有一个参数*args实际上是:guid，这是。Sinatra框架中，�
 <p>path展开到最底层，只有一个具名参数:guid，于是*args就是:guid。</p>
 <p>参数env和request是<code>Sinatra::Base</code>的成员，其中env包括很多内容，例如<code>REQUEST_URI，REMOTE_ADDR</code>等等。因为当前类间接地继承了<code>Sinatra::Base</code>，所以可以使用这些变量。</p>
 <p>最后，路由<code>put &quot;#{path_id}/bits&quot;, :upload</code>就被翻译为，遇到put请求，路径为<code>&quot;#{path_id}/bits&quot;</code>，则调用<code>upload</code>处理，同时将<code>:guid</code>传递给<code>upload</code>。</p>
-<h3 id="默认路由">默认路由</h3>
-<p>app.rb及其他一些文件中，没有调用<code>disable_default_routes</code>，在执行到rest_controller时，会调用define_routes来定义自己的路由。通过define_routes创建的路由具有一定的相似性，源文件只需给出路径名的一部分，其他部分在define_routes中动态生成，因此称为默认路由。</p>
+<h3 id="默认路由">
+    默认路由<a class="hash-link" href="#%e9%bb%98%e8%ae%a4%e8%b7%af%e7%94%b1" title="Direct link to heading">#</a>
+</h3><p>app.rb及其他一些文件中，没有调用<code>disable_default_routes</code>，在执行到rest_controller时，会调用define_routes来定义自己的路由。通过define_routes创建的路由具有一定的相似性，源文件只需给出路径名的一部分，其他部分在define_routes中动态生成，因此称为默认路由。</p>
 <p>{% codeblock %}
 <code> def define_routes define_standard_routes define_to_many_routes end</code>
 {% endcodeblock %}</p>
@@ -504,20 +538,29 @@ send后面有一个参数*args实际上是:guid，这是。Sinatra框架中，�
 `  def path
 &ldquo;#{ROUTE_PREFIX}/#{path_base}&rdquo;
 end</p>
-<h1 id="get-and-set-the-base-of-the-path-for-the-api-endpoint">Get and set the base of the path for the api endpoint.</h1>
-<h1 id="heading"></h1>
-<h1 id="param-string-base-path-to-the-api-endpoint-eg-the-apps-part-of">@param [String] base path to the api endpoint, e.g. the apps part of</h1>
-<h1 id="v2apps">/v2/apps/&hellip;</h1>
-<h1 id="heading-1"></h1>
-<h1 id="return-string-base-path-to-the-api-endoint">@return [String] base path to the api endoint</h1>
-<p>def path_base(base = nil)
+<h1 id="get-and-set-the-base-of-the-path-for-the-api-endpoint">
+    Get and set the base of the path for the api endpoint.<a class="hash-link" href="#get-and-set-the-base-of-the-path-for-the-api-endpoint" title="Direct link to heading">#</a>
+</h1><h1 id="heading">
+    <a class="hash-link" href="#heading" title="Direct link to heading">#</a>
+</h1><h1 id="param-string-base-path-to-the-api-endpoint-eg-the-apps-part-of">
+    @param [String] base path to the api endpoint, e.g. the apps part of<a class="hash-link" href="#param-string-base-path-to-the-api-endpoint-eg-the-apps-part-of" title="Direct link to heading">#</a>
+</h1><h1 id="v2apps">
+    /v2/apps/&hellip;<a class="hash-link" href="#v2apps" title="Direct link to heading">#</a>
+</h1><h1 id="heading-1">
+    <a class="hash-link" href="#heading-1" title="Direct link to heading">#</a>
+</h1><h1 id="return-string-base-path-to-the-api-endoint">
+    @return [String] base path to the api endoint<a class="hash-link" href="#return-string-base-path-to-the-api-endoint" title="Direct link to heading">#</a>
+</h1><p>def path_base(base = nil)
 @path_base = base if base
 @path_base || class_basename.underscore.pluralize
 end</p>
-<h1 id="basename-of-the-class">basename of the class</h1>
-<h1 id="heading-2"></h1>
-<h1 id="return-string-basename-of-the-class">@return [String] basename of the class</h1>
-<p>def class_basename
+<h1 id="basename-of-the-class">
+    basename of the class<a class="hash-link" href="#basename-of-the-class" title="Direct link to heading">#</a>
+</h1><h1 id="heading-2">
+    <a class="hash-link" href="#heading-2" title="Direct link to heading">#</a>
+</h1><h1 id="return-string-basename-of-the-class">
+    @return [String] basename of the class<a class="hash-link" href="#return-string-basename-of-the-class" title="Direct link to heading">#</a>
+</h1><p>def class_basename
 self.name.split(&quot;::&quot;).last
 end
 `
@@ -579,8 +622,9 @@ id=81243e10-9b28-411e-9ccf-524ab15ce37c
 #{name}=apps</p>
 <p>{% endcodeblock %}</p>
 <p>通过define_standard_routes定义的路由，其具名参数放在*args中，数量可以是一个。</p>
-<h2 id="处理请求的过程">处理请求的过程</h2>
-<p>以客户启动一个APP为例。</p>
+<h2 id="处理请求的过程">
+    处理请求的过程<a class="hash-link" href="#%e5%a4%84%e7%90%86%e8%af%b7%e6%b1%82%e7%9a%84%e8%bf%87%e7%a8%8b" title="Direct link to heading">#</a>
+</h2><p>以客户启动一个APP为例。</p>
 <p>当客户端启动一个app时，发送的请求的格式如下（实际上客户端先检查app的状态，然后才决定是否发送put请求，这里假设app当前状态为stopped，因此客户端需要发送put请求）</p>
 <p><code>PUT /v2/apps/:guid?stage_async=true</code></p>
 <p>通过前面的分析可知，该请求和一个通过define_standard_routes定义的路由匹配，并被<code>lib/cloud_controller/rest_controller/model_controller.rb</code>的update方法处理。</p>
@@ -661,9 +705,11 @@ end
 <p>{% endcodeblock %}</p>
 <p>start_instances_with_message的第一个参数是app名字，第二个参数是实例个数，controller从dea_pool中找到一个dea，通过nats向主题<code>#{dea_id}.start</code>发送消息。<code>#{dea_id}</code>对应的dea收到消息后，就会执行启动app的操作。</p>
 <hr>
-<h1 id="一些大家可能感兴趣的细节">一些大家可能感兴趣的细节</h1>
-<h2 id="cloud_controlleryml文件">cloud_controller.yml文件</h2>
-<ol>
+<h1 id="一些大家可能感兴趣的细节">
+    一些大家可能感兴趣的细节<a class="hash-link" href="#%e4%b8%80%e4%ba%9b%e5%a4%a7%e5%ae%b6%e5%8f%af%e8%83%bd%e6%84%9f%e5%85%b4%e8%b6%a3%e7%9a%84%e7%bb%86%e8%8a%82" title="Direct link to heading">#</a>
+</h1><h2 id="cloud_controlleryml文件">
+    cloud_controller.yml文件<a class="hash-link" href="#cloud_controlleryml%e6%96%87%e4%bb%b6" title="Direct link to heading">#</a>
+</h2><ol>
 <li>
 <p>CCNG统一使用8181作为统一对外开放的端口，原CC的端口为9022.</p>
 </li>
@@ -677,10 +723,12 @@ end
 <p>staging字段包含了最大stage时间，默认为120s，如果上传的应用大，需要修改配置.</p>
 </li>
 </ol>
-<h2 id="to-be-continued">TO BE CONTINUED&hellip;</h2>
-<hr>
-<h1 id="参考文献">参考文献</h1>
-<ul>
+<h2 id="to-be-continued">
+    TO BE CONTINUED&hellip;<a class="hash-link" href="#to-be-continued" title="Direct link to heading">#</a>
+</h2><hr>
+<h1 id="参考文献">
+    参考文献<a class="hash-link" href="#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae" title="Direct link to heading">#</a>
+</h1><ul>
 <li>
 <p><a href="https://github.com/cloudfoundry/cloud_controller_ng">Cloud_Controller_NG github源码</a></p>
 </li>
@@ -695,8 +743,9 @@ end
 </li>
 </ul>
 <hr>
-<h1 id="licence">Licence</h1>
-<p>转载请注明出处 ZJU——SEL——LAB <a href="http://wonderflow.info">@wonderflow</a></p>
+<h1 id="licence">
+    Licence<a class="hash-link" href="#licence" title="Direct link to heading">#</a>
+</h1><p>转载请注明出处 ZJU——SEL——LAB <a href="http://wonderflow.info">@wonderflow</a></p>
 <hr>
 <ul class="pa0">
   
@@ -712,6 +761,9 @@ end
 <div class="mt6 instapaper_ignoref">
       
       
+      <script src="https://utteranc.es/client.js" repo="wonderflow/wonderflow.github.io" issue-term="pathname"
+        label="Comment" theme="github-light" crossorigin="anonymous" async>
+        </script>
     </div>
   </div>
 
@@ -733,6 +785,16 @@ end
     <div>
 <div class="ananke-socials">
   
+    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
     <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
       
         <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
@@ -748,6 +810,18 @@ end
 </div>
 </div>
     <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3XG75RG8W"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Z3XG75RG8W', { 'anonymize_ip': false });
+}
+</script>
+
   </div>
 </footer>
   </body>

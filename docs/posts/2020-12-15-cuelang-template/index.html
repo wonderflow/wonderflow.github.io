@@ -6,7 +6,7 @@
     
     <title>CUE 基础入门 | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="磨刀不误砍柴工，在正式开始介绍 CUE 之前，可以先做下基本的准备工作。 安装：首先确保你已经安装了 cuelang： https://cuelang.org/docs/install/ 自动格式化：如果你使用 Goland 或者类似的 JetBrains IDE，还可以额外配置自动格式化的方式：https://wonderflow.info/posts/2020-11-02-goland-cuelang-format/ 基本操作 先看一下cuelang的基本数据样子。 a: 1.5 b: 1 d: [1, 2, 3] g: { h: &quot;abc&quot; } 我们把上面的内容写入到文件并命名为 &ldquo;first.cue&rdquo;. 格式化 cuelang 的文件 cue fmt first.cue 校验写法是否正确 cue vet first.cue 计算输出结果 cue eval first.cue 计算输出单个变量的结果 cue eval -e a first.cue 数据导出（默认为json） cue export first.cue 指定 yaml 格式导出 cue export first.cue --out yaml 导出某个变量 cue export first.cue -e a --out yaml 类型 与 “">
+    <meta name="description" content="磨刀不误砍柴工，在正式开始介绍 CUE 之前，可以先做下基本的准备工作。 安装：首先确保你已经安装了 cuelang： https://cuelang.org/docs/install/ 自动格式化：如果你使用 Goland 或者类似的 JetBrains IDE，还可以额外配置自动格式化的方式：https://wonderflow.info/posts/2020-11-02-goland-cuelang-format/ 基本操作# 先看一下cuelang的基本数据样子。 a: 1.5 b: 1 d: [1, 2, 3] g: { h: &quot;abc&quot; } 我们把上面的内容写入到文件并命名为 &ldquo;first.cue&rdquo;. 格式化 cuelang 的文件 cue fmt first.cue 校验写法是否正确 cue vet first.cue 计算输出结果 cue eval first.cue 计算输出单个变量的结果 cue eval -e a first.cue 数据导出（默认为json） cue export first.cue 指定 yaml 格式导出 cue export first.cue --out yaml 导出某个变量 cue export first.cue -e a --out yaml 类型 与">
     <meta name="generator" content="Hugo 0.92.2" />
     
     
@@ -32,19 +32,19 @@
     
     
     <meta property="og:title" content="CUE 基础入门" />
-<meta property="og:description" content="磨刀不误砍柴工，在正式开始介绍 CUE 之前，可以先做下基本的准备工作。 安装：首先确保你已经安装了 cuelang： https://cuelang.org/docs/install/ 自动格式化：如果你使用 Goland 或者类似的 JetBrains IDE，还可以额外配置自动格式化的方式：https://wonderflow.info/posts/2020-11-02-goland-cuelang-format/ 基本操作 先看一下cuelang的基本数据样子。 a: 1.5 b: 1 d: [1, 2, 3] g: { h: &quot;abc&quot; } 我们把上面的内容写入到文件并命名为 &ldquo;first.cue&rdquo;. 格式化 cuelang 的文件 cue fmt first.cue 校验写法是否正确 cue vet first.cue 计算输出结果 cue eval first.cue 计算输出单个变量的结果 cue eval -e a first.cue 数据导出（默认为json） cue export first.cue 指定 yaml 格式导出 cue export first.cue --out yaml 导出某个变量 cue export first.cue -e a --out yaml 类型 与 “" />
+<meta property="og:description" content="磨刀不误砍柴工，在正式开始介绍 CUE 之前，可以先做下基本的准备工作。 安装：首先确保你已经安装了 cuelang： https://cuelang.org/docs/install/ 自动格式化：如果你使用 Goland 或者类似的 JetBrains IDE，还可以额外配置自动格式化的方式：https://wonderflow.info/posts/2020-11-02-goland-cuelang-format/ 基本操作# 先看一下cuelang的基本数据样子。 a: 1.5 b: 1 d: [1, 2, 3] g: { h: &quot;abc&quot; } 我们把上面的内容写入到文件并命名为 &ldquo;first.cue&rdquo;. 格式化 cuelang 的文件 cue fmt first.cue 校验写法是否正确 cue vet first.cue 计算输出结果 cue eval first.cue 计算输出单个变量的结果 cue eval -e a first.cue 数据导出（默认为json） cue export first.cue 指定 yaml 格式导出 cue export first.cue --out yaml 导出某个变量 cue export first.cue -e a --out yaml 类型 与" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://wonderflow.info/posts/2020-12-15-cuelang-template/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-12-15T14:21:16+08:00" />
 <meta property="article:modified_time" content="2020-12-15T14:21:16+08:00" />
 
 <meta itemprop="name" content="CUE 基础入门">
-<meta itemprop="description" content="磨刀不误砍柴工，在正式开始介绍 CUE 之前，可以先做下基本的准备工作。 安装：首先确保你已经安装了 cuelang： https://cuelang.org/docs/install/ 自动格式化：如果你使用 Goland 或者类似的 JetBrains IDE，还可以额外配置自动格式化的方式：https://wonderflow.info/posts/2020-11-02-goland-cuelang-format/ 基本操作 先看一下cuelang的基本数据样子。 a: 1.5 b: 1 d: [1, 2, 3] g: { h: &quot;abc&quot; } 我们把上面的内容写入到文件并命名为 &ldquo;first.cue&rdquo;. 格式化 cuelang 的文件 cue fmt first.cue 校验写法是否正确 cue vet first.cue 计算输出结果 cue eval first.cue 计算输出单个变量的结果 cue eval -e a first.cue 数据导出（默认为json） cue export first.cue 指定 yaml 格式导出 cue export first.cue --out yaml 导出某个变量 cue export first.cue -e a --out yaml 类型 与 “"><meta itemprop="datePublished" content="2020-12-15T14:21:16+08:00" />
+<meta itemprop="description" content="磨刀不误砍柴工，在正式开始介绍 CUE 之前，可以先做下基本的准备工作。 安装：首先确保你已经安装了 cuelang： https://cuelang.org/docs/install/ 自动格式化：如果你使用 Goland 或者类似的 JetBrains IDE，还可以额外配置自动格式化的方式：https://wonderflow.info/posts/2020-11-02-goland-cuelang-format/ 基本操作# 先看一下cuelang的基本数据样子。 a: 1.5 b: 1 d: [1, 2, 3] g: { h: &quot;abc&quot; } 我们把上面的内容写入到文件并命名为 &ldquo;first.cue&rdquo;. 格式化 cuelang 的文件 cue fmt first.cue 校验写法是否正确 cue vet first.cue 计算输出结果 cue eval first.cue 计算输出单个变量的结果 cue eval -e a first.cue 数据导出（默认为json） cue export first.cue 指定 yaml 格式导出 cue export first.cue --out yaml 导出某个变量 cue export first.cue -e a --out yaml 类型 与"><meta itemprop="datePublished" content="2020-12-15T14:21:16+08:00" />
 <meta itemprop="dateModified" content="2020-12-15T14:21:16+08:00" />
-<meta itemprop="wordCount" content="1605">
+<meta itemprop="wordCount" content="1615">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="CUE 基础入门"/>
-<meta name="twitter:description" content="磨刀不误砍柴工，在正式开始介绍 CUE 之前，可以先做下基本的准备工作。 安装：首先确保你已经安装了 cuelang： https://cuelang.org/docs/install/ 自动格式化：如果你使用 Goland 或者类似的 JetBrains IDE，还可以额外配置自动格式化的方式：https://wonderflow.info/posts/2020-11-02-goland-cuelang-format/ 基本操作 先看一下cuelang的基本数据样子。 a: 1.5 b: 1 d: [1, 2, 3] g: { h: &quot;abc&quot; } 我们把上面的内容写入到文件并命名为 &ldquo;first.cue&rdquo;. 格式化 cuelang 的文件 cue fmt first.cue 校验写法是否正确 cue vet first.cue 计算输出结果 cue eval first.cue 计算输出单个变量的结果 cue eval -e a first.cue 数据导出（默认为json） cue export first.cue 指定 yaml 格式导出 cue export first.cue --out yaml 导出某个变量 cue export first.cue -e a --out yaml 类型 与 “"/>
+<meta name="twitter:description" content="磨刀不误砍柴工，在正式开始介绍 CUE 之前，可以先做下基本的准备工作。 安装：首先确保你已经安装了 cuelang： https://cuelang.org/docs/install/ 自动格式化：如果你使用 Goland 或者类似的 JetBrains IDE，还可以额外配置自动格式化的方式：https://wonderflow.info/posts/2020-11-02-goland-cuelang-format/ 基本操作# 先看一下cuelang的基本数据样子。 a: 1.5 b: 1 d: [1, 2, 3] g: { h: &quot;abc&quot; } 我们把上面的内容写入到文件并命名为 &ldquo;first.cue&rdquo;. 格式化 cuelang 的文件 cue fmt first.cue 校验写法是否正确 cue vet first.cue 计算输出结果 cue eval first.cue 计算输出单个变量的结果 cue eval -e a first.cue 数据导出（默认为json） cue export first.cue 指定 yaml 格式导出 cue export first.cue --out yaml 导出某个变量 cue export first.cue -e a --out yaml 类型 与"/>
 
 	
   </head>
@@ -93,6 +93,16 @@
       
 <div class="ananke-socials">
   
+    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
     <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
       
         <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
@@ -138,29 +148,37 @@
 
   <div id="sharing" class="mt3 ananke-socials">
     
+      
+      <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2020-12-15-cuelang-template/&amp;text=CUE%20%e5%9f%ba%e7%a1%80%e5%85%a5%e9%97%a8" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
+        
+        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+        
+      </a>
+    
   </div>
 
 
     <h1 class="f1 athelas mt3 mb1">CUE 基础入门</h1>
     
     
-    <time class="f6 mv4 dib tracked"
-      datetime="2020-12-15T14:21:16+08:00">December 15, 2020</time>
+    <time class="f6 mv4 dib tracked" datetime="2020-12-15T14:21:16+08:00" >December 15, 2020</time>
 
     
     
     <span class="f6 mv4 dib tracked"> - 4 minutes read</span>
-    <span class="f6 mv4 dib tracked"> - 1605 words</span>
+    <span class="f6 mv4 dib tracked"> - 1615 words</span>
     
   </header>
-  <div
-    class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-100-l"><p>磨刀不误砍柴工，在正式开始介绍 CUE 之前，可以先做下基本的准备工作。</p>
+  <div class="nested-copy-line-height lh-copy serif f4 nested-links
+    nested-img mid-gray pr4-l w-100-l"><p>磨刀不误砍柴工，在正式开始介绍 CUE 之前，可以先做下基本的准备工作。</p>
 <ul>
 <li>安装：首先确保你已经安装了 cuelang： <a href="https://cuelang.org/docs/install/">https://cuelang.org/docs/install/</a></li>
 <li>自动格式化：如果你使用 Goland 或者类似的 JetBrains IDE，还可以额外配置自动格式化的方式：https://wonderflow.info/posts/2020-11-02-goland-cuelang-format/</li>
 </ul>
-<h2 id="基本操作">基本操作</h2>
-<p>先看一下cuelang的基本数据样子。</p>
+<h2 id="基本操作">
+    基本操作<a class="hash-link" href="#%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c" title="Direct link to heading">#</a>
+</h2><p>先看一下cuelang的基本数据样子。</p>
 <pre tabindex="0"><code>a: 1.5
 b: 1
 d: [1, 2, 3]
@@ -196,8 +214,9 @@ g: {
 <li>导出某个变量</li>
 </ul>
 <pre tabindex="0"><code>cue export first.cue -e a --out yaml
-</code></pre><h2 id="类型-与--集合-式编程">类型 与  “集合” 式编程</h2>
-<p>在熟悉了 cuelang 基本操作以后，我们来看下它的常用类型和写法。</p>
+</code></pre><h2 id="类型-与--集合-式编程">
+    类型 与  “集合” 式编程<a class="hash-link" href="#%e7%b1%bb%e5%9e%8b-%e4%b8%8e--%e9%9b%86%e5%90%88-%e5%bc%8f%e7%bc%96%e7%a8%8b" title="Direct link to heading">#</a>
+</h2><p>在熟悉了 cuelang 基本操作以后，我们来看下它的常用类型和写法。</p>
 <p>你可以直接定义一个“schema”，如：</p>
 <pre tabindex="0"><code>a: float
 </code></pre><p>也可以直接写“data”：</p>
@@ -256,17 +275,21 @@ a: 1.2
 {
     &quot;a&quot;: 1.2
 }
-</code></pre><h2 id="操作符">操作符</h2>
-<h3 id="或操作">“或”操作</h3>
-<pre tabindex="0"><code>a: 1 | 2
+</code></pre><h2 id="操作符">
+    操作符<a class="hash-link" href="#%e6%93%8d%e4%bd%9c%e7%ac%a6" title="Direct link to heading">#</a>
+</h2><h3 id="或操作">
+    “或”操作<a class="hash-link" href="#%e6%88%96%e6%93%8d%e4%bd%9c" title="Direct link to heading">#</a>
+</h3><pre tabindex="0"><code>a: 1 | 2
 </code></pre><p>表示 a 的值既可以是 1，也可以是 2.</p>
 <pre tabindex="0"><code>a: string | int
 </code></pre><p>表示 a 的值是 string 或者 int 类型。</p>
-<h3 id="默认值">“默认值”</h3>
-<pre tabindex="0"><code>a: *1 | int
+<h3 id="默认值">
+    “默认值”<a class="hash-link" href="#%e9%bb%98%e8%ae%a4%e5%80%bc" title="Direct link to heading">#</a>
+</h3><pre tabindex="0"><code>a: *1 | int
 </code></pre><p>把 <code>*</code> 放在具体的数值前面表示默认值，通常情况默认值要和“或操作” 一起使用，表示 a 是 int 类型，默认值是 1.</p>
-<h3 id="可缺省参数">“可缺省”参数</h3>
-<p>还有一种特殊的情况是默认可以不存在（即“可缺省”）：</p>
+<h3 id="可缺省参数">
+    “可缺省”参数<a class="hash-link" href="#%e5%8f%af%e7%bc%ba%e7%9c%81%e5%8f%82%e6%95%b0" title="Direct link to heading">#</a>
+</h3><p>还有一种特殊的情况是默认可以不存在（即“可缺省”）：</p>
 <pre tabindex="0"><code>a ?: int
 
 my: {
@@ -274,8 +297,9 @@ my: {
   y : int
   z ?:float
 }
-</code></pre><h3 id="与操作">“与”操作</h3>
-<pre tabindex="0"><code>a: *1 | int
+</code></pre><h3 id="与操作">
+    “与”操作<a class="hash-link" href="#%e4%b8%8e%e6%93%8d%e4%bd%9c" title="Direct link to heading">#</a>
+</h3><pre tabindex="0"><code>a: *1 | int
 b: 3
 c: a &amp; b
 </code></pre><p>将 a 和 b 两个集合相交就是 用 <code>&amp;</code> 操作符。</p>
@@ -283,8 +307,9 @@ c: a &amp; b
 a: 1
 b: 3
 c: 3
-</code></pre><h3 id="条件判断">条件判断</h3>
-<pre tabindex="0"><code>price: number
+</code></pre><h3 id="条件判断">
+    条件判断<a class="hash-link" href="#%e6%9d%a1%e4%bb%b6%e5%88%a4%e6%96%ad" title="Direct link to heading">#</a>
+</h3><pre tabindex="0"><code>price: number
 feel: *&quot;good&quot; | string
 // Feel bad if price is too high
 if price &gt; 100 {
@@ -294,8 +319,9 @@ price: 200
 </code></pre><pre tabindex="0"><code>$ cue eval first.cue
 price: 200
 feel:  &quot;bad&quot;
-</code></pre><h3 id="循环">循环</h3>
-<pre tabindex="0"><code>#a: {
+</code></pre><h3 id="循环">
+    循环<a class="hash-link" href="#%e5%be%aa%e7%8e%af" title="Direct link to heading">#</a>
+</h3><pre tabindex="0"><code>#a: {
 	&quot;hello&quot;: &quot;Barcelona&quot;
 	&quot;nihao&quot;: &quot;Shanghai&quot;
 }
@@ -318,8 +344,9 @@ for k, v in #a {
         &quot;value&quot;: &quot;Shanghai&quot;
     }
 }
-</code></pre><h2 id="变量引用与模板">变量引用与模板</h2>
-<p>至此，我们对cuelang的类型和各种操作基本有了完整的认识，我们来试着使用上面学到的内容，试着构建一个实际的模板。</p>
+</code></pre><h2 id="变量引用与模板">
+    变量引用与模板<a class="hash-link" href="#%e5%8f%98%e9%87%8f%e5%bc%95%e7%94%a8%e4%b8%8e%e6%a8%a1%e6%9d%bf" title="Direct link to heading">#</a>
+</h2><p>至此，我们对cuelang的类型和各种操作基本有了完整的认识，我们来试着使用上面学到的内容，试着构建一个实际的模板。</p>
 <ol>
 <li>定义一个结构体类型，包含2个字符串成员。</li>
 </ol>
@@ -396,6 +423,9 @@ spec:
 <div class="mt6 instapaper_ignoref">
       
       
+      <script src="https://utteranc.es/client.js" repo="wonderflow/wonderflow.github.io" issue-term="pathname"
+        label="Comment" theme="github-light" crossorigin="anonymous" async>
+        </script>
     </div>
   </div>
 
@@ -417,6 +447,16 @@ spec:
     <div>
 <div class="ananke-socials">
   
+    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
     <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
       
         <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
@@ -432,6 +472,18 @@ spec:
 </div>
 </div>
     <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3XG75RG8W"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Z3XG75RG8W', { 'anonymize_ip': false });
+}
+</script>
+
   </div>
 </footer>
   </body>

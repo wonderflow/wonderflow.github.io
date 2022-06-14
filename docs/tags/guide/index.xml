@@ -13,7 +13,7 @@
       <pubDate>Tue, 01 Jul 2014 06:05:03 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2014/07/01/cloud-foundry-e8bf90e7bbb4e585a5e997a8/</guid>
-      <description>@(CF V2相关)[guide] 之前写过一个Guide for Cloud Foundry New Teamer。不过似乎已经有些过时，那会实验室主要是针对的CF v1进行的研究，现在已经全面进入V2时代了。所以更新一下关于CloudFoundry运维的一些内容。如果有时间也可再回头看看V1的那个帖子，希望能有所帮助。 部署 关于部署，目前使用的工具一般有两种，BOSH和cf_nise_installer。BOSH适用于集群安装，cf_nise_installer适用于单节点安装。下面主要以cf_nise_installer的安装方法为主描述部署的运维流程。 cf_nise_installer实际上就是一大堆shell脚本建立起来的项目，对sh</description>
+      <description>@(CF V2相关)[guide] 之前写过一个Guide for Cloud Foundry New Teamer。不过似乎已经有些过时，那会实验室主要是针对的CF v1进行的研究，现在已经全面进入V2时代了。所以更新一下关于CloudFoundry运维的一些内容。如果有时间也可再回头看看V1的那个帖子，希望能有所帮助。 部署# 关于部署，目前使用的工具一般有两种，BOSH和cf_nise_installer。BOSH适用于集群安装，cf_nise_installer适用于单节点安装。下面主要以cf_nise_installer的安装方法为主描述部署的运维流程。 cf_nise_installer实际上就是一大堆shell脚本建立起来的项目，对s</description>
     </item>
     
   </channel>

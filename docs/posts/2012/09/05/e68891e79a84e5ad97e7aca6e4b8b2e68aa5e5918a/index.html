@@ -6,7 +6,7 @@
     
     <title>我的字符串报告（AC自动机详，后缀数组无） | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="上个学期开学的时候做的字符串报告，觉得还有些价值，做了些补充发上来，也许以后用得着。 1 KMP 1.1 概念： KMP是一种用来处理字符串匹配的算法。通俗的讲就是给你一个串A（ababababbc）和一个串B（ababbc），问你A串中是否包含B串。 解决这类问题的朴素算法就是枚举A串开始的位置，然后逐个位置对B串进行匹配。这样的算法复杂度是O（n*m）。而这里我们要介绍的KMP算法，就是解决这类问题最坏复杂度只要O（n&#43;m）的算法。 KMP是由三个人共同提出的，他们的名字分别是Knuth、Morris、Pratt，这也是为什么这个算法叫KMP的原因，就是取了三个人的首字母。 1.2 原理： 现假设我们有两个串A（abab">
+    <meta name="description" content="上个学期开学的时候做的字符串报告，觉得还有些价值，做了些补充发上来，也许以后用得着。 1 KMP# 1.1 概念：# KMP是一种用来处理字符串匹配的算法。通俗的讲就是给你一个串A（ababababbc）和一个串B（ababbc），问你A串中是否包含B串。 解决这类问题的朴素算法就是枚举A串开始的位置，然后逐个位置对B串进行匹配。这样的算法复杂度是O（n*m）。而这里我们要介绍的KMP算法，就是解决这类问题最坏复杂度只要O（n&#43;m）的算法。 KMP是由三个人共同提出的，他们的名字分别是Knuth、Morris、Pratt，这也是为什么这个算法叫KMP的原因，就是取了三个人的首字母。 1.2 原理：# 现假设我们有两个串A（ab">
     <meta name="generator" content="Hugo 0.92.2" />
     
     
@@ -32,19 +32,19 @@
     
     
     <meta property="og:title" content="我的字符串报告（AC自动机详，后缀数组无）" />
-<meta property="og:description" content="上个学期开学的时候做的字符串报告，觉得还有些价值，做了些补充发上来，也许以后用得着。 1 KMP 1.1 概念： KMP是一种用来处理字符串匹配的算法。通俗的讲就是给你一个串A（ababababbc）和一个串B（ababbc），问你A串中是否包含B串。 解决这类问题的朴素算法就是枚举A串开始的位置，然后逐个位置对B串进行匹配。这样的算法复杂度是O（n*m）。而这里我们要介绍的KMP算法，就是解决这类问题最坏复杂度只要O（n&#43;m）的算法。 KMP是由三个人共同提出的，他们的名字分别是Knuth、Morris、Pratt，这也是为什么这个算法叫KMP的原因，就是取了三个人的首字母。 1.2 原理： 现假设我们有两个串A（abab" />
+<meta property="og:description" content="上个学期开学的时候做的字符串报告，觉得还有些价值，做了些补充发上来，也许以后用得着。 1 KMP# 1.1 概念：# KMP是一种用来处理字符串匹配的算法。通俗的讲就是给你一个串A（ababababbc）和一个串B（ababbc），问你A串中是否包含B串。 解决这类问题的朴素算法就是枚举A串开始的位置，然后逐个位置对B串进行匹配。这样的算法复杂度是O（n*m）。而这里我们要介绍的KMP算法，就是解决这类问题最坏复杂度只要O（n&#43;m）的算法。 KMP是由三个人共同提出的，他们的名字分别是Knuth、Morris、Pratt，这也是为什么这个算法叫KMP的原因，就是取了三个人的首字母。 1.2 原理：# 现假设我们有两个串A（ab" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://wonderflow.info/posts/2012/09/05/e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2012-09-05T05:45:23+00:00" />
 <meta property="article:modified_time" content="2012-09-05T05:45:23+00:00" />
 
 <meta itemprop="name" content="我的字符串报告（AC自动机详，后缀数组无）">
-<meta itemprop="description" content="上个学期开学的时候做的字符串报告，觉得还有些价值，做了些补充发上来，也许以后用得着。 1 KMP 1.1 概念： KMP是一种用来处理字符串匹配的算法。通俗的讲就是给你一个串A（ababababbc）和一个串B（ababbc），问你A串中是否包含B串。 解决这类问题的朴素算法就是枚举A串开始的位置，然后逐个位置对B串进行匹配。这样的算法复杂度是O（n*m）。而这里我们要介绍的KMP算法，就是解决这类问题最坏复杂度只要O（n&#43;m）的算法。 KMP是由三个人共同提出的，他们的名字分别是Knuth、Morris、Pratt，这也是为什么这个算法叫KMP的原因，就是取了三个人的首字母。 1.2 原理： 现假设我们有两个串A（abab"><meta itemprop="datePublished" content="2012-09-05T05:45:23+00:00" />
+<meta itemprop="description" content="上个学期开学的时候做的字符串报告，觉得还有些价值，做了些补充发上来，也许以后用得着。 1 KMP# 1.1 概念：# KMP是一种用来处理字符串匹配的算法。通俗的讲就是给你一个串A（ababababbc）和一个串B（ababbc），问你A串中是否包含B串。 解决这类问题的朴素算法就是枚举A串开始的位置，然后逐个位置对B串进行匹配。这样的算法复杂度是O（n*m）。而这里我们要介绍的KMP算法，就是解决这类问题最坏复杂度只要O（n&#43;m）的算法。 KMP是由三个人共同提出的，他们的名字分别是Knuth、Morris、Pratt，这也是为什么这个算法叫KMP的原因，就是取了三个人的首字母。 1.2 原理：# 现假设我们有两个串A（ab"><meta itemprop="datePublished" content="2012-09-05T05:45:23+00:00" />
 <meta itemprop="dateModified" content="2012-09-05T05:45:23+00:00" />
-<meta itemprop="wordCount" content="10376">
+<meta itemprop="wordCount" content="10389">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="我的字符串报告（AC自动机详，后缀数组无）"/>
-<meta name="twitter:description" content="上个学期开学的时候做的字符串报告，觉得还有些价值，做了些补充发上来，也许以后用得着。 1 KMP 1.1 概念： KMP是一种用来处理字符串匹配的算法。通俗的讲就是给你一个串A（ababababbc）和一个串B（ababbc），问你A串中是否包含B串。 解决这类问题的朴素算法就是枚举A串开始的位置，然后逐个位置对B串进行匹配。这样的算法复杂度是O（n*m）。而这里我们要介绍的KMP算法，就是解决这类问题最坏复杂度只要O（n&#43;m）的算法。 KMP是由三个人共同提出的，他们的名字分别是Knuth、Morris、Pratt，这也是为什么这个算法叫KMP的原因，就是取了三个人的首字母。 1.2 原理： 现假设我们有两个串A（abab"/>
+<meta name="twitter:description" content="上个学期开学的时候做的字符串报告，觉得还有些价值，做了些补充发上来，也许以后用得着。 1 KMP# 1.1 概念：# KMP是一种用来处理字符串匹配的算法。通俗的讲就是给你一个串A（ababababbc）和一个串B（ababbc），问你A串中是否包含B串。 解决这类问题的朴素算法就是枚举A串开始的位置，然后逐个位置对B串进行匹配。这样的算法复杂度是O（n*m）。而这里我们要介绍的KMP算法，就是解决这类问题最坏复杂度只要O（n&#43;m）的算法。 KMP是由三个人共同提出的，他们的名字分别是Knuth、Morris、Pratt，这也是为什么这个算法叫KMP的原因，就是取了三个人的首字母。 1.2 原理：# 现假设我们有两个串A（ab"/>
 
 	
   </head>
@@ -93,6 +93,16 @@
       
 <div class="ananke-socials">
   
+    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
     <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
       
         <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
@@ -138,6 +148,14 @@
 
   <div id="sharing" class="mt3 ananke-socials">
     
+      
+      <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2012/09/05/e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/&amp;text=%e6%88%91%e7%9a%84%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%8a%a5%e5%91%8a%ef%bc%88AC%e8%87%aa%e5%8a%a8%e6%9c%ba%e8%af%a6%ef%bc%8c%e5%90%8e%e7%bc%80%e6%95%b0%e7%bb%84%e6%97%a0%ef%bc%89" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
+        
+        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+        
+      </a>
+    
   </div>
 
 
@@ -152,24 +170,26 @@
     </p>
     
     
-    <time class="f6 mv4 dib tracked"
-      datetime="2012-09-05T05:45:23Z">September 5, 2012</time>
+    <time class="f6 mv4 dib tracked" datetime="2012-09-05T05:45:23Z" >September 5, 2012</time>
 
     
     
     <span class="f6 mv4 dib tracked"> - 21 minutes read</span>
-    <span class="f6 mv4 dib tracked"> - 10376 words</span>
+    <span class="f6 mv4 dib tracked"> - 10389 words</span>
     
   </header>
-  <div
-    class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-100-l"><p>上个学期开学的时候做的字符串报告，觉得还有些价值，做了些补充发上来，也许以后用得着。</p>
-<h1 id="1-kmp">1 KMP</h1>
-<h2 id="11-概念">1.1 概念：</h2>
-<p>KMP是一种用来处理字符串匹配的算法。通俗的讲就是给你一个串A（ababababbc）和一个串B（ababbc），问你A串中是否包含B串。
+  <div class="nested-copy-line-height lh-copy serif f4 nested-links
+    nested-img mid-gray pr4-l w-100-l"><p>上个学期开学的时候做的字符串报告，觉得还有些价值，做了些补充发上来，也许以后用得着。</p>
+<h1 id="1-kmp">
+    1 KMP<a class="hash-link" href="#1-kmp" title="Direct link to heading">#</a>
+</h1><h2 id="11-概念">
+    1.1 概念：<a class="hash-link" href="#11-%e6%a6%82%e5%bf%b5" title="Direct link to heading">#</a>
+</h2><p>KMP是一种用来处理字符串匹配的算法。通俗的讲就是给你一个串A（ababababbc）和一个串B（ababbc），问你A串中是否包含B串。
 解决这类问题的朴素算法就是枚举A串开始的位置，然后逐个位置对B串进行匹配。这样的算法复杂度是O（n*m）。而这里我们要介绍的KMP算法，就是解决这类问题最坏复杂度只要O（n+m）的算法。</p>
 <p>KMP是由三个人共同提出的，他们的名字分别是Knuth、Morris、Pratt，这也是为什么这个算法叫KMP的原因，就是取了三个人的首字母。</p>
-<h2 id="12-原理">1.2 原理：</h2>
-<p>现假设我们有两个串A（ababababbc）和B（ababbc），然后我们有两个指针i和j，表示A[i-j+1..i]和B[1..j]完全相等。让我们来看一下KMP的工作过程。
+<h2 id="12-原理">
+    1.2 原理：<a class="hash-link" href="#12-%e5%8e%9f%e7%90%86" title="Direct link to heading">#</a>
+</h2><p>现假设我们有两个串A（ababababbc）和B（ababbc），然后我们有两个指针i和j，表示A[i-j+1..i]和B[1..j]完全相等。让我们来看一下KMP的工作过程。
 在匹配的过程中，i不断的增加，随着i的增加，j相应的变化，如果A[i] == B[j]那么i和j一起增加，如果A[i]&lt;&gt;B[j]，那么j就需要减小，来找到另外一个较小的j使得A[i-j+1..i]和B[1..j]完全相等继续成立。当然，我们的j自然是减小的越少越好。
 我们看到下面，i匹配到4的时候，i和j一直是相等的，所以i和j一起递增。但是当i和j都是5的时候，A[5]&lt;&gt;B[5]，那么怎么办呢，我们必须要减小j.假设我们要减小到j’，那么这个j’是多少呢。</p>
 <!-- raw HTML omitted -->
@@ -224,25 +244,31 @@ begin
    next[i]:=j;
 end;
 </code></pre><p>是不是发现跟上面的伪代码惊人的相似？其实快速预处理的过程就是把模式串本身既当模式串又当主串来解的。</p>
-<h2 id="13-应用">1.3 应用：</h2>
-<p>了解了KMP的算法原理，我们来做2到题目。</p>
-<h3 id="一poj2752">一、POJ2752</h3>
-<p>题意是求一个串所有的前缀等于后缀的子串长度。（注意不是回文串）
+<h2 id="13-应用">
+    1.3 应用：<a class="hash-link" href="#13-%e5%ba%94%e7%94%a8" title="Direct link to heading">#</a>
+</h2><p>了解了KMP的算法原理，我们来做2到题目。</p>
+<h3 id="一poj2752">
+    一、POJ2752<a class="hash-link" href="#%e4%b8%80poj2752" title="Direct link to heading">#</a>
+</h3><p>题意是求一个串所有的前缀等于后缀的子串长度。（注意不是回文串）
 我们发现，我们KMP中求出的next数组，本身就是具有这个特点的，不过我们next数组中求出的是当前最大的前缀等于后缀的前缀子串的位置。那么我们只要递归的输出next数组就行了。（next数组有值的时候递归，为0时输出）</p>
-<h3 id="二poj2406">二、POJ2406</h3>
-<p>这题的题意是求一个字符串的最小循环节。（如ababab的最小循环节就是ab，而aaaa的最小循环节是a）
+<h3 id="二poj2406">
+    二、POJ2406<a class="hash-link" href="#%e4%ba%8cpoj2406" title="Direct link to heading">#</a>
+</h3><p>这题的题意是求一个字符串的最小循环节。（如ababab的最小循环节就是ab，而aaaa的最小循环节是a）
 这个题目非常有助于对next数组的理解。</p>
 <p>大家知道，next数组存的是最大的“前缀等于后缀”的前缀末尾的位置。如果我们的单词本身不能分割成更小的循环节，比如说ab，那么next数组里面存的一定是0.
 <a href="https://wonderflow.info/images/2012-09-05-e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/1.png"><img src="https://wonderflow.info/images/2012-09-05-e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/1.png" alt=""></a>
 接下来我们看由k个最小循环节构成的next数组里存的情况。（左图）
 那么现在结果已经很显然了。如果有一个字符串s,长度是len,它的失败函数是next，如果len能被len-next[len]整除，那么    len-next[len]就是我们要求的那个子串的长度，与之对应的字符串，就是我们想得到的子串.</p>
-<h1 id="2-字典树trie-tree">2 字典树（Trie Tree）</h1>
-<p><a href="https://wonderflow.info/images/2012-09-05-e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/2.png"><img src="https://wonderflow.info/images/2012-09-05-e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/2.png" alt=""></a></p>
-<h2 id="21-概念">2.1 概念：</h2>
-<p>顾名思义,字典树就是一种树形结构，也叫单词查找树、trie树，优点是利用字符串的公共前缀来节约存储空间，最大限度地减少无谓的字符串比较。
+<h1 id="2-字典树trie-tree">
+    2 字典树（Trie Tree）<a class="hash-link" href="#2-%e5%ad%97%e5%85%b8%e6%a0%91trie-tree" title="Direct link to heading">#</a>
+</h1><p><a href="https://wonderflow.info/images/2012-09-05-e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/2.png"><img src="https://wonderflow.info/images/2012-09-05-e68891e79a84e5ad97e7aca6e4b8b2e68aa5e5918a/2.png" alt=""></a></p>
+<h2 id="21-概念">
+    2.1 概念：<a class="hash-link" href="#21-%e6%a6%82%e5%bf%b5" title="Direct link to heading">#</a>
+</h2><p>顾名思义,字典树就是一种树形结构，也叫单词查找树、trie树，优点是利用字符串的公共前缀来节约存储空间，最大限度地减少无谓的字符串比较。
 假设我们现在有这些单词 he,she,may,man,say,那么我们所构成的字典树如又图所示。</p>
-<h2 id="22-结构介绍">2.2 结构介绍：</h2>
-<p>特点：</p>
+<h2 id="22-结构介绍">
+    2.2 结构介绍：<a class="hash-link" href="#22-%e7%bb%93%e6%9e%84%e4%bb%8b%e7%bb%8d" title="Direct link to heading">#</a>
+</h2><p>特点：</p>
 <ol>
 <li>根节点不包含任何字母，而除它以外的每个结点都仅包含一个字母（事实上也可以将一个数字看成字母来建字母树）；</li>
 <li>从根结点到某个结点，路径上经过的字母依次连接起来所构成的字母序列，称为该结点对应的单词。单词列表中的每个词，都是该字母树某个结点所对应的单词；</li>
@@ -251,19 +277,23 @@ end;
 <p>很明显的能看出来，字典树就是尽可能多的把相同的前缀放到一起来节省存储空间。
 字典树的插入（Insert）、删除（ Delete）和查找（Find）都非常简单，用一个一重循环即可，即第i 次循环找到前i 个字母所对应的子树，然后进行相应的操作。实现这棵字母树，我们用最常见的数组保存即可，当然也可以开动态的指针类型。（对于实际的ACM题目，我们一般不开动态的指针类型，因为动态的耗时多，不容易释放。）</p>
 <p>根据以上特点，我们可以看出，字典树是一种简单的数据结构。</p>
-<h2 id="23-应用">2.3 应用：</h2>
-<p>根据我的理解，字典树最大的应用有4点。</p>
+<h2 id="23-应用">
+    2.3 应用：<a class="hash-link" href="#23-%e5%ba%94%e7%94%a8" title="Direct link to heading">#</a>
+</h2><p>根据我的理解，字典树最大的应用有4点。</p>
 <p>一、 存储并hash海量的单词以达到快速检索的目的，查找单词的复杂度O（len），非常高效。从本质上来讲，字典树就是一种高效的hash函数结构。</p>
 <p>二、 字典树在对字符串排序上，也是惊人的高效。所有的复杂度就是读入和输出的线性复杂度。</p>
 <p>三、 字典树在最长公共前缀问题（LCP）上的应用。不难发现，对于多个串，如果我们把这多个串构建起一颗字典树，那么我们很容易就发现，对与任意两个串求其最长公共前缀其实就是求这两个串在树上的最近公共祖先（LCA）。</p>
 <p>四、 最后一点，也可以说是trie树的拓展，那就是下面要说的AC自动机啦。</p>
 <p>【附：LCA离线算法Tarjan】
 　　利用并查集优越的时空复杂度，我们可以实现LCA问题的O(n+Q)算法，这里Q表示询问的次数。Tarjan算法基于深度优先搜索的框架，对于新搜索到 的一个结点，首先创建由这个结点构成的集合，再对当前结点的每一个子树进行搜索，每搜索完一棵子树，则可确定子树内的LCA询问都已解决。其他的LCA询 问的结果必然在这个子树之外，这时把子树所形成的集合与当前结点的集合合并，并将当前结点设为这个集合的祖先。之后继续搜索下一棵子树，直到当前结点的所 有子树搜索完。这时把当前结点也设为已被检查过的，同时可以处理有关当前结点的LCA询问，如果有一个从当前结点到结点v的询问，且v已被检查过，则由于 进行的是深度优先搜索，当前结点与v的最近公共祖先一定还没有被检查，而这个最近公共祖先的包涵v的子树一定已经搜索过了，那么这个最近公共祖先一定是v 所在集合的祖先。</p>
-<h1 id="3-ac自动机aho-corasick-automation">3 AC自动机（Aho-Corasick automation）</h1>
-<h2 id="31-概念">3.1 概念：</h2>
-<p>AC自动机（Aho-Corasick automation），该算法在1975年产生于贝尔实验室，是著名的多模匹配算法之一。一个常见的例子就是给出n个单词，再给出一段包含m个字符的文章，让你找出有多少个单词在文章里出现过。要搞懂AC自动机，先得有模式树（字典树）Trie和KMP模式匹配算法的基础知识。AC自动机算法分为3步：构造一棵Trie树，构造失败指针和模式匹配过程。</p>
-<h2 id="32-原理">3.2 原理：</h2>
-<p>为了完成AC自动机，我们必须构造一颗trie树，如何构造trie树已经在上面一章讲过了。那么现在假设我们已经构造好一颗trie树了。
+<h1 id="3-ac自动机aho-corasick-automation">
+    3 AC自动机（Aho-Corasick automation）<a class="hash-link" href="#3-ac%e8%87%aa%e5%8a%a8%e6%9c%baaho-corasick-automation" title="Direct link to heading">#</a>
+</h1><h2 id="31-概念">
+    3.1 概念：<a class="hash-link" href="#31-%e6%a6%82%e5%bf%b5" title="Direct link to heading">#</a>
+</h2><p>AC自动机（Aho-Corasick automation），该算法在1975年产生于贝尔实验室，是著名的多模匹配算法之一。一个常见的例子就是给出n个单词，再给出一段包含m个字符的文章，让你找出有多少个单词在文章里出现过。要搞懂AC自动机，先得有模式树（字典树）Trie和KMP模式匹配算法的基础知识。AC自动机算法分为3步：构造一棵Trie树，构造失败指针和模式匹配过程。</p>
+<h2 id="32-原理">
+    3.2 原理：<a class="hash-link" href="#32-%e5%8e%9f%e7%90%86" title="Direct link to heading">#</a>
+</h2><p>为了完成AC自动机，我们必须构造一颗trie树，如何构造trie树已经在上面一章讲过了。那么现在假设我们已经构造好一颗trie树了。
 初始状态就是AC自动机的指针在root结点上。
 AC自动机的运作取决于3个函数。</p>
 <p>1、下步函数g(q,a)，表示在当前结点为q，而我们要匹配的目标字符是a的情况下，我们要跳转到哪个结点。
@@ -314,8 +344,9 @@ while not isEmpty(Q) do
 最后就是说明一下out(q)函数，为什么要加后面的out(f(u))，f(u)匹配出来的就是以u结点结尾的串的后缀，那显然也是成立的。</p>
 <p>显然，阶段二的复杂度就是广度优先搜索遍历整棵树的复杂度。
 复杂度证明与前面的类似</p>
-<h2 id="33-应用">3.3 应用：</h2>
-<p>AC自动机最大的应用自然就是多模式串匹配了。以网上流传最光的HDU2222为例。
+<h2 id="33-应用">
+    3.3 应用：<a class="hash-link" href="#33-%e5%ba%94%e7%94%a8" title="Direct link to heading">#</a>
+</h2><p>AC自动机最大的应用自然就是多模式串匹配了。以网上流传最光的HDU2222为例。
 算法分三步走，构造一棵Trie树，构造失败指针和模式匹配过程
 一，构造一棵Trie树（此处略过，注意结点上存一个count值表示这个单词出现过几次）
 二，构造失败指针：（此处再概括一遍）
@@ -1803,6 +1834,9 @@ int main(){
 <div class="mt6 instapaper_ignoref">
       
       
+      <script src="https://utteranc.es/client.js" repo="wonderflow/wonderflow.github.io" issue-term="pathname"
+        label="Comment" theme="github-light" crossorigin="anonymous" async>
+        </script>
     </div>
   </div>
 
@@ -1824,6 +1858,16 @@ int main(){
     <div>
 <div class="ananke-socials">
   
+    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
     <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
       
         <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
@@ -1839,6 +1883,18 @@ int main(){
 </div>
 </div>
     <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3XG75RG8W"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Z3XG75RG8W', { 'anonymize_ip': false });
+}
+</script>
+
   </div>
 </footer>
   </body>

@@ -13,7 +13,7 @@
       <pubDate>Wed, 17 Dec 2014 08:08:26 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2014/12/17/cf-releasee7bb93e69e84e8a7a3e69e90/</guid>
-      <description>1. 制作时的cf-release结构解析 此处指的release统一为CloudFoundry官方给出的cf-release，不做修改。 1.1. 通过载入cf-release文件夹下config/final.yml文件，获得需要下载release文件的远程服务器网址，默认使用的提供商是s3，地址是：blob.cfblob.com 1.2. 通过config/blobs.yml，可以得到所有blobs的object_id，通过服务器地址+object_id拼接的字符串即可下载到相对应的blob内容。 1.3. 默认存储的位置为cf-release/.blobs，存储的文件名为sha1值，下载完成后会在cf-release/bl</description>
+      <description>1. 制作时的cf-release结构解析# 此处指的release统一为CloudFoundry官方给出的cf-release，不做修改。 1.1. 通过载入cf-release文件夹下config/final.yml文件，获得需要下载release文件的远程服务器网址，默认使用的提供商是s3，地址是：blob.cfblob.com 1.2. 通过config/blobs.yml，可以得到所有blobs的object_id，通过服务器地址+object_id拼接的字符串即可下载到相对应的blob内容。 1.3. 默认存储的位置为cf-release/.blobs，存储的文件名为sha1值，下载完成后会在cf-release/b</description>
     </item>
     
     <item>
@@ -22,7 +22,7 @@
       <pubDate>Wed, 22 Oct 2014 03:31:08 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2014/10/22/e58c97e4baaccontainere68a80e69cafe5a4a7e4bc9a/</guid>
-      <description>可以看我的印象笔记共享，格式更加漂亮一些。 此次去北京参加的container大会，主办方为csdn，实际会议主持为docker中文社区创始人马全一。会议时间为一天，从早上九点开始一直到晚上六点结束，共包含16个主题。虽说是container大会，但实际上基本围绕docker展开。期间也讲到了社区较为火热的IaaS平台openstack，以及PaaS平台Cloudfoundry，总的来说收获颇丰。 会议流程： 以下我将按每个有收获的主题分别讲述我的思考和总结。 Jrome（Hello Container Ops） 正如会议流程所示，第一个讲的是docker的开发工程师Jrome。我觉得他讲述了以下两点比较有意思： 1. docker con</description>
+      <description>可以看我的印象笔记共享，格式更加漂亮一些。 此次去北京参加的container大会，主办方为csdn，实际会议主持为docker中文社区创始人马全一。会议时间为一天，从早上九点开始一直到晚上六点结束，共包含16个主题。虽说是container大会，但实际上基本围绕docker展开。期间也讲到了社区较为火热的IaaS平台openstack，以及PaaS平台Cloudfoundry，总的来说收获颇丰。 会议流程： 以下我将按每个有收获的主题分别讲述我的思考和总结。 Jrome（Hello Container Ops）# 正如会议流程所示，第一个讲的是docker的开发工程师Jrome。我觉得他讲述了以下两点比较有意思： 1. docker co</description>
     </item>
     
     <item>
@@ -40,7 +40,7 @@
       <pubDate>Fri, 28 Feb 2014 04:14:33 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2014/02/28/cloud_controller_nge6ba90e7a081e99885e8afbbe8aeb0e5bd95/</guid>
-      <description>Cloud_Controller_NG源码阅读记录 @(CC阅读)[cloud controller] by wonderflow Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Foundry 平台用来管理控制应用和服务的组件。 官方文档是这么解释CCNG的作用的： 维护一个包含应用、服务、配置信息的数据库(CCDB)。 在blobstore中存储应用的packages和droplets。 通过NATS和其他组件进行通信，包括Droplet Execution Agents (DEAs)、Service Gateways、和 Health Manager（HM）。 其他供用户调用的后端API。 阅读该组件源码，有助于从应用管理的视角理解cloudfoundry的运行</description>
+      <description>Cloud_Controller_NG源码阅读记录# @(CC阅读)[cloud controller] by wonderflow Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Foundry 平台用来管理控制应用和服务的组件。 官方文档是这么解释CCNG的作用的： 维护一个包含应用、服务、配置信息的数据库(CCDB)。 在blobstore中存储应用的packages和droplets。 通过NATS和其他组件进行通信，包括Droplet Execution Agents (DEAs)、Service Gateways、和 Health Manager（HM）。 其他供用户调用的后端API。 阅读该组件源码，有助于从应用管理的视角理解cloudfoundry的运</description>
     </item>
     
     <item>
@@ -49,7 +49,7 @@
       <pubDate>Sun, 15 Dec 2013 15:48:24 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2013/12/15/e3808amapreduce-design-patternse3808be8afbbe4b9a6e7ac94e8aeb0-e6b585e8b088mapreducee8aebee8aea1e6a8a1e5bc8f/</guid>
-      <description>概述 MapReduce是一个基于Hadoop的算法框架。本文将从Hadoop开始介绍，然后重点讲述可用于Hadoop上的Map/Reduce设计模式。 Hadoop简介 Hadoop历史 Hadoop最早起源于Apache Nutch，该项目始于2002年，是Apache Lucence的子项目之一。该项目的出现源于两篇论文，一篇是2003年发表的“关于谷歌分布式文件系统”（NDFS：Nutch Distributed File System），描述了谷歌搜索引擎网页相关数据存储架构，解决Nutch遇到的网页抓取和索引过程中产生的超大文件存储需求问题。一篇是2004年发表的“关于谷歌分布式计算框架MapReduce”，描述了谷歌内部最</description>
+      <description>概述# MapReduce是一个基于Hadoop的算法框架。本文将从Hadoop开始介绍，然后重点讲述可用于Hadoop上的Map/Reduce设计模式。 Hadoop简介# Hadoop历史# Hadoop最早起源于Apache Nutch，该项目始于2002年，是Apache Lucence的子项目之一。该项目的出现源于两篇论文，一篇是2003年发表的“关于谷歌分布式文件系统”（NDFS：Nutch Distributed File System），描述了谷歌搜索引擎网页相关数据存储架构，解决Nutch遇到的网页抓取和索引过程中产生的超大文件存储需求问题。一篇是2004年发表的“关于谷歌分布式计算框架MapReduce”，描述了谷歌</description>
     </item>
     
   </channel>
