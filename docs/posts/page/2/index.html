@@ -147,6 +147,28 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/posts/2017/10/18/shu-ju-shou-ji-gong-ju-de-she-ji-yu-zui-jia-shi-jian/" class="link black dim">
+        数据收集工具的设计与最佳实践
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>【本文首先发布于InfoQ】<a href="http://www.infoq.com/cn/articles/data-collection-tool">《数据收集工具的设计与最佳实践》</a></p>
+<p>笔者之前在<a href="http://www.infoq.com/cn/articles/qiniu-big-data-platform-evolution-and-analysis">《七牛大数据平台的演进与大数据分析实践》</a>中提到了已经开源的数据收集工具logkit。本文将深入介绍数据收集的设计思路以及大数据收集背后的细节，为大家提供大数据实战中第一步数据采集的最佳实践。</p>
+<h2 id="数据收集工具对比">
+    数据收集工具对比<a class="hash-link" href="#%e6%95%b0%e6%8d%ae%e6%94%b6%e9%9b%86%e5%b7%a5%e5%85%b7%e5%af%b9%e6%af%94" title="Direct link to heading">#</a>
+</h2><p>目前社区就不乏存在大量优秀的数据收集工具，如有名的Elastic Stack(Elasticsearch、Logstash、Kibana)中的<a href="https://github.com/elastic/logstash">Logstash</a>；CNCF基金会里面有名的<a href="https://github.com/fluent/fluentd">Fluentd</a>；InfluxData公司TICK Stack中的<a href="https://github.com/influxdata/telegraf">Telegraf</a>；Google 出品为Kubernetes定制的<a href="https://github.com/google/cadvisor">cAdvisor</a>；Apache基金会中的顶级项目<a href="https://github.com/apache/flume">Flume</a>。除了早期诞生的诸如Fluentd、Flume等项目，其他项目都是为特定的平台业务定制而成，然后在随后的开源中不断进化，变得更为通用。所以针对特定业务，量身定制一款数据收集工具，是一个较为普遍的需求，也是出现如此众多“轮子”的主要原因。</p>
+<p>让我们先来看看这几种知名开源数据收集工具有哪些特点。</p>
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/posts/2017/09/07/gobao-guan-li-de-qian-shi-jin-sheng/" class="link black dim">
         Go包管理的前世今生
       </a>
@@ -322,23 +344,6 @@
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       <p>说起来2014就这么过去了，站在年月的末尾回望这一年传说中的本命，真是有点伤感。娄老师在QQ空间里说：“QQ上都是老朋友了，所以可以放心的把自己细致的像日记一样的计划列出来让大家看，哪怕完不成也不怕被笑，反倒可以起个监督的效果”。我觉得这个想法也同样适用于我，那么就对着年初的计划讲讲这一年吧。</p>
-    </div>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/2014/12/17/cf-releasee7bb93e69e84e8a7a3e69e90/" class="link black dim">
-        cf-release结构解析
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      1. 制作时的cf-release结构解析# 此处指的release统一为CloudFoundry官方给出的cf-release，不做修改。 1.1. 通过载入cf-release文件夹下config/final.yml文件，获得需要下载release文件的远程服务器网址，默认使用的提供商是s3，地址是：blob.cfblob.com 1.2. 通过config/blobs.yml，可以得到所有blobs的object_id，通过服务器地址+object_id拼接的字符串即可下载到相对应的blob内容。 1.3. 默认存储的位置为cf-release/.blobs，存储的文件名为sha1值，下载完成后会在cf-release/b
     </div>
   </div>
 </div>

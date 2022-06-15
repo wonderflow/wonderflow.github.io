@@ -6,7 +6,16 @@
     <description>Recent content on 奇迹之流WonderfloW</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 14 Jun 2022 14:02:05 +0800</lastBuildDate><atom:link href="https://wonderflow.info/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Jun 2022 15:40:12 +0800</lastBuildDate><atom:link href="https://wonderflow.info/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>KubeVela 1.4：让应用交付更安全、上手更简单、过程更透明</title>
+      <link>https://wonderflow.info/posts/2022-06-15-kubevela-1.4/</link>
+      <pubDate>Wed, 15 Jun 2022 15:40:12 +0800</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2022-06-15-kubevela-1.4/</guid>
+      <description>KubeVela 是一个现代化的软件交付控制平面，目标是让应用的部署和运维在如今的混合多云环境下更简单、敏捷、可靠。自 1.1 版本发布以来，KubeVela 架构上天然打通了企业面向混合多云环境的交付难题，且围绕 OAM 模型提供了充分的可扩展性，赢得了大量企业开发者的喜爱，这也使得 KubeVela 的迭代速度不断加快。 1.2 版本我们发布了开箱即用的可视化控制台，终端用户可以通过界面发布和管理多样化的工作负载；1.3 版本 的发布则完善了以 OAM 模型为核心的扩展体系，提供了丰富的插件功能，并给用户提供了包括 LDAP 权限认证在内的大量企业级功能，同时为企业集成提供了巨大的便利。至今为止，你已经可以在 KubeVela 社区的插件中心里获得 30 多种插件，其中不仅包含了 argocd、</description>
+    </item>
+    
     <item>
       <title>云原生技术（1） - 如何从代码到制作并发布一个 Helm 包？</title>
       <link>https://wonderflow.info/posts/2022-06-14-cloudnative-1/</link>

@@ -2,17 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://wonderflow.info/posts/</loc>
-    <lastmod>2022-06-14T14:02:05+08:00</lastmod>
+    <loc>https://wonderflow.info/posts/2022-06-15-kubevela-1.4/</loc>
+    <lastmod>2022-06-15T15:40:12+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://wonderflow.info/posts/2022-06-14-cloudnative-1/</loc>
-    <lastmod>2022-06-14T14:02:05+08:00</lastmod>
+    <loc>https://wonderflow.info/posts/</loc>
+    <lastmod>2022-06-15T15:40:12+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://wonderflow.info/</loc>
+    <lastmod>2022-06-15T15:40:12+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://wonderflow.info/posts/2022-06-14-cloudnative-1/</loc>
     <lastmod>2022-06-14T14:02:05+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

@@ -245,7 +245,7 @@ git push
 配置路径： settings => Pages
 设置 Sources 指向 master 分支，路径读取 `docs/` 。
 
-![](/static/20220614/github-pages.jpg)
+![](/20220614/github-pages.jpg)
 
 
 6. 至此我们就已经有了一个 helm 仓库了：
