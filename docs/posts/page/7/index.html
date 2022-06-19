@@ -147,6 +147,23 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/posts/2013/12/04/e6b3a1e99da2e58aa0e9b8a1e89b8befbc88e59b9befbc89/" class="link black dim">
+        泡面加鸡蛋（四）
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      杭州的天气跟南方大多数城市一样，随着桔梗的燃烧，一天比一天差了下去。而我负责的项目也因为临近上线，显得跟这鬼天气一样，越来越有些糟糕。毕竟还是个毛躁的新人啊，要学的太多。 晚上跟亮哥加班回来，一起在雾霾中从百脑走回了玉泉。月光穿不过雾霾，但是霓虹灯依旧闪亮。其实穿着时髦的人依旧穿梭在灯红酒绿、篮球场足球场上也依旧灯火通明，仿佛丝毫没有受到这天气预报中所说的严重污染的影响。唯一的改变只是路上少了些行人的步伐，和那些零零星星的地摊。 一路上，我们聊了很多。从亮哥口中，我知道了那个“他们都是徒子徒孙”的故事，我们都很崇拜李老师，为他自豪；也知道了除了实验室和宿舍，还有图书馆和教七适合自习。亮哥还告诉我，
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/posts/2013/12/01/e8afbbe3808ae58fb2e89282e5a4abc2b7e4b994e5b883e696afe4bca0e3808be79090e8aeb0/" class="link black dim">
         读《史蒂夫·乔布斯传》琐记
       </a>
@@ -255,23 +272,6 @@
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       最近，为了装个runit，装了2天，各种问题都出现了，始终无法解决，都快装哭了。 最后用排除法，一个个排除问题，发现是使用的网易ubuntu源的问题。 哎，看来从研究设计到工程细节，还是有很大的技术距离的。 静默安装方法 {% codeblock %} sudo DEBIAN_FRONTEND=noninteractive apt-get install -f -y &ndash;force-yes &ndash;no-install-recommends runit {% endcodeblock %} 最后为了安全稳定，决定自己建立ubuntu的局域网源，这样后面安装软件也会更快。 1、安装依赖软件 {% codeblock %} sudo apt-get install dpkg-dev {% endcodeblock %} 2、将 /var/cache/apt/archives/下的所有deb文件拷到(cp命令，图形界面都没问题) 你想要的地方，拷贝前建议执行一下 {% codeblock %} sudo apt-get autoclean {% endcodeblock %} 比方说拷至home下新建的deb文件夹 {% codeblock %} sudo cp /var/cache/apt/archives/*.deb /var/www/deb/ {% endcodeblock %} 3、拷贝完成后到/var/
-    </div>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/2013/10/14/rubye78988e79a84crash_recoverye887aae58aa8e58c96e6b58be8af95e5b7a5e585b7/" class="link black dim">
-        Ruby版的crash_recovery自动化测试工具
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      高可靠性（High availability）是个相当有意义课题，在现有大型集群机器上，有着广泛的应用。如今，针对这个命题的实现，各大公司都提供了方方面面的方式。针对高可靠性的测试，也就有了意义。 正好近期在学ruby，于是就尝试着用ruby做了一个crash——recovery测试工具。 工具分为两块，第一块是破坏虚拟机，使虚拟机突然宕机。第二块就是杀虚拟机中相应的进程。 最终都是要看进行了这些破坏以后，系统是否能够自动恢复。 破坏虚拟机，使其突然宕机，用到的是我之前博客中写到的方法《Linux Magic Key — SysRq》，使用&quot;echo c &gt; /proc/sysrq-trigger&quot;命令让虚拟
     </div>
   </div>
 </div>
