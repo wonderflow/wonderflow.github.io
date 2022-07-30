@@ -50,7 +50,7 @@ CLONE_NEWUSER
 
 
 ">
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.101.0" />
     
     
     
@@ -170,7 +170,7 @@ CLONE_NEWUSER
 
 "><meta itemprop="datePublished" content="2015-03-18T08:36:27+00:00" />
 <meta itemprop="dateModified" content="2015-03-18T08:36:27+00:00" />
-<meta itemprop="wordCount" content="15133">
+<meta itemprop="wordCount" content="15122">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker背后的内核知识——Namespace资源隔离"/>
 <meta name="twitter:description" content="孙健波
@@ -339,7 +339,7 @@ CLONE_NEWUSER
     
     
     <span class="f6 mv4 dib tracked"> - 31 minutes read</span>
-    <span class="f6 mv4 dib tracked"> - 15133 words</span>
+    <span class="f6 mv4 dib tracked"> - 15122 words</span>
     
   </header>
   <div class="nested-copy-line-height lh-copy serif f4 nested-links
@@ -457,12 +457,12 @@ int main (){
   pid_t fpid; //fpid表示fork函数返回的值
   int count=0;
   fpid=fork();
-  if (fpid &lt; 0)printf(&quot;error in fork!&quot;);
+  if (fpid &lt; 0)printf(&#34;error in fork!&#34;);
   else if (fpid == 0) {
-    printf(&quot;I am child. Process id is %d/n&quot;,getpid());
+    printf(&#34;I am child. Process id is %d/n&#34;,getpid());
   }
   else {
-    printf(&quot;i am parent. Process id is %d/n&quot;,getpid());
+    printf(&#34;i am parent. Process id is %d/n&#34;,getpid());
   }
   return 0;
 }
@@ -488,21 +488,21 @@ I am child. Process id is 28366
 
 static char child_stack[STACK_SIZE];
 char* const child_args[] = {
-  &quot;/bin/bash&quot;,
+  &#34;/bin/bash&#34;,
   NULL
 };
 
 int child_main(void* args) {
-  printf(&quot;在子进程中!\n&quot;);
+  printf(&#34;在子进程中!\n&#34;);
   execv(child_args[0], child_args);
   return 1;
 }
 
 int main() {
-  printf(&quot;程序开始: \n&quot;);
+  printf(&#34;程序开始: \n&#34;);
   int child_pid = clone(child_main, child_stack + STACK_SIZE, SIGCHLD, NULL);
   waitpid(child_pid, NULL, 0);
-  printf(&quot;已退出\n&quot;);
+  printf(&#34;已退出\n&#34;);
   return 0;
 }
 </code></pre><p>编译并运行上述代码，执行如下命令，效果如下。</p>
@@ -516,8 +516,8 @@ root@local:~#
 </code></pre><p>下面，我们将修改代码，加入UTS隔离。<strong>运行代码需要root权限</strong>，为了防止普通用户任意修改系统主机名导致<code>set-user-ID</code>相关的应用运行出错。</p>
 <pre tabindex="0"><code>//[...]
 int child_main(void* arg) {
-  printf(&quot;在子进程中!\n&quot;);
-  sethostname(&quot;Changed Namespace&quot;, 12);
+  printf(&#34;在子进程中!\n&#34;);
+  sethostname(&#34;Changed Namespace&#34;, 12);
   execv(child_args[0], child_args);
   return 1;
 }
@@ -726,12 +726,12 @@ ip netns exec test_ns iptables -L
 <pre tabindex="0"><code>#include &lt;sys/capability.h&gt;
 </code></pre><p>其次在子进程函数中加入<code>geteuid()</code>和<code>getegid()</code>得到namespace内部的user ID，其次通过<code>cap_get_proc()</code>得到当前进程的用户拥有的权限，并通过<code>cap_to_text（）</code>输出。</p>
 <pre tabindex="0"><code>int child_main(void* args) {
-        printf(&quot;在子进程中!\n&quot;);
+        printf(&#34;在子进程中!\n&#34;);
         cap_t caps;
-        printf(&quot;eUID = %ld;  eGID = %ld;  &quot;,
+        printf(&#34;eUID = %ld;  eGID = %ld;  &#34;,
                         (long) geteuid(), (long) getegid());
         caps = cap_get_proc();
-        printf(&quot;capabilities: %s\n&quot;, cap_to_text(caps, NULL));
+        printf(&#34;capabilities: %s\n&#34;, cap_to_text(caps, NULL));
         execv(child_args[0], child_args);
         return 1;
 }
@@ -770,27 +770,27 @@ nobody@ubuntu$
 <pre tabindex="0"><code>//[...]
 void set_uid_map(pid_t pid, int inside_id, int outside_id, int length) {
     char path[256];
-    sprintf(path, &quot;/proc/%d/uid_map&quot;, getpid());
-    FILE* uid_map = fopen(path, &quot;w&quot;);
-    fprintf(uid_map, &quot;%d %d %d&quot;, inside_id, outside_id, length);
+    sprintf(path, &#34;/proc/%d/uid_map&#34;, getpid());
+    FILE* uid_map = fopen(path, &#34;w&#34;);
+    fprintf(uid_map, &#34;%d %d %d&#34;, inside_id, outside_id, length);
     fclose(uid_map);
 }
 void set_gid_map(pid_t pid, int inside_id, int outside_id, int length) {
     char path[256];
-    sprintf(path, &quot;/proc/%d/gid_map&quot;, getpid());
-    FILE* gid_map = fopen(path, &quot;w&quot;);
-    fprintf(gid_map, &quot;%d %d %d&quot;, inside_id, outside_id, length);
+    sprintf(path, &#34;/proc/%d/gid_map&#34;, getpid());
+    FILE* gid_map = fopen(path, &#34;w&#34;);
+    fprintf(gid_map, &#34;%d %d %d&#34;, inside_id, outside_id, length);
     fclose(gid_map);
 }
 int child_main(void* args) {
   cap_t caps;
-  printf(&quot;在子进程中!\n&quot;);
+  printf(&#34;在子进程中!\n&#34;);
   set_uid_map(getpid(), 0, 1000, 1);
   set_gid_map(getpid(), 0, 1000, 1);
-  printf(&quot;eUID = %ld;  eGID = %ld;  &quot;,
+  printf(&#34;eUID = %ld;  eGID = %ld;  &#34;,
       (long) geteuid(), (long) getegid());
   caps = cap_get_proc();
-  printf(&quot;capabilities: %s\n&quot;, cap_to_text(caps, NULL));
+  printf(&#34;capabilities: %s\n&#34;, cap_to_text(caps, NULL));
   execv(child_args[0], child_args);
   return 1;
 }

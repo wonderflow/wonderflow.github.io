@@ -7,7 +7,7 @@
     <title>集训日志第四篇 | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="今天鱼头组织了第一次组队赛，用的是浙大2010年九月份的月赛。题目质量不错，发现有一份watashi的解题报告，大家可以过去围观，上面还有各题的代码，对于想要赛后AK的队员非常有帮助。 鱼头让我们对照着比赛各个阶段的rank来做下总结，那么就对着rank说吧。 第一个小时的时候，节奏不错，10分钟左右的时候，我和老高讨论出A的水题本质，25分钟的时候敲完A，wa了。中间嘉炜把G题的思路搞了出来同时在我wa了以后开始敲，在47~48分钟，嘉炜AC了G，我和老高也讨论出了A的错误，ans每次要初始化为INF，忘了初始化。 看图片也能发现，第二个小时的时候有点茫然，快速把水题切完后，大家花了一个小时看了一">
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.101.0" />
     
     
     
@@ -252,24 +252,24 @@ void init()
 
 void print()
 {
-	cout&lt;&lt;&quot;src:&quot;&lt;&lt;endl;
+	cout&lt;&lt;&#34;src:&#34;&lt;&lt;endl;
 	for(int i=0;i&lt;src.size();i++)
 	{
 		SD tp = src[i];
 		while(!tp.empty())
 		{
-			cout&lt;&lt;tp.top()&lt;&lt;&quot; &quot;;
+			cout&lt;&lt;tp.top()&lt;&lt;&#34; &#34;;
 			tp.pop();
 		}
 		cout&lt;&lt;endl;
 	}
-	cout&lt;&lt;&quot;des:&quot;&lt;&lt;endl;
+	cout&lt;&lt;&#34;des:&#34;&lt;&lt;endl;
 	for(int i=0;i&lt;des.size();i++)
 	{
 		SD tp = des[i];
 		while(!tp.empty())
 		{
-			cout&lt;&lt;tp.top()&lt;&lt;&quot; &quot;;
+			cout&lt;&lt;tp.top()&lt;&lt;&#34; &#34;;
 			tp.pop();
 		}
 		cout&lt;&lt;endl;
@@ -381,41 +381,41 @@ int main()
 	int n;
 	double gpa;
 	char str1[100],str2[100];
-	while(scanf(&quot;%d&quot;,&amp;n)!=EOF)
+	while(scanf(&#34;%d&#34;,&amp;n)!=EOF)
 	{
 		ai = hi = oi = 0;
 		fai = foi = fhi = 0;
 		for(int i=0;i&lt;n;i++)
 		{
-			scanf(&quot;%s%s%lf&quot;,str1,str2,&amp;gpa);
+			scanf(&#34;%s%s%lf&#34;,str1,str2,&amp;gpa);
 			switch(str1[1])
 			{
-				case 'o'://Computer
+				case &#39;o&#39;://Computer
 					com[oi++] = gpa;
 					break;
-				case 'h'://Chinense
+				case &#39;h&#39;://Chinense
 					chi[hi++] = gpa;
 					break;
-				case 'a':
+				case &#39;a&#39;:
 					math[ai++] = gpa;
 					break;
 			}
 			switch(str2[1])
 			{
-				case 'o':
+				case &#39;o&#39;:
 					fcom[foi++] = gpa;
 					break;
-				case 'h':
+				case &#39;h&#39;:
 					fchi[fhi++] = gpa;
 					break;
-				case 'a':
+				case &#39;a&#39;:
 					fmath[fai++] = gpa;
 					break;
 			}
 		}
 		init();
 		//print();
-		printf(&quot;%d\n&quot;,bfs());
+		printf(&#34;%d\n&#34;,bfs());
 
 
 	}

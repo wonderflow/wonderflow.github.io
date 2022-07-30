@@ -7,7 +7,7 @@
     <title>云原生技术（1） - 如何从代码到制作并发布一个 Helm 包？ | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Helm 是什么？# 云原生领域应用打包和分发的事实标准，Helm Chart 通常包含 Docker 镜像及其基础设施配置，能够把一个 K8s 生态的应用完整封装，并且在另一个 K8s 环境正常的运行。 为什么 Helm 会流行？# 核心功能有两点： 对复杂的 Kubernetes YAML 做了打包和抽象，简化为少量参数。 给出应用的概念，并给出了完整生命周期解决方案：制作、上传（托管）、版本化、分发、部署。 真正让他流行起来的原因是： 踩准了时机，当时（2018年） K8s 生态对 YAML 深恶痛绝但是苦于没有好的工具，快速形成了丰富的生态，如今已经有 1000&#43; 开箱即用的 Helm Chart: https://artifacthub.io/ Helm Chart 解决了云原生应用交付所有问题了吗？# 没有，这个问题以后会逐步回答，今天的重点是怎么玩好 Helm。 如何从源代码开始制作一个 Helm 包？# 准备工">
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.101.0" />
     
     
     
@@ -283,8 +283,8 @@ COPY . /usr/share/nginx/html
 + repository: wonderflow/2048
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-- tag: &quot;&quot;
-+ tag: &quot;v1&quot;
+- tag: &#34;&#34;
++ tag: &#34;v1&#34;
 </code></pre><h3 id="测试-helm-包">
     测试 Helm 包<a class="hash-link" href="#%e6%b5%8b%e8%af%95-helm-%e5%8c%85" title="Direct link to heading">#</a>
 </h3><ol>
@@ -304,9 +304,9 @@ export KUBECONFIG=$(velad kubeconfig --name foo --host)
 <p>本地文件夹部署：</p>
 <pre tabindex="0"><code>helm install my-1024 my-game-2048
 </code></pre><p>验证：</p>
-<pre tabindex="0"><code>export POD_NAME=$(kubectl get pods --namespace default -l &quot;app.kubernetes.io/name=my-game-2048,app.kubernetes.io/instance=my-1024&quot; -o jsonpath=&quot;{.items[0].metadata.name}&quot;)
-  export CONTAINER_PORT=$(kubectl get pod --namespace default $POD_NAME -o jsonpath=&quot;{.spec.containers[0].ports[0].containerPort}&quot;)
-  echo &quot;Visit http://127.0.0.1:8080 to use your application&quot;
+<pre tabindex="0"><code>export POD_NAME=$(kubectl get pods --namespace default -l &#34;app.kubernetes.io/name=my-game-2048,app.kubernetes.io/instance=my-1024&#34; -o jsonpath=&#34;{.items[0].metadata.name}&#34;)
+  export CONTAINER_PORT=$(kubectl get pod --namespace default $POD_NAME -o jsonpath=&#34;{.spec.containers[0].ports[0].containerPort}&#34;)
+  echo &#34;Visit http://127.0.0.1:8080 to use your application&#34;
   kubectl --namespace default port-forward $POD_NAME 8080:$CONTAINER_PORT
 </code></pre><p>浏览器访问 http://127.0.0.1:8080 就可以看到这个游戏。</p>
 <p>验证完毕，我们的 helm chart 就制作完成了，更复杂的制作可以参考 <a href="https://helm.sh/zh/docs/chart_template_guide/getting_started/">Helm 官方文档</a>。</p>
@@ -341,7 +341,7 @@ docs/
 <li>推送到你的自己的 Github 仓库（可以直接 fork 2048 游戏的仓库）：</li>
 </ol>
 <pre tabindex="0"><code>git add .
-git commit -m &quot;my first helm repo&quot;
+git commit -m &#34;my first helm repo&#34;
 git push 
 </code></pre><p>经过我们的实验，结果仓库为： <a href="https://github.com/wonderflow/2048">https://github.com/wonderflow/2048</a></p>
 <ol start="5">

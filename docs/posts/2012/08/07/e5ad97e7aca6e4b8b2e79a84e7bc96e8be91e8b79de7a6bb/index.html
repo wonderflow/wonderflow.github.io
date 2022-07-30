@@ -7,7 +7,7 @@
     <title>字符串的编辑距离 | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="编辑距离，又称Levenshtein距离（也叫做Edit Distance），是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。 许可的编辑操作包括1、将一个字符替换成另一个字符；2、插入一个字符3、删除一个字符。 根据《柔性字符串匹配》一书的介绍，一共有四种方法。 1、最古老，最灵活的动态规划解法。 2、基于自动机的公式法（常用语错误距离允许较小的情况） 3、用位并行来模拟其他方法。 4、先用简单的条件过滤掉文本中大段编辑距离超过范围的不相关文本，再用其他算法进行匹配。 先介绍一下最基本的动态规划解法。空间复杂度和时间复杂度均为O（n^2）。 正好poj3356就是个这样的题目，有兴趣的可以做一下。 用">
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.101.0" />
     
     
     
@@ -205,10 +205,10 @@ char str1[1024],str2[1024];
 int dp[1024][1024];
 int main(){
 	int n,m;
-	while(scanf(&quot;%d&quot;,&amp;n)!=EOF){
+	while(scanf(&#34;%d&#34;,&amp;n)!=EOF){
 		memset(str1,-1,sizeof(str1));
 		memset(str2,-1,sizeof(str2));
-		scanf(&quot;%s%d%s&quot;,str1,&amp;m,str2);
+		scanf(&#34;%s%d%s&#34;,str1,&amp;m,str2);
 		for(int i=0;i&lt;=n;i++){
 			for(int j=0;j&lt;=m;j++){
 				dp[i][j] = INF;
@@ -232,7 +232,7 @@ int main(){
 				}
 			}
 		}
-		printf(&quot;%d\n&quot;,dp[n][m]);
+		printf(&#34;%d\n&#34;,dp[n][m]);
 	}
 
 	return 0;
@@ -317,7 +317,7 @@ int main(int argc, char* argv[])
 
     string w;
     int i = 0;
-    while (cin &gt;&gt; w &amp;&amp; w != &quot;#&quot;)
+    while (cin &gt;&gt; w &amp;&amp; w != &#34;#&#34;)
     {
         Dic.push_back(Word(i,w.size(),w));
         ++i;
@@ -328,7 +328,7 @@ int main(int argc, char* argv[])
     vector&lt;Word&gt; v;
     vector&lt;Word&gt;::iterator iter, beg, end;
     vector&lt;string&gt; op;
-    while (cin &gt;&gt; w &amp;&amp; w != &quot;#&quot;)
+    while (cin &gt;&gt; w &amp;&amp; w != &#34;#&#34;)
     {
         v.clear();
         beg = std::find_if(Dic.begin(), Dic.end(), CheckRange(w.size() - 1));
@@ -349,14 +349,14 @@ int main(int argc, char* argv[])
                 v.push_back(*iter);
         };
 
-        if (same == true) op.push_back(w + &quot; is correct\n&quot;);
+        if (same == true) op.push_back(w + &#34; is correct\n&#34;);
         else
         {
             std::sort(v.begin(),v.end(),PosLess());
-            string tp = w + &quot;:&quot;;
+            string tp = w + &#34;:&#34;;
             for (int i = 0; i &lt; v.size(); ++i)
-                tp += &quot; &quot; + v[i].word;
-            tp +=&quot;\n&quot;;
+                tp += &#34; &#34; + v[i].word;
+            tp +=&#34;\n&#34;;
             op.push_back(tp);
         }
     }

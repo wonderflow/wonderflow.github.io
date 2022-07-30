@@ -7,7 +7,7 @@
     <title>Haproxy端口映射（client头中URL/HOST修改后转发） | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="CloudFoundry是对域名强依赖的云计算集群，没有域名的话几乎无法访问。但是域名备案等事宜所耗时间较长，在上线较为紧急的情况下，就需要实现直接通过“IP&#43;端口”的形式，在公网访问CF集群上部署的APP。 解决方案# 配置两层Haproxy，第一层的Haproxy与公网地址绑定。 对第一层的Haproxy进行配置，把外部通过IP&#43;PORT访问的地址映射到后端第二层Haproxy，并把其访问的http Head修改，把Host字段改成能被Cloudfoundry接受的url字符串。 第二层Haproxy就跟CloudFoundry官方配置相同，作为负载均衡把流量导向下层多个gorouter。 Hapro">
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.101.0" />
     
     
     

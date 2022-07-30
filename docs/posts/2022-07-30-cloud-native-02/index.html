@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>云原生技术（2） - Helm Chart 如何做金丝雀发布？ | 奇迹之流WonderfloW</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="本文作者： 王易可 Helm 持续交付的挑战# Helm 设计之初就为了保证其简单易用，放弃了复杂的组件编排。所以在应用部署时， Helm 是一股脑将所有的资源交付到 Kubernetes 集群中，期望通过 Kubernetes 面向终态的自愈能力，自动化的解决应用的依赖和编排问题。 这样的设计在首次部署时可能没有问题，然而对于具备一定规模的企业生产环境而言，就显得过于理想化了。 一方面，在应用升级时一股脑将资源全部更新很容易因为部分服务短暂的不可用造成整体的服务中断；另一方面，如果软件存在 BUG，也无法及时回滚，很容易将影响范围扩大，难以控制。在某些更严重的场景下，如存在生产环境部分配置被运维人工修改过，由于 Helm 一次性部署会将原有的修改全部覆盖，而 Helm 之前的版本与生产环境可">
+    <meta name="generator" content="Hugo 0.101.0" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+<link rel="shortcut icon" href="/favicon_io/favicon.ico" type="image/x-icon" />
+
+
+    
+
+    
+    
+    <meta property="og:title" content="云原生技术（2） - Helm Chart 如何做金丝雀发布？" />
+<meta property="og:description" content="本文作者： 王易可 Helm 持续交付的挑战# Helm 设计之初就为了保证其简单易用，放弃了复杂的组件编排。所以在应用部署时， Helm 是一股脑将所有的资源交付到 Kubernetes 集群中，期望通过 Kubernetes 面向终态的自愈能力，自动化的解决应用的依赖和编排问题。 这样的设计在首次部署时可能没有问题，然而对于具备一定规模的企业生产环境而言，就显得过于理想化了。 一方面，在应用升级时一股脑将资源全部更新很容易因为部分服务短暂的不可用造成整体的服务中断；另一方面，如果软件存在 BUG，也无法及时回滚，很容易将影响范围扩大，难以控制。在某些更严重的场景下，如存在生产环境部分配置被运维人工修改过，由于 Helm 一次性部署会将原有的修改全部覆盖，而 Helm 之前的版本与生产环境可" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wonderflow.info/posts/2022-07-30-cloud-native-02/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-30T17:36:50+08:00" />
+<meta property="article:modified_time" content="2022-07-30T17:36:50+08:00" />
+
+<meta itemprop="name" content="云原生技术（2） - Helm Chart 如何做金丝雀发布？">
+<meta itemprop="description" content="本文作者： 王易可 Helm 持续交付的挑战# Helm 设计之初就为了保证其简单易用，放弃了复杂的组件编排。所以在应用部署时， Helm 是一股脑将所有的资源交付到 Kubernetes 集群中，期望通过 Kubernetes 面向终态的自愈能力，自动化的解决应用的依赖和编排问题。 这样的设计在首次部署时可能没有问题，然而对于具备一定规模的企业生产环境而言，就显得过于理想化了。 一方面，在应用升级时一股脑将资源全部更新很容易因为部分服务短暂的不可用造成整体的服务中断；另一方面，如果软件存在 BUG，也无法及时回滚，很容易将影响范围扩大，难以控制。在某些更严重的场景下，如存在生产环境部分配置被运维人工修改过，由于 Helm 一次性部署会将原有的修改全部覆盖，而 Helm 之前的版本与生产环境可"><meta itemprop="datePublished" content="2022-07-30T17:36:50+08:00" />
+<meta itemprop="dateModified" content="2022-07-30T17:36:50+08:00" />
+<meta itemprop="wordCount" content="4364">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="云原生技术（2） - Helm Chart 如何做金丝雀发布？"/>
+<meta name="twitter:description" content="本文作者： 王易可 Helm 持续交付的挑战# Helm 设计之初就为了保证其简单易用，放弃了复杂的组件编排。所以在应用部署时， Helm 是一股脑将所有的资源交付到 Kubernetes 集群中，期望通过 Kubernetes 面向终态的自愈能力，自动化的解决应用的依赖和编排问题。 这样的设计在首次部署时可能没有问题，然而对于具备一定规模的企业生产环境而言，就显得过于理想化了。 一方面，在应用升级时一股脑将资源全部更新很容易因为部分服务短暂的不可用造成整体的服务中断；另一方面，如果软件存在 BUG，也无法及时回滚，很容易将影响范围扩大，难以控制。在某些更严重的场景下，如存在生产环境部分配置被运维人工修改过，由于 Helm 一次性部署会将原有的修改全部覆盖，而 Helm 之前的版本与生产环境可"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        奇迹之流WonderfloW
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/archives/" title="Archives page">
+              Archives
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
+              Posts
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
+  <header class="mt4 w-100">
+    <aside class="instapaper_ignoref b helvetica tracked">
+      
+      POSTS
+    </aside>
+    
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+      
+      <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2022-07-30-cloud-native-02/&amp;text=%e4%ba%91%e5%8e%9f%e7%94%9f%e6%8a%80%e6%9c%af%ef%bc%882%ef%bc%89%20-%20Helm%20Chart%20%e5%a6%82%e4%bd%95%e5%81%9a%e9%87%91%e4%b8%9d%e9%9b%80%e5%8f%91%e5%b8%83%ef%bc%9f" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
+        
+        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+        
+      </a>
+    
+  </div>
+
+
+    <h1 class="f1 athelas mt3 mb1">云原生技术（2） - Helm Chart 如何做金丝雀发布？</h1>
+    
+    
+    <time class="f6 mv4 dib tracked" datetime="2022-07-30T17:36:50+08:00" >July 30, 2022</time>
+
+    
+    
+    <span class="f6 mv4 dib tracked"> - 9 minutes read</span>
+    <span class="f6 mv4 dib tracked"> - 4364 words</span>
+    
+  </header>
+  <div class="nested-copy-line-height lh-copy serif f4 nested-links
+    nested-img mid-gray pr4-l w-100-l"><p>本文作者： 王易可</p>
+<h2 id="helm-持续交付的挑战">
+    Helm 持续交付的挑战<a class="hash-link" href="#helm-%e6%8c%81%e7%bb%ad%e4%ba%a4%e4%bb%98%e7%9a%84%e6%8c%91%e6%88%98" title="Direct link to heading">#</a>
+</h2><p>Helm 设计之初就为了保证其简单易用，放弃了复杂的组件编排。所以在应用部署时， <strong>Helm 是一股脑将所有的资源交付到 Kubernetes 集群中，期望通过 Kubernetes 面向终态的自愈能力，自动化的解决应用的依赖和编排问题。</strong> 这样的设计在首次部署时可能没有问题，然而对于具备一定规模的企业生产环境而言，就显得过于理想化了。</p>
+<p>一方面，在应用升级时一股脑将资源全部更新很容易因为部分服务短暂的不可用造成整体的服务中断；另一方面，如果软件存在 BUG，也无法及时回滚，很容易将影响范围扩大，难以控制。在某些更严重的场景下，如存在生产环境部分配置被运维人工修改过，由于 Helm 一次性部署会将原有的修改全部覆盖，而 Helm 之前的版本与生产环境可能并不一致，导致回滚也无法恢复，形成更大面积的故障。</p>
+<p>由此可见，<strong>当具备一定规模以后，软件在生产环境的灰度和回滚的能力极其重要，而 Helm 自身并不能保证足够的稳定性</strong>。</p>
+<h2 id="如何针对-helm-做金丝雀发布">
+    如何针对 Helm 做金丝雀发布？<a class="hash-link" href="#%e5%a6%82%e4%bd%95%e9%92%88%e5%af%b9-helm-%e5%81%9a%e9%87%91%e4%b8%9d%e9%9b%80%e5%8f%91%e5%b8%83" title="Direct link to heading">#</a>
+</h2><p>通常情况下，一个严谨的软件升级过程会遵从类似如下流程：大致分成三个阶段，第一阶段升级少量（如 20% ）的实例，并切换少量流量到新版本，完成这个阶段后先暂停升级。经过人工确认之后继续第二个阶段，升级更大比例（如 90% ）的实例和流量，再次暂停等待人工确认。最后阶段将全量升级到新版本并验证完毕，从而完成整个发布过程。如果升级期间发现包括业务指标在内的任何异常，例如 CPU或 memory 异常使用率升高或请求 500 日志过多等情况，可以快速回滚。</p>
+<p><img src="/images/2022-07-30/helm-can-1.jpg" alt=""></p>
+<p>上面就是一个典型的金丝雀发布的场景，那么针对 Helm Chart 应用，我们该如何完成上面这个流程呢？业界的典型做法通常有如下两种：</p>
+<ol>
+<li>修改 Helm Chart，将工作负载变成两份，并分别暴露出不同的 Helm 参数，在发布时不断修改两份工作负载的镜像、实例数和流量比例，从而实现灰度发布。</li>
+<li>修改 Helm Chart，将原先的基础工作负载修改为具备同样功能但是具备灰度发布能力的自定义工作负载，并暴露出 Helm 参数，在发布是操纵这些灰度发布的 CRD。</li>
+</ol>
+<p>这两个方案都很复杂，有不小的改造成本，尤其是<strong>当你的 Helm Chart 是第三方组件无法修改或自身不具备维护 Helm Chart 能力时，这些方法都是不可行的</strong>。即使真的去改造了，相比于原先简单的工作负载模式，也存在不小的稳定性风险。究其原因，还是在于 <strong>Helm 本身的定位只是一个包管理工具，设计时并不考虑灰度发布、也不针对工作负载做管理</strong>。</p>
+<p>事实上，当我们跟社区的大量用户深入交流以后，我们发现大多数用户的应用并不复杂，类别都是诸如 Deployment、StatefulSet 这些经典的类型。所以，我们通过 KubeVela( <a href="http://kubevela.net/">http://kubevela.net/</a> ) 强大的插件机制，联合 OpenKruise （<a href="https://openkruise.io/">https://openkruise.io/</a>）社区做了一款针对这些限定类型的金丝雀发布插件。<strong>这款插件帮助你不做任何迁移改造，轻松完成 Helm Chart 的灰度发布</strong>。不仅如此，如果你的 Helm Chart 比较复杂，你完全可以针对你的场景定制一个插件，获得同样的体验。</p>
+<p>下面我们通过一个实际的例子（以 Deployment工作负载为例），手把手带你感受一下完整的流程。</p>
+<h2 id="使用-kubevela-做金丝雀发布">
+    使用 KubeVela 做金丝雀发布<a class="hash-link" href="#%e4%bd%bf%e7%94%a8-kubevela-%e5%81%9a%e9%87%91%e4%b8%9d%e9%9b%80%e5%8f%91%e5%b8%83" title="Direct link to heading">#</a>
+</h2><h3 id="准备环境">
+    准备环境<a class="hash-link" href="#%e5%87%86%e5%a4%87%e7%8e%af%e5%a2%83" title="Direct link to heading">#</a>
+</h3><ul>
+<li>安装 KubeVela</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">curl -fsSl https://static.kubevela.net/script/install-velad.sh | bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">velad install</span>
+</span></span></code></pre></div><p>查看 <a href="https://kubevela.net/docs/install#1-install-velad">此文档</a> 以了解更多安装细节。</p>
+<ul>
+<li>启用相关的 addon</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">vela addon enable fluxcd</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">vela addon enable ingress-nginx</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">vela addon enable kruise-rollout</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">vela addon enable velaux</span>
+</span></span></code></pre></div><p>在这一步中，启动了以下几个插件：
+1） fluxcd 插件帮助我们具备 helm 交付的能力；
+2）ingress-nginx 插件用于提供金丝雀发布的流量管理能力；
+3）kruise-rollout 提供金丝雀发布能力；
+4）velaux 插件则提供界面操作和可视化。</p>
+<ul>
+<li>将 nginx ingress-controller  的端口映射到本地</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">vela port-forward addon-ingress-nginx -n vela-system</span>
+</span></span></code></pre></div><h3 id="首次部署">
+    首次部署<a class="hash-link" href="#%e9%a6%96%e6%ac%a1%e9%83%a8%e7%bd%b2" title="Direct link to heading">#</a>
+</h3><p>通过执行下面的命令，第一次发布 helm 应用。在这一步中，我们通过 vela 的  CLI 工具部署，如果你熟悉 Kubernetes，也可以通过 kubectl apply 部署，效果完全相同。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">cat &lt;&lt;EOF | vela up -f -</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">canary-demo</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app.oam.dev/publishVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">components</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">canary-demo</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">helm</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">properties</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">repoType</span>: <span style="color:#e6db74">&#34;helm&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;https://wangyikewxgm.github.io/my-charts/&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">chart</span>: <span style="color:#e6db74">&#34;canary-demo&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;1.0.0&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">traits</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">kruise-rollout</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">properties</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">canary</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># The first batch of Canary releases 20% Pods, and 20% traffic imported to the new version, require manual confirmation before subsequent releases are completed</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># The second batch of Canary releases 90% Pods, and 90% traffic imported to the new version.</span>
+</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">90</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">trafficRoutings</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">EOF</span>
+</span></span></code></pre></div><p>在上面的例子中，我们声明了一个名为  canary-demo 的应用，其中包含一个 helm 类型的组件（KubeVela 也支持其他类型的组件部署），在组件的参数中包含 chart 的地址以及版本等信息。</p>
+<p>另外，我们还为这个组件声明了 <code>kruise-rollout</code> 的运维特征，这个就是 kruise-rollout 这个插件安装后具备的能力。其中可以指定 helm 的升级策略，第一个阶段先升级 20% 的实例和流量，经过人工确认之后再升级90%，最后全量升到最新的版本。</p>
+<p>需要注意的是，为了演示效果直观（体现版本变化），我们专门准备了一个 chart （ <a href="https://github.com/wangyikewxgm/my-charts/tree/main/canary-demo">https://github.com/wangyikewxgm/my-charts/tree/main/canary-demo</a>）。该 helm chart 的主体包含一个 Deployment 和 Ingress 对象，这是 helm chart  制作时最通用的场景。如果你的 helm chart 同样具备上述的资源，也一样可以通过这个例子进行金丝雀的发布。</p>
+<p>部署成功之后，我们通过下面的命令访问你集群内的网关地址，将会看到下面的效果：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ curl -H <span style="color:#e6db74">&#34;Host: canary-demo.com&#34;</span> http://localhost:8080/version
+</span></span><span style="display:flex;"><span>Demo: V1
+</span></span></code></pre></div><p>另外，通过 VelaUX  的资源拓扑页面，我们可以看到五个 V1 版本的实例已经全部就绪。</p>
+<p><img src="/images/2022-07-30/helm-can-2.jpg" alt=""></p>
+<h3 id="升级应用">
+    升级应用<a class="hash-link" href="#%e5%8d%87%e7%ba%a7%e5%ba%94%e7%94%a8" title="Direct link to heading">#</a>
+</h3><p>应用下面的这个 yaml ，来升级你的应用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">cat &lt;&lt;EOF | vela up -f -</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">canary-demo</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app.oam.dev/publishVersion</span>: <span style="color:#ae81ff">v2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">components</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">canary-demo</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">helm</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">properties</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">repoType</span>: <span style="color:#e6db74">&#34;helm&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;https://wangyikewxgm.github.io/my-charts/&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">chart</span>: <span style="color:#e6db74">&#34;canary-demo&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Upgade to version 2.0.0</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;2.0.0&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">traits</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">kruise-rollout</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">properties</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">canary</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># The first batch of Canary releases 20% Pods, and 20% traffic imported to the new version, require manual confirmation before subsequent releases are completed</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># The second batch of Canary releases 90% Pods, and 90% traffic imported to the new version.</span>
+</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">90</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">trafficRoutings</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">EOF</span>
+</span></span></code></pre></div><p>我们注意到新的  application 和首次部署的相比仅有两处改动：</p>
+<ol>
+<li>把 app.oam.dev/publishVersion 的 annotation 从 v1 升级到了 v2。这代表这次修改是一个新的版本。</li>
+<li>把 helm chart 的版本升级到了 2.0.0 ，该版本的 chart 中的 deployment 镜像的 tag 升级到了 V2。</li>
+</ol>
+<p>一段时间之后，我们会发现升级过程停在了我们上面定义的第一个批次，也就是只升级 20% 的实例和流量。这个时候多次执行上面访问网关的命令，你会发现  <code>Demo: v1</code>和  <code>Demo: v2</code>交替出现，并且有差不多 20% 的概率得到  <code>Demo: v2</code>的结果。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ curl -H <span style="color:#e6db74">&#34;Host: canary-demo.com&#34;</span> http://localhost:8080/version
+</span></span><span style="display:flex;"><span>Demo: V2
+</span></span></code></pre></div><p>再次查看应用的资源的拓扑状态，会看到由 kruise-rollout trait 创建出来的  <code>rollout</code>CR 为我们创建了一个新版本的实例，而之前工作负载创建出来的5个旧版本的实例并没有发生变化。</p>
+<p><img src="/images/2022-07-30/helm-can-3.jpg" alt=""></p>
+<p>接下来，我们通过 vela 的 CLI 执行下面的命令，通过人工审核恢复继续升级：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">vela workflow resume canary-demo</span>
+</span></span></code></pre></div><p>一段时间之后，通过资源拓扑图，我们看到五个新版本的实例被创建出来了。这个时候我们再次访问网关，会发现出现 Demo：v2 的概率大幅增加，接近于90%。</p>
+<h3 id="快速回滚">
+    快速回滚<a class="hash-link" href="#%e5%bf%ab%e9%80%9f%e5%9b%9e%e6%bb%9a" title="Direct link to heading">#</a>
+</h3><p>通常在一个真实场景中的发布中，经常会有经过人工审核之后，发现新版本应用的状态异常，需要终止当前的升级，快速将应用回退到升级开始前的版本。</p>
+<p>我们就可以执行下面的命令，先暂停当前的发布工作流：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">$ vela workflow suspend canary-demo</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Rollout default/canary-demo in cluster  suspended.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Successfully suspend workflow</span>: <span style="color:#ae81ff">canary-demo</span>
+</span></span></code></pre></div><p>紧接着回滚到发布之前的版本，也就是 V1 ：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">$ vela workflow rollback canary-demo</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Application spec rollback successfully.</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Application status rollback successfully.</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Rollout default/canary-demo in cluster  rollback.</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Successfully rollback rolloutApplication outdated revision cleaned up.</span>
+</span></span></code></pre></div><p>这个时候，我们再次访问网关，会发现所有的请求结果又回到了 V1 的状态。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">$ curl -H &#34;Host: canary-demo.com&#34; http://localhost:8080/version</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Demo</span>: <span style="color:#ae81ff">V1</span>
+</span></span></code></pre></div><p>这时候，通过资源拓扑图，我们可以看到，金丝雀版本的实例也全部被删除了，并且从始至终，v1 的五个实例，作为稳定版本的实例，一直没有发生任何变化。</p>
+<p><img src="/images/2022-07-30/helm-can-4.jpg" alt=""></p>
+<p>如果你将上面的回滚操作改为恢复继续升级，将会继续执行后续的升级过程，完成全量发布。</p>
+<p>上述 demo 的完整操作过程请参考：<a href="https://kubevela.net/docs/tutorials/helm">https://kubevela.net/docs/tutorials/helm</a>。</p>
+<p>如果你希望直接使用原生的 k8s 资源实现上面过程可以参考：<a href="https://kubevela.net/docs/tutorials/k8s-object-rollout">https://kubevela.net/docs/tutorials/k8s-object-rollout</a> 。另外，除了 Deployment ，kruise-rollout 插件还支持了 StatefulSet  和 OpenKruise 的 CloneSet ，如果你的 chart 中的工作负载类型是以上三种都可以通过上面的例子实现金丝雀发布。</p>
+<p>相信你也看注意到，上面的例子我们给出的是基于 nginx-Ingress-controller 的七层流量切分方案，另外我们也支持了 Kubernetes Gateway 的 API （<a href="https://gateway-api.sigs.k8s.io/">https://gateway-api.sigs.k8s.io/</a>）从而能够支持更多的网关类型和四层的流量切分方案。</p>
+<h2 id="发布过程的稳定性是如何保证的">
+    发布过程的稳定性是如何保证的？<a class="hash-link" href="#%e5%8f%91%e5%b8%83%e8%bf%87%e7%a8%8b%e7%9a%84%e7%a8%b3%e5%ae%9a%e6%80%a7%e6%98%af%e5%a6%82%e4%bd%95%e4%bf%9d%e8%af%81%e7%9a%84" title="Direct link to heading">#</a>
+</h2><p>首次部署完成后，kruise rollout 插件（以下简称 rollout）会监听 Helm Chart部署的资源，在我们的例子中就是 deployment， servcie 和 ingress ，还支持 StatefulSet 以及 OpenKruise Cloneset。rollout 会接管这个 deployment 后续的升级动作。</p>
+<p>在进行升级时，新版本的 Helm 部署首先生效，会将 deployment 的镜像更新为 v2，然而这个时候 <strong>deployment 的升级过程会被 rollout 从 controller-manager 手中接管</strong>，使得 deployment 下面的 Pod 不会被升级。于此同时，rollout 会复制一个金丝雀版本的 deployemnt，镜像的 tag 为 v2，并创建一个 service 筛选到它下面的实例，和一个指向这个 service 的 ingress ，最后通过设置 ingress 相对应的 annotation，让这个 ingress 承接金丝雀版本的流量（具体可以参考：<a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#canary">https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#canary</a>），从而实现流量切分。</p>
+<p><strong>在通过所有的人工确认步骤之后，完成全量发布时，rollout 会把稳定版本的 deployment 升级控制权交还给 controller-manager ，届时稳定版本的实例会陆续升级到新版本，当稳定版本的实例全部就绪之后，才会陆续销毁金丝雀版本的 deployment，service 和 ingress，从而保证了整个过程中请求流量不会因为打到没有就绪的实例上，导致请求异常，做到无损的金丝雀发布。</strong></p>
+<p>之后我们还将在以下方面持续迭代，支持更多的场景并带来更加稳定可靠的升级体验：</p>
+<ol>
+<li>升级过程对接 KubeVela 的 workflow 体系，从而引入更加丰富的中间步骤扩展体系，支持升级过程中通过 workflow 执行通知发送等功能。甚至在各个步骤的暂停阶段，对接外部的可观测性体系，通过检查日志或者监控等指标，自动决策是否继续发布或回滚，从而实现无人值守的发布策略。</li>
+<li>集成 istio 等 更多的 addon，支持 serviceMesh 的流量切分方案。</li>
+<li>除了支持基于百分比流量切分方式，支持基于 header 或 cookie 的流量切分规则，以及支持诸如蓝绿发布等特性。</li>
+</ol>
+<h2 id="总结">
+    总结<a class="hash-link" href="#%e6%80%bb%e7%bb%93" title="Direct link to heading">#</a>
+</h2><p>前文已经提到，KubeVela 支持 Helm 做金丝雀发布的流程完全是通过 插件（Addon）体系实现的，fluxcd addon 助我们通过部署和管理 helm chart 的生命周期。kruise-rollout addon 帮助我们实现 workload 的实例升级以及在升级过程中流量的切换。通过组合两个 addon 的方式，实现了对于 helm 应用的全生命周期的管理和金丝雀升级，不需要对你的 Helm Chart 做任何改动。你也可以针对你的场景编写插件( <a href="https://kubevela.io/docs/platform-engineers/addon/intro">https://kubevela.io/docs/platform-engineers/addon/intro</a> )，完成更特殊的场景或流程。</p>
+<p><strong>基于 KubeVela 强大的可扩展能力，你不仅可以灵活的组合这些 addon，你还可以保持上层应用不做任何变动的情况下，根据不同的平台或环境动态替换底层的能力实现</strong>。例如，如果你更希望采用 argocd 不是 fluxcd 实现对于 helm 应用的部署，你就可以通过启用 argocd  的 addon 实现相同的功能，上层的 helm 应用不需要做任何改变或迁移。</p>
+<p><img src="/images/2022-07-30/addon.jpg" alt=""></p>
+<p>现在 KubeVela 社区已经提供了数十个 addon ，可以能够帮助平台扩展 可观测性，gitops，finops ，rollout 等各方面的能力。</p>
+<p>Addon 的仓库地址是：<a href="https://github.com/kubevela/catalog">https://github.com/kubevela/catalog</a>，如果你对 addon 感兴趣的话，也非常欢迎为这个仓库提交你的自定义插件，为社区贡献新的生态能力！</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      <script src="https://utteranc.es/client.js" repo="wonderflow/wonderflow.github.io" issue-term="pathname"
+        label="Comment" theme="github-light" crossorigin="anonymous" async>
+        </script>
+    </div>
+  </div>
+
+  <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+</article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+    <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info">
+      &copy;  奇迹之流WonderfloW 2022 
+    </a>
+    <div>
+<div class="ananke-socials">
+  
+    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+</div>
+    <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3XG75RG8W"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-Z3XG75RG8W', { 'anonymize_ip': false });
+}
+</script>
+
+  </div>
+</footer>
+  </body>
+</html>

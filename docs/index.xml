@@ -6,7 +6,16 @@
     <description>Recent content on 奇迹之流WonderfloW</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 19 Jun 2022 15:32:05 +0800</lastBuildDate><atom:link href="https://wonderflow.info/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Jul 2022 17:36:50 +0800</lastBuildDate><atom:link href="https://wonderflow.info/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>云原生技术（2） - Helm Chart 如何做金丝雀发布？</title>
+      <link>https://wonderflow.info/posts/2022-07-30-cloud-native-02/</link>
+      <pubDate>Sat, 30 Jul 2022 17:36:50 +0800</pubDate>
+      
+      <guid>https://wonderflow.info/posts/2022-07-30-cloud-native-02/</guid>
+      <description>本文作者： 王易可 Helm 持续交付的挑战# Helm 设计之初就为了保证其简单易用，放弃了复杂的组件编排。所以在应用部署时， Helm 是一股脑将所有的资源交付到 Kubernetes 集群中，期望通过 Kubernetes 面向终态的自愈能力，自动化的解决应用的依赖和编排问题。 这样的设计在首次部署时可能没有问题，然而对于具备一定规模的企业生产环境而言，就显得过于理想化了。 一方面，在应用升级时一股脑将资源全部更新很容易因为部分服务短暂的不可用造成整体的服务中断；另一方面，如果软件存在 BUG，也无法及时回滚，很容易将影响范围扩大，难以控制。在某些更严重的场景下，如存在生产环境部分配置被运维人工修改过，由于 Helm 一次性部署会将原有的修改全部覆盖，而 Helm 之前的版本与生产环境可</description>
+    </item>
+    
     <item>
       <title>做不可复制的事情</title>
       <link>https://wonderflow.info/posts/2022-06-19-notes/</link>
@@ -49,7 +58,7 @@
       <pubDate>Tue, 15 Dec 2020 14:21:16 +0800</pubDate>
       
       <guid>https://wonderflow.info/posts/2020-12-15-cuelang-template/</guid>
-      <description>磨刀不误砍柴工，在正式开始介绍 CUE 之前，可以先做下基本的准备工作。 安装：首先确保你已经安装了 cuelang： https://cuelang.org/docs/install/ 自动格式化：如果你使用 Goland 或者类似的 JetBrains IDE，还可以额外配置自动格式化的方式：https://wonderflow.info/posts/2020-11-02-goland-cuelang-format/ 基本操作# 先看一下cuelang的基本数据样子。 a: 1.5 b: 1 d: [1, 2, 3] g: { h: &amp;quot;abc&amp;quot; } 我们把上面的内容写入到文件并命名为 &amp;ldquo;first.cue&amp;rdquo;. 格式化 cuelang 的文件 cue fmt first.cue 校验写法是否正确 cue vet first.cue 计算输出结果 cue eval first.cue 计算输出单个变量的结果 cue eval -e a first.cue 数据导出（默认为json） cue export first.cue 指定 yaml 格式导出 cue export first.cue --out yaml 导出某个变量 cue export first.cue -e a --out yaml 类型 与</description>
+      <description>磨刀不误砍柴工，在正式开始介绍 CUE 之前，可以先做下基本的准备工作。 安装：首先确保你已经安装了 cuelang： https://cuelang.org/docs/install/ 自动格式化：如果你使用 Goland 或者类似的 JetBrains IDE，还可以额外配置自动格式化的方式：https://wonderflow.info/posts/2020-11-02-goland-cuelang-format/ 基本操作# 先看一下cuelang的基本数据样子。 a: 1.5 b: 1 d: [1, 2, 3] g: { h: &amp;#34;abc&amp;#34; } 我们把上面的内容写入到文件并命名为 &amp;ldquo;first.cue&amp;rdquo;. 格式化 cuelang 的文件 cue fmt first.cue 校验写法是否正确 cue vet first.cue 计算输出结果 cue eval first.cue 计算输出单个变量的结果 cue eval -e a first.cue 数据导出（默认为json） cue export first.cue 指定 yaml 格式导出 cue export first.cue --out yaml 导出某个变量 cue export first.cue -e a --out yaml 类型 与</description>
     </item>
     
     <item>
@@ -626,7 +635,7 @@
       <pubDate>Tue, 03 Sep 2013 11:34:14 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2013/09/03/linux-magic-key-sysrq/</guid>
-      <description>SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。 如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &amp;gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &amp;quot;number&amp;quot; &amp;gt;/proc/sys/kernel/sysrq {% endcodeblock %} &amp;lt;!-- more --&amp;gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’</description>
+      <description>SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。 如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &amp;gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &amp;#34;number&amp;#34; &amp;gt;/proc/sys/kernel/sysrq {% endcodeblock %} &amp;lt;!-- more --&amp;gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’</description>
     </item>
     
     <item>
@@ -1086,7 +1095,7 @@ As I have spent almost three years of my college life in ACM team ， I am stron
       <pubDate>Fri, 27 Jul 2012 12:59:12 +0000</pubDate>
       
       <guid>https://wonderflow.info/posts/2012/07/27/2012e5a49ae6a0a1e7acace4b880e38081e7acace4ba8ce59cbaefbc88hdu4300hdu4319efbc89/</guid>
-      <description>说一下自己搞出来的题目吧，感觉多校其实比较水的，题目也不难，模板题，陈题很多，不过两场我们队的名次都很烂诶，30开外了都，抗不住啊！出现的问题就是队里的模板太少、不全。不过也好，做一场补一场的模板。 hdu4300《Clairewd’s message》是个字符串，利用next数组求解，小trick就是next数组求出来的值要小于(len-1)/2才取。即：while(len-next[dx]&amp;lt;=(len-1)/2)dx = next[dx]; #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;cstdio&amp;gt; using namespace std; int map[30]; int len; int s[101000]; int next[101000]; char str[101000]; void get_next() { int i,j;i=0;next[0]=-1;j=-1; while(i&amp;lt;len) { if(j==-1||map[s[j]]==s[i]) { ++i;++j; next[i]=j; } else j=next[j]; } } int main() { int T; scanf(&amp;quot;%d&amp;quot;,&amp;amp;T); while(T--){ scanf(&amp;quot;%s&amp;quot;,str); len = strlen(str); for(int i=0;i&amp;lt;len;i++){ map[str[i]-&#39;a&#39;] = i; } scanf(&amp;quot;%s&amp;quot;,str); len = strlen(str); for(int i=0;i&amp;lt;len;i++){ s[i] = str[i] - &#39;a&#39;; } get_next(); // cout&amp;lt;&amp;lt;next[len]&amp;lt;&amp;lt;endl; int dx = len; while(len-next[dx]&amp;lt;=(len-1)/2)dx = next[dx]; // cout&amp;lt;&amp;lt;next[dx]&amp;lt;&amp;lt;endl; for(int i=0;i&amp;lt;len-next[dx];i++){ printf(&amp;quot;%c&amp;quot;,s[i]+&#39;a&#39;); } for(int i=0;i&amp;lt;len-next[dx];i++){ printf(&amp;quot;%c&amp;quot;,map[s[i]]+&#39;a&#39;); } printf(&amp;quot;\n&amp;quot;); } return 0;</description>
+      <description>说一下自己搞出来的题目吧，感觉多校其实比较水的，题目也不难，模板题，陈题很多，不过两场我们队的名次都很烂诶，30开外了都，抗不住啊！出现的问题就是队里的模板太少、不全。不过也好，做一场补一场的模板。 hdu4300《Clairewd’s message》是个字符串，利用next数组求解，小trick就是next数组求出来的值要小于(len-1)/2才取。即：while(len-next[dx]&amp;lt;=(len-1)/2)dx = next[dx]; #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;cstdio&amp;gt; using namespace std; int map[30]; int len; int s[101000]; int next[101000]; char str[101000]; void get_next() { int i,j;i=0;next[0]=-1;j=-1; while(i&amp;lt;len) { if(j==-1||map[s[j]]==s[i]) { ++i;++j; next[i]=j; } else j=next[j]; } } int main() { int T; scanf(&amp;#34;%d&amp;#34;,&amp;amp;T); while(T--){ scanf(&amp;#34;%s&amp;#34;,str); len = strlen(str); for(int i=0;i&amp;lt;len;i++){ map[str[i]-&amp;#39;a&amp;#39;] = i; } scanf(&amp;#34;%s&amp;#34;,str); len = strlen(str); for(int i=0;i&amp;lt;len;i++){ s[i] = str[i] - &amp;#39;a&amp;#39;; } get_next(); // cout&amp;lt;&amp;lt;next[len]&amp;lt;&amp;lt;endl; int dx = len; while(len-next[dx]&amp;lt;=(len-1)/2)dx = next[dx]; // cout&amp;lt;&amp;lt;next[dx]&amp;lt;&amp;lt;endl; for(int i=0;i&amp;lt;len-next[dx];i++){ printf(&amp;#34;%c&amp;#34;,s[i]+&amp;#39;a&amp;#39;); } for(int i=0;i&amp;lt;len-next[dx];i++){ printf(&amp;#34;%c&amp;#34;,map[s[i]]+&amp;#39;a&amp;#39;); } printf(&amp;#34;\n&amp;#34;); } return 0;</description>
     </item>
     
     <item>

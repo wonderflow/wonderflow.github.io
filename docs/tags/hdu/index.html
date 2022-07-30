@@ -7,7 +7,7 @@
     <title>hdu | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Nothing Replaces Hard Work!">
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.101.0" />
     
     
     
@@ -156,7 +156,7 @@
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      说一下自己搞出来的题目吧，感觉多校其实比较水的，题目也不难，模板题，陈题很多，不过两场我们队的名次都很烂诶，30开外了都，抗不住啊！出现的问题就是队里的模板太少、不全。不过也好，做一场补一场的模板。 hdu4300《Clairewd’s message》是个字符串，利用next数组求解，小trick就是next数组求出来的值要小于(len-1)/2才取。即：while(len-next[dx]&lt;=(len-1)/2)dx = next[dx]; #include&lt;iostream&gt; #include&lt;cstring&gt; #include&lt;cstdio&gt; using namespace std; int map[30]; int len; int s[101000]; int next[101000]; char str[101000]; void get_next() { int i,j;i=0;next[0]=-1;j=-1; while(i&lt;len) { if(j==-1||map[s[j]]==s[i]) { ++i;++j; next[i]=j; } else j=next[j]; } } int main() { int T; scanf(&quot;%d&quot;,&amp;T); while(T--){ scanf(&quot;%s&quot;,str); len = strlen(str); for(int i=0;i&lt;len;i++){ map[str[i]-'a'] = i; } scanf(&quot;%s&quot;,str); len = strlen(str); for(int i=0;i&lt;len;i++){ s[i] = str[i] - 'a'; } get_next(); // cout&lt;&lt;next[len]&lt;&lt;endl; int dx = len; while(len-next[dx]&lt;=(len-1)/2)dx = next[dx]; // cout&lt;&lt;next[dx]&lt;&lt;endl; for(int i=0;i&lt;len-next[dx];i++){ printf(&quot;%c&quot;,s[i]+'a'); } for(int i=0;i&lt;len-next[dx];i++){ printf(&quot;%c&quot;,map[s[i]]+'a'); } printf(&quot;\n&quot;); } return 0;
+      说一下自己搞出来的题目吧，感觉多校其实比较水的，题目也不难，模板题，陈题很多，不过两场我们队的名次都很烂诶，30开外了都，抗不住啊！出现的问题就是队里的模板太少、不全。不过也好，做一场补一场的模板。 hdu4300《Clairewd’s message》是个字符串，利用next数组求解，小trick就是next数组求出来的值要小于(len-1)/2才取。即：while(len-next[dx]&lt;=(len-1)/2)dx = next[dx]; #include&lt;iostream&gt; #include&lt;cstring&gt; #include&lt;cstdio&gt; using namespace std; int map[30]; int len; int s[101000]; int next[101000]; char str[101000]; void get_next() { int i,j;i=0;next[0]=-1;j=-1; while(i&lt;len) { if(j==-1||map[s[j]]==s[i]) { ++i;++j; next[i]=j; } else j=next[j]; } } int main() { int T; scanf(&#34;%d&#34;,&amp;T); while(T--){ scanf(&#34;%s&#34;,str); len = strlen(str); for(int i=0;i&lt;len;i++){ map[str[i]-&#39;a&#39;] = i; } scanf(&#34;%s&#34;,str); len = strlen(str); for(int i=0;i&lt;len;i++){ s[i] = str[i] - &#39;a&#39;; } get_next(); // cout&lt;&lt;next[len]&lt;&lt;endl; int dx = len; while(len-next[dx]&lt;=(len-1)/2)dx = next[dx]; // cout&lt;&lt;next[dx]&lt;&lt;endl; for(int i=0;i&lt;len-next[dx];i++){ printf(&#34;%c&#34;,s[i]+&#39;a&#39;); } for(int i=0;i&lt;len-next[dx];i++){ printf(&#34;%c&#34;,map[s[i]]+&#39;a&#39;); } printf(&#34;\n&#34;); } return 0;
     </div>
   </div>
 </div>

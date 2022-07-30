@@ -3,16 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://wonderflow.info/posts/</loc>
-    <lastmod>2022-06-19T15:32:05+08:00</lastmod>
+    <lastmod>2022-07-30T17:36:50+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://wonderflow.info/posts/2022-06-19-notes/</loc>
-    <lastmod>2022-06-19T15:32:05+08:00</lastmod>
+    <loc>https://wonderflow.info/posts/2022-07-30-cloud-native-02/</loc>
+    <lastmod>2022-07-30T17:36:50+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://wonderflow.info/</loc>
+    <lastmod>2022-07-30T17:36:50+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://wonderflow.info/posts/2022-06-19-notes/</loc>
     <lastmod>2022-06-19T15:32:05+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -192,17 +197,17 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://wonderflow.info/posts/2014/10/24/e3808ae7a88be5ba8fe59198e4bfaee782bce4b98be98193e3808be79a84e7ac94e8aeb0/</loc>
+    <lastmod>2014-10-24T13:50:30+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://wonderflow.info/categories/reading-notes/</loc>
     <lastmod>2014-10-24T13:50:30+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://wonderflow.info/categories/software-engineering/</loc>
-    <lastmod>2014-10-24T13:50:30+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://wonderflow.info/posts/2014/10/24/e3808ae7a88be5ba8fe59198e4bfaee782bce4b98be98193e3808be79a84e7ac94e8aeb0/</loc>
     <lastmod>2014-10-24T13:50:30+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -312,12 +317,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://wonderflow.info/categories/mac/</loc>
+    <loc>https://wonderflow.info/tags/mac/</loc>
     <lastmod>2014-03-22T16:52:14+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://wonderflow.info/tags/mac/</loc>
+    <loc>https://wonderflow.info/categories/mac/</loc>
     <lastmod>2014-03-22T16:52:14+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -492,7 +497,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://wonderflow.info/categories/ruby/</loc>
+    <loc>https://wonderflow.info/posts/2013/11/21/e3808arubye58583e7bc96e7a88be3808be8afbbe4b9a6e7ac94e8aeb0/</loc>
     <lastmod>2013-11-21T16:27:21+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -502,7 +507,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://wonderflow.info/posts/2013/11/21/e3808arubye58583e7bc96e7a88be3808be8afbbe4b9a6e7ac94e8aeb0/</loc>
+    <loc>https://wonderflow.info/categories/ruby/</loc>
     <lastmod>2013-11-21T16:27:21+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -877,12 +882,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://wonderflow.info/categories/poj/</loc>
+    <loc>https://wonderflow.info/tags/poj/</loc>
     <lastmod>2012-08-08T10:44:28+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://wonderflow.info/tags/poj/</loc>
+    <loc>https://wonderflow.info/categories/poj/</loc>
     <lastmod>2012-08-08T10:44:28+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -1132,12 +1137,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://wonderflow.info/categories/python/</loc>
+    <loc>https://wonderflow.info/tags/python/</loc>
     <lastmod>2012-07-04T16:14:02+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://wonderflow.info/tags/python/</loc>
+    <loc>https://wonderflow.info/categories/python/</loc>
     <lastmod>2012-07-04T16:14:02+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

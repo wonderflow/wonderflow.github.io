@@ -7,7 +7,7 @@
     <title>Go包管理的前世今生 | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="原文首发自InfoQ，《Go包管理的前世今生》 说实话，Golang对一个新人真的挺不友善的，因为一上手要了解的概念。你看人家Java，上来一个项目mvn install一下就完事了，赶紧利落。但是Golang就麻烦了，你得先了解什么是GOPATH。我当年刚接触Golang真正开始做项目的时候，只知道按要求配置环境变量，对GOPATH真正理解可能都是好几个月以后的事情了。说白了，还是因为懒。真正做项目的人，有多少有耐心砍柴磨刀，出现一个东西就研究半天啊，我们只是想要Copy-Paste而已。 但是不得不承认，对于今天讨论的Go包管理的话题，如果你想理解Golang的包管理机制，连GOPATH都不想充">
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.101.0" />
     
     
     
@@ -311,7 +311,7 @@ ENV GOPATH /app/xxx/Godep/_workspace
     初始化项目<a class="hash-link" href="#%e5%88%9d%e5%a7%8b%e5%8c%96%e9%a1%b9%e7%9b%ae" title="Direct link to heading">#</a>
 </h3><p>对于一个现有的项目，没有使用过任何包管理工具的话，开始使用Govendor 非常简单。</p>
 <p>进到项目目录下，执行初始化：</p>
-<pre tabindex="0"><code>cd &quot;my project in GOPATH&quot;
+<pre tabindex="0"><code>cd &#34;my project in GOPATH&#34;
 govendor init
 </code></pre><p>将现有依赖加入到当前项目的 vendor 中管理。</p>
 <pre tabindex="0"><code>govendor add +external

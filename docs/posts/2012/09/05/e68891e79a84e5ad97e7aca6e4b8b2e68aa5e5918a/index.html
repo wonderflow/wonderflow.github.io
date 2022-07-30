@@ -7,7 +7,7 @@
     <title>我的字符串报告（AC自动机详，后缀数组无） | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="上个学期开学的时候做的字符串报告，觉得还有些价值，做了些补充发上来，也许以后用得着。 1 KMP# 1.1 概念：# KMP是一种用来处理字符串匹配的算法。通俗的讲就是给你一个串A（ababababbc）和一个串B（ababbc），问你A串中是否包含B串。 解决这类问题的朴素算法就是枚举A串开始的位置，然后逐个位置对B串进行匹配。这样的算法复杂度是O（n*m）。而这里我们要介绍的KMP算法，就是解决这类问题最坏复杂度只要O（n&#43;m）的算法。 KMP是由三个人共同提出的，他们的名字分别是Knuth、Morris、Pratt，这也是为什么这个算法叫KMP的原因，就是取了三个人的首字母。 1.2 原理：# 现假设我们有两个串A（ab">
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.101.0" />
     
     
     
@@ -378,8 +378,8 @@ int main()
 	int i,j;
 	while(1)
 	{
-		scanf(&quot;%s&quot;,s);
-		if(s[0]=='.')break;
+		scanf(&#34;%s&#34;,s);
+		if(s[0]==&#39;.&#39;)break;
 		len=strlen(s);
 		i=0;
 		j=-1;
@@ -395,8 +395,8 @@ int main()
 		}
 		if(len%(len-next[len])==0)
 		{
-			printf(&quot;%d\n&quot;,len/(len-next[len]));
-		}else printf(&quot;1\n&quot;);
+			printf(&#34;%d\n&#34;,len/(len-next[len]));
+		}else printf(&#34;1\n&#34;);
 	}
 	return 0;
 }
@@ -452,18 +452,18 @@ void print(int n)
 	{
 		print(next[n]);
 	}
-	if(!next[n])printf(&quot;%d&quot;,n);
-	else printf(&quot; %d&quot;,n);
+	if(!next[n])printf(&#34;%d&#34;,n);
+	else printf(&#34; %d&#34;,n);
 }
 int main()
 {
-	while(scanf(&quot;%s&quot;,ss)!=EOF)
+	while(scanf(&#34;%s&#34;,ss)!=EOF)
 	{
         memset(next,0,sizeof(next));
 		len = strlen(ss);
 		get_next(ss);
 		print(len);
-		printf(&quot;\n&quot;);
+		printf(&#34;\n&#34;);
 	}
 	return 0;
 }
@@ -486,7 +486,7 @@ int len;
 void GetNext(char p[]) {
     int i = 0, j = -1;
     next[0] = -1;
-    while (p[i]!='\0') {
+    while (p[i]!=&#39;\0&#39;) {
         if ((j == -1) || (p[i] == p[j])) {
             i++;j++;
             next[i] = j;
@@ -498,7 +498,7 @@ void GetNext(char p[]) {
 int kmp()
 {
     int j=0,i = 0,sum=0;
-    while(str[i] != '\0')
+    while(str[i] != &#39;\0&#39;)
     {
         if((j==-1)||(str[i] == ss[j]))
         {
@@ -518,13 +518,13 @@ int kmp()
 int main()
 {
     int cas;
-    scanf(&quot;%d&quot;,&amp;cas);
+    scanf(&#34;%d&#34;,&amp;cas);
 	while(cas--)
 	{
-       scanf(&quot;%s%s&quot;,ss,str);
+       scanf(&#34;%s%s&#34;,ss,str);
        len = strlen(ss);
         GetNext(ss);
-		printf(&quot;%d\n&quot;,kmp());
+		printf(&#34;%d\n&#34;,kmp());
 	}
 	return 0;
 }
@@ -627,13 +627,13 @@ void KMP()
 
 int main()
 {
-    while(scanf(&quot;%d%d%d&quot;,&amp;n,&amp;k,&amp;s)!=EOF)
+    while(scanf(&#34;%d%d%d&#34;,&amp;n,&amp;k,&amp;s)!=EOF)
     {
         memset(p,0,sizeof(p));
         memset(q,0,sizeof(q));
         for(int i=0;i&lt;n;i++)
         {
-            scanf(&quot;%d&quot;,&amp;str[i]);
+            scanf(&#34;%d&#34;,&amp;str[i]);
             for(int j=1;j&lt;=s;j++)
             {
                 if(j == str[i])q[i+1][j] = q[i][j] + 1;
@@ -642,7 +642,7 @@ int main()
         }
         for(int i=0;i&lt;k;i++)
         {
-            scanf(&quot;%d&quot;,&amp;pst[i]);
+            scanf(&#34;%d&#34;,&amp;pst[i]);
             for(int j=1;j&lt;=s;j++)
             {
                 if(j == pst[i])p[i+1][j] = p[i][j] + 1;
@@ -651,9 +651,9 @@ int main()
         }
         GetNext();
         KMP();
-        printf(&quot;%d\n&quot;,ansn);
+        printf(&#34;%d\n&#34;,ansn);
         for(int i=0;i&lt;ansn;i++)
-            printf(&quot;%d\n&quot;,ans[i]+1);
+            printf(&#34;%d\n&#34;,ans[i]+1);
     }
     return 0;
 }
@@ -682,14 +682,14 @@ void init(){
 void insert(char * word){
 	int root = 0;
 	for(int i=0;word[i];i++){
-		if(tree[root].next[word[i]-'a']==-1){
-			tree[root].next[word[i]-'a'] = _p++;
+		if(tree[root].next[word[i]-&#39;a&#39;]==-1){
+			tree[root].next[word[i]-&#39;a&#39;] = _p++;
 		}
-		root = tree[root].next[word[i]-'a'];
+		root = tree[root].next[word[i]-&#39;a&#39;];
 	}
 	if(tree[root].count!=-1)tree[root].count++;
 	else tree[root].count = 1;
-//	cout&lt;&lt;root&lt;&lt;&quot; &quot;&lt;&lt;tree[root].count&lt;&lt;endl;
+//	cout&lt;&lt;root&lt;&lt;&#34; &#34;&lt;&lt;tree[root].count&lt;&lt;endl;
 }
 
 void maketree(){
@@ -730,7 +730,7 @@ int gao(char * paper){
 	int len = strlen(paper);
 	int ret = 0;
 	for(int i=0;i&lt;len;i++){
-		int v = paper[i] - 'a';
+		int v = paper[i] - &#39;a&#39;;
 		while(tree[root].next[v]==-1&amp;&amp;root)
 			root = tree[root].fail;
 		root = tree[root].next[v];
@@ -741,7 +741,7 @@ int gao(char * paper){
 			tree[tp].count = -1;
 			tp = tree[tp].fail;
 		}
-		//cout&lt;&lt;paper[i]&lt;&lt;&quot; &quot;&lt;&lt;ret&lt;&lt;endl;
+		//cout&lt;&lt;paper[i]&lt;&lt;&#34; &#34;&lt;&lt;ret&lt;&lt;endl;
 	}
 	return ret;
 }
@@ -749,16 +749,16 @@ int gao(char * paper){
 char temp[56],paper[1000020];
 int main(){
 	int T,n;
-	scanf(&quot;%d&quot;,&amp;T);
+	scanf(&#34;%d&#34;,&amp;T);
 	while(T--){
 		init();
-		scanf(&quot;%d&quot;,&amp;n);
+		scanf(&#34;%d&#34;,&amp;n);
 		for(int i=0;i&lt;n;i++){
-			scanf(&quot;%s&quot;,temp);
+			scanf(&#34;%s&#34;,temp);
 			insert(temp);
 		}
-		scanf(&quot;%s&quot;,paper);
-		printf(&quot;%d\n&quot;,gao(paper));
+		scanf(&#34;%s&#34;,paper);
+		printf(&#34;%d\n&#34;,gao(paper));
 	}
 }
 </code></pre><p>HDU2896 <a href="http://acm.hdu.edu.cn/showproblem.php?pid=2896">病毒侵袭</a>
@@ -843,38 +843,38 @@ void gao(char * paper){
 			if(tree[tp].count!=-1)vt.push_back(tree[tp].count);
 			tp = tree[tp].fail;
 		}
-		//cout&lt;&lt;paper[i]&lt;&lt;&quot; &quot;&lt;&lt;ret&lt;&lt;endl;
+		//cout&lt;&lt;paper[i]&lt;&lt;&#34; &#34;&lt;&lt;ret&lt;&lt;endl;
 	}
 }
 
 char temp[210],paper[10020];
 int main(){
 	int n,m,ans;
-	while(scanf(&quot;%d&quot;,&amp;n)!=EOF){
+	while(scanf(&#34;%d&#34;,&amp;n)!=EOF){
 		init();
 		ans = 0;
 		for(int i=0;i&lt;n;i++){
-			scanf(&quot;%s&quot;,temp);
+			scanf(&#34;%s&#34;,temp);
 			insert(temp,i+1);
 		}
 		maketree();
-		scanf(&quot;%d&quot;,&amp;m);
+		scanf(&#34;%d&#34;,&amp;m);
 		for(int i=0;i&lt;m;i++){
 			vt.clear();
-			scanf(&quot;%s&quot;,paper);
+			scanf(&#34;%s&#34;,paper);
 			gao(paper);
 			if(vt.size()&gt;0){
 				sort(vt.begin(),vt.end());
 				unique(vt.begin(),vt.end());
 				ans++;
-				printf(&quot;web %d:&quot;,i+1);
+				printf(&#34;web %d:&#34;,i+1);
 				for(int j=0;j&lt;vt.size();j++){
-					printf(&quot; %d&quot;,vt[j]);
+					printf(&#34; %d&#34;,vt[j]);
 				}
-				printf(&quot;\n&quot;);
+				printf(&#34;\n&#34;);
 			}
 		}
-		printf(&quot;total: %d\n&quot;,ans);
+		printf(&#34;total: %d\n&#34;,ans);
 	}
 }
 </code></pre><p>类似的题目：
@@ -912,17 +912,17 @@ int que[size],_f,_t;
 
 int Index(char c){
 	switch(c){
-		case 'A':return 0;
-		case 'G':return 1;
-		case 'C':return 2;
-		case 'T':return 3;
+		case &#39;A&#39;:return 0;
+		case &#39;G&#39;:return 1;
+		case &#39;C&#39;:return 2;
+		case &#39;T&#39;:return 3;
 	}
 }
 void insert(char* word){
 	int root = 0;
 	for(int i=0;word[i];i++){
 		if(tree[root].end){
-		//	cout&lt;&lt;root&lt;&lt;&quot; &quot;&lt;&lt;word&lt;&lt;endl;
+		//	cout&lt;&lt;root&lt;&lt;&#34; &#34;&lt;&lt;word&lt;&lt;endl;
 			break;
 		}
 		if(tree[root].next[Index(word[i])]==-1){
@@ -952,7 +952,7 @@ void maketree(){
 					if(tree[tree[dex].fail].end)tree[dex].end++;
 				}
 				que[_t++] = tree[v].next[i];
-			//	cout&lt;&lt;dex&lt;&lt;&quot; &quot;&lt;&lt;tree[dex].end&lt;&lt;endl;
+			//	cout&lt;&lt;dex&lt;&lt;&#34; &#34;&lt;&lt;tree[dex].end&lt;&lt;endl;
 			//	if(tree[dex].end)id[dex] = rn++;
 			}else{
 				if(!v)tree[v].next[i] = 0;
@@ -989,11 +989,11 @@ LL ans[size][size],ret;
 
 int main(){
 	int n,m;
-	while(scanf(&quot;%d%d&quot;,&amp;m,&amp;n)!=EOF){
+	while(scanf(&#34;%d%d&#34;,&amp;m,&amp;n)!=EOF){
 		_p = 0;//0 is always root
 		tree[0].init();
 		for(int i=0;i&lt;m;i++){
-			scanf(&quot;%s&quot;,temp);
+			scanf(&#34;%s&#34;,temp);
 			insert(temp);
 		}
 		maketree();
@@ -1026,7 +1026,7 @@ int main(){
 				ret +=ans[0][i];
 				if(ret&gt;=Mod)ret%=Mod;
 			}
-		printf(&quot;%I64d\n&quot;,ret);
+		printf(&#34;%I64d\n&#34;,ret);
 	}
 
 }
@@ -1057,7 +1057,7 @@ struct Mat{
 void insert(char * word){
 	int p = 0;
 	for(int i=0;word[i];i++){
-		int v = word[i]-'a';
+		int v = word[i]-&#39;a&#39;;
 		if(node[p].next[v]==-1){
 			nNode++;
 			node[p].next[v] = nNode;
@@ -1102,7 +1102,7 @@ void getGraph(){
 	}
 /*	for(int i=0;i&lt;nNode;i++){
 		for(int j=0;j&lt;nNode;j++){
-			cout&lt;&lt;graph[i][j]&lt;&lt;&quot; &quot;;
+			cout&lt;&lt;graph[i][j]&lt;&lt;&#34; &#34;;
 		}
 		cout&lt;&lt;endl;
 	}
@@ -1197,17 +1197,17 @@ LL calcOther(int n,int sz){
 		if(node[i].end)continue;
 		ret+=ans.m[0][i];
 	}
-//	cout&lt;&lt;&quot;matrix:&quot;&lt;&lt;ret&lt;&lt;endl;
+//	cout&lt;&lt;&#34;matrix:&#34;&lt;&lt;ret&lt;&lt;endl;
 	return ret;
 }
 
 int main(){
 	char word[16];
-	while(scanf(&quot;%d%d&quot;,&amp;n,&amp;l)!=EOF){
+	while(scanf(&#34;%d%d&#34;,&amp;n,&amp;l)!=EOF){
 		nNode = 0;
 		node[0].init();
 		for(int i=0;i&lt;n;i++){
-			scanf(&quot;%s&quot;,word);
+			scanf(&#34;%s&#34;,word);
 			insert(word);
 		}
 		nNode++;
@@ -1219,9 +1219,9 @@ int main(){
 			}
 		}
 		LL ans = sum(l);
-//		cout&lt;&lt;&quot;sum: &quot;&lt;&lt;ans&lt;&lt;endl;
+//		cout&lt;&lt;&#34;sum: &#34;&lt;&lt;ans&lt;&lt;endl;
 		ans-=calcOther(l,nNode);
-		printf(&quot;%I64u\n&quot;,ans);
+		printf(&#34;%I64u\n&#34;,ans);
 	}
 	return 0;
 }
@@ -1323,7 +1323,7 @@ void makegraph(){
 	for(int i=0;i&lt;_p;i++){
 		for(int j=0;j&lt;_p;j++){
 			bg[i][j] = graph[i][j];
-		//	cout&lt;&lt;graph[i][j]&lt;&lt;&quot; &quot;;
+		//	cout&lt;&lt;graph[i][j]&lt;&lt;&#34; &#34;;
 		}
 		//cout&lt;&lt;endl;
 	}
@@ -1336,7 +1336,7 @@ void gao(){
 		}
 	}
 	dp[0][0] = 1;
-	//cout&lt;&lt;&quot;start:&quot;&lt;&lt;endl;
+	//cout&lt;&lt;&#34;start:&#34;&lt;&lt;endl;
 	for(int i=1;i&lt;=m;i++){
 		for(int j=0;j&lt;_p;j++){
 			for(int k=0;k&lt;_p;k++){
@@ -1345,7 +1345,7 @@ void gao(){
 				//	dp[i][j].print();
 				}
 			}
-	//		cout&lt;&lt;i&lt;&lt;&quot; &quot;&lt;&lt;j&lt;&lt;&quot; &quot;&lt;&lt;dp[i][j]&lt;&lt;endl;
+	//		cout&lt;&lt;i&lt;&lt;&#34; &#34;&lt;&lt;j&lt;&lt;&#34; &#34;&lt;&lt;dp[i][j]&lt;&lt;endl;
 		}
 	}
 }
@@ -1361,15 +1361,15 @@ void print(){
 
 int main(){
 	char temp[56];
-	while(scanf(&quot;%d%d%d&quot;,&amp;n,&amp;m,&amp;p)!=EOF){
-		scanf(&quot;%s&quot;,temp);
+	while(scanf(&#34;%d%d%d&#34;,&amp;n,&amp;m,&amp;p)!=EOF){
+		scanf(&#34;%s&#34;,temp);
 		_p = 0;
 		tree[_p].init();
 		for(int i=0;i&lt;n;i++){
 			hash[temp[i]] = i;
 		}
 		for(int i=0;i&lt;p;i++){
-			scanf(&quot;%s&quot;,temp);
+			scanf(&#34;%s&#34;,temp);
 			insert(temp);
 		}
 		_p++;
@@ -1411,7 +1411,7 @@ BigNum::BigNum(const char*s)     //将一个字符串类型的变量转化为大
 		if(k&lt;0)
 			k=0;
 		for(int j=k;j&lt;=i;j++)
-			t=t*10+s[j]-'0';
+			t=t*10+s[j]-&#39;0&#39;;
 		a[index++]=t;
 	}
 }
@@ -1444,7 +1444,7 @@ istream&amp; operator&gt;&gt;(istream &amp; in,  BigNum &amp; b)   //重载输�
 		int t=1;
 		for(int j=0;j&lt;4&amp;&amp;i&gt;=0;j++,i--,t*=10)
 		{
-			sum+=(ch[i]-'0')*t;
+			sum+=(ch[i]-&#39;0&#39;)*t;
 		}
 		b.a[count]=sum;
 		count++;
@@ -1460,7 +1460,7 @@ ostream&amp; operator&lt;&lt;(ostream&amp; out,  BigNum&amp; b)   //重载输出
 	for(i = b.len - 2 ; i &gt;= 0 ; i--)
 	{ 
 		cout.width(DLEN); 
-		cout.fill('0'); 
+		cout.fill(&#39;0&#39;); 
 		cout &lt;&lt; b.a[i]; 
 	} 
 	return out;
@@ -1526,7 +1526,7 @@ void BigNum::print()    //输出大数
 	for(i = len - 2 ; i &gt;= 0 ; i--)
 	{ 
 		cout.width(DLEN); 
-		cout.fill('0'); 
+		cout.fill(&#39;0&#39;); 
 		cout &lt;&lt; a[i]; 
 	} 
 	cout &lt;&lt; endl;
@@ -1560,7 +1560,7 @@ int calc[1&lt;&lt;10];
 void insert(char * word,int ind){
 	int p = 0;
 	for(int i=0;word[i];i++){
-		int m = word[i] - 'a';
+		int m = word[i] - &#39;a&#39;;
 		if(tree[p].next[m]==-1){
 			tree[++_p].init();
 			tree[p].next[m] = _p;
@@ -1602,7 +1602,7 @@ void getGraph(){
 	}
 /*	for(int i=0;i&lt;_p;i++){
 		for(int j=0;j&lt;_p;j++){
-			cout&lt;&lt;graph[i][j]&lt;&lt;&quot; &quot;;
+			cout&lt;&lt;graph[i][j]&lt;&lt;&#34; &#34;;
 		}
 		cout&lt;&lt;endl;
 	}*/
@@ -1660,18 +1660,18 @@ int main(){
 	for(int i=1;i&lt;d;i++){
 		calc[i] = calc[i&gt;&gt;1]+(i&amp;1);
 	}
-	while(scanf(&quot;%d%d%d&quot;,&amp;n,&amp;m,&amp;k)!=EOF){
+	while(scanf(&#34;%d%d%d&#34;,&amp;n,&amp;m,&amp;k)!=EOF){
 		if(m+n+k==0)break;
 		_p = 0;
 		tree[_p].init();
 		for(int i=0;i&lt;m;i++){
-			scanf(&quot;%s&quot;,temp);
+			scanf(&#34;%s&#34;,temp);
 			insert(temp,i);
 		}
 		_p++;
 		build();
 	//	getGraph();
-		printf(&quot;%d\n&quot;,gao()%MOD);
+		printf(&#34;%d\n&#34;,gao()%MOD);
 	}
 	return 0;
 }
@@ -1709,7 +1709,7 @@ void init(){
 void insert(char *word,int val){
 	int v = 0;
 	for(int i=0;word[i];i++){
-		int nt = word[i]-'a';
+		int nt = word[i]-&#39;a&#39;;
 		if(tree[v].next[nt]==-1){
 			tree[v].next[nt] = ++_p;
 			tree[_p].init();
@@ -1744,7 +1744,7 @@ void build(){
 void solve(){
 	memset(dp,-1,sizeof(dp));
 	for(int i=0;i&lt;=_p;i++){
-		str[i][0] = &quot;&quot;;
+		str[i][0] = &#34;&#34;;
 	}
 	dp[0][0] = 0;
 	string ans,tmp;
@@ -1757,15 +1757,15 @@ void solve(){
 				if(dp[v][i+1]&lt;dp[j][i]+tree[v].val){
 					dp[v][i+1] = dp[j][i]+tree[v].val;
 					str[v][i+1] = str[j][i];
-					str[v][i+1].push_back('a'+k);
+					str[v][i+1].push_back(&#39;a&#39;+k);
 					if(dp[v][i+1]&gt;mnt){
 						mnt = dp[v][i+1];
 						ans = str[v][i+1];
-//						cout&lt;&lt;mnt&lt;&lt;&quot; &quot;&lt;&lt;ans&lt;&lt;endl;
+//						cout&lt;&lt;mnt&lt;&lt;&#34; &#34;&lt;&lt;ans&lt;&lt;endl;
 					}
 				}else if(dp[v][i+1]==dp[j][i]+tree[v].val){
 					tmp = str[j][i];
-					tmp.push_back('a'+k);
+					tmp.push_back(&#39;a&#39;+k);
 					if(tmp&lt;str[v][i+1]){
 						str[v][i+1] = tmp;
 					}
@@ -1773,7 +1773,7 @@ void solve(){
 			}
 		}
 	}
-	if(mnt==0)puts(&quot;&quot;);
+	if(mnt==0)puts(&#34;&#34;);
 	else{
 		int f = 0;
 		for(int i=1;i&lt;=n;i++){
@@ -1792,22 +1792,22 @@ void solve(){
 			}
 		}
 		
-		printf(&quot;%s\n&quot;,ans.c_str());
+		printf(&#34;%s\n&#34;,ans.c_str());
 	}
 //	cout&lt;&lt;mnt&lt;&lt;endl;
 }
 
 int main(){
 	int T,t;
-	scanf(&quot;%d&quot;,&amp;T);
+	scanf(&#34;%d&#34;,&amp;T);
 	while(T--){
-		scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+		scanf(&#34;%d%d&#34;,&amp;n,&amp;m);
 		init();
 		for(int i=0;i&lt;m;i++){
-			scanf(&quot;%s&quot;,words[i]);
+			scanf(&#34;%s&#34;,words[i]);
 		}
 		for(int i=0;i&lt;m;i++){
-			scanf(&quot;%d&quot;,&amp;t);
+			scanf(&#34;%d&#34;,&amp;t);
 			insert(words[i],t);
 		}
 		build();

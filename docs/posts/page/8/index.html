@@ -7,7 +7,7 @@
     <title>奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Nothing Replaces Hard Work!">
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.101.0" />
     
     
     
@@ -147,6 +147,23 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/posts/2013/10/18/ubuntue79a84e6ba90/" class="link black dim">
+        ubuntu源的本地化
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      最近，为了装个runit，装了2天，各种问题都出现了，始终无法解决，都快装哭了。 最后用排除法，一个个排除问题，发现是使用的网易ubuntu源的问题。 哎，看来从研究设计到工程细节，还是有很大的技术距离的。 静默安装方法 {% codeblock %} sudo DEBIAN_FRONTEND=noninteractive apt-get install -f -y &ndash;force-yes &ndash;no-install-recommends runit {% endcodeblock %} 最后为了安全稳定，决定自己建立ubuntu的局域网源，这样后面安装软件也会更快。 1、安装依赖软件 {% codeblock %} sudo apt-get install dpkg-dev {% endcodeblock %} 2、将 /var/cache/apt/archives/下的所有deb文件拷到(cp命令，图形界面都没问题) 你想要的地方，拷贝前建议执行一下 {% codeblock %} sudo apt-get autoclean {% endcodeblock %} 比方说拷至home下新建的deb文件夹 {% codeblock %} sudo cp /var/cache/apt/archives/*.deb /var/www/deb/ {% endcodeblock %} 3、拷贝完成后到/var/
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/posts/2013/10/14/rubye78988e79a84crash_recoverye887aae58aa8e58c96e6b58be8af95e5b7a5e585b7/" class="link black dim">
         Ruby版的crash_recovery自动化测试工具
       </a>
@@ -220,7 +237,7 @@
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。 如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &quot;number&quot; &gt;/proc/sys/kernel/sysrq {% endcodeblock %} &lt;!-- more --&gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’
+      SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。 如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &#34;number&#34; &gt;/proc/sys/kernel/sysrq {% endcodeblock %} &lt;!-- more --&gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’
     </div>
   </div>
 </div>
@@ -255,23 +272,6 @@
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       最近读了2013年新出的一本关于git的书《git pocket guide》既锻炼了自己的英语阅读，又学习了git，真是一举两得。 读书笔记长达40多页，要是整理成wordpress网页的格式，非得折腾死，还是直接上传一个pdf比较直接，看这里：chinese_git_pocket_wonderflow。 学会了git，就该常用github了，这个程序员的天堂。
-    </div>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/2013/08/18/puttye4bdbfe794a8e9858de7bdae/" class="link black dim">
-        Putty使用配置
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Putty是一款不错的，在windows下可以用来进行ssh和telnet远程连接的小工具，绿色纯净。之所以说它绿色纯净，是它就纯粹只是一个不到1M大小的exe文件。但是刚上手的时候，由于懒得配置，就会觉得用起来非常不舒服，跟linux中原生态终端有相当程度的山寨痕迹。但是今天下定决心好好配置一番，发现最终效果还不错。 1、登陆，在hostname处填写相应IP，点击Open按钮，即可连接过去。 2、修改字体，对着上边栏右键-&gt;Change Settings-&gt;Window-&gt;Appearance，看到右边有Font Settings，点击Change按钮，即可改变字体和按钮，推荐C
     </div>
   </div>
 </div>
