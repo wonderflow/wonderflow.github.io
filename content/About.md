@@ -11,7 +11,7 @@ Contact: wonderflow@icloud.com
 
 如果你对博客内容有任何评论，欢迎[留言](https://github.com/wonderflow/wonderflow.github.io/issues/new/choose)。
 
-[WonderfloW](https://github.com/wonderflow)，目前就职于阿里云，热爱 Serverless、云原生、Golang、容器、大数据、可观测相关技术。
+Jianbo Sun，目前就职于阿里云，[CNCF 官方大使](https://www.cncf.io/people/ambassadors/?p=jianbo-sun)，热爱开源，专注于 Serverless、云原生、Golang、容器、可观测相关领域。
 
 * 2020 年至今 - 作为创始人和主要作者发起 [KubeVela](https://kubevela.io/) 项目，落地阿里云 EDAS、SAE、BizWorks 等数十款云产品以及阿里巴巴集团，致力于云原生应用层标准化，推动 KubeVela 加入 CNCF 并[晋级孵化](https://www.cncf.io/blog/2023/02/27/kubevela-brings-software-delivery-control-plane-capabilities-to-cncf-incubator/)，如今 KubeVela 已被金融、智能制造、游戏、电商、IoT物联网等领域的数百家企业广泛采纳。
 * 2019 年 - 加入阿里云，负责第一代[基于容器的多集群混合云平台](https://www.infoq.cn/article/sbwSX8ypxgID2-SB723K)建设，同年作为核心架构师参与阿里和微软共同发起的 [OAM(Open Application Model)](https://www.infoq.cn/article/gizNAvObXREqfvWMTvYt) 应用模型标准定义。
