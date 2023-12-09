@@ -7,7 +7,7 @@
     <title>云原生技术（2） - Helm Chart 如何做金丝雀发布？ | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="本文作者： 王易可 Helm 持续交付的挑战# Helm 设计之初就为了保证其简单易用，放弃了复杂的组件编排。所以在应用部署时， Helm 是一股脑将所有的资源交付到 Kubernetes 集群中，期望通过 Kubernetes 面向终态的自愈能力，自动化的解决应用的依赖和编排问题。 这样的设计在首次部署时可能没有问题，然而对于具备一定规模的企业生产环境而言，就显得过于理想化了。 一方面，在应用升级时一股脑将资源全部更新很容易因为部分服务短暂的不可用造成整体的服务中断；另一方面，如果软件存在 BUG，也无法及时回滚，很容易将影响范围扩大，难以控制。在某些更严重的场景下，如存在生产环境部分配置被运维人工修改过，由于 Helm 一次性部署会将原有的修改全部覆盖，而 Helm 之前的版本与生产环境可">
-    <meta name="generator" content="Hugo 0.101.0" />
+    <meta name="generator" content="Hugo 0.92.2" />
     
     
     
@@ -196,17 +196,17 @@
 </h3><ul>
 <li>安装 KubeVela</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">curl -fsSl https://static.kubevela.net/script/install-velad.sh | bash</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">velad install</span>
-</span></span></code></pre></div><p>查看 <a href="https://kubevela.net/docs/install#1-install-velad">此文档</a> 以了解更多安装细节。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">curl -fsSl https://static.kubevela.net/script/install-velad.sh | bash</span>
+<span style="color:#ae81ff">velad install</span>
+</code></pre></div><p>查看 <a href="https://kubevela.net/docs/install#1-install-velad">此文档</a> 以了解更多安装细节。</p>
 <ul>
 <li>启用相关的 addon</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">vela addon enable fluxcd</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">vela addon enable ingress-nginx</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">vela addon enable kruise-rollout</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">vela addon enable velaux</span>
-</span></span></code></pre></div><p>在这一步中，启动了以下几个插件：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">vela addon enable fluxcd</span>
+<span style="color:#ae81ff">vela addon enable ingress-nginx</span>
+<span style="color:#ae81ff">vela addon enable kruise-rollout</span>
+<span style="color:#ae81ff">vela addon enable velaux</span>
+</code></pre></div><p>在这一步中，启动了以下几个插件：
 1） fluxcd 插件帮助我们具备 helm 交付的能力；
 2）ingress-nginx 插件用于提供金丝雀发布的流量管理能力；
 3）kruise-rollout 提供金丝雀发布能力；
@@ -214,108 +214,108 @@
 <ul>
 <li>将 nginx ingress-controller  的端口映射到本地</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">vela port-forward addon-ingress-nginx -n vela-system</span>
-</span></span></code></pre></div><h3 id="首次部署">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">vela port-forward addon-ingress-nginx -n vela-system</span>
+</code></pre></div><h3 id="首次部署">
     首次部署<a class="hash-link" href="#%e9%a6%96%e6%ac%a1%e9%83%a8%e7%bd%b2" title="Direct link to heading">#</a>
 </h3><p>通过执行下面的命令，第一次发布 helm 应用。在这一步中，我们通过 vela 的  CLI 工具部署，如果你熟悉 Kubernetes，也可以通过 kubectl apply 部署，效果完全相同。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">cat &lt;&lt;EOF | vela up -f -</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1beta1</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">canary-demo</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app.oam.dev/publishVersion</span>: <span style="color:#ae81ff">v1</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">components</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">canary-demo</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">helm</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">properties</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">repoType</span>: <span style="color:#e6db74">&#34;helm&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;https://wangyikewxgm.github.io/my-charts/&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">chart</span>: <span style="color:#e6db74">&#34;canary-demo&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;1.0.0&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">traits</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">kruise-rollout</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">properties</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">canary</span>:
-</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># The first batch of Canary releases 20% Pods, and 20% traffic imported to the new version, require manual confirmation before subsequent releases are completed</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">steps</span>:
-</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">20</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># The second batch of Canary releases 90% Pods, and 90% traffic imported to the new version.</span>
-</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">90</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">trafficRoutings</span>:
-</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">nginx</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">EOF</span>
-</span></span></code></pre></div><p>在上面的例子中，我们声明了一个名为  canary-demo 的应用，其中包含一个 helm 类型的组件（KubeVela 也支持其他类型的组件部署），在组件的参数中包含 chart 的地址以及版本等信息。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">cat &lt;&lt;EOF | vela up -f -</span>
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1beta1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">canary-demo</span>
+  <span style="color:#f92672">annotations</span>:
+    <span style="color:#f92672">app.oam.dev/publishVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">components</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">canary-demo</span>
+    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">helm</span>
+    <span style="color:#f92672">properties</span>:
+      <span style="color:#f92672">repoType</span>: <span style="color:#e6db74">&#34;helm&#34;</span>
+      <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;https://wangyikewxgm.github.io/my-charts/&#34;</span>
+      <span style="color:#f92672">chart</span>: <span style="color:#e6db74">&#34;canary-demo&#34;</span>
+      <span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;1.0.0&#34;</span>
+    <span style="color:#f92672">traits</span>:
+    - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">kruise-rollout</span>
+      <span style="color:#f92672">properties</span>:
+        <span style="color:#f92672">canary</span>:
+          <span style="color:#75715e"># The first batch of Canary releases 20% Pods, and 20% traffic imported to the new version, require manual confirmation before subsequent releases are completed</span>
+          <span style="color:#f92672">steps</span>:
+          - <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">20</span>
+          <span style="color:#75715e"># The second batch of Canary releases 90% Pods, and 90% traffic imported to the new version.</span>
+          - <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">90</span>
+          <span style="color:#f92672">trafficRoutings</span>:
+          - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">nginx</span>
+<span style="color:#ae81ff">EOF</span>
+</code></pre></div><p>在上面的例子中，我们声明了一个名为  canary-demo 的应用，其中包含一个 helm 类型的组件（KubeVela 也支持其他类型的组件部署），在组件的参数中包含 chart 的地址以及版本等信息。</p>
 <p>另外，我们还为这个组件声明了 <code>kruise-rollout</code> 的运维特征，这个就是 kruise-rollout 这个插件安装后具备的能力。其中可以指定 helm 的升级策略，第一个阶段先升级 20% 的实例和流量，经过人工确认之后再升级90%，最后全量升到最新的版本。</p>
 <p>需要注意的是，为了演示效果直观（体现版本变化），我们专门准备了一个 chart （ <a href="https://github.com/wangyikewxgm/my-charts/tree/main/canary-demo">https://github.com/wangyikewxgm/my-charts/tree/main/canary-demo</a>）。该 helm chart 的主体包含一个 Deployment 和 Ingress 对象，这是 helm chart  制作时最通用的场景。如果你的 helm chart 同样具备上述的资源，也一样可以通过这个例子进行金丝雀的发布。</p>
 <p>部署成功之后，我们通过下面的命令访问你集群内的网关地址，将会看到下面的效果：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ curl -H <span style="color:#e6db74">&#34;Host: canary-demo.com&#34;</span> http://localhost:8080/version
-</span></span><span style="display:flex;"><span>Demo: V1
-</span></span></code></pre></div><p>另外，通过 VelaUX  的资源拓扑页面，我们可以看到五个 V1 版本的实例已经全部就绪。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ curl -H <span style="color:#e6db74">&#34;Host: canary-demo.com&#34;</span> http://localhost:8080/version
+Demo: V1
+</code></pre></div><p>另外，通过 VelaUX  的资源拓扑页面，我们可以看到五个 V1 版本的实例已经全部就绪。</p>
 <p><img src="/images/2022-07-30/helm-can-2.jpg" alt=""></p>
 <h3 id="升级应用">
     升级应用<a class="hash-link" href="#%e5%8d%87%e7%ba%a7%e5%ba%94%e7%94%a8" title="Direct link to heading">#</a>
 </h3><p>应用下面的这个 yaml ，来升级你的应用。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">cat &lt;&lt;EOF | vela up -f -</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1beta1</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">canary-demo</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app.oam.dev/publishVersion</span>: <span style="color:#ae81ff">v2</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">components</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">canary-demo</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">helm</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">properties</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">repoType</span>: <span style="color:#e6db74">&#34;helm&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;https://wangyikewxgm.github.io/my-charts/&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">chart</span>: <span style="color:#e6db74">&#34;canary-demo&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Upgade to version 2.0.0</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;2.0.0&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">traits</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">kruise-rollout</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">properties</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">canary</span>:
-</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># The first batch of Canary releases 20% Pods, and 20% traffic imported to the new version, require manual confirmation before subsequent releases are completed</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">steps</span>:
-</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">20</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># The second batch of Canary releases 90% Pods, and 90% traffic imported to the new version.</span>
-</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">90</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">trafficRoutings</span>:
-</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">nginx</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">EOF</span>
-</span></span></code></pre></div><p>我们注意到新的  application 和首次部署的相比仅有两处改动：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">cat &lt;&lt;EOF | vela up -f -</span>
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">core.oam.dev/v1beta1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">canary-demo</span>
+  <span style="color:#f92672">annotations</span>:
+    <span style="color:#f92672">app.oam.dev/publishVersion</span>: <span style="color:#ae81ff">v2</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">components</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">canary-demo</span>
+    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">helm</span>
+    <span style="color:#f92672">properties</span>:
+      <span style="color:#f92672">repoType</span>: <span style="color:#e6db74">&#34;helm&#34;</span>
+      <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;https://wangyikewxgm.github.io/my-charts/&#34;</span>
+      <span style="color:#f92672">chart</span>: <span style="color:#e6db74">&#34;canary-demo&#34;</span>
+      <span style="color:#75715e"># Upgade to version 2.0.0</span>
+      <span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;2.0.0&#34;</span>
+    <span style="color:#f92672">traits</span>:
+    - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">kruise-rollout</span>
+      <span style="color:#f92672">properties</span>:
+        <span style="color:#f92672">canary</span>:
+          <span style="color:#75715e"># The first batch of Canary releases 20% Pods, and 20% traffic imported to the new version, require manual confirmation before subsequent releases are completed</span>
+          <span style="color:#f92672">steps</span>:
+          - <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">20</span>
+          <span style="color:#75715e"># The second batch of Canary releases 90% Pods, and 90% traffic imported to the new version.</span>
+          - <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">90</span>
+          <span style="color:#f92672">trafficRoutings</span>:
+          - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">nginx</span>
+<span style="color:#ae81ff">EOF</span>
+</code></pre></div><p>我们注意到新的  application 和首次部署的相比仅有两处改动：</p>
 <ol>
 <li>把 app.oam.dev/publishVersion 的 annotation 从 v1 升级到了 v2。这代表这次修改是一个新的版本。</li>
 <li>把 helm chart 的版本升级到了 2.0.0 ，该版本的 chart 中的 deployment 镜像的 tag 升级到了 V2。</li>
 </ol>
 <p>一段时间之后，我们会发现升级过程停在了我们上面定义的第一个批次，也就是只升级 20% 的实例和流量。这个时候多次执行上面访问网关的命令，你会发现  <code>Demo: v1</code>和  <code>Demo: v2</code>交替出现，并且有差不多 20% 的概率得到  <code>Demo: v2</code>的结果。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ curl -H <span style="color:#e6db74">&#34;Host: canary-demo.com&#34;</span> http://localhost:8080/version
-</span></span><span style="display:flex;"><span>Demo: V2
-</span></span></code></pre></div><p>再次查看应用的资源的拓扑状态，会看到由 kruise-rollout trait 创建出来的  <code>rollout</code>CR 为我们创建了一个新版本的实例，而之前工作负载创建出来的5个旧版本的实例并没有发生变化。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ curl -H <span style="color:#e6db74">&#34;Host: canary-demo.com&#34;</span> http://localhost:8080/version
+Demo: V2
+</code></pre></div><p>再次查看应用的资源的拓扑状态，会看到由 kruise-rollout trait 创建出来的  <code>rollout</code>CR 为我们创建了一个新版本的实例，而之前工作负载创建出来的5个旧版本的实例并没有发生变化。</p>
 <p><img src="/images/2022-07-30/helm-can-3.jpg" alt=""></p>
 <p>接下来，我们通过 vela 的 CLI 执行下面的命令，通过人工审核恢复继续升级：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">vela workflow resume canary-demo</span>
-</span></span></code></pre></div><p>一段时间之后，通过资源拓扑图，我们看到五个新版本的实例被创建出来了。这个时候我们再次访问网关，会发现出现 Demo：v2 的概率大幅增加，接近于90%。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">vela workflow resume canary-demo</span>
+</code></pre></div><p>一段时间之后，通过资源拓扑图，我们看到五个新版本的实例被创建出来了。这个时候我们再次访问网关，会发现出现 Demo：v2 的概率大幅增加，接近于90%。</p>
 <h3 id="快速回滚">
     快速回滚<a class="hash-link" href="#%e5%bf%ab%e9%80%9f%e5%9b%9e%e6%bb%9a" title="Direct link to heading">#</a>
 </h3><p>通常在一个真实场景中的发布中，经常会有经过人工审核之后，发现新版本应用的状态异常，需要终止当前的升级，快速将应用回退到升级开始前的版本。</p>
 <p>我们就可以执行下面的命令，先暂停当前的发布工作流：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">$ vela workflow suspend canary-demo</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Rollout default/canary-demo in cluster  suspended.</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Successfully suspend workflow</span>: <span style="color:#ae81ff">canary-demo</span>
-</span></span></code></pre></div><p>紧接着回滚到发布之前的版本，也就是 V1 ：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">$ vela workflow rollback canary-demo</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Application spec rollback successfully.</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Application status rollback successfully.</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Rollout default/canary-demo in cluster  rollback.</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Successfully rollback rolloutApplication outdated revision cleaned up.</span>
-</span></span></code></pre></div><p>这个时候，我们再次访问网关，会发现所有的请求结果又回到了 V1 的状态。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">$ curl -H &#34;Host: canary-demo.com&#34; http://localhost:8080/version</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Demo</span>: <span style="color:#ae81ff">V1</span>
-</span></span></code></pre></div><p>这时候，通过资源拓扑图，我们可以看到，金丝雀版本的实例也全部被删除了，并且从始至终，v1 的五个实例，作为稳定版本的实例，一直没有发生任何变化。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">$ vela workflow suspend canary-demo</span>
+<span style="color:#ae81ff">Rollout default/canary-demo in cluster  suspended.</span>
+<span style="color:#f92672">Successfully suspend workflow</span>: <span style="color:#ae81ff">canary-demo</span>
+</code></pre></div><p>紧接着回滚到发布之前的版本，也就是 V1 ：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">$ vela workflow rollback canary-demo</span>
+<span style="color:#ae81ff">Application spec rollback successfully.</span>
+<span style="color:#ae81ff">Application status rollback successfully.</span>
+<span style="color:#ae81ff">Rollout default/canary-demo in cluster  rollback.</span>
+<span style="color:#ae81ff">Successfully rollback rolloutApplication outdated revision cleaned up.</span>
+</code></pre></div><p>这个时候，我们再次访问网关，会发现所有的请求结果又回到了 V1 的状态。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">$ curl -H &#34;Host: canary-demo.com&#34; http://localhost:8080/version</span>
+<span style="color:#f92672">Demo</span>: <span style="color:#ae81ff">V1</span>
+</code></pre></div><p>这时候，通过资源拓扑图，我们可以看到，金丝雀版本的实例也全部被删除了，并且从始至终，v1 的五个实例，作为稳定版本的实例，一直没有发生任何变化。</p>
 <p><img src="/images/2022-07-30/helm-can-4.jpg" alt=""></p>
 <p>如果你将上面的回滚操作改为恢复继续升级，将会继续执行后续的升级过程，完成全量发布。</p>
 <p>上述 demo 的完整操作过程请参考：<a href="https://kubevela.net/docs/tutorials/helm">https://kubevela.net/docs/tutorials/helm</a>。</p>

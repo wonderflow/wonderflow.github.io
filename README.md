@@ -1,5 +1,13 @@
 # Blog Operation
 
+## Install
+
+```
+sudo apt-get install hugo
+git clone git@github.com:wonderflow/wonderflow.github.io.git
+git submodule update --init --recursive
+```
+
 ## New Post
 ```
 hugo new posts/<YYYY>-<MM>-<DD>-<title>.md

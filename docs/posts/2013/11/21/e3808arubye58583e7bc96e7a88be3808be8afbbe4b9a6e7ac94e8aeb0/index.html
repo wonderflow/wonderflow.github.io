@@ -7,7 +7,7 @@
     <title>《ruby元编程》读书笔记 | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="总的来说，《ruby元编程》是一本好书。 当我拿到这本书的时候，第一反应是什么叫元编程？书上的定义是这样的：“元编程是写出编写代码的代码”。 而我认为，元编程是ruby语言的一些高级特性，是属于ruby的奇技淫巧。 有意思的是，这本书不是枯燥的一章一章给你灌输这些知识，而是描述公司里一个老程序员一对一带一个年轻程序员的故事。就是所谓的mentor/buddy制度，大部分IT公司都有，就是不知道贯彻的怎么样。不管书中描述的这样的工作情况是不是真的，都很令人神往。 我觉得一个IT行业的大公司就该有这样的气度，把新员工当朋友、兄弟一样培养，毕竟IT行业中，人才是最大的财富。这样带起来的团队，相比凝聚力也是极">
-    <meta name="generator" content="Hugo 0.101.0" />
+    <meta name="generator" content="Hugo 0.92.2" />
     
     
     
@@ -219,7 +219,7 @@ obj.send(:my_method, 3) # =&gt; 6</p>
 </ul>
 <p>{% codeblock %}
 def a_method
-return yield if block_given? &rsquo;no block'
+return yield if block_given? &lsquo;no block&rsquo;
 end
 a_method # =&gt; &ldquo;no block&rdquo;
 a_method { &ldquo;here&rsquo;s a block!&rdquo; } # =&gt; &ldquo;here&rsquo;s a block!&rdquo;</p>
@@ -270,8 +270,8 @@ def str.title?
 self.upcase == self
 end
 str.title? # =&gt; false
-str.methods.grep(/title?/) # =&gt; [&ldquo;title?&rdquo;]
-str.singleton_methods # =&gt; [&ldquo;title?&rdquo;]</p>
+str.methods.grep(/title?/) # =&gt; [&ldquo;title?&quot;]
+str.singleton_methods # =&gt; [&ldquo;title?&quot;]</p>
 <p>{% endcodeblock %}</p>
 <p>而关于类方法的真相其实就是：类只是对象，而类名只是常量，类方法其实就是最基础那个类的单件方法。多么巧妙的设计。</p>
 <p><strong>类宏</strong>：类似attr_accessor()方法这样，所有的attr_*()方法都定义在Module类中，Module包含在Object中，因此不管self是类还是模块，都可以使用它们。虽然它们看起来很像关键字，但其实它们只是普通方法，只是可以用在类定义中。</p>
@@ -293,7 +293,7 @@ class &laquo; an_object</p>
 class String
 alias :real_length :length
 def length
-real_length &gt; 5 ? &rsquo;long&rsquo; : &lsquo;short&rsquo;
+real_length &gt; 5 ? &lsquo;long&rsquo; : &lsquo;short&rsquo;
 end
 end
 &ldquo;War and Peace&rdquo;.length # =&gt; &ldquo;long&rdquo;
@@ -312,7 +312,7 @@ puts s This is a &ldquo;muti-line&rdquo; string wishing you a great 2014</p>
 <li>eRB标准库是ruby默认的模板系统，他是一个代码处理器，使用它你可以把ruby代码嵌入到如何文件中，加载的时候，ruby会把&lt;%=&hellip;&gt;这个特殊符号中嵌入的ruby代码进行执行。</li>
 </ul>
 <p>{% codeblock %}
-require &rsquo;erb&rsquo;
+require &lsquo;erb&rsquo;
 erb = ERB.new(File.read(&lsquo;xx.file&rsquo;)) # xx.file 存放了包含&lt;%=&hellip;&gt;嵌入ruby代码的文档内容
 erb.run #然后执行结果会自动把xx.file中&lt;%=&hellip;&gt;符号里嵌入的ruby代码执行。</p>
 <p>{% endcodeblock %}</p>

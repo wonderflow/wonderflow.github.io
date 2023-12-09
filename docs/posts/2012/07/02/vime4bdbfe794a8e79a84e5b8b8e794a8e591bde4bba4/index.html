@@ -7,7 +7,7 @@
     <title>VIM使用的常用命令 | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="高级一些的编辑器，都会包含宏功能，vim当然不能缺少了，在vim中使用宏是非常方便的： :qx 开始记录宏，并将结果存入寄存器x q 退出记录模式 @x 播放记录在x寄存器中的宏命令 稍微解释一下，当在normal模式下输入:qx后，你对文本的所有编辑动作将会被记录下来，再次输入q即退出了记录模 式，然后输入@x对刚才记录下来的命令进行重复，此命令后可跟数字，表示要重复多少次，比如@x20，可以重复20次。这个在文本的批处理中是非常有用的。 同时编辑多个文件 在vim众多的插件中，有一个叫minibuffer的插件，就是下面所说的标签页功能了，可以支持同时编辑多个文件。 标签命令 :tabe fn 在一个新的标签页中编辑文件fn gt 切换到">
-    <meta name="generator" content="Hugo 0.101.0" />
+    <meta name="generator" content="Hugo 0.92.2" />
     
     
     
@@ -41,7 +41,7 @@
 <meta itemprop="name" content="VIM使用的常用命令">
 <meta itemprop="description" content="高级一些的编辑器，都会包含宏功能，vim当然不能缺少了，在vim中使用宏是非常方便的： :qx 开始记录宏，并将结果存入寄存器x q 退出记录模式 @x 播放记录在x寄存器中的宏命令 稍微解释一下，当在normal模式下输入:qx后，你对文本的所有编辑动作将会被记录下来，再次输入q即退出了记录模 式，然后输入@x对刚才记录下来的命令进行重复，此命令后可跟数字，表示要重复多少次，比如@x20，可以重复20次。这个在文本的批处理中是非常有用的。 同时编辑多个文件 在vim众多的插件中，有一个叫minibuffer的插件，就是下面所说的标签页功能了，可以支持同时编辑多个文件。 标签命令 :tabe fn 在一个新的标签页中编辑文件fn gt 切换到"><meta itemprop="datePublished" content="2012-07-02T18:04:52+00:00" />
 <meta itemprop="dateModified" content="2012-07-02T18:04:52+00:00" />
-<meta itemprop="wordCount" content="1998">
+<meta itemprop="wordCount" content="1999">
 <meta itemprop="keywords" content="VIM," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="VIM使用的常用命令"/>
 <meta name="twitter:description" content="高级一些的编辑器，都会包含宏功能，vim当然不能缺少了，在vim中使用宏是非常方便的： :qx 开始记录宏，并将结果存入寄存器x q 退出记录模式 @x 播放记录在x寄存器中的宏命令 稍微解释一下，当在normal模式下输入:qx后，你对文本的所有编辑动作将会被记录下来，再次输入q即退出了记录模 式，然后输入@x对刚才记录下来的命令进行重复，此命令后可跟数字，表示要重复多少次，比如@x20，可以重复20次。这个在文本的批处理中是非常有用的。 同时编辑多个文件 在vim众多的插件中，有一个叫minibuffer的插件，就是下面所说的标签页功能了，可以支持同时编辑多个文件。 标签命令 :tabe fn 在一个新的标签页中编辑文件fn gt 切换到"/>
@@ -175,7 +175,7 @@
     
     
     <span class="f6 mv4 dib tracked"> - 4 minutes read</span>
-    <span class="f6 mv4 dib tracked"> - 1998 words</span>
+    <span class="f6 mv4 dib tracked"> - 1999 words</span>
     
   </header>
   <div class="nested-copy-line-height lh-copy serif f4 nested-links
@@ -233,8 +233,8 @@ y$ 复制到行末
 p 粘贴粘贴板的内容到当前行的下面
 P 粘贴粘贴板的内容到当前行的上面
 ]p 有缩进的粘贴，vim会自动调节代码的缩进
-&#34;a 将内容放入/存入a寄存器，可以支持多粘贴板
-附：比如常用的一个寄存器就是系统寄存器，名称为+，所以从系统粘贴板粘贴到vim中的命令为&#34;+p,注意此处的+不表示操作符，二十一个寄存器。
+&quot;a 将内容放入/存入a寄存器，可以支持多粘贴板
+附：比如常用的一个寄存器就是系统寄存器，名称为+，所以从系统粘贴板粘贴到vim中的命令为&quot;+p,注意此处的+不表示操作符，二十一个寄存器。
 移动光标
 在vim中移动光标跟其他的编辑器中有很大的区别，不过一旦学会了，就会飞速的在文本中移动了。
 

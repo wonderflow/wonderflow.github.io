@@ -7,7 +7,7 @@
     <title>奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Nothing Replaces Hard Work!">
-    <meta name="generator" content="Hugo 0.101.0" />
+    <meta name="generator" content="Hugo 0.92.2" />
     
     
     
@@ -147,6 +147,23 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/posts/2012/08/08/e587a0e7a78de7ae80e58d95e7b1bbe59e8be79a84dp/" class="link black dim">
+        几种简单类型的动态规划
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      今天又被鱼头拉着校验集训队的书，正好看了一下动态规划(DP)这块，顺便总结一下。发现几道POJ上的例题正好是自己没有做过的，正好拿来试试手，写写题解。 线性动态规划： 1、最长递增（减）子序列：给出一个数列，求最长不下降（上升）子序列的长度。poj2533 这个经典的DP问题有两种解法，复杂度分别为O（n^2）和O（nlogn）。 O(n^2)的算法比较容易理解，就是用dp[i]表示数列到i位置的最长递增（减）子序列的长度。 第一重循环自然就是枚举i的位置，第二重循环就是从0到i-1，选择一个数字比num[i]小（大）的数的dp值加1，看能否更新dp[i]。 以最长递增子序列为例，就是dp[i] = max(
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/posts/2012/08/07/e5ad97e7aca6e4b8b2e79a84e7bc96e8be91e8b79de7a6bb/" class="link black dim">
         字符串的编辑距离
       </a>
@@ -255,23 +272,6 @@
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       最近ubuntu玩腻了，并且觉得风格太红，不适合我，就决定换个linux发行版试试，正好小方老师tsfn用的就是fedora，然后就一路请教它，把fedora装了一下。 1、搞张光盘或者烧制一个u盘rom。 2、选择替换之前的linux系统选项（因为我是抱着试一试的心态来的，所以之前已经把东西都备份好了。由此花了我今天大量的时间，让我得以看了几部电影） 3、一路next过去，直到安装好，没什么异常。 4、安装axel、fastestmirror并更新(axel自行google) sudo yum install axel &amp;&amp; sudo yum -y install yum-fastestmirror &amp;&amp; sudo yum upgrade 5、关闭selinux.为什么？ 关掉SELinux:修改/etc/selinux/config。设
-    </div>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/2012/07/27/2012e5a49ae6a0a1e7acace4b880e38081e7acace4ba8ce59cbaefbc88hdu4300hdu4319efbc89/" class="link black dim">
-        2012多校第一、第二场（hdu4300~hdu4319）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      说一下自己搞出来的题目吧，感觉多校其实比较水的，题目也不难，模板题，陈题很多，不过两场我们队的名次都很烂诶，30开外了都，抗不住啊！出现的问题就是队里的模板太少、不全。不过也好，做一场补一场的模板。 hdu4300《Clairewd’s message》是个字符串，利用next数组求解，小trick就是next数组求出来的值要小于(len-1)/2才取。即：while(len-next[dx]&lt;=(len-1)/2)dx = next[dx]; #include&lt;iostream&gt; #include&lt;cstring&gt; #include&lt;cstdio&gt; using namespace std; int map[30]; int len; int s[101000]; int next[101000]; char str[101000]; void get_next() { int i,j;i=0;next[0]=-1;j=-1; while(i&lt;len) { if(j==-1||map[s[j]]==s[i]) { ++i;++j; next[i]=j; } else j=next[j]; } } int main() { int T; scanf(&#34;%d&#34;,&amp;T); while(T--){ scanf(&#34;%s&#34;,str); len = strlen(str); for(int i=0;i&lt;len;i++){ map[str[i]-&#39;a&#39;] = i; } scanf(&#34;%s&#34;,str); len = strlen(str); for(int i=0;i&lt;len;i++){ s[i] = str[i] - &#39;a&#39;; } get_next(); // cout&lt;&lt;next[len]&lt;&lt;endl; int dx = len; while(len-next[dx]&lt;=(len-1)/2)dx = next[dx]; // cout&lt;&lt;next[dx]&lt;&lt;endl; for(int i=0;i&lt;len-next[dx];i++){ printf(&#34;%c&#34;,s[i]+&#39;a&#39;); } for(int i=0;i&lt;len-next[dx];i++){ printf(&#34;%c&#34;,map[s[i]]+&#39;a&#39;); } printf(&#34;\n&#34;); } return 0;
     </div>
   </div>
 </div>

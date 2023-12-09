@@ -7,7 +7,7 @@
     <title>奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Nothing Replaces Hard Work!">
-    <meta name="generator" content="Hugo 0.101.0" />
+    <meta name="generator" content="Hugo 0.92.2" />
     
     
     
@@ -147,6 +147,23 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/posts/2023-12-09-open-source/" class="link black dim">
+        我的开源十年
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      很幸运，自己从最早在 Github 接触开源到如今也已经有十年多时间，经常有同学问我开源该怎么玩，这次就借着这个契机，回顾一下我这十年的开源旅程，也跟大家聊聊我对开源的理解。 从小白用户到开源贡献者# 在我心中最早埋下对开源认识的种子是 2011 年，那时候读了刘未鹏的经典博文“怎样花两年时间去面试一个人”，发现原来 Github 和开源对找工作有这么大的帮助。然后把博客里推荐的大部分书读了一遍，其中有两本最让我心潮澎湃，一本是硅谷创业之父 Paul Graham 写的《黑客与画家》，里面提到黑客作为一帮全世界最酷的软件工程师，就是通过学习开源代码不断成长的；而另一本是开源运动领袖 Eric S.Raymond 写的《UNIX编程艺术》，里面描绘了大量实用的软件设计哲学和案例（包括著
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/posts/2022-07-30-cloud-native-02/" class="link black dim">
         云原生技术（2） - Helm Chart 如何做金丝雀发布？
       </a>
@@ -237,7 +254,7 @@
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      磨刀不误砍柴工，在正式开始介绍 CUE 之前，可以先做下基本的准备工作。 安装：首先确保你已经安装了 cuelang： https://cuelang.org/docs/install/ 自动格式化：如果你使用 Goland 或者类似的 JetBrains IDE，还可以额外配置自动格式化的方式：https://wonderflow.info/posts/2020-11-02-goland-cuelang-format/ 基本操作# 先看一下cuelang的基本数据样子。 a: 1.5 b: 1 d: [1, 2, 3] g: { h: &#34;abc&#34; } 我们把上面的内容写入到文件并命名为 &ldquo;first.cue&rdquo;. 格式化 cuelang 的文件 cue fmt first.cue 校验写法是否正确 cue vet first.cue 计算输出结果 cue eval first.cue 计算输出单个变量的结果 cue eval -e a first.cue 数据导出（默认为json） cue export first.cue 指定 yaml 格式导出 cue export first.cue --out yaml 导出某个变量 cue export first.cue -e a --out yaml 类型 与
+      磨刀不误砍柴工，在正式开始介绍 CUE 之前，可以先做下基本的准备工作。 安装：首先确保你已经安装了 cuelang： https://cuelang.org/docs/install/ 自动格式化：如果你使用 Goland 或者类似的 JetBrains IDE，还可以额外配置自动格式化的方式：https://wonderflow.info/posts/2020-11-02-goland-cuelang-format/ 基本操作# 先看一下cuelang的基本数据样子。 a: 1.5 b: 1 d: [1, 2, 3] g: { h: &quot;abc&quot; } 我们把上面的内容写入到文件并命名为 &ldquo;first.cue&rdquo;. 格式化 cuelang 的文件 cue fmt first.cue 校验写法是否正确 cue vet first.cue 计算输出结果 cue eval first.cue 计算输出单个变量的结果 cue eval -e a first.cue 数据导出（默认为json） cue export first.cue 指定 yaml 格式导出 cue export first.cue --out yaml 导出某个变量 cue export first.cue -e a --out yaml 类型 与
     </div>
   </div>
 </div>
@@ -255,23 +272,6 @@
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       Goland 可以方便的通过自定义 file watchers 设置自动化 format culang 文件。 设置方法： 【Preferences】 =&gt; 【File Watchers】 添加： File type 选择 Any Scope Pattern设置： file[*]:*.cue 。 Program 是 cue，这也要求你的 PATH 环境下有 cue 这个可执行文件。 Arguments参数设置： fmt $FilePath$ 输出文件： $FilePath$ 工作目录： $ProjectFileDir$ 然后点击 apply 生效就好了。
-    </div>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/oam-v1alpha2/" class="link black dim">
-        OAM v1alpha2 新版：平衡标准与可扩展性
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      OAM Spec 经历了近 3 个月的迭代，v1alpha2 版本终于发布啦。新版本在坚持 OAM Spec 平台无关的基础上，整体变得更 Kubernetes 友好化，很大程度上平衡了标准与可扩展性，更好的支持 CRD。如果你已经编写了现成的 CRD Operator，可以平滑的接入到 OAM 体系中，并且享受到 OAM 模型的红利。 目前 OAM 已经成为了包括阿里、微软、Upbond、谐云等多家公司构建云产品的核心架构。他们通过 OAM 构建了“以应用为中心”、用户友好化的 Kubernetes PaaS；充分发挥 OAM 的标准化与可扩展性，实现 OAM 核心Controller的同时，快速接入了已有的 Operator 能力；通过 OAM 横向打通多个模块，破除了原有 Operator 彼此孤立、无法复用的窘境。 了解 OAM 的背景及由来，可以参考文章《深度解读 - 阿里巴巴
     </div>
   </div>
 </div>

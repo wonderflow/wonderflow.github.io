@@ -6,8 +6,8 @@
     
     <title>Linux Magic Key -- SysRq | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。 如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &#34;number&#34; &gt;/proc/sys/kernel/sysrq {% endcodeblock %} &lt;!-- more --&gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’">
-    <meta name="generator" content="Hugo 0.101.0" />
+    <meta name="description" content="SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。 如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &quot;number&quot; &gt;/proc/sys/kernel/sysrq {% endcodeblock %} &lt;!-- more --&gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’">
+    <meta name="generator" content="Hugo 0.92.2" />
     
     
     
@@ -32,19 +32,19 @@
     
     
     <meta property="og:title" content="Linux Magic Key -- SysRq" />
-<meta property="og:description" content="SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。 如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &#34;number&#34; &gt;/proc/sys/kernel/sysrq {% endcodeblock %} &lt;!-- more --&gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’" />
+<meta property="og:description" content="SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。 如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &quot;number&quot; &gt;/proc/sys/kernel/sysrq {% endcodeblock %} &lt;!-- more --&gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://wonderflow.info/posts/2013/09/03/linux-magic-key-sysrq/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2013-09-03T11:34:14+00:00" />
 <meta property="article:modified_time" content="2013-09-03T11:34:14+00:00" />
 
 <meta itemprop="name" content="Linux Magic Key -- SysRq">
-<meta itemprop="description" content="SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。 如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &#34;number&#34; &gt;/proc/sys/kernel/sysrq {% endcodeblock %} &lt;!-- more --&gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’"><meta itemprop="datePublished" content="2013-09-03T11:34:14+00:00" />
+<meta itemprop="description" content="SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。 如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &quot;number&quot; &gt;/proc/sys/kernel/sysrq {% endcodeblock %} &lt;!-- more --&gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’"><meta itemprop="datePublished" content="2013-09-03T11:34:14+00:00" />
 <meta itemprop="dateModified" content="2013-09-03T11:34:14+00:00" />
 <meta itemprop="wordCount" content="1358">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux Magic Key -- SysRq"/>
-<meta name="twitter:description" content="SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。 如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &#34;number&#34; &gt;/proc/sys/kernel/sysrq {% endcodeblock %} &lt;!-- more --&gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’"/>
+<meta name="twitter:description" content="SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。 如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &quot;number&quot; &gt;/proc/sys/kernel/sysrq {% endcodeblock %} &lt;!-- more --&gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’"/>
 
 	
   </head>
@@ -219,7 +219,7 @@ description):
 
 {% codeblock %}
 
-echo &#34;number&#34; &gt;/proc/sys/kernel/sysrq
+echo &quot;number&quot; &gt;/proc/sys/kernel/sysrq
 
 {% endcodeblock %}
 
@@ -273,7 +273,7 @@ here will display help. but ‘h’ is easy to remember
 
 ‘i’ – Send a SIGKILL to all processes, except for init.
 
-‘j’ – Forcibly &#34;Just thaw it&#34; – filesystems frozen by the FIFREEZE ioctl.
+‘j’ – Forcibly &quot;Just thaw it&quot; – filesystems frozen by the FIFREEZE ioctl.
 
 ‘k’ – Secure Access Key (SAK) Kills all programs on the current virtual
 console. NOTE: See important comments below in SAK section.
@@ -401,6 +401,9 @@ processes.
 
 
 参考自：[https://www.kernel.org/doc/Documentation/sysrq.txt](https://www.kernel.org/doc/Documentation/sysrq.txt)
+
+
+
 </code></pre><ul class="pa0">
   
 </ul>

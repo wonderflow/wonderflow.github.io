@@ -7,7 +7,7 @@
     <title>Ubuntu12.04LTS Install Record | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="一、软件源更新 {% codeblock %} $vi /etc/apt/sources.list {% endcodeblock %} 二、定制命令提示符： {% codeblock %} $vi ~/.bashrc $PS1=&quot;[\e]0;\u@\h: \w\a\e[32;1m]\W$[\e[0m] &quot; #效果:仅高亮显示短路径和$符号 {% endcodeblock %} 三、安装chrome 登录，同步相应配置，这样浏览器方面的各种配置就齐全了 四、github相关 安装git: {% codeblock %} $ sudo apt-get install git {% endcodeblock %} github：配置SSH 五、中文输入法ibus 找到language support这个应用，然后找到keyboard input method system设置项（默认的是none），选择ibus项就可以了。 六、vim (配置ruby插件，拿的别人的方案) {% codeblock %} $ sudo apt-get install ctags {% endcodeblock %} start from:git clone 七、字体设置： download consolas.tty {% codeblock %} $ sudo mkdir -p /usr/share/fonts/vista $ sudo cp Yahei.ttf /usr/share/fonts/vista/ #改变权限： $sudo chmod 644 /usr/share/fonts/vista/*.ttf #安装： $cd /usr/share/fonts/vista/ $sudo mkfontscale $sudo mkfontdir $sudo fc-cache -fv {% endcodeblock %} 八、安装ruby wiki">
-    <meta name="generator" content="Hugo 0.101.0" />
+    <meta name="generator" content="Hugo 0.92.2" />
     
     
     

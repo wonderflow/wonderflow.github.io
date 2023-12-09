@@ -7,7 +7,7 @@
     <title>奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Nothing Replaces Hard Work!">
-    <meta name="generator" content="Hugo 0.101.0" />
+    <meta name="generator" content="Hugo 0.92.2" />
     
     
     
@@ -147,6 +147,23 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/posts/2012/08/31/e68ea8e88d90/" class="link black dim">
+        《unix&amp;linux大学教程》 推荐
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      最近把这本书看完了，觉得讲述的非常好，有志于学习linux的青年们都该阅读一下，着实是一本linux的入门好书。 这是一本神奇的书。作者用诙谐幽默而又细致详实的手法，书写了这本让人一拿起来开始阅读就不愿意放下的书。也许你以前可能会觉得技术书籍都是枯燥乏味的，但是看完这本书，你绝对会对这种思想改观。 作者不再像是对着纸张陈述一个技术事实，而更像一个老师，一个老朋友在向你讲述linux里面的这些细节故事。除了技术以外，他会告诉你每个名称是怎么来的，这里面包含了一个什么样的故事背景，又包含了一种什么样的思想。在这样的描述下，你可能很容易的就记住了这些指令的用法，并被linux自由的精神所深深的折服。 li
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/posts/2012/08/28/e7bc96e7a88be4b98be7be8ee8afbbe4b9a6e7ac94e8aeb0/" class="link black dim">
         《编程之美》读书笔记
       </a>
@@ -255,23 +272,6 @@
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       C++的文档中说，STL中的unique是类似于这样实现的： template &lt;class ForwardIterator&gt; ForwardIterator unique ( ForwardIterator first, ForwardIterator last ) { ForwardIterator result=first; while (++first != last) { if (!(*result == *first)) // or: if (!pred(*result,*first)) for the pred version *(++result)=*first; } return ++result; } 仔细一看就知道，它并不是帮你直接把一个数组中所有重复的元素除去，而是对数组扫描一次，只看当前元素和前面一个元素，如果当前值和前面的值相等，那么跳过，否则就把这个值算上，迭代器递增，最后返回给你一个位置，表示我扫描到多少个当前值与其前面一个元素值不同的元素。 所以，要真正利用好unique，我们必须先对我们所需要进行unique操作的数组排序，然后再使用unique。 这样以后其实还是不满足我们的要求的，因为实际上unique函数实现的只是把不同的元素“unique”放
-    </div>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/2012/08/08/e587a0e7a78de7ae80e58d95e7b1bbe59e8be79a84dp/" class="link black dim">
-        几种简单类型的动态规划
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      今天又被鱼头拉着校验集训队的书，正好看了一下动态规划(DP)这块，顺便总结一下。发现几道POJ上的例题正好是自己没有做过的，正好拿来试试手，写写题解。 线性动态规划： 1、最长递增（减）子序列：给出一个数列，求最长不下降（上升）子序列的长度。poj2533 这个经典的DP问题有两种解法，复杂度分别为O（n^2）和O（nlogn）。 O(n^2)的算法比较容易理解，就是用dp[i]表示数列到i位置的最长递增（减）子序列的长度。 第一重循环自然就是枚举i的位置，第二重循环就是从0到i-1，选择一个数字比num[i]小（大）的数的dp值加1，看能否更新dp[i]。 以最长递增子序列为例，就是dp[i] = max(
     </div>
   </div>
 </div>

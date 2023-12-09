@@ -7,7 +7,7 @@
     <title>奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Nothing Replaces Hard Work!">
-    <meta name="generator" content="Hugo 0.101.0" />
+    <meta name="generator" content="Hugo 0.92.2" />
     
     
     
@@ -147,6 +147,23 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/posts/oam-v1alpha2/" class="link black dim">
+        OAM v1alpha2 新版：平衡标准与可扩展性
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      OAM Spec 经历了近 3 个月的迭代，v1alpha2 版本终于发布啦。新版本在坚持 OAM Spec 平台无关的基础上，整体变得更 Kubernetes 友好化，很大程度上平衡了标准与可扩展性，更好的支持 CRD。如果你已经编写了现成的 CRD Operator，可以平滑的接入到 OAM 体系中，并且享受到 OAM 模型的红利。 目前 OAM 已经成为了包括阿里、微软、Upbond、谐云等多家公司构建云产品的核心架构。他们通过 OAM 构建了“以应用为中心”、用户友好化的 Kubernetes PaaS；充分发挥 OAM 的标准化与可扩展性，实现 OAM 核心Controller的同时，快速接入了已有的 Operator 能力；通过 OAM 横向打通多个模块，破除了原有 Operator 彼此孤立、无法复用的窘境。 了解 OAM 的背景及由来，可以参考文章《深度解读 - 阿里巴巴
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/posts/heroku/" class="link black dim">
         Heroku 的“得”与“失”
       </a>
@@ -276,66 +293,6 @@
 <h2 id="正文">
     正文<a class="hash-link" href="#%e6%ad%a3%e6%96%87" title="Direct link to heading">#</a>
 </h2><p>上一篇中，我们了解了Docker背后使用的资源隔离技术namespace，通过系统调用构建一个相对隔离的shell环境，也可以称之为一个简单的“容器”。本文我们则要开始讲解另一个强大的内核工具——cgroups。他不仅可以限制被namespace隔离起来的资源，还可以为资源设置权重、计算使用量、操控进程启停等等。在介绍完基本概念后，我们将详细讲解Docker中使用到的cgroups内容。希望通过本文，让读者对Docker有更深入的了解。</p>
-    </div>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/2015/03/18/docker-namespace/" class="link black dim">
-        Docker背后的内核知识——Namespace资源隔离
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>孙健波</p>
-<p>Docker这么火，喜欢技术的朋友可能也会想，如果要自己实现一个资源隔离的容器，应该从哪些方面下手呢？也许你第一反应可能就是<code>chroot</code>命令，这条命令给用户最直观的感觉就是使用后根目录<code>/</code>的挂载点切换了，即文件系统被隔离了。然后，为了在分布式的环境下进行通信和定位，容器必然需要一个独立的IP、端口、路由等等，自然就想到了网络的隔离。同时，你的容器还需要一个独立的主机名以便在网络中标识自己。想到网络，顺其自然就想到通信，也就想到了进程间通信的隔离。可能你也想到了权限的问题，对用户和用户组的隔离就实现了用户权限的隔离。最后，运行在容器中的应用需要有自己的<code>PID</code>,自然也需要与宿主机中的<code>PID</code>进行隔离。</p>
-<p>由此，我们基本上完成了一个容器所需要做的六项隔离，Linux内核中就提供了这六种namespace隔离的系统调用，如下表所示。</p>
-<table>
-<thead>
-<tr>
-<th>Namespace</th>
-<th>系统调用参数</th>
-<th>隔离内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>UTS</td>
-<td>CLONE_NEWUTS</td>
-<td>主机名与域名</td>
-</tr>
-<tr>
-<td>IPC</td>
-<td>CLONE_NEWIPC</td>
-<td>信号量、消息队列和共享内存</td>
-</tr>
-<tr>
-<td>PID</td>
-<td>CLONE_NEWPID</td>
-<td>进程编号</td>
-</tr>
-<tr>
-<td>Network</td>
-<td>CLONE_NEWNET</td>
-<td>网络设备、网络栈、端口等等</td>
-</tr>
-<tr>
-<td>Mount</td>
-<td>CLONE_NEWNS</td>
-<td>挂载点（文件系统）</td>
-</tr>
-<tr>
-<td>User</td>
-<td>CLONE_NEWUSER</td>
-<td>用户和用户组</td>
-</tr>
-</tbody>
-</table>
     </div>
   </div>
 </div>
