@@ -147,6 +147,23 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/posts/2013/08/02/ubuntu12-04-install-record/" class="link black dim">
+        Ubuntu12.04LTS Install Record
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      一、软件源更新 {% codeblock %} $vi /etc/apt/sources.list {% endcodeblock %} 二、定制命令提示符： {% codeblock %} $vi ~/.bashrc $PS1=&quot;[\e]0;\u@\h: \w\a\e[32;1m]\W$[\e[0m] &quot; #效果:仅高亮显示短路径和$符号 {% endcodeblock %} 三、安装chrome 登录，同步相应配置，这样浏览器方面的各种配置就齐全了 四、github相关 安装git: {% codeblock %} $ sudo apt-get install git {% endcodeblock %} github：配置SSH 五、中文输入法ibus 找到language support这个应用，然后找到keyboard input method system设置项（默认的是none），选择ibus项就可以了。 六、vim (配置ruby插件，拿的别人的方案) {% codeblock %} $ sudo apt-get install ctags {% endcodeblock %} start from:git clone 七、字体设置： download consolas.tty {% codeblock %} $ sudo mkdir -p /usr/share/fonts/vista $ sudo cp Yahei.ttf /usr/share/fonts/vista/ #改变权限： $sudo chmod 644 /usr/share/fonts/vista/*.ttf #安装： $cd /usr/share/fonts/vista/ $sudo mkfontscale $sudo mkfontdir $sudo fc-cache -fv {% endcodeblock %} 八、安装ruby wiki
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/posts/2013/07/30/learning-english/" class="link black dim">
         Learning English...
       </a>
@@ -264,23 +281,6 @@ At last still that motto for myself : Never give up , and nothing replaces hard 
 
         </div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/2013/07/13/e5889de69da5e4b98de588b0efbc88e4ba8cefbc89/" class="link black dim">
-        初来乍到（二）
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      今天新买的小米2A到货了，虽然刚下单没几天就出现了小米2s降价甩卖的剧情，觉得小米很不厚道，但是用用还可以，反正就是过渡机，觉得对得起这个价格就好。 一直惦记的细面终于在我的细心发掘之下在食堂找到了，虽然它是被煮烂了的，但是吃起来还是略微有一点熟悉的味道。现在每天喝喝粥、吃吃杂粮，偶尔吃吃鱼，感觉也挺不错。添宇跟我说，他两个月不吃荤菜瘦了20斤，我觉得我可以效仿。 今天去老同学PC家里玩了一圈，发现他家里真心不错，有空调，有洗衣机、有冰箱、有厨房、有电视、有网、有热水器，一切该有的都有，还有个美女一起合租，确实不错，而且最主要的是热闹，大家每天回家在一起看看电视聊聊天，多开心啊！ PC的室友也有一个
-    </div>
-  </div>
-</div>
-
-        </div>
-      
     </section>
     <ul class="pagination pagination-default">
       <li class="page-item">
@@ -316,7 +316,7 @@ At last still that motto for myself : Never give up , and nothing replaces hard 
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
     <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info">
-      &copy;  奇迹之流WonderfloW 2023 
+      &copy;  奇迹之流WonderfloW 2024 
     </a>
     <div>
 <div class="ananke-socials">

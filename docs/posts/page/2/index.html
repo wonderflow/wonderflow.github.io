@@ -147,6 +147,23 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/posts/2020-11-02-goland-cuelang-format/" class="link black dim">
+        使用 Goland 设置 cuelang 的自动格式化
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Goland 可以方便的通过自定义 file watchers 设置自动化 format culang 文件。 设置方法： 【Preferences】 =&gt; 【File Watchers】 添加： File type 选择 Any Scope Pattern设置： file[*]:*.cue 。 Program 是 cue，这也要求你的 PATH 环境下有 cue 这个可执行文件。 Arguments参数设置： fmt $FilePath$ 输出文件： $FilePath$ 工作目录： $ProjectFileDir$ 然后点击 apply 生效就好了。
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/posts/oam-v1alpha2/" class="link black dim">
         OAM v1alpha2 新版：平衡标准与可扩展性
       </a>
@@ -276,29 +293,6 @@
 
         </div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/2015/04/22/cgroups/" class="link black dim">
-        Docker背后的内核知识——cgroups资源限制
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>原文首发自InfoQ，<a href="http://www.infoq.com/cn/articles/docker-kernel-knowledge-cgroups-resource-isolation">《Docker背后的内核知识——cgroups资源限制》</a></p>
-<h2 id="摘要">
-    摘要<a class="hash-link" href="#%e6%91%98%e8%a6%81" title="Direct link to heading">#</a>
-</h2><p>当我们谈论Docker时，我们常常会聊到Docker的实现方式。很多开发者都会知道，Docker的本质实际上是宿主机上的一个进程，通过namespace实现了资源隔离，通过cgroup实现了资源限制，通过UnionFS实现了Copy on Write的文件操作。但是当我们再深入一步的提出，namespace和cgroup实现细节时，知道的人可能就所剩无几了。<a href="http://www.sel.zju.edu.cn/">浙江大学SEL/VLIS实验室</a>的<a href="http://wonderflow.github.io">孙健波</a>同学在docker基础研究工作中着重对内核的cgroup技术做了细致的分析和梳理，希望能对读者深入理解Docker有所帮助</p>
-<h2 id="正文">
-    正文<a class="hash-link" href="#%e6%ad%a3%e6%96%87" title="Direct link to heading">#</a>
-</h2><p>上一篇中，我们了解了Docker背后使用的资源隔离技术namespace，通过系统调用构建一个相对隔离的shell环境，也可以称之为一个简单的“容器”。本文我们则要开始讲解另一个强大的内核工具——cgroups。他不仅可以限制被namespace隔离起来的资源，还可以为资源设置权重、计算使用量、操控进程启停等等。在介绍完基本概念后，我们将详细讲解Docker中使用到的cgroups内容。希望通过本文，让读者对Docker有更深入的了解。</p>
-    </div>
-  </div>
-</div>
-
-        </div>
-      
     </section>
     <ul class="pagination pagination-default">
       <li class="page-item">
@@ -334,7 +328,7 @@
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
     <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info">
-      &copy;  奇迹之流WonderfloW 2023 
+      &copy;  奇迹之流WonderfloW 2024 
     </a>
     <div>
 <div class="ananke-socials">
