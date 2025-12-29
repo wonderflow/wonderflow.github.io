@@ -6,22 +6,65 @@
     
     <title>网络攻防与Python | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="上个学期学《网络攻防》，《信息安全》。发现自己对网络攻防、信息安全这方面内容还真的挺感兴趣的。 说来也是，学计算机的，谁小时候没有一个黑客梦呢！ 然后就开始研究了啊。趁着有兴趣的时候。 先去搞了CSDN的500万密码，然后开始把密码删选，把最常出现的几千个搞出来，然后跟崔嵬学习了一下对网站结构的分析之类的。再然后就发现了，还是学校教务处网站比较简单，哈哈，就拿学校教务处网站开工练手了。 记得第一个爆出密码来的同学是一个女生，成绩非常好，名字也挺好的，跟小说《诛仙》里一个人物的名相同，后来还认识了，算是挺有缘分的~哈哈~~ 当时先是把所有学号和密码相同的同学爆了一遍，后来发现不过瘾，把生日密码来尝试了一下">
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="description" content="上个学期学《网络攻防》，《信息安全》。发现自己对网络攻防、信息安全这方面内容还真的挺感兴趣的。
+说来也是，学计算机的，谁小时候没有一个黑客梦呢！
+然后就开始研究了啊。趁着有兴趣的时候。
+先去搞了CSDN的500万密码，然后开始把密码删选，把最常出现的几千个搞出来，然后跟崔嵬学习了一下对网站结构的分析之类的。再然后就发现了，还是学校教务处网站比较简单，哈哈，就拿学校教务处网站开工练手了。
+记得第一个爆出密码来的同学是一个女生，成绩非常好，名字也挺好的，跟小说《诛仙》里一个人物的名相同，后来还认识了，算是挺有缘分的~哈哈~~
+当时先是把所有学号和密码相同的同学爆了一遍，后来发现不过瘾，把生日密码来尝试了一下，再后来就发现，这样一个一个爆密码实在太慢了。而且当时跟崔嵬学的是用java这个语言来做网络尝试登录，暴力破解密码，java的速度本来就比较慢。
+接下来沉寂了大概一两周，但是心里一直想着这个事情，就不停的学这方面内容了。
+再后来，通过别的同学，就知道了很多信息和内容。
+就换了一种方式，知道了要爆教务处管理人员的账号和密码，这样的话，一下子就可以查询到所有同学的信息了。
+然后语言也换成了黑客界的基本常用语言——python，这下，瞬间有种鸟枪换炮的感觉了啊。
+这是暴力教务处账号和密码的python脚本。出于对学校的尊重，这里把登录网址删掉了。
+{% codeblock %}
+import time
+import urllib2
+import urllib
+import re
+print &ldquo;Loading….&rdquo;
+cookies = urllib2.HTTPCookieProcessor()
+opener = urllib2.build_opener(cookies)
+urllib2.install_opener(opener)
+print &ldquo;Loading….&rdquo;
+stu = [];
+for bj in range(10000,14000) :
+fm = &quot;&quot;
+if bj&lt;10:
+fm = &ldquo;0000%d&rdquo;%(bj)
+elif bj&lt;100:
+fm = &ldquo;000%d&rdquo;%(bj)
+elif bj&lt;1000:
+fm = &ldquo;00%d&rdquo;%(bj)
+else :
+fm = &ldquo;0%d&rdquo;%(bj)
+stu.append(fm)
+digs = re.compile(‘
+
+    姓名：(.)，单位：(.)，职称：(.*)#
+’)">
+    <meta name="generator" content="Hugo 0.153.4">
     
     
     
+      <meta name="robots" content="index, follow">
     
-      <meta name="robots" content="noindex, nofollow">
+    <meta name="author" content="admin">
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
 
+
+
+  
+    <link rel="stylesheet" href="/css/custom.css">
+  
 
 
     
-    
+
+
     
       
 <link rel="shortcut icon" href="/favicon_io/favicon.ico" type="image/x-icon" />
@@ -30,36 +73,92 @@
     
 
     
+
     
-    <meta property="og:title" content="网络攻防与Python" />
-<meta property="og:description" content="上个学期学《网络攻防》，《信息安全》。发现自己对网络攻防、信息安全这方面内容还真的挺感兴趣的。 说来也是，学计算机的，谁小时候没有一个黑客梦呢！ 然后就开始研究了啊。趁着有兴趣的时候。 先去搞了CSDN的500万密码，然后开始把密码删选，把最常出现的几千个搞出来，然后跟崔嵬学习了一下对网站结构的分析之类的。再然后就发现了，还是学校教务处网站比较简单，哈哈，就拿学校教务处网站开工练手了。 记得第一个爆出密码来的同学是一个女生，成绩非常好，名字也挺好的，跟小说《诛仙》里一个人物的名相同，后来还认识了，算是挺有缘分的~哈哈~~ 当时先是把所有学号和密码相同的同学爆了一遍，后来发现不过瘾，把生日密码来尝试了一下" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://wonderflow.info/posts/2012/07/04/e7bd91e7bb9ce694bbe998b2e4b88epython/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2012-07-04T16:14:02+00:00" />
-<meta property="article:modified_time" content="2012-07-04T16:14:02+00:00" />
+      <link rel="canonical" href="https://wonderflow.info/posts/2012/07/04/e7bd91e7bb9ce694bbe998b2e4b88epython/">
+    
 
-<meta itemprop="name" content="网络攻防与Python">
-<meta itemprop="description" content="上个学期学《网络攻防》，《信息安全》。发现自己对网络攻防、信息安全这方面内容还真的挺感兴趣的。 说来也是，学计算机的，谁小时候没有一个黑客梦呢！ 然后就开始研究了啊。趁着有兴趣的时候。 先去搞了CSDN的500万密码，然后开始把密码删选，把最常出现的几千个搞出来，然后跟崔嵬学习了一下对网站结构的分析之类的。再然后就发现了，还是学校教务处网站比较简单，哈哈，就拿学校教务处网站开工练手了。 记得第一个爆出密码来的同学是一个女生，成绩非常好，名字也挺好的，跟小说《诛仙》里一个人物的名相同，后来还认识了，算是挺有缘分的~哈哈~~ 当时先是把所有学号和密码相同的同学爆了一遍，后来发现不过瘾，把生日密码来尝试了一下"><meta itemprop="datePublished" content="2012-07-04T16:14:02+00:00" />
-<meta itemprop="dateModified" content="2012-07-04T16:14:02+00:00" />
-<meta itemprop="wordCount" content="1662">
-<meta itemprop="keywords" content="life,njust,python,黑客," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="网络攻防与Python"/>
-<meta name="twitter:description" content="上个学期学《网络攻防》，《信息安全》。发现自己对网络攻防、信息安全这方面内容还真的挺感兴趣的。 说来也是，学计算机的，谁小时候没有一个黑客梦呢！ 然后就开始研究了啊。趁着有兴趣的时候。 先去搞了CSDN的500万密码，然后开始把密码删选，把最常出现的几千个搞出来，然后跟崔嵬学习了一下对网站结构的分析之类的。再然后就发现了，还是学校教务处网站比较简单，哈哈，就拿学校教务处网站开工练手了。 记得第一个爆出密码来的同学是一个女生，成绩非常好，名字也挺好的，跟小说《诛仙》里一个人物的名相同，后来还认识了，算是挺有缘分的~哈哈~~ 当时先是把所有学号和密码相同的同学爆了一遍，后来发现不过瘾，把生日密码来尝试了一下"/>
+    
+    
+    <meta property="og:url" content="https://wonderflow.info/posts/2012/07/04/e7bd91e7bb9ce694bbe998b2e4b88epython/">
+  <meta property="og:site_name" content="奇迹之流WonderfloW">
+  <meta property="og:title" content="网络攻防与Python">
+  <meta property="og:description" content="上个学期学《网络攻防》，《信息安全》。发现自己对网络攻防、信息安全这方面内容还真的挺感兴趣的。 说来也是，学计算机的，谁小时候没有一个黑客梦呢！
+然后就开始研究了啊。趁着有兴趣的时候。
+先去搞了CSDN的500万密码，然后开始把密码删选，把最常出现的几千个搞出来，然后跟崔嵬学习了一下对网站结构的分析之类的。再然后就发现了，还是学校教务处网站比较简单，哈哈，就拿学校教务处网站开工练手了。
+记得第一个爆出密码来的同学是一个女生，成绩非常好，名字也挺好的，跟小说《诛仙》里一个人物的名相同，后来还认识了，算是挺有缘分的~哈哈~~
+当时先是把所有学号和密码相同的同学爆了一遍，后来发现不过瘾，把生日密码来尝试了一下，再后来就发现，这样一个一个爆密码实在太慢了。而且当时跟崔嵬学的是用java这个语言来做网络尝试登录，暴力破解密码，java的速度本来就比较慢。
+接下来沉寂了大概一两周，但是心里一直想着这个事情，就不停的学这方面内容了。
+再后来，通过别的同学，就知道了很多信息和内容。 就换了一种方式，知道了要爆教务处管理人员的账号和密码，这样的话，一下子就可以查询到所有同学的信息了。 然后语言也换成了黑客界的基本常用语言——python，这下，瞬间有种鸟枪换炮的感觉了啊。
+这是暴力教务处账号和密码的python脚本。出于对学校的尊重，这里把登录网址删掉了。
+{% codeblock %}
+import time import urllib2 import urllib import re
+print “Loading….” cookies = urllib2.HTTPCookieProcessor() opener = urllib2.build_opener(cookies) urllib2.install_opener(opener)
+print “Loading….”
+stu = []; for bj in range(10000,14000) : fm = &#34;&#34; if bj&lt;10: fm = “0000%d”%(bj) elif bj&lt;100: fm = “000%d”%(bj) elif bj&lt;1000: fm = “00%d”%(bj) else : fm = “0%d”%(bj) stu.append(fm)
+digs = re.compile(‘
+姓名：(.)，单位：(.)，职称：(.*)# ’)">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2012-07-04T16:14:02+00:00">
+    <meta property="article:modified_time" content="2012-07-04T16:14:02+00:00">
+    <meta property="article:tag" content="Life">
+    <meta property="article:tag" content="Njust">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="黑客">
 
+  <meta itemprop="name" content="网络攻防与Python">
+  <meta itemprop="description" content="上个学期学《网络攻防》，《信息安全》。发现自己对网络攻防、信息安全这方面内容还真的挺感兴趣的。 说来也是，学计算机的，谁小时候没有一个黑客梦呢！
+然后就开始研究了啊。趁着有兴趣的时候。
+先去搞了CSDN的500万密码，然后开始把密码删选，把最常出现的几千个搞出来，然后跟崔嵬学习了一下对网站结构的分析之类的。再然后就发现了，还是学校教务处网站比较简单，哈哈，就拿学校教务处网站开工练手了。
+记得第一个爆出密码来的同学是一个女生，成绩非常好，名字也挺好的，跟小说《诛仙》里一个人物的名相同，后来还认识了，算是挺有缘分的~哈哈~~
+当时先是把所有学号和密码相同的同学爆了一遍，后来发现不过瘾，把生日密码来尝试了一下，再后来就发现，这样一个一个爆密码实在太慢了。而且当时跟崔嵬学的是用java这个语言来做网络尝试登录，暴力破解密码，java的速度本来就比较慢。
+接下来沉寂了大概一两周，但是心里一直想着这个事情，就不停的学这方面内容了。
+再后来，通过别的同学，就知道了很多信息和内容。 就换了一种方式，知道了要爆教务处管理人员的账号和密码，这样的话，一下子就可以查询到所有同学的信息了。 然后语言也换成了黑客界的基本常用语言——python，这下，瞬间有种鸟枪换炮的感觉了啊。
+这是暴力教务处账号和密码的python脚本。出于对学校的尊重，这里把登录网址删掉了。
+{% codeblock %}
+import time import urllib2 import urllib import re
+print “Loading….” cookies = urllib2.HTTPCookieProcessor() opener = urllib2.build_opener(cookies) urllib2.install_opener(opener)
+print “Loading….”
+stu = []; for bj in range(10000,14000) : fm = &#34;&#34; if bj&lt;10: fm = “0000%d”%(bj) elif bj&lt;100: fm = “000%d”%(bj) elif bj&lt;1000: fm = “00%d”%(bj) else : fm = “0%d”%(bj) stu.append(fm)
+digs = re.compile(‘
+姓名：(.)，单位：(.)，职称：(.*)# ’)">
+  <meta itemprop="datePublished" content="2012-07-04T16:14:02+00:00">
+  <meta itemprop="dateModified" content="2012-07-04T16:14:02+00:00">
+  <meta itemprop="wordCount" content="257">
+  <meta itemprop="keywords" content="Life,Njust,Python,黑客">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="网络攻防与Python">
+  <meta name="twitter:description" content="上个学期学《网络攻防》，《信息安全》。发现自己对网络攻防、信息安全这方面内容还真的挺感兴趣的。 说来也是，学计算机的，谁小时候没有一个黑客梦呢！
+然后就开始研究了啊。趁着有兴趣的时候。
+先去搞了CSDN的500万密码，然后开始把密码删选，把最常出现的几千个搞出来，然后跟崔嵬学习了一下对网站结构的分析之类的。再然后就发现了，还是学校教务处网站比较简单，哈哈，就拿学校教务处网站开工练手了。
+记得第一个爆出密码来的同学是一个女生，成绩非常好，名字也挺好的，跟小说《诛仙》里一个人物的名相同，后来还认识了，算是挺有缘分的~哈哈~~
+当时先是把所有学号和密码相同的同学爆了一遍，后来发现不过瘾，把生日密码来尝试了一下，再后来就发现，这样一个一个爆密码实在太慢了。而且当时跟崔嵬学的是用java这个语言来做网络尝试登录，暴力破解密码，java的速度本来就比较慢。
+接下来沉寂了大概一两周，但是心里一直想着这个事情，就不停的学这方面内容了。
+再后来，通过别的同学，就知道了很多信息和内容。 就换了一种方式，知道了要爆教务处管理人员的账号和密码，这样的话，一下子就可以查询到所有同学的信息了。 然后语言也换成了黑客界的基本常用语言——python，这下，瞬间有种鸟枪换炮的感觉了啊。
+这是暴力教务处账号和密码的python脚本。出于对学校的尊重，这里把登录网址删掉了。
+{% codeblock %}
+import time import urllib2 import urllib import re
+print “Loading….” cookies = urllib2.HTTPCookieProcessor() opener = urllib2.build_opener(cookies) urllib2.install_opener(opener)
+print “Loading….”
+stu = []; for bj in range(10000,14000) : fm = &#34;&#34; if bj&lt;10: fm = “0000%d”%(bj) elif bj&lt;100: fm = “000%d”%(bj) elif bj&lt;1000: fm = “00%d”%(bj) else : fm = “0%d”%(bj) stu.append(fm)
+digs = re.compile(‘
+姓名：(.)，单位：(.)，职称：(.*)# ’)">
+
+      
+      
+    
 	
-  </head>
-
-  <body class="ma0 avenir bg-near-white">
+  </head><body class="ma0 avenir production">
 
     
-
-
 
   <header>
-    <div class="bg-black">
+    <div class="bg-near-white">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
       
         奇迹之流WonderfloW
       
@@ -71,115 +170,42 @@
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+            <a class="hover-white white-90 no-underline" href="/about/" title="About page">
               About
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/archives/" title="Archives page">
+            <a class="hover-white white-90 no-underline" href="/archives/" title="Archives page">
               Archives
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
-              Posts
             </a>
           </li>
           
         </ul>
       
-      
-<div class="ananke-socials">
-  
-    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-</div>
+      <div class="ananke-socials"></div>
 
     </div>
   </div>
 </nav>
-
     </div>
   </header>
 
 
-
     <main class="pb7" role="main">
       
-
-<article class="flex-l flex-wrap justify-between mw8 center ph3">
-  <header class="mt4 w-100">
-    <aside class="instapaper_ignoref b helvetica tracked">
-      
-      POSTS
-    </aside>
-    
-
-
-
-
-
-
-
-
-
-
-  <div id="sharing" class="mt3 ananke-socials">
-    
-      
-      <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2012/07/04/e7bd91e7bb9ce694bbe998b2e4b88epython/&amp;text=%e7%bd%91%e7%bb%9c%e6%94%bb%e9%98%b2%e4%b8%8ePython" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
-        
-        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-        
-      </a>
-    
-  </div>
-
-
-    <h1 class="f1 athelas mt3 mb1">网络攻防与Python</h1>
-    
-    <p class="tracked">
-      By <strong>
-        
-        admin
-        
-      </strong>
-    </p>
-    
-    
-    <time class="f6 mv4 dib tracked" datetime="2012-07-04T16:14:02Z" >July 4, 2012</time>
-
-    
-    
-    <span class="f6 mv4 dib tracked"> - 4 minutes read</span>
-    <span class="f6 mv4 dib tracked"> - 1662 words</span>
-    
-  </header>
-  <div class="nested-copy-line-height lh-copy serif f4 nested-links
-    nested-img mid-gray pr4-l w-100-l"><p>上个学期学《网络攻防》，《信息安全》。发现自己对网络攻防、信息安全这方面内容还真的挺感兴趣的。
+<div class="flex-l mt2 mw8 center">
+  <article class="center cf pv5 ph3 ph4-ns mw7">
+    <header>
+      <p class="f6 b helvetica tracked">
+        POSTS
+      </p>
+      <h1 class="f1">
+        网络攻防与Python
+      </h1>
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+      <p>上个学期学《网络攻防》，《信息安全》。发现自己对网络攻防、信息安全这方面内容还真的挺感兴趣的。
 说来也是，学计算机的，谁小时候没有一个黑客梦呢！</p>
 <p>然后就开始研究了啊。趁着有兴趣的时候。</p>
 <p>先去搞了CSDN的500万密码，然后开始把密码删选，把最常出现的几千个搞出来，然后跟崔嵬学习了一下对网站结构的分析之类的。再然后就发现了，还是学校教务处网站比较简单，哈哈，就拿学校教务处网站开工练手了。</p>
@@ -295,121 +321,83 @@ fileHandle.close()</p>
 这样也可以让我这样的“估计过都危险”的底分户，跟比我高的那些大牛们交流学习一番啊。
 这么好的机会，可惜了。。。
 唉！我的njust~</p>
-<ul class="pa0">
-  
-   <li class="list di">
-     <a href="/tags/life" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">life</a>
-   </li>
-  
-   <li class="list di">
-     <a href="/tags/njust" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">njust</a>
-   </li>
-  
-   <li class="list di">
-     <a href="/tags/python" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
-   </li>
-  
-   <li class="list di">
-     <a href="/tags/%E9%BB%91%E5%AE%A2" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">黑客</a>
-   </li>
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
-      
-      
-      <script src="https://utteranc.es/client.js" repo="wonderflow/wonderflow.github.io" issue-term="pathname"
-        label="Comment" theme="github-light" crossorigin="anonymous" async>
-        </script>
+
     </div>
-  </div>
-
-  <aside class="w-30-l mt6-l">
-
-
-
-
-  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
-    <p class="f5 b mb3">Related</p>
-    <ul class="pa0 list">
-	   
-	     <li  class="mb2">
-          <a href="/posts/2012/07/03/e68891e889b9-e58699e7bb99e6989fe5a790e79a84e4b880e5b081e4bfa1/">“我艹”——写给星姐的一封信</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/posts/2012/07/02/hello-world/">Hello world!</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/posts/2012/01/07/2012efbc8ce696b0e79a84e5bc80e5a78b/">2012，新的开始</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/posts/2011/12/07/e7acace59b9be5b18ae4b8ade585b4e59bbee781b5e69daf-e68891e79a84lost_island/">第四届中兴图灵杯——我的Lost_Island</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/posts/2011/10/30/dze997aeefbc9ae6808ee6a0b7e79a84e5a4a7e5ada6e6898de698afe5ae8ce695b4e79a84efbc9f/">DZ问：怎样的大学才是完整的？</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/posts/2010/05/18/e5a5bde5909fe593a5e5898de4bca0/">好吟哥前传</a>
-        </li>
-	    
-    </ul>
+  </article>
 </div>
-
-</aside>
-
-</article>
 
     </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+    <footer class="bg-near-white bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-    <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info">
-      &copy;  奇迹之流WonderfloW 2024 
+    <a class="f4 fw4 hover-black no-underline mid-gray dn dib-ns pv2 ph3" href="https://wonderflow.info/">
+      &copy;  奇迹之流WonderfloW 2025 
     </a>
-    <div>
-<div class="ananke-socials">
-  
-    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-</div>
+    <div><div class="ananke-socials"></div>
 </div>
     <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
     
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3XG75RG8W"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-Z3XG75RG8W', { 'anonymize_ip': false });
-}
-</script>
-
   </div>
 </footer>
+
+
+<div class="reading-progress" id="reading-progress"></div>
+
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+
+<script>
+(function() {
+  
+  const progressBar = document.getElementById('reading-progress');
+  const backToTop = document.getElementById('back-to-top');
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    if (progressBar) {
+      progressBar.style.width = progress + '%';
+    }
+
+    
+    if (backToTop) {
+      if (scrollTop > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }
+  }
+
+  
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  
+  if (backToTop) {
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  
+  updateProgress();
+})();
+</script>
+
   </body>
 </html>

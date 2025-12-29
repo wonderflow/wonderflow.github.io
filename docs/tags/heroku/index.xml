@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>heroku on 奇迹之流WonderfloW</title>
+    <title>Heroku on 奇迹之流WonderfloW</title>
     <link>https://wonderflow.info/tags/heroku/</link>
-    <description>Recent content in heroku on 奇迹之流WonderfloW</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Heroku on 奇迹之流WonderfloW</description>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 10 Feb 2020 21:58:54 +0800</lastBuildDate><atom:link href="https://wonderflow.info/tags/heroku/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Feb 2020 21:58:54 +0800</lastBuildDate>
+    <atom:link href="https://wonderflow.info/tags/heroku/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Heroku 的“得”与“失”</title>
       <link>https://wonderflow.info/posts/heroku/</link>
       <pubDate>Mon, 10 Feb 2020 21:58:54 +0800</pubDate>
-      
       <guid>https://wonderflow.info/posts/heroku/</guid>
-      <description>&lt;p&gt;2011年，Heroku 的联合创始人  Adam Wiggins 根据针对上百万应用托管和运维的经验，发布了著名的 &lt;a href=&#34;https://12factor.net/&#34;&gt;“十二要素应用宣言（The Twelve-Factor App）”&lt;/a&gt;。不知那时候他们有没有想到，这份宣言会在今后数年时间里，成为 SaaS 应用开发的启蒙书。同时也奠定了 Heroku 在 PaaS 领域的地位，成为了云上应用开发规范化的基石。&lt;/p&gt;
-&lt;p&gt;Heroku 无疑是一家伟大的公司，它关注应用与开发者，“以应用为中心”的理念让我们至今受益。然而在过去这一两年里，我们看到许多 Heroku 的用户开始寻找别的选择。这不禁让我们好奇，站在“云原生”如火如荼的今天回望过去，Heroku 的“得”与“失”究竟在哪里？&lt;/p&gt;</description>
+      <description>&lt;p&gt;2011年，Heroku 的联合创始人  Adam Wiggins 根据针对上百万应用托管和运维的经验，发布了著名的 &lt;a href=&#34;https://12factor.net/&#34;&gt;“十二要素应用宣言（The Twelve-Factor App）”&lt;/a&gt;。不知那时候他们有没有想到，这份宣言会在今后数年时间里，成为 SaaS 应用开发的启蒙书。同时也奠定了 Heroku 在 PaaS 领域的地位，成为了云上应用开发规范化的基石。&lt;/p&gt;&#xA;&lt;p&gt;Heroku 无疑是一家伟大的公司，它关注应用与开发者，“以应用为中心”的理念让我们至今受益。然而在过去这一两年里，我们看到许多 Heroku 的用户开始寻找别的选择。这不禁让我们好奇，站在“云原生”如火如荼的今天回望过去，Heroku 的“得”与“失”究竟在哪里？&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -14,21 +14,27 @@ libcontainer 是Docker中用于容器管理的包，它基于Go语言实现，�
 容器是一个可管理的执行环境，与主机系统共享内核，可与系统中的其他容器进行隔离。
 
 在2013年Docker刚发布的时候，它是一款基于LXC的开源容器管理引擎。把LXC复杂的容器创建与使用方式简化为Docker自己的一套命令体系。随着Docker的不断发展，它开始有了更为远大的目标，那就是反向定义容器的实现标准，将底层实现都抽象化到libcontainer的接口。这就意味着，底层容器的实现方式变成了一种可变的方案，无论是使用namespace、cgroups技术抑或是使用systemd等其他方案，只要实现了libcontainer定义的一组接口，Docker都可以运行。这也为Docker实现全面的跨平台带来了可能。">
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.153.4">
     
     
     
+      <meta name="robots" content="index, follow">
     
-      <meta name="robots" content="noindex, nofollow">
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
 
+
+
+  
+    <link rel="stylesheet" href="/css/custom.css">
+  
 
 
     
-    
+
+
     
       
 <link rel="shortcut icon" href="/favicon_io/favicon.ico" type="image/x-icon" />
@@ -37,57 +43,54 @@ libcontainer 是Docker中用于容器管理的包，它基于Go语言实现，�
     
 
     
+
     
-    <meta property="og:title" content="Docker背后的容器管理——libcontainer深度解析" />
-<meta property="og:description" content="
-原文首发于InfoQ http://www.infoq.com/cn/articles/docker-container-management-libcontainer-depth-analysis
+      <link rel="canonical" href="https://wonderflow.info/posts/2015/06/03/docker-container-management-libcontainer-depth-analysis/">
+    
 
+    
+    
+    <meta property="og:url" content="https://wonderflow.info/posts/2015/06/03/docker-container-management-libcontainer-depth-analysis/">
+  <meta property="og:site_name" content="奇迹之流WonderfloW">
+  <meta property="og:title" content="Docker背后的容器管理——libcontainer深度解析">
+  <meta property="og:description" content="原文首发于InfoQ http://www.infoq.com/cn/articles/docker-container-management-libcontainer-depth-analysis
 libcontainer 是Docker中用于容器管理的包，它基于Go语言实现，通过管理namespaces、cgroups、capabilities以及文件系统来进行容器控制。你可以使用libcontainer创建容器，并对容器进行生命周期管理。
-
 容器是一个可管理的执行环境，与主机系统共享内核，可与系统中的其他容器进行隔离。
+在2013年Docker刚发布的时候，它是一款基于LXC的开源容器管理引擎。把LXC复杂的容器创建与使用方式简化为Docker自己的一套命令体系。随着Docker的不断发展，它开始有了更为远大的目标，那就是反向定义容器的实现标准，将底层实现都抽象化到libcontainer的接口。这就意味着，底层容器的实现方式变成了一种可变的方案，无论是使用namespace、cgroups技术抑或是使用systemd等其他方案，只要实现了libcontainer定义的一组接口，Docker都可以运行。这也为Docker实现全面的跨平台带来了可能。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2015-06-03T13:21:26+00:00">
+    <meta property="article:modified_time" content="2015-06-03T13:21:26+00:00">
 
-在2013年Docker刚发布的时候，它是一款基于LXC的开源容器管理引擎。把LXC复杂的容器创建与使用方式简化为Docker自己的一套命令体系。随着Docker的不断发展，它开始有了更为远大的目标，那就是反向定义容器的实现标准，将底层实现都抽象化到libcontainer的接口。这就意味着，底层容器的实现方式变成了一种可变的方案，无论是使用namespace、cgroups技术抑或是使用systemd等其他方案，只要实现了libcontainer定义的一组接口，Docker都可以运行。这也为Docker实现全面的跨平台带来了可能。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://wonderflow.info/posts/2015/06/03/docker-container-management-libcontainer-depth-analysis/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2015-06-03T13:21:26+00:00" />
-<meta property="article:modified_time" content="2015-06-03T13:21:26+00:00" />
-
-<meta itemprop="name" content="Docker背后的容器管理——libcontainer深度解析">
-<meta itemprop="description" content="
-原文首发于InfoQ http://www.infoq.com/cn/articles/docker-container-management-libcontainer-depth-analysis
-
+  <meta itemprop="name" content="Docker背后的容器管理——libcontainer深度解析">
+  <meta itemprop="description" content="原文首发于InfoQ http://www.infoq.com/cn/articles/docker-container-management-libcontainer-depth-analysis
 libcontainer 是Docker中用于容器管理的包，它基于Go语言实现，通过管理namespaces、cgroups、capabilities以及文件系统来进行容器控制。你可以使用libcontainer创建容器，并对容器进行生命周期管理。
-
 容器是一个可管理的执行环境，与主机系统共享内核，可与系统中的其他容器进行隔离。
-
-在2013年Docker刚发布的时候，它是一款基于LXC的开源容器管理引擎。把LXC复杂的容器创建与使用方式简化为Docker自己的一套命令体系。随着Docker的不断发展，它开始有了更为远大的目标，那就是反向定义容器的实现标准，将底层实现都抽象化到libcontainer的接口。这就意味着，底层容器的实现方式变成了一种可变的方案，无论是使用namespace、cgroups技术抑或是使用systemd等其他方案，只要实现了libcontainer定义的一组接口，Docker都可以运行。这也为Docker实现全面的跨平台带来了可能。"><meta itemprop="datePublished" content="2015-06-03T13:21:26+00:00" />
-<meta itemprop="dateModified" content="2015-06-03T13:21:26+00:00" />
-<meta itemprop="wordCount" content="11533">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Docker背后的容器管理——libcontainer深度解析"/>
-<meta name="twitter:description" content="
-原文首发于InfoQ http://www.infoq.com/cn/articles/docker-container-management-libcontainer-depth-analysis
-
+在2013年Docker刚发布的时候，它是一款基于LXC的开源容器管理引擎。把LXC复杂的容器创建与使用方式简化为Docker自己的一套命令体系。随着Docker的不断发展，它开始有了更为远大的目标，那就是反向定义容器的实现标准，将底层实现都抽象化到libcontainer的接口。这就意味着，底层容器的实现方式变成了一种可变的方案，无论是使用namespace、cgroups技术抑或是使用systemd等其他方案，只要实现了libcontainer定义的一组接口，Docker都可以运行。这也为Docker实现全面的跨平台带来了可能。">
+  <meta itemprop="datePublished" content="2015-06-03T13:21:26+00:00">
+  <meta itemprop="dateModified" content="2015-06-03T13:21:26+00:00">
+  <meta itemprop="wordCount" content="332">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Docker背后的容器管理——libcontainer深度解析">
+  <meta name="twitter:description" content="原文首发于InfoQ http://www.infoq.com/cn/articles/docker-container-management-libcontainer-depth-analysis
 libcontainer 是Docker中用于容器管理的包，它基于Go语言实现，通过管理namespaces、cgroups、capabilities以及文件系统来进行容器控制。你可以使用libcontainer创建容器，并对容器进行生命周期管理。
-
 容器是一个可管理的执行环境，与主机系统共享内核，可与系统中的其他容器进行隔离。
+在2013年Docker刚发布的时候，它是一款基于LXC的开源容器管理引擎。把LXC复杂的容器创建与使用方式简化为Docker自己的一套命令体系。随着Docker的不断发展，它开始有了更为远大的目标，那就是反向定义容器的实现标准，将底层实现都抽象化到libcontainer的接口。这就意味着，底层容器的实现方式变成了一种可变的方案，无论是使用namespace、cgroups技术抑或是使用systemd等其他方案，只要实现了libcontainer定义的一组接口，Docker都可以运行。这也为Docker实现全面的跨平台带来了可能。">
 
-在2013年Docker刚发布的时候，它是一款基于LXC的开源容器管理引擎。把LXC复杂的容器创建与使用方式简化为Docker自己的一套命令体系。随着Docker的不断发展，它开始有了更为远大的目标，那就是反向定义容器的实现标准，将底层实现都抽象化到libcontainer的接口。这就意味着，底层容器的实现方式变成了一种可变的方案，无论是使用namespace、cgroups技术抑或是使用systemd等其他方案，只要实现了libcontainer定义的一组接口，Docker都可以运行。这也为Docker实现全面的跨平台带来了可能。"/>
-
+      
+      
+    
 	
-  </head>
-
-  <body class="ma0 avenir bg-near-white">
+  </head><body class="ma0 avenir production">
 
     
-
-
 
   <header>
-    <div class="bg-black">
+    <div class="bg-near-white">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
       
         奇迹之流WonderfloW
       
@@ -99,107 +102,42 @@ libcontainer 是Docker中用于容器管理的包，它基于Go语言实现，�
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+            <a class="hover-white white-90 no-underline" href="/about/" title="About page">
               About
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/archives/" title="Archives page">
+            <a class="hover-white white-90 no-underline" href="/archives/" title="Archives page">
               Archives
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
-              Posts
             </a>
           </li>
           
         </ul>
       
-      
-<div class="ananke-socials">
-  
-    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-</div>
+      <div class="ananke-socials"></div>
 
     </div>
   </div>
 </nav>
-
     </div>
   </header>
 
 
-
     <main class="pb7" role="main">
       
-
-<article class="flex-l flex-wrap justify-between mw8 center ph3">
-  <header class="mt4 w-100">
-    <aside class="instapaper_ignoref b helvetica tracked">
-      
-      POSTS
-    </aside>
-    
-
-
-
-
-
-
-
-
-
-
-  <div id="sharing" class="mt3 ananke-socials">
-    
-      
-      <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2015/06/03/docker-container-management-libcontainer-depth-analysis/&amp;text=Docker%e8%83%8c%e5%90%8e%e7%9a%84%e5%ae%b9%e5%99%a8%e7%ae%a1%e7%90%86%e2%80%94%e2%80%94libcontainer%e6%b7%b1%e5%ba%a6%e8%a7%a3%e6%9e%90" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
-        
-        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-        
-      </a>
-    
-  </div>
-
-
-    <h1 class="f1 athelas mt3 mb1">Docker背后的容器管理——libcontainer深度解析</h1>
-    
-    
-    <time class="f6 mv4 dib tracked" datetime="2015-06-03T13:21:26Z" >June 3, 2015</time>
-
-    
-    
-    <span class="f6 mv4 dib tracked"> - 24 minutes read</span>
-    <span class="f6 mv4 dib tracked"> - 11533 words</span>
-    
-  </header>
-  <div class="nested-copy-line-height lh-copy serif f4 nested-links
-    nested-img mid-gray pr4-l w-100-l"><blockquote>
+<div class="flex-l mt2 mw8 center">
+  <article class="center cf pv5 ph3 ph4-ns mw7">
+    <header>
+      <p class="f6 b helvetica tracked">
+        POSTS
+      </p>
+      <h1 class="f1">
+        Docker背后的容器管理——libcontainer深度解析
+      </h1>
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+      <blockquote>
 <p>原文首发于InfoQ <a href="http://www.infoq.com/cn/articles/docker-container-management-libcontainer-depth-analysis">http://www.infoq.com/cn/articles/docker-container-management-libcontainer-depth-analysis</a></p>
 </blockquote>
 <p>libcontainer 是Docker中用于容器管理的包，它基于Go语言实现，通过管理<code>namespaces</code>、<code>cgroups</code>、<code>capabilities</code>以及文件系统来进行容器控制。你可以使用libcontainer创建容器，并对容器进行生命周期管理。</p>
@@ -215,126 +153,126 @@ libcontainer 是Docker中用于容器管理的包，它基于Go语言实现，�
     1.1 建立文件系统<a class="hash-link" href="#11-%e5%bb%ba%e7%ab%8b%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" title="Direct link to heading">#</a>
 </h3><p>文件系统方面，容器运行需要<code>rootfs</code>。所有容器中要执行的指令，都需要包含在<code>rootfs</code>（在Docker中指令包含在其上叠加的镜像层也可以执行）所有挂载在容器销毁时都会被卸载，因为mount namespace会在容器销毁时一同消失。为了容器可以正常执行命令，以下文件系统必须在容器运行时挂载到<code>rootfs</code>中。</p>
 <table>
-<thead>
-<tr>
-<th>路径</th>
-<th>类型</th>
-<th>参数</th>
-<th>权限及数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>/proc</td>
-<td>proc</td>
-<td>MS_NOEXEC,MS_NOSUID,MS_NODEV</td>
-<td></td>
-</tr>
-<tr>
-<td>/dev</td>
-<td>tmpfs</td>
-<td>MS_NOEXEC,MS_STRICTATIME</td>
-<td>mode=755</td>
-</tr>
-<tr>
-<td>/dev/shm</td>
-<td>shm</td>
-<td>MS_NOEXEC,MS_NOSUID,MS_NODEV</td>
-<td>mode=1777,size=65536k</td>
-</tr>
-<tr>
-<td>/dev/mqueue</td>
-<td>mqueue</td>
-<td>MS_NOEXEC,MS_NOSUID,MS_NODEV</td>
-<td></td>
-</tr>
-<tr>
-<td>/dev/pts</td>
-<td>devpts</td>
-<td>MS_NOEXEC,MS_NOSUID</td>
-<td>newinstance,ptmxmode=0666,mode=620,gid5</td>
-</tr>
-<tr>
-<td>/sys</td>
-<td>sysfs</td>
-<td>MS_NOEXEC,MS_NOSUID,MS_NODEV,MS_RDONLY</td>
-<td></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>路径</th>
+          <th>类型</th>
+          <th>参数</th>
+          <th>权限及数据</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>/proc</td>
+          <td>proc</td>
+          <td>MS_NOEXEC,MS_NOSUID,MS_NODEV</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>/dev</td>
+          <td>tmpfs</td>
+          <td>MS_NOEXEC,MS_STRICTATIME</td>
+          <td>mode=755</td>
+      </tr>
+      <tr>
+          <td>/dev/shm</td>
+          <td>shm</td>
+          <td>MS_NOEXEC,MS_NOSUID,MS_NODEV</td>
+          <td>mode=1777,size=65536k</td>
+      </tr>
+      <tr>
+          <td>/dev/mqueue</td>
+          <td>mqueue</td>
+          <td>MS_NOEXEC,MS_NOSUID,MS_NODEV</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>/dev/pts</td>
+          <td>devpts</td>
+          <td>MS_NOEXEC,MS_NOSUID</td>
+          <td>newinstance,ptmxmode=0666,mode=620,gid5</td>
+      </tr>
+      <tr>
+          <td>/sys</td>
+          <td>sysfs</td>
+          <td>MS_NOEXEC,MS_NOSUID,MS_NODEV,MS_RDONLY</td>
+          <td></td>
+      </tr>
+  </tbody>
 </table>
 <p>当容器的文件系统刚挂载完毕时，<code>/dev</code>文件系统会被一系列设备节点所填充，所以<code>rootfs</code>不应该管理<code>/dev</code>文件系统下的设备节点，libcontainer会负责处理并正确启动这些设备。设备及其权限模式如下。</p>
 <table>
-<thead>
-<tr>
-<th>路径</th>
-<th>模式</th>
-<th>权限</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>/dev/null</td>
-<td>0666</td>
-<td>rwm</td>
-</tr>
-<tr>
-<td>/dev/zero</td>
-<td>0666</td>
-<td>rwm</td>
-</tr>
-<tr>
-<td>/dev/full</td>
-<td>0666</td>
-<td>rwm</td>
-</tr>
-<tr>
-<td>/dev/tty</td>
-<td>0666</td>
-<td>rwm</td>
-</tr>
-<tr>
-<td>/dev/random</td>
-<td>0666</td>
-<td>rwm</td>
-</tr>
-<tr>
-<td>/dev/urandom</td>
-<td>0666</td>
-<td>rwm</td>
-</tr>
-<tr>
-<td>/dev/fuse</td>
-<td>0666</td>
-<td>rwm</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>路径</th>
+          <th>模式</th>
+          <th>权限</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>/dev/null</td>
+          <td>0666</td>
+          <td>rwm</td>
+      </tr>
+      <tr>
+          <td>/dev/zero</td>
+          <td>0666</td>
+          <td>rwm</td>
+      </tr>
+      <tr>
+          <td>/dev/full</td>
+          <td>0666</td>
+          <td>rwm</td>
+      </tr>
+      <tr>
+          <td>/dev/tty</td>
+          <td>0666</td>
+          <td>rwm</td>
+      </tr>
+      <tr>
+          <td>/dev/random</td>
+          <td>0666</td>
+          <td>rwm</td>
+      </tr>
+      <tr>
+          <td>/dev/urandom</td>
+          <td>0666</td>
+          <td>rwm</td>
+      </tr>
+      <tr>
+          <td>/dev/fuse</td>
+          <td>0666</td>
+          <td>rwm</td>
+      </tr>
+  </tbody>
 </table>
 <p>容器支持伪终端<code>TTY</code>，当用户使用时，就会建立<code>/dev/console</code>设备。其他终端支持设备，如<code>/dev/ptmx</code>则是宿主机的<code>/dev/ptmx</code> 链接。容器中指向宿主机 <code>/dev/null</code>的IO也会被重定向到容器内的 <code>/dev/null</code>设备。当<code>/proc</code>挂载完成后，<code>/dev/</code>中与IO相关的链接也会建立，如下表。</p>
 <table>
-<thead>
-<tr>
-<th>源地址</th>
-<th>目的地址</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>/proc/1/fd</td>
-<td>/dev/fd</td>
-</tr>
-<tr>
-<td>/proc/1/fd/0</td>
-<td>/dev/stdin</td>
-</tr>
-<tr>
-<td>/proc/1/fd/1</td>
-<td>/dev/stdout</td>
-</tr>
-<tr>
-<td>/proc/1/fd/2</td>
-<td>/dev/stderr</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>源地址</th>
+          <th>目的地址</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>/proc/1/fd</td>
+          <td>/dev/fd</td>
+      </tr>
+      <tr>
+          <td>/proc/1/fd/0</td>
+          <td>/dev/stdin</td>
+      </tr>
+      <tr>
+          <td>/proc/1/fd/1</td>
+          <td>/dev/stdout</td>
+      </tr>
+      <tr>
+          <td>/proc/1/fd/2</td>
+          <td>/dev/stderr</td>
+      </tr>
+  </tbody>
 </table>
 <p><code>pivot_root</code> 则用于改变进程的根目录，这样可以有效的将进程控制在我们建立的<code>rootfs</code>中。如果<code>rootfs</code>是基于<code>ramfs</code>的（不支持<code>pivot_root</code>），那么会在<code>mount</code>时使用<code>MS_MOVE</code>标志位加上<code>chroot</code>来顶替。</p>
 <p>当文件系统创建完毕后，<code>umask</code>权限被重新设置回<code>0022</code>。</p>
@@ -396,8 +334,8 @@ libcontainer 是Docker中用于容器管理的包，它基于Go语言实现，�
 </h3><p>使用<code>nsinit</code>需要<code>rootfs</code>，最简单最常用的是使用<a href="https://github.com/jpetazzo/docker-busybox"><code>Docker busybox</code></a>，相关配置文件则可以参考<a href="https://github.com/docker/libcontainer/tree/master/sample_configs"><code>sample_configs</code></a>目录，主要配置的参数及其作用将在<strong>配置参数</strong>一节中介绍。拷贝一份命名为<code>container.json</code>文件到你<code>rootfs</code>所在目录中，这份文件就包含了你对容器做的特定配置，包括运行环境、网络以及不同的权限。这份配置对容器中的所有进程都会产生效果。</p>
 <p>具体的构建步骤在官方的<a href="https://github.com/docker/libcontainer/blob/master/nsinit/README.md"><code>README</code></a>文档中已经给出，在此为了节省篇幅不再赘述。</p>
 <p>最终编译完成后生成<code>nsinit</code>二进制文件，将这个指令加入到系统的环境变量，在busybox目录下执行如下命令，即可使用，需要<strong>root</strong>权限。</p>
-<pre tabindex="0"><code>nsinit exec --tty --config container.json /bin/bash
-</code></pre><p>执行完成后会生成一个以容器ID命名的文件夹，上述命令没有指定容器ID，默认名为&quot;nsinit&quot;，在“nsinit”文件夹下会生成一个<code>state.json</code>文件，表示容器的状态，其中的内容与配置参数中的内容类似，展示容器的状态。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>nsinit exec --tty --config container.json /bin/bash
+</span></span></code></pre></div><p>执行完成后会生成一个以容器ID命名的文件夹，上述命令没有指定容器ID，默认名为&quot;nsinit&quot;，在“nsinit”文件夹下会生成一个<code>state.json</code>文件，表示容器的状态，其中的内容与配置参数中的内容类似，展示容器的状态。</p>
 <h3 id="22-nsinit的使用">
     2.2 <code>nsinit</code>的使用<a class="hash-link" href="#22-nsinit%e7%9a%84%e4%bd%bf%e7%94%a8" title="Direct link to heading">#</a>
 </h3><p>目前<code>nsinit</code>定义了9个指令，使用<code>nsinit -h</code>就可以看到，对于每个单独的指令使用<code>--help</code>就能获得更详细的使用参数，如<code>nsinit config --help</code>。</p>
@@ -421,8 +359,8 @@ libcontainer 是Docker中用于容器管理的包，它基于Go语言实现，�
 <li><strong>state</strong>：展示容器状态，就是读取<code>state.json</code>文件。</li>
 <li><strong>checkpoint</strong>：保存容器的检查点快照并结束容器进程。需要填<code>--image-path</code>参数，后面是检查点保存的快照文件路径。完整的命令示例如下。</li>
 </ul>
-<pre tabindex="0"><code>nsinit checkpoint --image-path=/tmp/criu
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>nsinit checkpoint --image-path=/tmp/criu
+</span></span></code></pre></div><ul>
 <li><strong>restore</strong>：从容器检查点快照恢复容器进程的运行。参数同上。</li>
 </ul>
 <p>总结起来，<code>nsinit</code>与Docker execdriver进行的工作基本相同，所以在Docker的源码中并不会涉及到<code>nsinit</code>包的调用，但是<code>nsinit</code>为libcontainer自身的调试和使用带来了极大的便利。</p>
@@ -517,15 +455,15 @@ libcontainer 是Docker中用于容器管理的包，它基于Go语言实现，�
 <p>对于Signal而言，本身包含的信息有限，需要额外记录，namespace带来的上下文变化使其不易理解，并不是最佳选择。显然通过轮询内存的方式来沟通是一个非常低效的做法。另外，因为Docker会加入network namespace，实际上初始时网络栈也是完全隔离的，所以socket方式并不可行。</p>
 <p>Docker最终选择的方式就是打开的可读可写文件描述符——管道。</p>
 <p>Linux中，通过<code>pipe(int fd[2])</code>系统调用就可以创建管道，参数是一个包含两个整型的数组。调用完成后，在<code>fd[1]</code>端写入的数据，就可以从<code>fd[0]</code>端读取。</p>
-<pre tabindex="0"><code>// 需要加入头文件: 
-#include &lt;unistd.h&gt;
-// 全局变量:
-int fd[2];
-// 在父进程中进行初始化:
-pipe(fd);
-// 关闭管道文件描述符
-close(checkpoint[1]);
-</code></pre><p>调用<code>pipe</code>函数后，创建的子进程会内嵌这个打开的文件描述符，对<code>fd[1]</code>写入数据后可以在<code>fd[0]</code>端读取。通过管道，父子进程之间就可以通信。通信完毕的奥秘就在于<code>EOF</code>信号的传递。大家都知道，当打开的文件描述符都关闭时，才能读到<code>EOF</code>信号，所以<code>libcontainer</code>中父进程先关闭自己这一端的管道，然后等待子进程关闭另一端的管道文件描述符，传来<code>EOF</code>表示子进程已经完成了初始化的过程。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#57606a">// 需要加入头文件: 
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">#include</span> <span style="color:#57606a">&lt;unistd.h&gt;</span><span style="color:#57606a">
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">// 全局变量:
+</span></span></span><span style="display:flex;"><span><span style="color:#cf222e">int</span> fd<span style="color:#1f2328">[</span><span style="color:#0550ae">2</span><span style="color:#1f2328">];</span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a">// 在父进程中进行初始化:
+</span></span></span><span style="display:flex;"><span><span style="color:#6639ba">pipe</span><span style="color:#1f2328">(</span>fd<span style="color:#1f2328">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a">// 关闭管道文件描述符
+</span></span></span><span style="display:flex;"><span><span style="color:#6639ba">close</span><span style="color:#1f2328">(</span>checkpoint<span style="color:#1f2328">[</span><span style="color:#0550ae">1</span><span style="color:#1f2328">]);</span>
+</span></span></code></pre></div><p>调用<code>pipe</code>函数后，创建的子进程会内嵌这个打开的文件描述符，对<code>fd[1]</code>写入数据后可以在<code>fd[0]</code>端读取。通过管道，父子进程之间就可以通信。通信完毕的奥秘就在于<code>EOF</code>信号的传递。大家都知道，当打开的文件描述符都关闭时，才能读到<code>EOF</code>信号，所以<code>libcontainer</code>中父进程先关闭自己这一端的管道，然后等待子进程关闭另一端的管道文件描述符，传来<code>EOF</code>表示子进程已经完成了初始化的过程。</p>
 <h3 id="43-process-对象">
     4.3 Process 对象<a class="hash-link" href="#43-process-%e5%af%b9%e8%b1%a1" title="Direct link to heading">#</a>
 </h3><p>Process 主要分为两类，一类在源码中就叫<code>Process</code>，用于容器内进程的配置和IO的管理；另一类在源码中叫<code>ParentProcess</code>，负责处理容器启动工作，与Container对象直接进行接触，启动完成后作为<code>Process</code>的一部分，执行等待、发信号、获得<code>pid</code>等管理工作。</p>
@@ -570,74 +508,83 @@ close(checkpoint[1]);
 <p><strong>Process对象</strong>，主要描述了容器内进程的配置以及IO。包括参数<code>Args</code>，环境变量<code>Env</code>，用户<code>User</code>（由于uid、gid映射），工作目录<code>Cwd</code>，标准输入输出及错误输入，控制终端路径<code>consolePath</code>，容器权限<code>Capabilities</code>以及上述提到的ParentProcess对象<code>ops</code>（拥有上面的一些操作函数，可以直接管理进程）。</p>
 <h2 id="5-总结">
     5. 总结<a class="hash-link" href="#5-%e6%80%bb%e7%bb%93" title="Direct link to heading">#</a>
-</h2><p>本文主要介绍了Docker容器管理的方式libcontainer，从libcontainer的使用到源码实现方式。我们深入到容器进程内部，感受到了libcontainer较为全面的设计。总体而言，libcontainer本身主要分为三大块工作内容，一是容器的创建及初始化，二是容器生命周期管理，三则是进程管理，调用方为Docker的<code>execdriver</code>。容器的监控主要通过cgroups的状态统计信息，未来会加入进程追踪等更丰富的功能。另一方面，libcontainer在安全支持方面也为用户尽可能多的提供了支持和选择。遗憾的是，容器安全的配置需要用户对系统安全本身有足够高的理解，user namespace也尚未支持，可见libcontainer依旧有很多工作要完善。但是Docker社区的火热也自然带动了大家对libcontainer的关注，相信在不久的将来，libcontainer就会变得更安全、更易用。</p><ul class="pa0">
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
-      
-      
-      <script src="https://utteranc.es/client.js" repo="wonderflow/wonderflow.github.io" issue-term="pathname"
-        label="Comment" theme="github-light" crossorigin="anonymous" async>
-        </script>
+</h2><p>本文主要介绍了Docker容器管理的方式libcontainer，从libcontainer的使用到源码实现方式。我们深入到容器进程内部，感受到了libcontainer较为全面的设计。总体而言，libcontainer本身主要分为三大块工作内容，一是容器的创建及初始化，二是容器生命周期管理，三则是进程管理，调用方为Docker的<code>execdriver</code>。容器的监控主要通过cgroups的状态统计信息，未来会加入进程追踪等更丰富的功能。另一方面，libcontainer在安全支持方面也为用户尽可能多的提供了支持和选择。遗憾的是，容器安全的配置需要用户对系统安全本身有足够高的理解，user namespace也尚未支持，可见libcontainer依旧有很多工作要完善。但是Docker社区的火热也自然带动了大家对libcontainer的关注，相信在不久的将来，libcontainer就会变得更安全、更易用。</p>
     </div>
-  </div>
-
-  <aside class="w-30-l mt6-l">
-
-
-
-
-</aside>
-
-</article>
+  </article>
+</div>
 
     </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+    <footer class="bg-near-white bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-    <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info">
-      &copy;  奇迹之流WonderfloW 2024 
+    <a class="f4 fw4 hover-black no-underline mid-gray dn dib-ns pv2 ph3" href="https://wonderflow.info/">
+      &copy;  奇迹之流WonderfloW 2025 
     </a>
-    <div>
-<div class="ananke-socials">
-  
-    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-</div>
+    <div><div class="ananke-socials"></div>
 </div>
     <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
     
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3XG75RG8W"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-Z3XG75RG8W', { 'anonymize_ip': false });
-}
-</script>
-
   </div>
 </footer>
+
+
+<div class="reading-progress" id="reading-progress"></div>
+
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+
+<script>
+(function() {
+  
+  const progressBar = document.getElementById('reading-progress');
+  const backToTop = document.getElementById('back-to-top');
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    if (progressBar) {
+      progressBar.style.width = progress + '%';
+    }
+
+    
+    if (backToTop) {
+      if (scrollTop > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }
+  }
+
+  
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  
+  if (backToTop) {
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  
+  updateProgress();
+})();
+</script>
+
   </body>
 </html>

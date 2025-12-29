@@ -3,12 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://wonderflow.info/posts/</loc>
-    <lastmod>2024-01-01T10:18:42+08:00</lastmod>
+    <lastmod>2025-12-28T00:00:00+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://wonderflow.info/</loc>
-    <lastmod>2024-01-01T10:18:42+08:00</lastmod>
+    <lastmod>2025-12-28T00:00:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://wonderflow.info/posts/2025-12-28-my-2025/</loc>
+    <lastmod>2025-12-28T00:00:00+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -207,17 +212,17 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://wonderflow.info/posts/2014/10/24/e3808ae7a88be5ba8fe59198e4bfaee782bce4b98be98193e3808be79a84e7ac94e8aeb0/</loc>
+    <lastmod>2014-10-24T13:50:30+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://wonderflow.info/categories/reading-notes/</loc>
     <lastmod>2014-10-24T13:50:30+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://wonderflow.info/categories/software-engineering/</loc>
-    <lastmod>2014-10-24T13:50:30+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://wonderflow.info/posts/2014/10/24/e3808ae7a88be5ba8fe59198e4bfaee782bce4b98be98193e3808be79a84e7ac94e8aeb0/</loc>
     <lastmod>2014-10-24T13:50:30+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -327,12 +332,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://wonderflow.info/categories/mac/</loc>
+    <loc>https://wonderflow.info/tags/mac/</loc>
     <lastmod>2014-03-22T16:52:14+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://wonderflow.info/tags/mac/</loc>
+    <loc>https://wonderflow.info/categories/mac/</loc>
     <lastmod>2014-03-22T16:52:14+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -507,6 +512,11 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://wonderflow.info/posts/2013/11/21/e3808arubye58583e7bc96e7a88be3808be8afbbe4b9a6e7ac94e8aeb0/</loc>
+    <lastmod>2013-11-21T16:27:21+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://wonderflow.info/categories/ruby/</loc>
     <lastmod>2013-11-21T16:27:21+00:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -517,22 +527,17 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://wonderflow.info/posts/2013/11/21/e3808arubye58583e7bc96e7a88be3808be8afbbe4b9a6e7ac94e8aeb0/</loc>
-    <lastmod>2013-11-21T16:27:21+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://wonderflow.info/posts/2013/11/04/e6b3a1e99da2e58aa0e9b8a1e89b8befbc88e4b889efbc89/</loc>
     <lastmod>2013-11-04T14:55:45+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://wonderflow.info/tags/linux/</loc>
+    <loc>https://wonderflow.info/categories/linux/</loc>
     <lastmod>2013-10-18T08:18:21+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://wonderflow.info/categories/linux/</loc>
+    <loc>https://wonderflow.info/tags/linux/</loc>
     <lastmod>2013-10-18T08:18:21+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -559,6 +564,11 @@
   </url><url>
     <loc>https://wonderflow.info/posts/2013/10/14/rubye78988e79a84crash_recoverye887aae58aa8e58c96e6b58be8af95e5b7a5e585b7/</loc>
     <lastmod>2013-10-14T15:20:42+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://wonderflow.info/posts/2013/10/10/e6b3a1e99da2e58aa0e9b8a1e89b8befbc88e4ba8cefbc89/</loc>
+    <lastmod>2013-10-10T15:58:16+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -867,12 +877,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://wonderflow.info/tags/c&#43;&#43;/</loc>
+    <loc>https://wonderflow.info/categories/c&#43;&#43;/</loc>
     <lastmod>2012-08-10T12:41:30+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://wonderflow.info/categories/c&#43;&#43;/</loc>
+    <loc>https://wonderflow.info/tags/c&#43;&#43;/</loc>
     <lastmod>2012-08-10T12:41:30+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

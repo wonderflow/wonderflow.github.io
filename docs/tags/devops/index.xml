@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>devops on 奇迹之流WonderfloW</title>
+    <title>Devops on 奇迹之流WonderfloW</title>
     <link>https://wonderflow.info/tags/devops/</link>
-    <description>Recent content in devops on 奇迹之流WonderfloW</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Devops on 奇迹之流WonderfloW</description>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 31 Dec 2019 19:41:43 +0800</lastBuildDate><atom:link href="https://wonderflow.info/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 31 Dec 2019 19:41:43 +0800</lastBuildDate>
+    <atom:link href="https://wonderflow.info/tags/devops/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kubernetes 会不会“杀死” DevOps？</title>
       <link>https://wonderflow.info/posts/2019-12-31-k8s-kill-paas/</link>
       <pubDate>Tue, 31 Dec 2019 19:41:43 +0800</pubDate>
-      
       <guid>https://wonderflow.info/posts/2019-12-31-k8s-kill-paas/</guid>
-      <description>DevOps 这个概念最早是在 2007 年提出的，那时云计算基础设施的概念也才刚刚提出没多久，而随着互联网的逐渐普及，应用软件的需求爆发式增长，软件开发的理念也逐渐从瀑布模型（waterfall）转向敏捷开发（agile）。传统的软件交付模式（应用开发人员专注于软件开发、IT运维人员负责将软件部署到服务器运行），再也无法满足互联网软件快速迭代的需求。于是，DevOps 作为一种打破研发和运维之间隔阂、加快软件交付流程、提高软件交付质量的文化理念和最佳实践逐渐普及至今。 DevOps 的现状# DevOps 的流行得益于业界对于应用软件敏捷开发、高质量交付的诉求，所以为开发和运维开辟了一块“公共的空间”，让双方可以在这里紧密合作。那时软件研发依</description>
+      <description>&lt;p&gt;DevOps 这个概念&lt;a href=&#34;https://devops.com/the-origins-of-devops-whats-in-a-name/&#34;&gt;最早是在 2007 年提出&lt;/a&gt;的，那时云计算基础设施的概念也才刚刚提出没多久，而随着互联网的逐渐普及，应用软件的需求爆发式增长，软件开发的理念也逐渐从瀑布模型（waterfall）转向敏捷开发（agile）。传统的软件交付模式（应用开发人员专注于软件开发、IT运维人员负责将软件部署到服务器运行），再也无法满足互联网软件快速迭代的需求。于是，&lt;strong&gt;DevOps 作为一种打破研发和运维之间隔阂、加快软件交付流程、提高软件交付质量的文化理念和最佳实践&lt;/strong&gt;逐渐普及至今。&lt;/p&gt;&#xA;&lt;h1 id=&#34;devops-的现状&#34;&gt;&#xA;    DevOps 的现状&lt;a class=&#34;hash-link&#34; href=&#34;#devops-%e7%9a%84%e7%8e%b0%e7%8a%b6&#34; title=&#34;Direct link to heading&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&lt;p&gt;DevOps 的流行得益于业界对于应用软件敏捷开发、高质量交付的诉求，所以为开发和运维开辟了一块“公共的空间”，让双方可以在这里紧密合作。那时软件研发依旧属于一个新兴行业，人们习惯于向成熟的制造业学习，制造业解决大规模生产的方式，就是构建流水线，通过流水线规范化每个步骤对接的内容，而流水线上的工人们则只需要各司其职，快速熟练的完成自己这部分生产内容。&lt;/p&gt;&#xA;&lt;p&gt;所以，DevOps 借鉴了制造业的经验，开始构建持续集成/持续交付（CI/CD）的流水线，催生出了一系列自动化/半自动化工具（如puppet、chef、ansible等），结合编写脚本的可扩展能力，将研发和运维的大量操作规范化，从而达到彼此协作的目标。但是最终还是要有人投入到这些工具的构建中，于是就出现了 DevOps 团队。DevOps 团队构建的工具和平台，帮助研发更容易地接近生产环境，让研发在持续集成、持续交付的过程中可以一键部署、快速试错，从而很大程度提前暴露和避免了软件在实际运行过程中的问题。&lt;/p&gt;&#xA;&lt;p&gt;从本质上讲，**DevOps是为运维服务的。**它把生产环境的运维流程通过自动化的工具提供出来了，屏蔽了基础设施细节，同时让软件本身的问题更容易暴露，从而把这些问题尽量提前交给研发去解决。这些，其实都是在帮助运维减轻负担。&lt;/p&gt;&#xA;&lt;p&gt;这一套模式在一开始运转良好，但是问题也随着时间的推移慢慢暴露出来了。DevOps 本身不为企业带来直接的利润，也不增加产品的功能，它们是企业的成本中心，所以许多企业不愿意为 DevOps 投入太多的成本。久而久之，DevOps 的能力便无法与研发人员增长的需求所匹配，不愿意继续伴随着云和开源社区的发展向前演进，反而成为软件研发的瓶颈。试想一下，有多少大公司的技术人员，对自己公司里的“研发效能”工具表示满意呢？&lt;/p&gt;&#xA;&lt;h1 id=&#34;云计算的普及&#34;&gt;&#xA;    云计算的普及&lt;a class=&#34;hash-link&#34; href=&#34;#%e4%ba%91%e8%ae%a1%e7%ae%97%e7%9a%84%e6%99%ae%e5%8f%8a&#34; title=&#34;Direct link to heading&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&lt;p&gt;聪明的企业总能从自己的需求中发现业界共有的需求，&lt;a href=&#34;https://www.iyiou.com/p/91816.html&#34;&gt;AWS 便是这么诞生的&lt;/a&gt;，他们早在 2006 年便首次把软件部署需要的网络、计算、存储等基础设施当做服务提供给用户，允许任何人在不购买服务器等物理硬件的情况下构建互联网应用程序，规模化使得整体的成本比用户自建更低。而云计算IaaS、PaaS、SaaS的概念也正是在那一年开始逐渐清晰的。&lt;/p&gt;&#xA;&lt;p&gt;云计算的初期，用户主要使用的是IaaS服务，如虚拟机、存储等，使用云计算服务的企业依旧需要运维来管理这一类基础设施，只是运维管理的对象从物理机切换到虚拟机而已，并没有太本质的区别。&lt;/p&gt;&#xA;&lt;p&gt;而随着云计算的快速发展，云的能力不断补充、增强，渐渐将原先由运维提供的方方面面的能力都转换成为了云上的服务，这其中自然包含了管理软件完整生命周期的各类服务，从代码托管、持续集成、持续交付，到监控、报警、自动扩缩容等一系列的能力，均能在云上找到对应的服务。品类之多、数量之巨，令人瞠目结舌。&lt;/p&gt;&#xA;&lt;p&gt;但是 DevOps 依然有着用武之地。云的对接难度实在太大了，涉及到的云服务又多，不同云厂商提供的服务还不统一，为了使用云上的产品不得不投入大量的时间学习，而为了防止云厂商的绑定又不得不做多厂商的适配，DevOps 依旧需要像过去一样为开发屏蔽实际环境的复杂性，只不过这次他们要负责管理的基础设施变成了云资源。&lt;/p&gt;&#xA;&lt;h1 id=&#34;改变一切的-kubernetes&#34;&gt;&#xA;    改变一切的 Kubernetes&lt;a class=&#34;hash-link&#34; href=&#34;#%e6%94%b9%e5%8f%98%e4%b8%80%e5%88%87%e7%9a%84-kubernetes&#34; title=&#34;Direct link to heading&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&lt;p&gt;Kubernetes 的本质是现代应用基础设施，它关注如何将应用与“云”天然地集成在一起，将“云”的最大价值发挥出来。Kubernetes 强调让基础设施能更好的配合应用、以更高效的方式为应用“输送”基础设施能力，而不是反之。在这个过程中，Kubernetes 、Docker、Operator 等在云原生生态中起到了关键作用的开源项目，正在在把应用管理与交付推上一个跟以前完全不一样的境况：Kubernetes 的使用者只通过声明式的方式描述自己应用的终态是什么，然后一切就结束了。Kubernetes 会处理后面的所有事情。&lt;/p&gt;&#xA;&lt;p&gt;这也是为什么Kubernetes 非常强调声明式API。通过这种方式，Kubernetes 本身接入的基础设施能力越强，Kubernetes 的使用者能够声明的终态就越丰富，他的职责也就约单纯。现在，我们不仅能够通过 Kubernetes 声明应用的运行终态，比如；“这个应用需要 10 个实例”，我们还能够声明应用的很多运维终态，比如：“这个应用使用金丝雀发布策略进行升级”，以及 “当它的 CPU 使用量大于 50%时，请自动扩展 2 个实例出来”。&lt;/p&gt;&#xA;&lt;p&gt;这就让传统的 DevOps工具和团队受到了挑战：如果一个业务研发自己只需要通过声明式 API 声明他的应用的所有终态甚至包括完整的 SLA，后面的一切就都会有 Kubernetes 来自动的搞定，那么他还有什么理由去对接和学习各式各样的 DevOps 流水线呢？&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

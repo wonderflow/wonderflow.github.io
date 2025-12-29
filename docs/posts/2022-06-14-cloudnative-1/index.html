@@ -6,22 +6,58 @@
     
     <title>云原生技术（1） - 如何从代码到制作并发布一个 Helm 包？ | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="Helm 是什么？# 云原生领域应用打包和分发的事实标准，Helm Chart 通常包含 Docker 镜像及其基础设施配置，能够把一个 K8s 生态的应用完整封装，并且在另一个 K8s 环境正常的运行。 为什么 Helm 会流行？# 核心功能有两点： 对复杂的 Kubernetes YAML 做了打包和抽象，简化为少量参数。 给出应用的概念，并给出了完整生命周期解决方案：制作、上传（托管）、版本化、分发、部署。 真正让他流行起来的原因是： 踩准了时机，当时（2018年） K8s 生态对 YAML 深恶痛绝但是苦于没有好的工具，快速形成了丰富的生态，如今已经有 1000&#43; 开箱即用的 Helm Chart: https://artifacthub.io/ Helm Chart 解决了云原生应用交付所有问题了吗？# 没有，这个问题以后会逐步回答，今天的重点是怎么玩好 Helm。 如何从源代码开始制作一个 Helm 包？# 准备工">
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="description" content="
+    Helm 是什么？#
+云原生领域应用打包和分发的事实标准，Helm Chart 通常包含 Docker 镜像及其基础设施配置，能够把一个 K8s 生态的应用完整封装，并且在另一个 K8s 环境正常的运行。
+
+    为什么 Helm 会流行？#
+核心功能有两点：
+
+对复杂的 Kubernetes YAML 做了打包和抽象，简化为少量参数。
+给出应用的概念，并给出了完整生命周期解决方案：制作、上传（托管）、版本化、分发、部署。
+
+真正让他流行起来的原因是：
+
+踩准了时机，当时（2018年） K8s 生态对 YAML 深恶痛绝但是苦于没有好的工具，快速形成了丰富的生态，如今已经有 1000&#43; 开箱即用的 Helm Chart: https://artifacthub.io/
+
+
+    Helm Chart 解决了云原生应用交付所有问题了吗？#
+没有，这个问题以后会逐步回答，今天的重点是怎么玩好 Helm。
+
+    如何从源代码开始制作一个 Helm 包？#
+
+    准备工具#
+
+git
+docker
+helm
+velad
+kubectl
+
+
+    从代码到容器镜像#
+Helm Chart 是对 Kubernetes 资源的打包，所以制作 Helm Chart 的前提是需要对 Kubernetes 的常用对象和容器镜像有基本的了解。如果你对这些概念不熟悉，可以直接跳转到如何部署 Helm 包 一节。">
+    <meta name="generator" content="Hugo 0.153.4">
     
     
     
+      <meta name="robots" content="index, follow">
     
-      <meta name="robots" content="noindex, nofollow">
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
 
+
+
+  
+    <link rel="stylesheet" href="/css/custom.css">
+  
 
 
     
-    
+
+
     
       
 <link rel="shortcut icon" href="/favicon_io/favicon.ico" type="image/x-icon" />
@@ -30,36 +66,57 @@
     
 
     
+
     
-    <meta property="og:title" content="云原生技术（1） - 如何从代码到制作并发布一个 Helm 包？" />
-<meta property="og:description" content="Helm 是什么？# 云原生领域应用打包和分发的事实标准，Helm Chart 通常包含 Docker 镜像及其基础设施配置，能够把一个 K8s 生态的应用完整封装，并且在另一个 K8s 环境正常的运行。 为什么 Helm 会流行？# 核心功能有两点： 对复杂的 Kubernetes YAML 做了打包和抽象，简化为少量参数。 给出应用的概念，并给出了完整生命周期解决方案：制作、上传（托管）、版本化、分发、部署。 真正让他流行起来的原因是： 踩准了时机，当时（2018年） K8s 生态对 YAML 深恶痛绝但是苦于没有好的工具，快速形成了丰富的生态，如今已经有 1000&#43; 开箱即用的 Helm Chart: https://artifacthub.io/ Helm Chart 解决了云原生应用交付所有问题了吗？# 没有，这个问题以后会逐步回答，今天的重点是怎么玩好 Helm。 如何从源代码开始制作一个 Helm 包？# 准备工" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://wonderflow.info/posts/2022-06-14-cloudnative-1/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-06-14T14:02:05+08:00" />
-<meta property="article:modified_time" content="2022-06-14T14:02:05+08:00" />
+      <link rel="canonical" href="https://wonderflow.info/posts/2022-06-14-cloudnative-1/">
+    
 
-<meta itemprop="name" content="云原生技术（1） - 如何从代码到制作并发布一个 Helm 包？">
-<meta itemprop="description" content="Helm 是什么？# 云原生领域应用打包和分发的事实标准，Helm Chart 通常包含 Docker 镜像及其基础设施配置，能够把一个 K8s 生态的应用完整封装，并且在另一个 K8s 环境正常的运行。 为什么 Helm 会流行？# 核心功能有两点： 对复杂的 Kubernetes YAML 做了打包和抽象，简化为少量参数。 给出应用的概念，并给出了完整生命周期解决方案：制作、上传（托管）、版本化、分发、部署。 真正让他流行起来的原因是： 踩准了时机，当时（2018年） K8s 生态对 YAML 深恶痛绝但是苦于没有好的工具，快速形成了丰富的生态，如今已经有 1000&#43; 开箱即用的 Helm Chart: https://artifacthub.io/ Helm Chart 解决了云原生应用交付所有问题了吗？# 没有，这个问题以后会逐步回答，今天的重点是怎么玩好 Helm。 如何从源代码开始制作一个 Helm 包？# 准备工"><meta itemprop="datePublished" content="2022-06-14T14:02:05+08:00" />
-<meta itemprop="dateModified" content="2022-06-14T14:02:05+08:00" />
-<meta itemprop="wordCount" content="1537">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="云原生技术（1） - 如何从代码到制作并发布一个 Helm 包？"/>
-<meta name="twitter:description" content="Helm 是什么？# 云原生领域应用打包和分发的事实标准，Helm Chart 通常包含 Docker 镜像及其基础设施配置，能够把一个 K8s 生态的应用完整封装，并且在另一个 K8s 环境正常的运行。 为什么 Helm 会流行？# 核心功能有两点： 对复杂的 Kubernetes YAML 做了打包和抽象，简化为少量参数。 给出应用的概念，并给出了完整生命周期解决方案：制作、上传（托管）、版本化、分发、部署。 真正让他流行起来的原因是： 踩准了时机，当时（2018年） K8s 生态对 YAML 深恶痛绝但是苦于没有好的工具，快速形成了丰富的生态，如今已经有 1000&#43; 开箱即用的 Helm Chart: https://artifacthub.io/ Helm Chart 解决了云原生应用交付所有问题了吗？# 没有，这个问题以后会逐步回答，今天的重点是怎么玩好 Helm。 如何从源代码开始制作一个 Helm 包？# 准备工"/>
+    
+    
+    <meta property="og:url" content="https://wonderflow.info/posts/2022-06-14-cloudnative-1/">
+  <meta property="og:site_name" content="奇迹之流WonderfloW">
+  <meta property="og:title" content="云原生技术（1） - 如何从代码到制作并发布一个 Helm 包？">
+  <meta property="og:description" content="Helm 是什么？# 云原生领域应用打包和分发的事实标准，Helm Chart 通常包含 Docker 镜像及其基础设施配置，能够把一个 K8s 生态的应用完整封装，并且在另一个 K8s 环境正常的运行。
+为什么 Helm 会流行？# 核心功能有两点：
+对复杂的 Kubernetes YAML 做了打包和抽象，简化为少量参数。 给出应用的概念，并给出了完整生命周期解决方案：制作、上传（托管）、版本化、分发、部署。 真正让他流行起来的原因是：
+踩准了时机，当时（2018年） K8s 生态对 YAML 深恶痛绝但是苦于没有好的工具，快速形成了丰富的生态，如今已经有 1000&#43; 开箱即用的 Helm Chart: https://artifacthub.io/ Helm Chart 解决了云原生应用交付所有问题了吗？# 没有，这个问题以后会逐步回答，今天的重点是怎么玩好 Helm。
+如何从源代码开始制作一个 Helm 包？# 准备工具# git docker helm velad kubectl 从代码到容器镜像# Helm Chart 是对 Kubernetes 资源的打包，所以制作 Helm Chart 的前提是需要对 Kubernetes 的常用对象和容器镜像有基本的了解。如果你对这些概念不熟悉，可以直接跳转到如何部署 Helm 包 一节。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-06-14T14:02:05+08:00">
+    <meta property="article:modified_time" content="2022-06-14T14:02:05+08:00">
 
+  <meta itemprop="name" content="云原生技术（1） - 如何从代码到制作并发布一个 Helm 包？">
+  <meta itemprop="description" content="Helm 是什么？# 云原生领域应用打包和分发的事实标准，Helm Chart 通常包含 Docker 镜像及其基础设施配置，能够把一个 K8s 生态的应用完整封装，并且在另一个 K8s 环境正常的运行。
+为什么 Helm 会流行？# 核心功能有两点：
+对复杂的 Kubernetes YAML 做了打包和抽象，简化为少量参数。 给出应用的概念，并给出了完整生命周期解决方案：制作、上传（托管）、版本化、分发、部署。 真正让他流行起来的原因是：
+踩准了时机，当时（2018年） K8s 生态对 YAML 深恶痛绝但是苦于没有好的工具，快速形成了丰富的生态，如今已经有 1000&#43; 开箱即用的 Helm Chart: https://artifacthub.io/ Helm Chart 解决了云原生应用交付所有问题了吗？# 没有，这个问题以后会逐步回答，今天的重点是怎么玩好 Helm。
+如何从源代码开始制作一个 Helm 包？# 准备工具# git docker helm velad kubectl 从代码到容器镜像# Helm Chart 是对 Kubernetes 资源的打包，所以制作 Helm Chart 的前提是需要对 Kubernetes 的常用对象和容器镜像有基本的了解。如果你对这些概念不熟悉，可以直接跳转到如何部署 Helm 包 一节。">
+  <meta itemprop="datePublished" content="2022-06-14T14:02:05+08:00">
+  <meta itemprop="dateModified" content="2022-06-14T14:02:05+08:00">
+  <meta itemprop="wordCount" content="450">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="云原生技术（1） - 如何从代码到制作并发布一个 Helm 包？">
+  <meta name="twitter:description" content="Helm 是什么？# 云原生领域应用打包和分发的事实标准，Helm Chart 通常包含 Docker 镜像及其基础设施配置，能够把一个 K8s 生态的应用完整封装，并且在另一个 K8s 环境正常的运行。
+为什么 Helm 会流行？# 核心功能有两点：
+对复杂的 Kubernetes YAML 做了打包和抽象，简化为少量参数。 给出应用的概念，并给出了完整生命周期解决方案：制作、上传（托管）、版本化、分发、部署。 真正让他流行起来的原因是：
+踩准了时机，当时（2018年） K8s 生态对 YAML 深恶痛绝但是苦于没有好的工具，快速形成了丰富的生态，如今已经有 1000&#43; 开箱即用的 Helm Chart: https://artifacthub.io/ Helm Chart 解决了云原生应用交付所有问题了吗？# 没有，这个问题以后会逐步回答，今天的重点是怎么玩好 Helm。
+如何从源代码开始制作一个 Helm 包？# 准备工具# git docker helm velad kubectl 从代码到容器镜像# Helm Chart 是对 Kubernetes 资源的打包，所以制作 Helm Chart 的前提是需要对 Kubernetes 的常用对象和容器镜像有基本的了解。如果你对这些概念不熟悉，可以直接跳转到如何部署 Helm 包 一节。">
+
+      
+      
+    
 	
-  </head>
-
-  <body class="ma0 avenir bg-near-white">
+  </head><body class="ma0 avenir production">
 
     
-
-
 
   <header>
-    <div class="bg-black">
+    <div class="bg-near-white">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
       
         奇迹之流WonderfloW
       
@@ -71,107 +128,42 @@
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+            <a class="hover-white white-90 no-underline" href="/about/" title="About page">
               About
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/archives/" title="Archives page">
+            <a class="hover-white white-90 no-underline" href="/archives/" title="Archives page">
               Archives
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
-              Posts
             </a>
           </li>
           
         </ul>
       
-      
-<div class="ananke-socials">
-  
-    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-</div>
+      <div class="ananke-socials"></div>
 
     </div>
   </div>
 </nav>
-
     </div>
   </header>
 
 
-
     <main class="pb7" role="main">
       
-
-<article class="flex-l flex-wrap justify-between mw8 center ph3">
-  <header class="mt4 w-100">
-    <aside class="instapaper_ignoref b helvetica tracked">
-      
-      POSTS
-    </aside>
-    
-
-
-
-
-
-
-
-
-
-
-  <div id="sharing" class="mt3 ananke-socials">
-    
-      
-      <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2022-06-14-cloudnative-1/&amp;text=%e4%ba%91%e5%8e%9f%e7%94%9f%e6%8a%80%e6%9c%af%ef%bc%881%ef%bc%89%20-%20%e5%a6%82%e4%bd%95%e4%bb%8e%e4%bb%a3%e7%a0%81%e5%88%b0%e5%88%b6%e4%bd%9c%e5%b9%b6%e5%8f%91%e5%b8%83%e4%b8%80%e4%b8%aa%20Helm%20%e5%8c%85%ef%bc%9f" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
-        
-        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-        
-      </a>
-    
-  </div>
-
-
-    <h1 class="f1 athelas mt3 mb1">云原生技术（1） - 如何从代码到制作并发布一个 Helm 包？</h1>
-    
-    
-    <time class="f6 mv4 dib tracked" datetime="2022-06-14T14:02:05+08:00" >June 14, 2022</time>
-
-    
-    
-    <span class="f6 mv4 dib tracked"> - 4 minutes read</span>
-    <span class="f6 mv4 dib tracked"> - 1537 words</span>
-    
-  </header>
-  <div class="nested-copy-line-height lh-copy serif f4 nested-links
-    nested-img mid-gray pr4-l w-100-l"><h2 id="helm-是什么">
+<div class="flex-l mt2 mw8 center">
+  <article class="center cf pv5 ph3 ph4-ns mw7">
+    <header>
+      <p class="f6 b helvetica tracked">
+        POSTS
+      </p>
+      <h1 class="f1">
+        云原生技术（1） - 如何从代码到制作并发布一个 Helm 包？
+      </h1>
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+      <h2 id="helm-是什么">
     Helm 是什么？<a class="hash-link" href="#helm-%e6%98%af%e4%bb%80%e4%b9%88" title="Direct link to heading">#</a>
 </h2><p>云原生领域应用打包和分发的<strong>事实标准</strong>，Helm Chart 通常包含 Docker 镜像及其基础设施配置，能够把一个 K8s 生态的应用完整封装，并且在另一个 K8s 环境正常的运行。</p>
 <h2 id="为什么-helm-会流行">
@@ -205,110 +197,110 @@
 <ol>
 <li>准备好你的代码，比如一个 <a href="https://github.com/gabrielecirulli/2048">2048 小游戏</a>：</li>
 </ol>
-<pre tabindex="0"><code>git clone https://github.com/gabrielecirulli/2048.git
-cd 2048
-</code></pre><ol start="2">
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>git clone https://github.com/gabrielecirulli/2048.git
+</span></span><span style="display:flex;"><span>cd 2048
+</span></span></code></pre></div><ol start="2">
 <li>将代码构建成容器镜像，构建镜像需要编写一个 <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile</a>，如果你对 Dockerfile 不太熟悉，没关系，对于所有<strong>前端项目</strong>而言，下面的 Dockerfile 基本是万能的，可以直接复用。</li>
 </ol>
 <p>把以下内容复制到一个叫 <code>Dockerfile</code> 的文件中。</p>
-<pre tabindex="0"><code>FROM nginx:latest
-COPY . /usr/share/nginx/html
-</code></pre><p>现在，我们的代码目录如下：</p>
-<pre tabindex="0"><code>$ tree
-.
-├── CONTRIBUTING.md
-├── Dockerfile
-├── README.md
-...
-└── style
-...
-
-4 directories, 33 files
-</code></pre><ol start="3">
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>FROM nginx:latest
+</span></span><span style="display:flex;"><span>COPY . /usr/share/nginx/html
+</span></span></code></pre></div><p>现在，我们的代码目录如下：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ tree
+</span></span><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>├── CONTRIBUTING.md
+</span></span><span style="display:flex;"><span>├── Dockerfile
+</span></span><span style="display:flex;"><span>├── README.md
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>└── style
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>4 directories, 33 files
+</span></span></code></pre></div><ol start="3">
 <li>编译镜像</li>
 </ol>
-<pre tabindex="0"><code>docker build -t 2048 .
-</code></pre><ol start="4">
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>docker build -t 2048 .
+</span></span></code></pre></div><ol start="4">
 <li>本地试运行</li>
 </ol>
-<pre tabindex="0"><code>docker run -p 8080:80 2048
-</code></pre><p>你可以打开浏览器访问 http://127.0.0.1:8080 就能看到这个小游戏了。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>docker run -p 8080:80 2048
+</span></span></code></pre></div><p>你可以打开浏览器访问 http://127.0.0.1:8080 就能看到这个小游戏了。</p>
 <ol start="5">
 <li>为了镜像可以到处分发（让全世界的人都可以使用），你可以将镜像上传至一个容器的镜像仓库，主流的镜像仓库是 <a href="https://hub.docker.com/">DockerHub</a>。</li>
 </ol>
 <p>登录镜像仓库：</p>
-<pre tabindex="0"><code>docker login --username &lt;你的账号&gt;
-</code></pre><p>将镜像改成对应账号的格式：</p>
-<pre tabindex="0"><code>docker tag 2048 wonderflow/2048:v1
-</code></pre><p>推送镜像：</p>
-<pre tabindex="0"><code>docker push wonderflow/2048:v1
-</code></pre><p>现在你也可以使用我推送好的镜像了：</p>
-<pre tabindex="0"><code>docker run -p 8080:80 wonderflow/2048:v1
-</code></pre><p>镜像制作好了，开始制作 Helm 包。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>docker login --username &lt;你的账号&gt;
+</span></span></code></pre></div><p>将镜像改成对应账号的格式：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>docker tag 2048 wonderflow/2048:v1
+</span></span></code></pre></div><p>推送镜像：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>docker push wonderflow/2048:v1
+</span></span></code></pre></div><p>现在你也可以使用我推送好的镜像了：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>docker run -p 8080:80 wonderflow/2048:v1
+</span></span></code></pre></div><p>镜像制作好了，开始制作 Helm 包。</p>
 <h3 id="制作-helm-包">
     制作 Helm 包<a class="hash-link" href="#%e5%88%b6%e4%bd%9c-helm-%e5%8c%85" title="Direct link to heading">#</a>
 </h3><ol>
 <li>使用 helm 工具生成配置的脚手架：</li>
 </ol>
-<pre tabindex="0"><code>helm create my-game-2048
-</code></pre><p>此时会生成一个新的文件夹 “my-game-2048”，里面的文件都是 helm 自动生成的：</p>
-<pre tabindex="0"><code>.
-├── CONTRIBUTING.md
-├── Dockerfile
-├── README.md
-...
-├── my-game-2048
-│   ├── Chart.yaml
-│   ├── charts
-│   ├── templates
-│   │   ├── NOTES.txt
-│   │   ├── _helpers.tpl
-│   │   ├── deployment.yaml
-│   │   ├── hpa.yaml
-│   │   ├── ingress.yaml
-│   │   ├── service.yaml
-│   │   ├── serviceaccount.yaml
-│   │   └── tests
-│   │       └── test-connection.yaml
-│   └── values.yaml
-└── style
-  ...
-</code></pre><ol start="2">
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm create my-game-2048
+</span></span></code></pre></div><p>此时会生成一个新的文件夹 “my-game-2048”，里面的文件都是 helm 自动生成的：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>├── CONTRIBUTING.md
+</span></span><span style="display:flex;"><span>├── Dockerfile
+</span></span><span style="display:flex;"><span>├── README.md
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>├── my-game-2048
+</span></span><span style="display:flex;"><span>│   ├── Chart.yaml
+</span></span><span style="display:flex;"><span>│   ├── charts
+</span></span><span style="display:flex;"><span>│   ├── templates
+</span></span><span style="display:flex;"><span>│   │   ├── NOTES.txt
+</span></span><span style="display:flex;"><span>│   │   ├── _helpers.tpl
+</span></span><span style="display:flex;"><span>│   │   ├── deployment.yaml
+</span></span><span style="display:flex;"><span>│   │   ├── hpa.yaml
+</span></span><span style="display:flex;"><span>│   │   ├── ingress.yaml
+</span></span><span style="display:flex;"><span>│   │   ├── service.yaml
+</span></span><span style="display:flex;"><span>│   │   ├── serviceaccount.yaml
+</span></span><span style="display:flex;"><span>│   │   └── tests
+</span></span><span style="display:flex;"><span>│   │       └── test-connection.yaml
+</span></span><span style="display:flex;"><span>│   └── values.yaml
+</span></span><span style="display:flex;"><span>└── style
+</span></span><span style="display:flex;"><span>  ...
+</span></span></code></pre></div><ol start="2">
 <li>修改镜像</li>
 </ol>
 <p>在我们的场景下，默认生成的配置基本都是满足需求的，使用起来非常简单，就是把镜像改成我们的游戏镜像即可。</p>
 <p>修改 <code>values.yaml</code> 文件里面的镜像，将其中 repository 一行的 nginx 改成 <code>wonderflow/2048</code>，tag 一行加上 <code>v1</code> 即可：</p>
-<pre tabindex="0"><code>image:
-- repository: nginx
-+ repository: wonderflow/2048
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-- tag: &quot;&quot;
-+ tag: &quot;v1&quot;
-</code></pre><h3 id="测试-helm-包">
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>image:
+</span></span><span style="display:flex;"><span>- repository: nginx
+</span></span><span style="display:flex;"><span>+ repository: wonderflow/2048
+</span></span><span style="display:flex;"><span>  pullPolicy: IfNotPresent
+</span></span><span style="display:flex;"><span>  # Overrides the image tag whose default is the chart appVersion.
+</span></span><span style="display:flex;"><span>- tag: &#34;&#34;
+</span></span><span style="display:flex;"><span>+ tag: &#34;v1&#34;
+</span></span></code></pre></div><h3 id="测试-helm-包">
     测试 Helm 包<a class="hash-link" href="#%e6%b5%8b%e8%af%95-helm-%e5%8c%85" title="Direct link to heading">#</a>
 </h3><ol>
 <li>安装集群</li>
 </ol>
 <p>Helm 包的运行依赖 Kubernetes 集群，一个最简单的安装方法是使用 <code>velad</code>.</p>
 <p><a href="https://github.com/kubevela/velad">下载 velad</a>：</p>
-<pre tabindex="0"><code>curl -fsSl https://static.kubevela.net/script/install-velad.sh
-</code></pre><ol start="2">
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>curl -fsSl https://static.kubevela.net/script/install-velad.sh
+</span></span></code></pre></div><ol start="2">
 <li>部署集群</li>
 </ol>
-<pre tabindex="0"><code>velad install --name foo --cluster-only
-export KUBECONFIG=$(velad kubeconfig --name foo --host)
-</code></pre><ol start="3">
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>velad install <span style="color:#0550ae">--</span>name foo <span style="color:#0550ae">--</span>cluster<span style="color:#0550ae">-</span>only
+</span></span><span style="display:flex;"><span><span style="color:#cf222e">export</span> KUBECONFIG<span style="color:#0550ae">=$</span><span style="color:#1f2328">(</span>velad kubeconfig <span style="color:#0550ae">--</span>name foo <span style="color:#0550ae">--</span>host<span style="color:#1f2328">)</span>
+</span></span></code></pre></div><ol start="3">
 <li>测试 Helm 包</li>
 </ol>
 <p>本地文件夹部署：</p>
-<pre tabindex="0"><code>helm install my-1024 my-game-2048
-</code></pre><p>验证：</p>
-<pre tabindex="0"><code>export POD_NAME=$(kubectl get pods --namespace default -l &quot;app.kubernetes.io/name=my-game-2048,app.kubernetes.io/instance=my-1024&quot; -o jsonpath=&quot;{.items[0].metadata.name}&quot;)
-  export CONTAINER_PORT=$(kubectl get pod --namespace default $POD_NAME -o jsonpath=&quot;{.spec.containers[0].ports[0].containerPort}&quot;)
-  echo &quot;Visit http://127.0.0.1:8080 to use your application&quot;
-  kubectl --namespace default port-forward $POD_NAME 8080:$CONTAINER_PORT
-</code></pre><p>浏览器访问 http://127.0.0.1:8080 就可以看到这个游戏。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm install my-1024 my-game-2048
+</span></span></code></pre></div><p>验证：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#cf222e">export</span> POD_NAME<span style="color:#0550ae">=$</span><span style="color:#1f2328">(</span>kubectl get pods <span style="color:#0550ae">--</span>namespace default <span style="color:#0550ae">-</span>l <span style="color:#0a3069">&#34;app.kubernetes.io/name=my-game-2048,app.kubernetes.io/instance=my-1024&#34;</span> <span style="color:#0550ae">-</span>o jsonpath<span style="color:#0550ae">=</span><span style="color:#0a3069">&#34;{.items[0].metadata.name}&#34;</span><span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#cf222e">export</span> CONTAINER_PORT<span style="color:#0550ae">=$</span><span style="color:#1f2328">(</span>kubectl get pod <span style="color:#0550ae">--</span>namespace default <span style="color:#0550ae">$</span>POD_NAME <span style="color:#0550ae">-</span>o jsonpath<span style="color:#0550ae">=</span><span style="color:#0a3069">&#34;{.spec.containers[0].ports[0].containerPort}&#34;</span><span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>  echo <span style="color:#0a3069">&#34;Visit http://127.0.0.1:8080 to use your application&#34;</span>
+</span></span><span style="display:flex;"><span>  kubectl <span style="color:#0550ae">--</span>namespace default port<span style="color:#0550ae">-</span>forward <span style="color:#0550ae">$</span>POD_NAME <span style="color:#0550ae">8080</span><span style="color:#1f2328">:</span><span style="color:#0550ae">$</span>CONTAINER_PORT
+</span></span></code></pre></div><p>浏览器访问 http://127.0.0.1:8080 就可以看到这个游戏。</p>
 <p>验证完毕，我们的 helm chart 就制作完成了，更复杂的制作可以参考 <a href="https://helm.sh/zh/docs/chart_template_guide/getting_started/">Helm 官方文档</a>。</p>
 <h2 id="基于-github-搭建-helm-仓库做分发">
     基于 GitHub 搭建 Helm 仓库做分发<a class="hash-link" href="#%e5%9f%ba%e4%ba%8e-github-%e6%90%ad%e5%bb%ba-helm-%e4%bb%93%e5%ba%93%e5%81%9a%e5%88%86%e5%8f%91" title="Direct link to heading">#</a>
@@ -317,33 +309,33 @@ export KUBECONFIG=$(velad kubeconfig --name foo --host)
 <li>创建文件夹 Helm Chart 仓库文件夹</li>
 </ol>
 <p>跟源代码区分开来，我们创建一个新的文件夹。</p>
-<pre tabindex="0"><code>mkdir docs
-</code></pre><ol start="2">
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>mkdir docs
+</span></span></code></pre></div><ol start="2">
 <li>生成压缩包到指定目录</li>
 </ol>
-<pre tabindex="0"><code>helm package my-game-2048 -d docs/
-</code></pre><ol start="3">
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#1f2328">helm</span><span style="color:#fff"> </span><span style="color:#cf222e">package</span><span style="color:#fff"> </span><span style="color:#1f2328">my</span><span style="color:#0550ae">-</span><span style="color:#1f2328">game</span><span style="color:#0550ae">-</span><span style="color:#0550ae">2048</span><span style="color:#fff"> </span><span style="color:#0550ae">-</span><span style="color:#1f2328">d</span><span style="color:#fff"> </span><span style="color:#1f2328">docs</span><span style="color:#0550ae">/</span><span style="color:#fff">
+</span></span></span></code></pre></div><ol start="3">
 <li>生成访问的 index 文件</li>
 </ol>
-<pre tabindex="0"><code>cd docs/
-helm repo index .
-</code></pre><ol start="4">
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>cd docs/
+</span></span><span style="display:flex;"><span>helm repo index .
+</span></span></code></pre></div><ol start="4">
 <li>查看生成的内容：</li>
 </ol>
-<pre tabindex="0"><code>$ cd ../
-$ tree docs/
-docs/
-├── index.yaml
-└── my-game-2048-0.1.0.tgz
-
-0 directories, 2 files
-</code></pre><ol start="4">
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ cd ../
+</span></span><span style="display:flex;"><span>$ tree docs/
+</span></span><span style="display:flex;"><span>docs/
+</span></span><span style="display:flex;"><span>├── index.yaml
+</span></span><span style="display:flex;"><span>└── my-game-2048-0.1.0.tgz
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>0 directories, 2 files
+</span></span></code></pre></div><ol start="4">
 <li>推送到你的自己的 Github 仓库（可以直接 fork 2048 游戏的仓库）：</li>
 </ol>
-<pre tabindex="0"><code>git add .
-git commit -m &quot;my first helm repo&quot;
-git push 
-</code></pre><p>经过我们的实验，结果仓库为： <a href="https://github.com/wonderflow/2048">https://github.com/wonderflow/2048</a></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span>git commit -m &#34;my first helm repo&#34;
+</span></span><span style="display:flex;"><span>git push 
+</span></span></code></pre></div><p>经过我们的实验，结果仓库为： <a href="https://github.com/wonderflow/2048">https://github.com/wonderflow/2048</a></p>
 <ol start="5">
 <li>配置开启 GitHub Pages</li>
 </ol>
@@ -353,89 +345,98 @@ git push
 <ol start="6">
 <li>至此我们就已经有了一个 helm 仓库了：</li>
 </ol>
-<pre tabindex="0"><code>helm repo add my-repo https://&lt;你的github账号&gt;.github.io/2048
-helm repo update
-</code></pre><h2 id="如何部署-helm-包">
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm repo add my-repo https://&lt;你的github账号&gt;.github.io/2048
+</span></span><span style="display:flex;"><span>helm repo update
+</span></span></code></pre></div><h2 id="如何部署-helm-包">
     如何部署 Helm 包？<a class="hash-link" href="#%e5%a6%82%e4%bd%95%e9%83%a8%e7%bd%b2-helm-%e5%8c%85" title="Direct link to heading">#</a>
 </h2><p>对于我本次的实验仓库而言： <a href="https://github.com/wonderflow/2048">https://github.com/wonderflow/2048</a> ，已经可以直接使用这个仓库部署：</p>
 <ol>
 <li>添加仓库</li>
 </ol>
-<pre tabindex="0"><code>helm repo add my-repo https://wonderflow.github.io/2048
-helm repo update
-</code></pre><ol start="2">
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm repo add my-repo https://wonderflow.github.io/2048
+</span></span><span style="display:flex;"><span>helm repo update
+</span></span></code></pre></div><ol start="2">
 <li>部署 Helm 应用</li>
 </ol>
-<pre tabindex="0"><code>helm install my-2048 my-repo/my-game-2048
-</code></pre><p>到这里，就完成了一个 Helm 的基本部署。</p>
-<ul class="pa0">
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
-      
-      
-      <script src="https://utteranc.es/client.js" repo="wonderflow/wonderflow.github.io" issue-term="pathname"
-        label="Comment" theme="github-light" crossorigin="anonymous" async>
-        </script>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm install my-2048 my-repo/my-game-2048
+</span></span></code></pre></div><p>到这里，就完成了一个 Helm 的基本部署。</p>
+
     </div>
-  </div>
-
-  <aside class="w-30-l mt6-l">
-
-
-
-
-</aside>
-
-</article>
+  </article>
+</div>
 
     </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+    <footer class="bg-near-white bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-    <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info">
-      &copy;  奇迹之流WonderfloW 2024 
+    <a class="f4 fw4 hover-black no-underline mid-gray dn dib-ns pv2 ph3" href="https://wonderflow.info/">
+      &copy;  奇迹之流WonderfloW 2025 
     </a>
-    <div>
-<div class="ananke-socials">
-  
-    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-</div>
+    <div><div class="ananke-socials"></div>
 </div>
     <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
     
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3XG75RG8W"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-Z3XG75RG8W', { 'anonymize_ip': false });
-}
-</script>
-
   </div>
 </footer>
+
+
+<div class="reading-progress" id="reading-progress"></div>
+
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+
+<script>
+(function() {
+  
+  const progressBar = document.getElementById('reading-progress');
+  const backToTop = document.getElementById('back-to-top');
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    if (progressBar) {
+      progressBar.style.width = progress + '%';
+    }
+
+    
+    if (backToTop) {
+      if (scrollTop > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }
+  }
+
+  
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  
+  if (backToTop) {
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  
+  updateProgress();
+})();
+</script>
+
   </body>
 </html>

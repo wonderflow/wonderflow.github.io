@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>奇迹之流WonderfloW</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Nothing Replaces Hard Work!">
+    <meta name="generator" content="Hugo 0.153.4">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
+
+
+
+  
+    <link rel="stylesheet" href="/css/custom.css">
+  
+
+
+    
+
+
+    
+      
+<link rel="shortcut icon" href="/favicon_io/favicon.ico" type="image/x-icon" />
+
+
+    
+
+    
+    
+      <link href="/categories/linux/index.xml" rel="alternate" type="application/rss+xml" title="奇迹之流WonderfloW" />
+      <link href="/categories/linux/index.xml" rel="feed" type="application/rss+xml" title="奇迹之流WonderfloW" />
+      
+    
+
+    
+      <link rel="canonical" href="https://wonderflow.info/categories/linux/">
+    
+
+    
+    
+    <meta property="og:url" content="https://wonderflow.info/categories/linux/">
+  <meta property="og:site_name" content="奇迹之流WonderfloW">
+  <meta property="og:title" content="Linux">
+  <meta property="og:description" content="Nothing Replaces Hard Work!">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="Linux">
+  <meta itemprop="description" content="Nothing Replaces Hard Work!">
+  <meta itemprop="datePublished" content="2013-10-18T08:18:21+00:00">
+  <meta itemprop="dateModified" content="2013-10-18T08:18:21+00:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Linux">
+  <meta name="twitter:description" content="Nothing Replaces Hard Work!">
+
+      
+      
+    
+	
+  </head><body class="ma0 avenir production">
+
+    
+
+
+
+<header class="cover bg-top" style="background-image: url('https://wonderflow.info/images/gohugo-default-sample-hero-image.jpg');">
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3XG75RG8W"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="/favicon_io/site.webmanifest">
+  <div class="bg-black-70">
+    <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        奇迹之流WonderfloW
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/archives/" title="Archives page">
+              Archives
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+    <div class="tc-l pv4 pv6-l ph3 ph4-ns">
+      <h1 class="f2 f-subheadline-l fw2 white-90 mb0 lh-title">
+        Linux
+      </h1>
+      
+    </div>
+  </div>
+</header>
+
+    <main class="pb7" role="main">
+      
+  <article class="pa3 pa4-ns nested-copy-line-height">
+    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links dark-gray"></section>
+    <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/2012/09/28/linuxe5a49ae7babfe7a88be7bc96e7a88bpthread/" class="link black dim">
+        linux多线程编程pthread
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>在linux下面使用多线程编程要用到pthread.h头文件，因为linux是不存在线程概念的，所以它其实是用进程模拟线程，产生出线程的效果。即linux中的多线程实际上是多进程。</p>
+<p>那么为什么linux下有了进程还要再引入线程呢？原因有很多，首先，线程小巧，不需要单独分配地址空间，也不需要维护各种数据表单，然后线程间共享数据，通信起来非常方便.</p>
+<p>不过，正因为linux下线程共享数据，如果线程胡乱修改数据的话，会出现一些灾难性的错误，所以就需要操纵系统中所强调的同步、互斥机制来控制。</p>
+<p>除了上述一些区别，进程和线程还有如下共同的一些优点：</p>
+<ol>
+<li>提高应用程序响应。这对图形界面的程序尤其有意义，当一个操作耗时很长时，整个系统都会等待这个操作，此时程序不会响应键盘、鼠标、菜单的操作，而使用多线程技术，将耗时长的操作（time consuming）置于一个新的线程，可以避免这种尴尬的情况。</li>
+<li>使多CPU系统更加有效。操作系统会保证当线程数不大于CPU数目时，不同的线程运行于不同的CPU上。</li>
+<li>改善程序结构。一个既长又复杂的进程可以考虑分为多个线程，成为几个独立或半独立的运行部分，这样的程序会利于理解和修改。</li>
+</ol>
+<p>下面就进入正题，开始linux下的多线程编程了。</p>
+<p>{% codeblock %}</p>
+<p>#include
+#include
+#include</p>
+<p>void *print_message_function( void *ptr );</p>
+<p>main()
+{
+pthread_t thread1, thread2;
+char *message1 = &ldquo;Thread 1&rdquo;;
+char *message2 = &ldquo;Thread 2&rdquo;;
+int iret1, iret2;</p>
+<p>/* Create independent threads each of which will execute function */</p>
+<p>iret1 = pthread_create( &amp;thread1;, NULL, print_message_function, (void*) message1);
+iret2 = pthread_create( &amp;thread2;, NULL, print_message_function, (void*) message2);</p>
+<p>/* Wait till threads are complete before main continues. Unless we <em>/
+/</em> wait we run the risk of executing an exit which will terminate <em>/
+/</em> the process and all threads before the threads have completed. */</p>
+    </div>
+    <a href="/posts/2012/09/28/linuxe5a49ae7babfe7a88be7bc96e7a88bpthread/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/2012/08/31/e68ea8e88d90/" class="link black dim">
+        《unix&amp;linux大学教程》 推荐
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>最近把这本书看完了，觉得讲述的非常好，有志于学习linux的青年们都该阅读一下，着实是一本linux的入门好书。</p>
+<p>这是一本神奇的书。作者用诙谐幽默而又细致详实的手法，书写了这本让人一拿起来开始阅读就不愿意放下的书。也许你以前可能会觉得技术书籍都是枯燥乏味的，但是看完这本书，你绝对会对这种思想改观。</p>
+<p>作者不再像是对着纸张陈述一个技术事实，而更像一个老师，一个老朋友在向你讲述linux里面的这些细节故事。除了技术以外，他会告诉你每个名称是怎么来的，这里面包含了一个什么样的故事背景，又包含了一种什么样的思想。在这样的描述下，你可能很容易的就记住了这些指令的用法，并被linux自由的精神所深深的折服。</p>
+<p>linux是聪明人之间的游戏，我们需要的是真正的方便，而不是傻瓜式的易于入门。linux就是这样一个操作系统，它可能学起来非常困难，但是你一旦学会了，就会发现这里面绝对是一个自由自在的天空，任由你施展。</p>
+<p>使用linux以后，你最大的感觉可能就是：“是我在操控着我的计算机，而不是我的计算机告诉我该怎么做。”
+一切都是：我的地盘我做主。</p>
+<p>整本书已经很厚，但是不得不承认，它依旧只能算是入门类的书籍。如果已经用了linux一两年的朋友，那么大可不必阅读此书了。</p>
+<p>整本书的结构大致分为：</p>
+<p>1、linux的起源、发展、背景故事。</p>
+<p>2、linux桌面环境的使用，基本命令的使用、权限、配置文件等。</p>
+<p>3、linux内置的许多小程序的介绍及使用。</p>
+<p>4、linux的知识大无边界，如何自学习，man,info,help等指令的学习，教你怎么查阅手册。</p>
+<p>5、linux脚本编程，教你认识shell，以及linux里面大量的命令和它们的语法。</p>
+<p>6、linux中最为人称道的输入输出管道，重定向，以及linux中内置的大量过滤器程序。</p>
+<p>7、linux文件的查找(正则表达式)，阅读（less，more），编辑（vim，emacs）</p>
+<p>8、linux文件系统，目录操作，文件操纵。</p>
+<p>9、linux进程控制，系统监控。</p>
+<p>确实，你会发现，还有很多linux的东西并没有被包含在里面，包括网络通信、GUI编程等等。但是，作者教会我们的思想，传递给我们的linux精神，已经足以让我们自己去寻找其他这些知识。</p>
+<p>作者写在最后的话着实让人温暖而感动：“在今后自我学习的路上，请记住，我永远站在你们身边！”</p>
+<p>最后附上英文版pdf下载地址：<a href="http://ishare.iask.sina.com.cn/f/23197807.html">《Harley Hahn&rsquo;s Guide to Unix and Linux》</a>祝大家阅读愉快！</p>
+    </div>
+    <a href="/posts/2012/08/31/e68ea8e88d90/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/2012/07/28/fedorae8a385e69cbae6938de4bd9ce8aeb0e5bd95/" class="link black dim">
+        fedora装机操作记录
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>最近ubuntu玩腻了，并且觉得风格太红，不适合我，就决定换个linux发行版试试，正好小方老师tsfn用的就是fedora，然后就一路请教它，把fedora装了一下。</p>
+<p>1、搞张光盘或者烧制一个u盘rom。</p>
+<p>2、选择替换之前的linux系统选项（因为我是抱着试一试的心态来的，所以之前已经把东西都备份好了。由此花了我今天大量的时间，让我得以看了几部电影）</p>
+<p>3、一路next过去，直到安装好，没什么异常。</p>
+<p>4、安装axel、fastestmirror并更新(axel自行google)
+sudo yum install axel &amp;&amp; sudo yum -y install yum-fastestmirror &amp;&amp; sudo yum upgrade</p>
+<p>5、关闭selinux.<a href="http://www.360doc.com/content/12/0708/09/6828497_222933255.shtml">为什么？</a>
+关掉SELinux:修改/etc/selinux/config。设置SELINUX=disabled</p>
+<p>6、安装google chrome 和flashplugin。直接到这两个软件的官方网站下载软件包双击安装。（推荐chrome里面的vrome插件，类似于firefox上面的vimoperator）
+中间因为等的不耐烦关机进行别的操作导致linux锁有部分没完成导致chrome无法重新安装，完成锁，具体命令我忘了，但是你要继续安装的话，terminal会提示你输入这个。</p>
+<p>7、桌面设置：安装 gnome-tweak-tool
+sudo yum install gnome-tweak-tool
+安装好后名字叫“Advanced settings”,在shell里，找arrangement of buttons on the titlebar (标题栏按钮设置)在下拉菜单里选 all】这个“Advanced settings”还有很多可选项，可自行调整</p>
+<p>8、字体：fedora下的中文字体并不太多，我们可以把windows下的字体转移到fedora下面来　
+首先复制windows下的字体到/usr /share/fonts/msfonts 如果没有这个目录，可以新建一个
+然后为这个目录赋予权限 chmod 775 /usr/share/fonts/chinese/ms　　
+在/etc/fonts/fonts.conf中找到 　　
+在里面添加字符串 /usr/share/fonts/msfonts</p>
+<p>9、安装gvim：yum install gvim  安装c++: yum install gcc-c++</p>
+<p>10、退出root权限，在home下新建一个.gvimrc，写一下gvim的配置文件。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>colorscheme torte
+</span></span><span style="display:flex;"><span>winpos <span style="color:#0550ae">633</span> <span style="color:#0550ae">0</span>
+</span></span><span style="display:flex;"><span>winsize <span style="color:#0550ae">90</span> <span style="color:#0550ae">62</span>
+</span></span><span style="display:flex;"><span>set guioptions<span style="color:#0550ae">=</span>
+</span></span><span style="display:flex;"><span>set fileencodings<span style="color:#0550ae">=</span>utf<span style="color:#0550ae">-</span><span style="color:#0550ae">8</span><span style="color:#1f2328">,</span>gbk<span style="color:#1f2328">,</span>big5
+</span></span><span style="display:flex;"><span>set guifont<span style="color:#0550ae">=</span>Consolas<span style="color:#f6f8fa;background-color:#82071e">\</span> <span style="color:#0550ae">11</span>
+</span></span><span style="display:flex;"><span>set guifontwide<span style="color:#0550ae">=</span>STHeiti<span style="color:#f6f8fa;background-color:#82071e">\</span> <span style="color:#0550ae">10</span>
+</span></span><span style="display:flex;"><span><span style="color:#0a3069">&#34;set guifontwide=Microsoft\ YaHei\ 8</span>
+</span></span><span style="display:flex;"><span>set number
+</span></span><span style="display:flex;"><span>set tabstop<span style="color:#0550ae">=</span><span style="color:#0550ae">4</span>
+</span></span><span style="display:flex;"><span>set cindent shiftwidth<span style="color:#0550ae">=</span><span style="color:#0550ae">4</span>
+</span></span><span style="display:flex;"><span>nmap <span style="color:#0550ae">&lt;</span>Space<span style="color:#0550ae">&gt;</span> a<span style="color:#0550ae">&lt;</span>Space<span style="color:#0550ae">&gt;</span>
+</span></span><span style="display:flex;"><span>nmap <span style="color:#0550ae">&lt;</span>F1<span style="color:#0550ae">&gt;</span> <span style="color:#0550ae">&lt;</span>Esc<span style="color:#0550ae">&gt;</span>
+</span></span><span style="display:flex;"><span>imap <span style="color:#0550ae">&lt;</span>F1<span style="color:#0550ae">&gt;</span> <span style="color:#0550ae">&lt;</span>Esc<span style="color:#0550ae">&gt;</span>
+</span></span><span style="display:flex;"><span>nmap gao i<span style="color:#f6f8fa;background-color:#82071e">#</span>include <span style="color:#0550ae">&lt;</span>cstdio<span style="color:#0550ae">&gt;&lt;</span>Enter<span style="color:#0550ae">&gt;</span><span style="color:#f6f8fa;background-color:#82071e">#</span>include <span style="color:#0550ae">&lt;</span>cstring<span style="color:#0550ae">&gt;&lt;</span>Enter<span style="color:#0550ae">&gt;</span><span style="color:#f6f8fa;background-color:#82071e">#</span>include <span style="color:#0550ae">&lt;</span>iostream<span style="color:#0550ae">&gt;&lt;</span>Enter<span style="color:#0550ae">&gt;</span><span style="color:#f6f8fa;background-color:#82071e">#</span>include <span style="color:#0550ae">&lt;</span>algorithm<span style="color:#0550ae">&gt;&lt;</span>Enter<span style="color:#0550ae">&gt;&lt;</span>Enter<span style="color:#0550ae">&gt;</span><span style="color:#cf222e">using</span> <span style="color:#cf222e">namespace</span> std<span style="color:#1f2328">;</span><span style="color:#0550ae">&lt;</span>Enter<span style="color:#0550ae">&gt;&lt;</span>Enter<span style="color:#0550ae">&gt;</span><span style="color:#cf222e">int</span> main<span style="color:#1f2328">()</span> <span style="color:#1f2328">{</span><span style="color:#0550ae">&lt;</span>Enter<span style="color:#0550ae">&gt;</span><span style="color:#cf222e">return</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">;</span><span style="color:#0550ae">&lt;</span>Enter<span style="color:#0550ae">&gt;</span><span style="color:#1f2328">}</span><span style="color:#0550ae">&lt;</span>Esc<span style="color:#0550ae">&gt;</span><span style="color:#1f2328">{</span>j
+</span></span></code></pre></div><p>10、在system setting -&gt; keyboard 里面改一下快捷键</p>
+    </div>
+    <a href="/posts/2012/07/28/fedorae8a385e69cbae6938de4bd9ce8aeb0e5bd95/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/2012/07/02/vime4bdbfe794a8e79a84e5b8b8e794a8e591bde4bba4/" class="link black dim">
+        VIM使用的常用命令
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>高级一些的编辑器，都会包含宏功能，vim当然不能缺少了，在vim中使用宏是非常方便的：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>:qx 开始记录宏，并将结果存入寄存器x
+</span></span><span style="display:flex;"><span>q 退出记录模式
+</span></span><span style="display:flex;"><span>@x 播放记录在x寄存器中的宏命令
+</span></span></code></pre></div><p>稍微解释一下，当在normal模式下输入:qx后，你对文本的所有编辑动作将会被记录下来，再次输入q即退出了记录模
+式，然后输入@x对刚才记录下来的命令进行重复，此命令后可跟数字，表示要重复多少次，比如@x20，可以重复20次。这个在文本的批处理中是非常有用的。
+同时编辑多个文件
+在vim众多的插件中，有一个叫minibuffer的插件，就是下面所说的标签页功能了，可以支持同时编辑多个文件。
+标签命令</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>:tabe fn 在一个新的标签页中编辑文件fn
+</span></span><span style="display:flex;"><span>gt 切换到下一个标签页
+</span></span><span style="display:flex;"><span>gT 切换到上一个标签页
+</span></span><span style="display:flex;"><span>:tabr 切换到第一个标签页
+</span></span><span style="display:flex;"><span>:tabl 切换到最后一个标签页
+</span></span><span style="display:flex;"><span>:tabm [N] 把当前tab移动到第N个tab之后
+</span></span><span style="display:flex;"><span>对，正如你所想象的那样，跟eclipse, ue等的标签页是一个意思！
+</span></span><span style="display:flex;"><span>窗口命令
+</span></span><span style="display:flex;"><span>ctrl+w s 水平分割窗口
+</span></span><span style="display:flex;"><span>ctrl+w w 切换窗口
+</span></span><span style="display:flex;"><span>ctrl+w q 退出当前窗口(由于同时有多个文件，此命令不会影响其他窗口)
+</span></span><span style="display:flex;"><span>ctrl+w v 垂直分割窗口
+</span></span><span style="display:flex;"><span>其他
+</span></span><span style="display:flex;"><span>vim在保存之前不会对文件做实际的修改，只是加载到缓冲区中，对文件的编辑其实是对缓冲区的编辑，直到:w时才会存入物理文件。&lt;!-- more --&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>:e file 把file加载到新的缓冲区中
+</span></span><span style="display:flex;"><span>:bn 跳转到下一个缓冲区
+</span></span><span style="display:flex;"><span>:bd 删除缓冲区(关闭文件)
+</span></span><span style="display:flex;"><span>:sp fn 分割窗口，并将fn加载到新的窗口中
+</span></span><span style="display:flex;"><span>退出编辑器
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>:w 将缓冲区写入文件，即保存修改
+</span></span><span style="display:flex;"><span>:wq 保存修改并退出
+</span></span><span style="display:flex;"><span>:x 保存修改并退出
+</span></span><span style="display:flex;"><span>:q 退出，如果对缓冲区进行过修改，则会提示
+</span></span><span style="display:flex;"><span>:q! 强制退出，放弃修改
+</span></span><span style="display:flex;"><span>查找替换
+</span></span><span style="display:flex;"><span>/pattern 向后搜索字符串pattern
+</span></span><span style="display:flex;"><span>?pattern 向前搜索字符串pattern
+</span></span><span style="display:flex;"><span>n 下一个匹配(如果是/搜索，则是向下的下一个，?搜索则是向上的下一个)
+</span></span><span style="display:flex;"><span>N 上一个匹配(同上)
+</span></span><span style="display:flex;"><span>:%s/old/new/g 搜索整个文件，将所有的old替换为new
+</span></span><span style="display:flex;"><span>:%s/old/new/gc 搜索整个文件，将所有的old替换为new，每次都要你确认是否替换
+</span></span><span style="display:flex;"><span>复制粘贴
+</span></span><span style="display:flex;"><span>dd 删除光标所在行
+</span></span><span style="display:flex;"><span>dw 删除一个字(word)
+</span></span><span style="display:flex;"><span>x 删除当前字符
+</span></span><span style="display:flex;"><span>X 删除前一个字符
+</span></span><span style="display:flex;"><span>D 删除到行末
+</span></span><span style="display:flex;"><span>yy 复制一行，此命令前可跟数字，标识复制多行，如6yy，表示从当前行开始复制6行
+</span></span><span style="display:flex;"><span>yw 复制一个字
+</span></span><span style="display:flex;"><span>y$ 复制到行末
+</span></span><span style="display:flex;"><span>p 粘贴粘贴板的内容到当前行的下面
+</span></span><span style="display:flex;"><span>P 粘贴粘贴板的内容到当前行的上面
+</span></span><span style="display:flex;"><span>]p 有缩进的粘贴，vim会自动调节代码的缩进
+</span></span><span style="display:flex;"><span>&#34;a 将内容放入/存入a寄存器，可以支持多粘贴板
+</span></span><span style="display:flex;"><span>附：比如常用的一个寄存器就是系统寄存器，名称为+，所以从系统粘贴板粘贴到vim中的命令为&#34;+p,注意此处的+不表示操作符，二十一个寄存器。
+</span></span><span style="display:flex;"><span>移动光标
+</span></span><span style="display:flex;"><span>在vim中移动光标跟其他的编辑器中有很大的区别，不过一旦学会了，就会飞速的在文本中移动了。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>h,j,k,l 上，下，左，右
+</span></span><span style="display:flex;"><span>ctrl-f 上翻一页
+</span></span><span style="display:flex;"><span>ctrl-b 下翻一页
+</span></span><span style="display:flex;"><span>% 跳到与当前括号匹配的括号处，如当前在{，则跳转到与之匹配的}处
+</span></span><span style="display:flex;"><span>w 跳到下一个字首，按标点或单词分割
+</span></span><span style="display:flex;"><span>W 跳到下一个字首，长跳，如end-of-line被认为是一个字
+</span></span><span style="display:flex;"><span>e 跳到下一个字尾
+</span></span><span style="display:flex;"><span>E 跳到下一个字尾，长跳
+</span></span><span style="display:flex;"><span>b 跳到上一个字
+</span></span><span style="display:flex;"><span>B 跳到上一个字，长跳
+</span></span><span style="display:flex;"><span>0 跳至行首，不管有无缩进，就是跳到第0个字符
+</span></span><span style="display:flex;"><span>^ 跳至行首的第一个字符
+</span></span><span style="display:flex;"><span>$ 跳至行尾
+</span></span><span style="display:flex;"><span>gg 跳至文件的第一行
+</span></span><span style="display:flex;"><span>gd 跳至当前光标所在的变量的声明处
+</span></span><span style="display:flex;"><span>[N]G 跳到第N行，如0G，就等价于gg，100G就是第100行
+</span></span><span style="display:flex;"><span>fx 在当前行中找x字符，找到了就跳转至
+</span></span><span style="display:flex;"><span>; 重复上一个f命令，而不用重复的输入fx
+</span></span><span style="display:flex;"><span>tx 与fx类似，但是只是跳转到x的前一个字符处
+</span></span><span style="display:flex;"><span>Fx 跟fx的方向相反
+</span></span><span style="display:flex;"><span>),( 跳转到上/下一个语句
+</span></span><span style="display:flex;"><span>* 查找光标所在处的单词，向下查找
+</span></span><span style="display:flex;"><span># 查找光标所在处的单词，向上查找
+</span></span><span style="display:flex;"><span>`. 跳转至上次编辑位置
+</span></span><span style="display:flex;"><span>在屏幕上移动
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>H 移动光标到当前屏幕上最上边的一行
+</span></span><span style="display:flex;"><span>M 移动光标到当前屏幕上中间的一行
+</span></span><span style="display:flex;"><span>L 移动光标到当前屏幕上最下边的一行
+</span></span><span style="display:flex;"><span>书签
+</span></span><span style="display:flex;"><span>ma 把当前位置存成标签a
+</span></span><span style="display:flex;"><span>`a 跳转到标签a处
+</span></span><span style="display:flex;"><span>编辑
+</span></span><span style="display:flex;"><span>r 替换一个字符
+</span></span><span style="display:flex;"><span>J 将下一行和当前行连接为一行
+</span></span><span style="display:flex;"><span>cc 删除当前行并进入编辑模式
+</span></span><span style="display:flex;"><span>cw 删除当前字，并进入编辑模式
+</span></span><span style="display:flex;"><span>c$ 擦除从当前位置至行末的内容，并进入编辑模式
+</span></span><span style="display:flex;"><span>s 删除当前字符并进入编辑模式
+</span></span><span style="display:flex;"><span>S 删除光标所在行并进入编辑模式
+</span></span><span style="display:flex;"><span>xp 交换当前字符和下一个字符
+</span></span><span style="display:flex;"><span>u 撤销
+</span></span><span style="display:flex;"><span>ctrl+r 重做
+</span></span><span style="display:flex;"><span>. 重复上一个编辑命令
+</span></span><span style="display:flex;"><span>~ 切换大小写，当前字符
+</span></span><span style="display:flex;"><span>g~iw 切换当前字的大小写
+</span></span><span style="display:flex;"><span>gUiw 将当前字变成大写
+</span></span><span style="display:flex;"><span>guiw 将当前字变成小写
+</span></span><span style="display:flex;"><span>&gt;&gt; 将当前行右移一个单位
+</span></span><span style="display:flex;"><span>&lt;&lt; 将当前行左移一个单位(一个tab符)
+</span></span><span style="display:flex;"><span>== 自动缩进当前行
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>插入模式
+</span></span><span style="display:flex;"><span>i 从当前光标处进入插入模式
+</span></span><span style="display:flex;"><span>I 进入插入模式，并置光标于行首
+</span></span><span style="display:flex;"><span>a 追加模式，置光标于当前光标之后
+</span></span><span style="display:flex;"><span>A 追加模式，置光标于行末
+</span></span><span style="display:flex;"><span>o 在当前行之下新加一行，并进入插入模式
+</span></span><span style="display:flex;"><span>O 在当前行之上新加一行，并进入插入模式
+</span></span><span style="display:flex;"><span>Esc 退出插入模式
+</span></span><span style="display:flex;"><span>可视模式
+</span></span><span style="display:flex;"><span>标记文本
+</span></span><span style="display:flex;"><span>v 进入可视模式，单字符模式
+</span></span><span style="display:flex;"><span>V 进入可视模式，行模式
+</span></span><span style="display:flex;"><span>ctrl+v 进入可视模式，列模式，类似于UE的列模式
+</span></span><span style="display:flex;"><span>o 跳转光标到选中块的另一个端点
+</span></span><span style="display:flex;"><span>U 将选中块中的内容转成大写
+</span></span><span style="display:flex;"><span>O 跳转光标到块的另一个端点
+</span></span><span style="display:flex;"><span>aw 选中一个字
+</span></span><span style="display:flex;"><span>ab 选中括号中的所有内容，包括括号本身
+</span></span><span style="display:flex;"><span>aB 选中{}括号中的所有内容
+</span></span><span style="display:flex;"><span>ib 选中括号中的内容，不含括号
+</span></span><span style="display:flex;"><span>iB 选中{}中的内容，不含{}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>对标记进行动作
+</span></span><span style="display:flex;"><span>&gt; 块右移
+</span></span><span style="display:flex;"><span>&lt; 块左移
+</span></span><span style="display:flex;"><span>y 复制块
+</span></span><span style="display:flex;"><span>d 删除块
+</span></span><span style="display:flex;"><span>~ 切换块中内容的大小写
+</span></span></code></pre></div>
+    </div>
+    <a href="/posts/2012/07/02/vime4bdbfe794a8e79a84e5b8b8e794a8e591bde4bba4/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+    </section>
+    
+    <ul class="pagination pagination-default">
+      <li class="page-item">
+        <a href="/categories/linux/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/categories/linux/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/categories/linux/" aria-label="Page 1" class="page-link" role="button">1</a>
+      </li>
+      <li class="page-item active">
+        <a aria-current="page" aria-label="Page 2" class="page-link" role="button">2</a>
+      </li>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Next" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      </li>
+    </ul></article>
+
+    </main>
+    <footer class="bg-near-white bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+    <a class="f4 fw4 hover-black no-underline mid-gray dn dib-ns pv2 ph3" href="https://wonderflow.info/">
+      &copy;  奇迹之流WonderfloW 2025 
+    </a>
+    <div><div class="ananke-socials"></div>
+</div>
+    <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
+    
+  </div>
+</footer>
+
+
+<div class="reading-progress" id="reading-progress"></div>
+
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+
+<script>
+(function() {
+  
+  const progressBar = document.getElementById('reading-progress');
+  const backToTop = document.getElementById('back-to-top');
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    if (progressBar) {
+      progressBar.style.width = progress + '%';
+    }
+
+    
+    if (backToTop) {
+      if (scrollTop > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }
+  }
+
+  
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  
+  if (backToTop) {
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  
+  updateProgress();
+})();
+</script>
+
+  </body>
+</html>

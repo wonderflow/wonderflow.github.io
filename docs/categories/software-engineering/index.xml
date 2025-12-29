@@ -4,35 +4,30 @@
     <title>Software Engineering on 奇迹之流WonderfloW</title>
     <link>https://wonderflow.info/categories/software-engineering/</link>
     <description>Recent content in Software Engineering on 奇迹之流WonderfloW</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 24 Oct 2014 13:50:30 +0000</lastBuildDate><atom:link href="https://wonderflow.info/categories/software-engineering/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Oct 2014 13:50:30 +0000</lastBuildDate>
+    <atom:link href="https://wonderflow.info/categories/software-engineering/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>《程序员修炼之道》的笔记</title>
       <link>https://wonderflow.info/posts/2014/10/24/e3808ae7a88be5ba8fe59198e4bfaee782bce4b98be98193e3808be79a84e7ac94e8aeb0/</link>
       <pubDate>Fri, 24 Oct 2014 13:50:30 +0000</pubDate>
-      
       <guid>https://wonderflow.info/posts/2014/10/24/e3808ae7a88be5ba8fe59198e4bfaee782bce4b98be98193e3808be79a84e7ac94e8aeb0/</guid>
-      <description>老样子：印象笔记链接 责任：Provide Options, Don’t Make Lame Excuses. 什么是负责？就是在出了问题时，要提供各种选择，而不是找借口。不要说事情做不到；要说明能够做什么来挽回局面。 软件的熵：Don’t Live with Broken Windows. 不要留着“破窗户”（低劣的设计、错误的决策、糟糕的代码）不修。发现一个修一个，如果没有时间整理，就把出问题的代码放在注释里或者显示未实现。 足够好的软件：Make Quality a Requirements Issue 让用户参与权衡质量的需求 知识资产：Invest Regularly in Your Knowledge Portfolio 经营你的知识资产: 定期投资：尽管每次投资量小，但是要保持习惯 多元化：你知道的不同的事情越多，你就越有价值。你掌握的技术越多，你就越能更好地进行调整，赶上变化。 管理风险：不要把所有的技术</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://app.yinxiang.com/shard/s29/sh/1273c318-8295-4601-b8c7-4b30991550b9/79db2ecf1a296991c95756e7e6d89b1d&#34;&gt;老样子：印象笔记链接&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;责任&lt;/strong&gt;：Provide Options, Don’t Make Lame Excuses.&lt;/p&gt;&#xA;&lt;p&gt;什么是负责？就是在出了问题时，要提供各种选择，而不是找借口。不要说事情做不到；要说明能够做什么来挽回局面。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;软件的熵&lt;/strong&gt;：Don’t Live with Broken Windows.&#xA;不要留着“破窗户”（低劣的设计、错误的决策、糟糕的代码）不修。发现一个修一个，如果没有时间整理，就把出问题的代码放在注释里或者显示未实现。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;足够好的软件&lt;/strong&gt;：Make Quality a Requirements Issue&#xA;让用户参与权衡质量的需求&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;知识资产&lt;/strong&gt;：Invest Regularly in Your Knowledge Portfolio&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;经营你的知识资产:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;定期投资：尽管每次投资量小，但是要保持习惯&lt;/li&gt;&#xA;&lt;li&gt;多元化：你知道的不同的事情越多，你就越有价值。你掌握的技术越多，你就越能更好地进行调整，赶上变化。&lt;/li&gt;&#xA;&lt;li&gt;管理风险：不要把所有的技术鸡蛋放在一个篮子里&lt;/li&gt;&#xA;&lt;li&gt;低买高卖：在新兴技术流行之前学习它，尽管很困难，但是收益巨大。&lt;/li&gt;&#xA;&lt;li&gt;重新评估和平衡：这是一个非常动荡的行业，也许上个月才开始研究的热门技术现在已经像石头一样冰冷。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;目标：&#xA;&lt;ul&gt;&#xA;&lt;li&gt;每年至少学习一种新语言&lt;/li&gt;&#xA;&lt;li&gt;每季度阅读一本技术书籍&lt;/li&gt;&#xA;&lt;li&gt;也要阅读非技术书籍&lt;/li&gt;&#xA;&lt;li&gt;上课、参加本地用户组织：meetup&lt;/li&gt;&#xA;&lt;li&gt;试验不同的环境：windows、linux&lt;/li&gt;&#xA;&lt;li&gt;跟上潮流：订阅期刊杂志&lt;/li&gt;&#xA;&lt;li&gt;上网：博客、新闻订阅等等&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;批判的思考&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;&lt;strong&gt;交流&lt;/strong&gt;：&lt;/p&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;我相信，被打量比被忽略要好。 ——Made West,Belle of the Nineties,1934&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;p&gt;知道你想要说什么；了解你的听众；选择时机；选择风格让其适应听众；让文档美观；让听众参与；做倾听者；回复别人，注重邮件礼仪。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;重复的危害&lt;/strong&gt;：DRY - Don&amp;rsquo;t Repeat Yourself&lt;/p&gt;&#xA;&lt;p&gt;糟糕的代码才需要注释，注释也是一种重复&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;正交系统&lt;/strong&gt;：又叫模块化、基于组件、分层、松耦合。&#xA;对于正交设计，有一种简单的测试方法。一旦设计好组件，问问自己：如果我显著地改变某个特定功能背后的需求，有多少模块会受影响？在正交系统中，答案应该是“一个”。&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;让你的代码保持解耦。&lt;/li&gt;&#xA;&lt;li&gt;避免使用全局数据&lt;/li&gt;&#xA;&lt;li&gt;避免编写相似的函数&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;&lt;strong&gt;可撤销性&lt;/strong&gt;：There Are No Final Decisions.&#xA;需求是随时会变的，保持代码的灵活性，还需要维持架构、部署及供应商集成等领域的灵活性。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>版本控制与工作流</title>
       <link>https://wonderflow.info/posts/2014/04/10/e78988e69cace68ea7e588b6e4b88ee5b7a5e4bd9ce6b581/</link>
       <pubDate>Thu, 10 Apr 2014 14:28:04 +0000</pubDate>
-      
       <guid>https://wonderflow.info/posts/2014/04/10/e78988e69cace68ea7e588b6e4b88ee5b7a5e4bd9ce6b581/</guid>
-      <description>之前写过一篇git用法的文章，git pocket阅读记录。最近软件工程课要做报告，就又把这些内容整理了一下。 画这些PPT上的图真是一个超级耗时的工作啊，有兴趣的看看吧。 主要讲的是git原理以及分支模型(branching model)相关的内容。 版本控制报告PPT</description>
+      <description>&lt;p&gt;之前写过一篇git用法的文章，&lt;a href=&#34;http://wonderflow.info/archives/709&#34;&gt;git pocket阅读记录&lt;/a&gt;。最近软件工程课要做报告，就又把这些内容整理了一下。&lt;/p&gt;&#xA;&lt;p&gt;画这些PPT上的图真是一个超级耗时的工作啊，有兴趣的看看吧。&lt;/p&gt;&#xA;&lt;p&gt;主要讲的是git原理以及分支模型(branching model)相关的内容。&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://wonderflow.info/images/2014-04-10-e78988e69cace68ea7e588b6e4b88ee5b7a5e4bd9ce6b581/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E6%8A%A5%E5%91%8A.pdf&#34;&gt;版本控制报告PPT&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>《Practices of an Agile Developer》读书笔记</title>
       <link>https://wonderflow.info/posts/2013/11/26/e8afbbe4b9a6e7ac94e8aeb0/</link>
       <pubDate>Tue, 26 Nov 2013 05:01:57 +0000</pubDate>
-      
       <guid>https://wonderflow.info/posts/2013/11/26/e8afbbe4b9a6e7ac94e8aeb0/</guid>
-      <description>这是一本比较普通的书，读了没什么坏处，不读也没什么大的损失。 全书讲了有关敏捷开发应该有的45个习惯，有的很实用，有的比较啰嗦。 比较有启发的一些习惯： 1、先难后易，先要解决技术难点，把简单的问题留到最后。 2、Blame doesn&amp;rsquo;t fix bugs. 3、写单元测试很重要。如果你的代码写单元测试很困难，说明设计本身有问题。 4、要专业而不是自我。对事不对人。 5、持续小步前进才是敏捷。一个学习型的团队才是好团队。 6、把握开发的节奏，保持事件之间稳定重复的间隔。 7、让客户做决定。给客户想要的软件而不是我们臆想的。 8、根据需要选择技术，而不是卖弄技术。 9、提早集成、频繁集成。保持可发布状态。 10、提早实现自动化部署。 11、使用短迭</description>
+      <description>&lt;p&gt;这是一本比较普通的书，读了没什么坏处，不读也没什么大的损失。&lt;/p&gt;&#xA;&lt;p&gt;全书讲了有关敏捷开发应该有的45个习惯，有的很实用，有的比较啰嗦。&lt;/p&gt;&#xA;&lt;p&gt;比较有启发的一些习惯：&lt;/p&gt;&#xA;&lt;p&gt;1、先难后易，先要解决技术难点，把简单的问题留到最后。&lt;/p&gt;&#xA;&lt;p&gt;2、Blame doesn&amp;rsquo;t fix bugs.&lt;/p&gt;&#xA;&lt;p&gt;3、写单元测试很重要。如果你的代码写单元测试很困难，说明设计本身有问题。&lt;/p&gt;&#xA;&lt;p&gt;4、要专业而不是自我。对事不对人。&lt;/p&gt;&#xA;&lt;p&gt;5、持续小步前进才是敏捷。一个学习型的团队才是好团队。&lt;/p&gt;&#xA;&lt;p&gt;6、把握开发的节奏，保持事件之间稳定重复的间隔。&lt;/p&gt;&#xA;&lt;p&gt;7、让客户做决定。给客户想要的软件而不是我们臆想的。&lt;/p&gt;&#xA;&lt;p&gt;8、根据需要选择技术，而不是卖弄技术。&lt;/p&gt;&#xA;&lt;p&gt;9、提早集成、频繁集成。保持可发布状态。&lt;/p&gt;&#xA;&lt;p&gt;10、提早实现自动化部署。&lt;/p&gt;&#xA;&lt;p&gt;11、使用短迭代，增量发布。&lt;/p&gt;&#xA;&lt;p&gt;12、固定的价格是不存在的，很难评估项目经费，就一个迭代一个迭代评估。&lt;/p&gt;&#xA;&lt;p&gt;13、单元测试是一个极好的、编写能产生反馈的代码技术。&lt;/p&gt;&#xA;&lt;p&gt;14、写项目进度的方式部署完成到百分之几，而是预估还要多久才能完成。一定要诚实的每次都记录，才能正确的估计自己的效率。&lt;/p&gt;&#xA;&lt;p&gt;15、要编写清晰的而不是讨巧的代码。做到用代码沟通。&lt;/p&gt;&#xA;&lt;p&gt;16、让类的功能尽量集中，让组件尽量小。&lt;/p&gt;&#xA;&lt;p&gt;17、保持系统灵活性的关键方式，是当新代码取代原有代码之后，其他已有的代码不会意识到任何差别。尽量用委托（创建类对象来调用方法）取代继承。&lt;/p&gt;&#xA;&lt;p&gt;18、维护一个问题和问题解决方案的日志很重要。&lt;/p&gt;&#xA;&lt;p&gt;19、定期的会议，保持项目的沟通也是敏捷的必要性。&lt;/p&gt;&#xA;&lt;p&gt;20、架构师也要写代码。&lt;/p&gt;&#xA;&lt;p&gt;21、代码要实现版本控制，多人review。&lt;/p&gt;&#xA;&lt;p&gt;22、及时通报项目进展和问题。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

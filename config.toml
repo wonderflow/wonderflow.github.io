@@ -6,12 +6,32 @@ title = "奇迹之流WonderfloW"
 publishDir = "docs"
 
 DefaultContentLanguage = "en" 
-Paginate = 8 # this is set low for demonstrating with dummy content. Set to a higher number
+[pagination]
+pagerSize = 8 # this is set low for demonstrating with dummy content. Set to a higher number
 SectionPagesMenu = "main" 
 enableRobotsTXT = true 
 googleAnalytics = "G-Z3XG75RG8W" 
-hasCJKLanguage = true 
-summaryLength = 300 
+hasCJKLanguage = true
+summaryLength = 300
+
+# Syntax Highlighting (Hugo Chroma)
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    hl_Lines = ""
+    lineAnchors = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "github"
+    tabWidth = 4
+  [markup.tableOfContents]
+    endLevel = 4
+    ordered = false
+    startLevel = 2
 
 [sitemap]
 changefreq = "monthly"
@@ -24,10 +44,41 @@ favicon = "favicon_io/favicon.ico"
 show_reading_time = true
 site_logo = ""
 # choose a background color from any on this page: http://tachyons.io/docs/themes/skins/ and preface it with "bg-"
-ananke_socials = [
-  {name = "twitter", url = "https://twitter.com/wonderflow1"},
-  {name = "github", url = "https://github.com/wonderflow"},
-]
-background_color_class = "bg-black"
+background_color_class = "bg-near-white"
+body_classes = "avenir"
+post_content_classes = "f4 measure-wide"
+text_color = "dark-gray"
+custom_css = ["css/custom.css"]
 featured_image = "/images/gohugo-default-sample-hero-image.jpg"
+cover_dimming_class = "bg-black-70"
 recent_posts_number = 8
+
+[ananke]
+show_recent_posts = false
+
+[ananke.social]
+icon_path = "ananke/socials/%s.svg"
+
+[ananke.social.follow]
+new_window_icon = false
+networks = ["x-twitter", "github"]
+
+[ananke.social.networks.x-twitter]
+username = "wonderflow1"
+
+[ananke.social.networks.github]
+username = "wonderflow"
+
+[ananke.social.share]
+icons = true
+sharetext = true
+networks = [
+  "x-twitter",
+  "bluesky",
+  "threads",
+  "linkedin",
+  "mastodon",
+  "reddit",
+  "hackernews",
+  "email"
+]

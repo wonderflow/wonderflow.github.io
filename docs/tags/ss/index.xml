@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ss on 奇迹之流WonderfloW</title>
+    <title>Ss on 奇迹之流WonderfloW</title>
     <link>https://wonderflow.info/tags/ss/</link>
-    <description>Recent content in ss on 奇迹之流WonderfloW</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Ss on 奇迹之流WonderfloW</description>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 06 Aug 2013 02:31:59 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/ss/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Aug 2013 02:31:59 +0000</lastBuildDate>
+    <atom:link href="https://wonderflow.info/tags/ss/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>UNIX之ss命令</title>
       <link>https://wonderflow.info/posts/2013/08/06/unixe4b98bsse591bde4bba4/</link>
       <pubDate>Tue, 06 Aug 2013 02:31:59 +0000</pubDate>
-      
       <guid>https://wonderflow.info/posts/2013/08/06/unixe4b98bsse591bde4bba4/</guid>
-      <description>ss命令用来进行统计socket连接的统计。与netstat命令相似。 这个命令之前不常用，甚至没怎么听过，直到有一天不小心想要输入ssh的时候打了ss就回车，结果出来意想不到的好东西，让我决定去学习一下。 SS能提供的信息包括： TCP连接 UDP连接 已经建立的 ssh/ftp/http/https连接 本地进程连向X服务器的连接 筛选状态(例如connected, synchronized, SYN-RECV, SYN-SENT,TIME-WAIT)、地址和端口 所有在FIN-WAIT-1状态下的TCP连接。 大多数linux发行版都涵盖ss命令以及其他一些工具，熟悉这些命令有助于多网络状态的掌握。 下面罗列出一些常用的方法。 {% codeblock %} $ ss -s #列出所有的so</description>
+      <description>&lt;p&gt;ss命令用来进行统计socket连接的统计。与netstat命令相似。 这个命令之前不常用，甚至没怎么听过，直到有一天不小心想要输入ssh的时候打了ss就回车，结果出来意想不到的好东西，让我决定去学习一下。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;SS&lt;/strong&gt;能提供的信息包括：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;TCP连接&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;UDP连接&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;已经建立的 ssh/ftp/http/https连接&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;本地进程连向X服务器的连接&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;筛选状态(例如connected, synchronized, SYN-RECV, SYN-SENT,TIME-WAIT)、地址和端口&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;所有在FIN-WAIT-1状态下的TCP连接。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;大多数linux发行版都涵盖ss命令以及其他一些工具，熟悉这些命令有助于多网络状态的掌握。&lt;/p&gt;&#xA;&lt;p&gt;下面罗列出一些常用的方法。&lt;/p&gt;&#xA;&lt;p&gt;{% codeblock %}&lt;/p&gt;&#xA;&lt;p&gt;$ ss -s #列出所有的socket连接（-s summary）&#xA;$ ss -l #列出所有打开的网络端口&#xA;$ ss -l | grep 80 #与grep命令一起用把80端口的socket连接信息查出来&#xA;$ ss -p #列出使用了socket的进程&#xA;$ ss -t -a #列出所有TCP连接&#xA;$ ss -u -a #列出所有udp连接&#xA;$ ss -o state established &amp;lsquo;(dport = :smtp or sport = :smtp )&amp;rsquo; #列出所有已建立的SMTP连接&#xA;$ ss -o state established &amp;lsquo;(dport = :http or sport = :http )&amp;rsquo; #列出所有已建立的http连接&#xA;$ ss -x src /tmp/.X11-unix/* #列出所有本地进程连向Xserver的连接&#xA;$ ss -o state fin-wait-1 &amp;lsquo;( sport = :http or sport = :https )&amp;rsquo; dst 192.168.1/24 #列出所有在fin-wait-1状态的TCP连接，查看他们的计时器&#xA;#关于fin-wait-1，是发出了连接，还没有得到对方的握手信号的状态，&#xA;#这时连接不接收应用的发送请求，只接收服务器的反馈信号，&#xA;#直到计时器超时&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

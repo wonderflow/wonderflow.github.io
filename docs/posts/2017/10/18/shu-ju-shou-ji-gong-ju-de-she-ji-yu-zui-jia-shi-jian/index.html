@@ -12,21 +12,27 @@
     数据收集工具对比#
 目前社区就不乏存在大量优秀的数据收集工具，如有名的Elastic Stack(Elasticsearch、Logstash、Kibana)中的Logstash；CNCF基金会里面有名的Fluentd；InfluxData公司TICK Stack中的Telegraf；Google 出品为Kubernetes定制的cAdvisor；Apache基金会中的顶级项目Flume。除了早期诞生的诸如Fluentd、Flume等项目，其他项目都是为特定的平台业务定制而成，然后在随后的开源中不断进化，变得更为通用。所以针对特定业务，量身定制一款数据收集工具，是一个较为普遍的需求，也是出现如此众多“轮子”的主要原因。
 让我们先来看看这几种知名开源数据收集工具有哪些特点。">
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="generator" content="Hugo 0.153.4">
     
     
     
+      <meta name="robots" content="index, follow">
     
-      <meta name="robots" content="noindex, nofollow">
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
 
+
+
+  
+    <link rel="stylesheet" href="/css/custom.css">
+  
 
 
     
-    
+
+
     
       
 <link rel="shortcut icon" href="/favicon_io/favicon.ico" type="image/x-icon" />
@@ -35,51 +41,54 @@
     
 
     
+
     
-    <meta property="og:title" content="数据收集工具的设计与最佳实践" />
-<meta property="og:description" content="【本文首先发布于InfoQ】《数据收集工具的设计与最佳实践》
+      <link rel="canonical" href="https://wonderflow.info/posts/2017/10/18/shu-ju-shou-ji-gong-ju-de-she-ji-yu-zui-jia-shi-jian/">
+    
+
+    
+    
+    <meta property="og:url" content="https://wonderflow.info/posts/2017/10/18/shu-ju-shou-ji-gong-ju-de-she-ji-yu-zui-jia-shi-jian/">
+  <meta property="og:site_name" content="奇迹之流WonderfloW">
+  <meta property="og:title" content="数据收集工具的设计与最佳实践">
+  <meta property="og:description" content="【本文首先发布于InfoQ】《数据收集工具的设计与最佳实践》
 笔者之前在《七牛大数据平台的演进与大数据分析实践》中提到了已经开源的数据收集工具logkit。本文将深入介绍数据收集的设计思路以及大数据收集背后的细节，为大家提供大数据实战中第一步数据采集的最佳实践。
+数据收集工具对比# 目前社区就不乏存在大量优秀的数据收集工具，如有名的Elastic Stack(Elasticsearch、Logstash、Kibana)中的Logstash；CNCF基金会里面有名的Fluentd；InfluxData公司TICK Stack中的Telegraf；Google 出品为Kubernetes定制的cAdvisor；Apache基金会中的顶级项目Flume。除了早期诞生的诸如Fluentd、Flume等项目，其他项目都是为特定的平台业务定制而成，然后在随后的开源中不断进化，变得更为通用。所以针对特定业务，量身定制一款数据收集工具，是一个较为普遍的需求，也是出现如此众多“轮子”的主要原因。
+让我们先来看看这几种知名开源数据收集工具有哪些特点。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2017-10-18T10:48:47+00:00">
+    <meta property="article:modified_time" content="2017-10-18T10:48:47+00:00">
 
-    数据收集工具对比#
-目前社区就不乏存在大量优秀的数据收集工具，如有名的Elastic Stack(Elasticsearch、Logstash、Kibana)中的Logstash；CNCF基金会里面有名的Fluentd；InfluxData公司TICK Stack中的Telegraf；Google 出品为Kubernetes定制的cAdvisor；Apache基金会中的顶级项目Flume。除了早期诞生的诸如Fluentd、Flume等项目，其他项目都是为特定的平台业务定制而成，然后在随后的开源中不断进化，变得更为通用。所以针对特定业务，量身定制一款数据收集工具，是一个较为普遍的需求，也是出现如此众多“轮子”的主要原因。
-让我们先来看看这几种知名开源数据收集工具有哪些特点。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://wonderflow.info/posts/2017/10/18/shu-ju-shou-ji-gong-ju-de-she-ji-yu-zui-jia-shi-jian/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2017-10-18T10:48:47+00:00" />
-<meta property="article:modified_time" content="2017-10-18T10:48:47+00:00" />
-
-<meta itemprop="name" content="数据收集工具的设计与最佳实践">
-<meta itemprop="description" content="【本文首先发布于InfoQ】《数据收集工具的设计与最佳实践》
+  <meta itemprop="name" content="数据收集工具的设计与最佳实践">
+  <meta itemprop="description" content="【本文首先发布于InfoQ】《数据收集工具的设计与最佳实践》
 笔者之前在《七牛大数据平台的演进与大数据分析实践》中提到了已经开源的数据收集工具logkit。本文将深入介绍数据收集的设计思路以及大数据收集背后的细节，为大家提供大数据实战中第一步数据采集的最佳实践。
-
-    数据收集工具对比#
-目前社区就不乏存在大量优秀的数据收集工具，如有名的Elastic Stack(Elasticsearch、Logstash、Kibana)中的Logstash；CNCF基金会里面有名的Fluentd；InfluxData公司TICK Stack中的Telegraf；Google 出品为Kubernetes定制的cAdvisor；Apache基金会中的顶级项目Flume。除了早期诞生的诸如Fluentd、Flume等项目，其他项目都是为特定的平台业务定制而成，然后在随后的开源中不断进化，变得更为通用。所以针对特定业务，量身定制一款数据收集工具，是一个较为普遍的需求，也是出现如此众多“轮子”的主要原因。
-让我们先来看看这几种知名开源数据收集工具有哪些特点。"><meta itemprop="datePublished" content="2017-10-18T10:48:47+00:00" />
-<meta itemprop="dateModified" content="2017-10-18T10:48:47+00:00" />
-<meta itemprop="wordCount" content="10018">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="数据收集工具的设计与最佳实践"/>
-<meta name="twitter:description" content="【本文首先发布于InfoQ】《数据收集工具的设计与最佳实践》
+数据收集工具对比# 目前社区就不乏存在大量优秀的数据收集工具，如有名的Elastic Stack(Elasticsearch、Logstash、Kibana)中的Logstash；CNCF基金会里面有名的Fluentd；InfluxData公司TICK Stack中的Telegraf；Google 出品为Kubernetes定制的cAdvisor；Apache基金会中的顶级项目Flume。除了早期诞生的诸如Fluentd、Flume等项目，其他项目都是为特定的平台业务定制而成，然后在随后的开源中不断进化，变得更为通用。所以针对特定业务，量身定制一款数据收集工具，是一个较为普遍的需求，也是出现如此众多“轮子”的主要原因。
+让我们先来看看这几种知名开源数据收集工具有哪些特点。">
+  <meta itemprop="datePublished" content="2017-10-18T10:48:47+00:00">
+  <meta itemprop="dateModified" content="2017-10-18T10:48:47+00:00">
+  <meta itemprop="wordCount" content="258">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="数据收集工具的设计与最佳实践">
+  <meta name="twitter:description" content="【本文首先发布于InfoQ】《数据收集工具的设计与最佳实践》
 笔者之前在《七牛大数据平台的演进与大数据分析实践》中提到了已经开源的数据收集工具logkit。本文将深入介绍数据收集的设计思路以及大数据收集背后的细节，为大家提供大数据实战中第一步数据采集的最佳实践。
+数据收集工具对比# 目前社区就不乏存在大量优秀的数据收集工具，如有名的Elastic Stack(Elasticsearch、Logstash、Kibana)中的Logstash；CNCF基金会里面有名的Fluentd；InfluxData公司TICK Stack中的Telegraf；Google 出品为Kubernetes定制的cAdvisor；Apache基金会中的顶级项目Flume。除了早期诞生的诸如Fluentd、Flume等项目，其他项目都是为特定的平台业务定制而成，然后在随后的开源中不断进化，变得更为通用。所以针对特定业务，量身定制一款数据收集工具，是一个较为普遍的需求，也是出现如此众多“轮子”的主要原因。
+让我们先来看看这几种知名开源数据收集工具有哪些特点。">
 
-    数据收集工具对比#
-目前社区就不乏存在大量优秀的数据收集工具，如有名的Elastic Stack(Elasticsearch、Logstash、Kibana)中的Logstash；CNCF基金会里面有名的Fluentd；InfluxData公司TICK Stack中的Telegraf；Google 出品为Kubernetes定制的cAdvisor；Apache基金会中的顶级项目Flume。除了早期诞生的诸如Fluentd、Flume等项目，其他项目都是为特定的平台业务定制而成，然后在随后的开源中不断进化，变得更为通用。所以针对特定业务，量身定制一款数据收集工具，是一个较为普遍的需求，也是出现如此众多“轮子”的主要原因。
-让我们先来看看这几种知名开源数据收集工具有哪些特点。"/>
-
+      
+      
+    
 	
-  </head>
-
-  <body class="ma0 avenir bg-near-white">
+  </head><body class="ma0 avenir production">
 
     
-
-
 
   <header>
-    <div class="bg-black">
+    <div class="bg-near-white">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
       
         奇迹之流WonderfloW
       
@@ -91,107 +100,42 @@
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+            <a class="hover-white white-90 no-underline" href="/about/" title="About page">
               About
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/archives/" title="Archives page">
+            <a class="hover-white white-90 no-underline" href="/archives/" title="Archives page">
               Archives
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
-              Posts
             </a>
           </li>
           
         </ul>
       
-      
-<div class="ananke-socials">
-  
-    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-</div>
+      <div class="ananke-socials"></div>
 
     </div>
   </div>
 </nav>
-
     </div>
   </header>
 
 
-
     <main class="pb7" role="main">
       
-
-<article class="flex-l flex-wrap justify-between mw8 center ph3">
-  <header class="mt4 w-100">
-    <aside class="instapaper_ignoref b helvetica tracked">
-      
-      POSTS
-    </aside>
-    
-
-
-
-
-
-
-
-
-
-
-  <div id="sharing" class="mt3 ananke-socials">
-    
-      
-      <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2017/10/18/shu-ju-shou-ji-gong-ju-de-she-ji-yu-zui-jia-shi-jian/&amp;text=%e6%95%b0%e6%8d%ae%e6%94%b6%e9%9b%86%e5%b7%a5%e5%85%b7%e7%9a%84%e8%ae%be%e8%ae%a1%e4%b8%8e%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
-        
-        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-        
-      </a>
-    
-  </div>
-
-
-    <h1 class="f1 athelas mt3 mb1">数据收集工具的设计与最佳实践</h1>
-    
-    
-    <time class="f6 mv4 dib tracked" datetime="2017-10-18T10:48:47Z" >October 18, 2017</time>
-
-    
-    
-    <span class="f6 mv4 dib tracked"> - 20 minutes read</span>
-    <span class="f6 mv4 dib tracked"> - 10018 words</span>
-    
-  </header>
-  <div class="nested-copy-line-height lh-copy serif f4 nested-links
-    nested-img mid-gray pr4-l w-100-l"><p>【本文首先发布于InfoQ】<a href="http://www.infoq.com/cn/articles/data-collection-tool">《数据收集工具的设计与最佳实践》</a></p>
+<div class="flex-l mt2 mw8 center">
+  <article class="center cf pv5 ph3 ph4-ns mw7">
+    <header>
+      <p class="f6 b helvetica tracked">
+        POSTS
+      </p>
+      <h1 class="f1">
+        数据收集工具的设计与最佳实践
+      </h1>
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+      <p>【本文首先发布于InfoQ】<a href="http://www.infoq.com/cn/articles/data-collection-tool">《数据收集工具的设计与最佳实践》</a></p>
 <p>笔者之前在<a href="http://www.infoq.com/cn/articles/qiniu-big-data-platform-evolution-and-analysis">《七牛大数据平台的演进与大数据分析实践》</a>中提到了已经开源的数据收集工具logkit。本文将深入介绍数据收集的设计思路以及大数据收集背后的细节，为大家提供大数据实战中第一步数据采集的最佳实践。</p>
 <h2 id="数据收集工具对比">
     数据收集工具对比<a class="hash-link" href="#%e6%95%b0%e6%8d%ae%e6%94%b6%e9%9b%86%e5%b7%a5%e5%85%b7%e5%af%b9%e6%af%94" title="Direct link to heading">#</a>
@@ -235,9 +179,9 @@ Fluentd由CRuby实现，性能表现优良但依赖ruby环境；相较于前面�
     数据读取模块（Reader）<a class="hash-link" href="#%e6%95%b0%e6%8d%ae%e8%af%bb%e5%8f%96%e6%a8%a1%e5%9d%97reader" title="Direct link to heading">#</a>
 </h4><p>顾名思义，数据读取模块负责从不同数据源中读取数据，设计Reader模块的时候，必须支持插件式数据源接入，且将接口设计的足够简单，方便大家一同贡献更多的读取数据源驱动。</p>
 <p>自定义数据源，最基本的只需要实现如下两个方法即可。</p>
-<pre tabindex="0"><code>ReadLine() string
-SyncMeta() error
-</code></pre><p>从数据来源上分类，数据读取大致可分为从文件读取、从数据存储服务端读取以及从消息队列中读取三类。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>ReadLine() string
+</span></span><span style="display:flex;"><span>SyncMeta() error
+</span></span></code></pre></div><p>从数据来源上分类，数据读取大致可分为从文件读取、从数据存储服务端读取以及从消息队列中读取三类。</p>
 <p>每一类Reader均在发送成功后通过SyncMeta()函数记录读取的位置，保证数据不会因为runner意外中断而丢失。</p>
 <p><strong>从文件读取数据</strong>最为常见，针对文件的不同rotate方式，有不同的读取模式，主要分为三类：</p>
 <ul>
@@ -265,8 +209,8 @@ SyncMeta() error
 <li>nginx/apache parser: 读取nginx/apache等常见配置文件，自动生成解析的正则表达式，解析nginx/apache日志。</li>
 </ol>
 <p>除了以上几种内置的解析器，同Reader一样，你也需要实现自定义解析器的插件功能，而Parser极为简单，只需要实现最基本的Parse方法即可。</p>
-<pre tabindex="0"><code>Parse(lines []string) (datas []sender.Data, err error)
-</code></pre><p>每一种Parser都是插件式的结构，可以复用，并任意选择。在不考虑解析性能的情况下，上述几种解析器基本可以满足所有数据解析的需求，将一行行数据解析为带有Schema(具备字段名称及类型)的数据。但是当你希望对某个字段做操作时，纯粹的解析器可能不够用。于是作为补充，数据收集工具还需要提供Transformer/Filter的功能。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Parse(lines []string) (datas []sender.Data, err error)
+</span></span></code></pre></div><p>每一种Parser都是插件式的结构，可以复用，并任意选择。在不考虑解析性能的情况下，上述几种解析器基本可以满足所有数据解析的需求，将一行行数据解析为带有Schema(具备字段名称及类型)的数据。但是当你希望对某个字段做操作时，纯粹的解析器可能不够用。于是作为补充，数据收集工具还需要提供Transformer/Filter的功能。</p>
 <h4 id="transformer">
     Transformer<a class="hash-link" href="#transformer" title="Direct link to heading">#</a>
 </h4><p>Transformer是Parser的补充，针对字段进行数据变化。</p>
@@ -308,8 +252,8 @@ SyncMeta() error
 <h4 id="sender">
     Sender<a class="hash-link" href="#sender" title="Direct link to heading">#</a>
 </h4><p>Sender的主要作用是将队列中的数据发送至Sender支持的各类服务，一个最基本的实现同样应该设计的尽可能简单，理论上仅需实现一个Send接口即可。</p>
-<pre tabindex="0"><code>Send([]Data) error
-</code></pre><p>那么实现一个发送端有哪些注意事项呢？</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Send([]Data) error
+</span></span></code></pre></div><p>那么实现一个发送端有哪些注意事项呢？</p>
 <ol>
 <li><strong>多线程发送</strong>：多线程发送可以充分利用CPU多核的能力，提升发送效率，这一点我们在架构设计中已经设计了ft sender作为框架解决了该问题。</li>
 <li><strong>错误处理与等待</strong>：服务端偶尔出现一些异常是很正常的事情，此时就要做好不同错误情况的处理，不会因为某个错误而导致程序出错，另外一方面，一旦发现出错应该让sender等待一定时间再发送，设定一个对后端友好的变长错误等待机制也非常重要。一般情况下，可以采用随着连续错误出现递增等待时间的方法，直到一个最顶峰（如<code>10s</code>），就不再增加，当服务端恢复后再取消等待。</li>
@@ -328,8 +272,8 @@ SyncMeta() error
 <p>具体的内容也可以参考logkit文档：<a href="https://github.com/qiniu/logkit/wiki/Runner%E4%B9%8B%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E9%87%87%E9%9B%86%E9%85%8D%E7%BD%AE">Runner之系统信息采集配置</a>。</p>
 <p>至此，一个完整的数据收集工具的设计要点都已经介绍完。</p>
 <p>而我们开源的logkit，就是完全按照这样的设计实现的，我们集合了多种开源数据收集工具的优点，聚焦易用性，致力于打造产品级别的开源软件。</p>
-<h2 id="数据收集工具--logkit">
-    数据收集工具&ndash;logkit<a class="hash-link" href="#%e6%95%b0%e6%8d%ae%e6%94%b6%e9%9b%86%e5%b7%a5%e5%85%b7--logkit" title="Direct link to heading">#</a>
+<h2 id="数据收集工具logkit">
+    数据收集工具&ndash;logkit<a class="hash-link" href="#%e6%95%b0%e6%8d%ae%e6%94%b6%e9%9b%86%e5%b7%a5%e5%85%b7logkit" title="Direct link to heading">#</a>
 </h2><p>logkit(<a href="https://github.com/qiniu/logkit">https://github.com/qiniu/logkit</a>)是七牛大数据团队开源的一个通用的日志收集工具，可以从多种不同的数据源中采集数据，并对数据进行一系列的解析、变换、裁减，最终发送到多种不同的数据下游，其中就包括了<a href="https://pandora-docs.qiniu.com">七牛的大数据平台Pandora</a>。除了基本的数据采集、解析以及发送功能之外，logkit集合了多种同类开源软件的优势，涵盖了容错、并发、热加载、断点续传等高级功能，更提供了页面方便用户配置、监控以及管理自己的数据采集业务，是一款产品级别的开源软件。</p>
 <p>目前支持的数据源包括：</p>
 <ol>
@@ -384,8 +328,8 @@ SyncMeta() error
     启动<a class="hash-link" href="#%e5%90%af%e5%8a%a8" title="Direct link to heading">#</a>
 </h3><p>logkit部署非常简单，将这个binary放在系统PATH路径中就算部署完成了，推荐使用诸如supervisor等进程管理工具进行管理。</p>
 <p>启动logkit工具，可以使用默认的配置文件，执行如下命令即可。</p>
-<pre tabindex="0"><code>logkit -f logkit.conf
-</code></pre><p>配置文件中默认开启了3000端口，初次使用可以通过浏览器打开logkit配置页面，配置runner并调试你的读取、解析和发送方式，浏览器访问的地址就是 http://127.0.0.1:3000 。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>logkit -f logkit.conf
+</span></span></code></pre></div><p>配置文件中默认开启了3000端口，初次使用可以通过浏览器打开logkit配置页面，配置runner并调试你的读取、解析和发送方式，浏览器访问的地址就是 http://127.0.0.1:3000 。</p>
 <h3 id="配置">
     配置<a class="hash-link" href="#%e9%85%8d%e7%bd%ae" title="Direct link to heading">#</a>
 </h3><p><img src="https://raw.githubusercontent.com/qiniu/logkit/develop/resources/logkitnewconfig1.png" alt="logkit 首页">
@@ -406,74 +350,83 @@ SyncMeta() error
 <p><img src="https://raw.githubusercontent.com/qiniu/logkit/develop/resources/logkitnewconfig4.png" alt="确认添加">
 图7 确认并添加页</p>
 <p>在二次确认的页面中，你可以直接修改表达内容也可以返回上一步修改，最终点击添加Runner即可生效。</p>
-<p>到这里，一个复杂的数据收集工作就完成了，怎么样，就是这么简单，快来实际体验一下吧！</p><ul class="pa0">
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
-      
-      
-      <script src="https://utteranc.es/client.js" repo="wonderflow/wonderflow.github.io" issue-term="pathname"
-        label="Comment" theme="github-light" crossorigin="anonymous" async>
-        </script>
+<p>到这里，一个复杂的数据收集工作就完成了，怎么样，就是这么简单，快来实际体验一下吧！</p>
     </div>
-  </div>
-
-  <aside class="w-30-l mt6-l">
-
-
-
-
-</aside>
-
-</article>
+  </article>
+</div>
 
     </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+    <footer class="bg-near-white bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-    <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info">
-      &copy;  奇迹之流WonderfloW 2024 
+    <a class="f4 fw4 hover-black no-underline mid-gray dn dib-ns pv2 ph3" href="https://wonderflow.info/">
+      &copy;  奇迹之流WonderfloW 2025 
     </a>
-    <div>
-<div class="ananke-socials">
-  
-    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-</div>
+    <div><div class="ananke-socials"></div>
 </div>
     <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
     
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3XG75RG8W"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-Z3XG75RG8W', { 'anonymize_ip': false });
-}
-</script>
-
   </div>
 </footer>
+
+
+<div class="reading-progress" id="reading-progress"></div>
+
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+
+<script>
+(function() {
+  
+  const progressBar = document.getElementById('reading-progress');
+  const backToTop = document.getElementById('back-to-top');
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    if (progressBar) {
+      progressBar.style.width = progress + '%';
+    }
+
+    
+    if (backToTop) {
+      if (scrollTop > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }
+  }
+
+  
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  
+  if (backToTop) {
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  
+  updateProgress();
+})();
+</script>
+
   </body>
 </html>

@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>interview on 奇迹之流WonderfloW</title>
+    <title>Interview on 奇迹之流WonderfloW</title>
     <link>https://wonderflow.info/tags/interview/</link>
-    <description>Recent content in interview on 奇迹之流WonderfloW</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Interview on 奇迹之流WonderfloW</description>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 02 Oct 2012 14:01:13 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/interview/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 02 Oct 2012 14:01:13 +0000</lastBuildDate>
+    <atom:link href="https://wonderflow.info/tags/interview/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>&#39;Preparing for my interveiw in the near future &#39;</title>
       <link>https://wonderflow.info/posts/2012/10/02/preparing-for-my-interveiw-in-the-near-future/</link>
       <pubDate>Tue, 02 Oct 2012 14:01:13 +0000</pubDate>
-      
       <guid>https://wonderflow.info/posts/2012/10/02/preparing-for-my-interveiw-in-the-near-future/</guid>
-      <description>Today，I chat with my school sister Miss Hanli，and scarely found that i&amp;rsquo;m supposed to be asked a lot of problem that i’m surely ignored in usual .
-For example i&amp;rsquo;ll be asked the author of a lot of famous computer science books，how can i remember those things ？But i have to 。
-So today I list some of them here ： 《Computer Networking: A Top-Down Approach》written by James F. Kurose 《TCP/IP Protocol Suite》 written by Behrouz Forouzan 《Operating System Concepts 》 written by Abraham Silberschatz 《Principles of Computer Organization》 written by zhanggongxuan , guyihe 《programming pearls》 written by Jon Louis Bentley 《Introduction to Algorithms》 written by Thomas H. Cormen 《hackers and painters》written by Paul Graham 《modern operating systems》written by Andrew S. Tanenbaum 《the art of Unix programming》written by Eric S. Raymond and so on.. this really remind me to respect the author of a famous book, as they are so great to give the word such great books!
-then maybe i need to introduce myself in English. So? let&amp;rsquo;s begin:
-Hello, my name is Sunjianbo. i come from wuxi jiangsu province。That‘s really beautiful place and not far from hangzhou。I major in network engineering in the computer science college of nanjing university of science and technology！
-Before I come in to the university I love computer very much，especially computer games you know。But after my first year of senior school， I become interested in computer algorithm 。 So I joined our school ACM/ICPC training team. I worked hard there and dived into the interesting algorithms. Another year later, i become the team leader of the ACM/ICPC training team.
-I have also participate in the 2011 ACM/ICPC Asia Shanghai regional contest ， and finally got a bronze medal。And several days later I&amp;rsquo;ll participate the 2012 ACM/ICPC Asia changchun regional contest。
-As I have spent almost three years of my college life in ACM team ， I am stronger at C++ programing 、 data structure and common algorithms.</description>
+      <description>&lt;p&gt;Today，I chat with my school sister Miss Hanli，and  scarely found that  i&amp;rsquo;m supposed  to be asked a lot of problem that i’m surely ignored in usual .&lt;/p&gt;&#xA;&lt;p&gt;For example i&amp;rsquo;ll be asked the author of a lot of famous computer science books，how can i remember those things ？But i have to 。&lt;/p&gt;&#xA;&lt;p&gt;So today I list some of them here ：&#xA;《Computer Networking: A Top-Down Approach》written by James F. Kurose&#xA;《TCP/IP Protocol Suite》 written by Behrouz Forouzan&#xA;《Operating System Concepts 》 written by  Abraham Silberschatz&#xA;《Principles of Computer Organization》 written by zhanggongxuan , guyihe&#xA;《programming pearls》 written by Jon Louis Bentley&#xA;《Introduction to Algorithms》 written by  Thomas H. Cormen&#xA;《hackers and painters》written by Paul Graham&#xA;《modern operating systems》written by  Andrew S. Tanenbaum&#xA;《the art of Unix programming》written by Eric S. Raymond&#xA;and so on..&#xA;this really remind me to respect the author of a famous book, as they are so great to give the word such great books!&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

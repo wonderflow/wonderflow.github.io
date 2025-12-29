@@ -6,22 +6,89 @@
     
     <title>《编程之美》读书笔记 | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="总的来说，编程之美是一本讲面试算法的书，至于面试问算法到底问到的几率有多大，我不知道。不过这本书本身的很多问题是非常有意思的。 0.1、前言趣题： 房间里有三盏灯，屋外有三个开关，分别控制三盏灯，进了房间才能知道哪个灯泡是亮的，问只进入房间一次，怎么区分哪个开关对应哪个灯？ 这个题的有意思之处在于让你拓宽思维，不要被既定的线路束缚住。区别三个灯泡，一定需要两个条件，一个是灯泡亮否，还有一个条件哪里来呢？答案是温度，灯泡开了一会，表面温度自然就会上升。 0.2、前言感悟： 面试如考试：基础很重要，但是考前看看面试题库也是个不错的选择。 面试就是探讨：多把自己的想法告诉面试官，对问题的思考或许比问题的答案更重">
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="description" content="总的来说，编程之美是一本讲面试算法的书，至于面试问算法到底问到的几率有多大，我不知道。不过这本书本身的很多问题是非常有意思的。
+0.1、前言趣题：
+房间里有三盏灯，屋外有三个开关，分别控制三盏灯，进了房间才能知道哪个灯泡是亮的，问只进入房间一次，怎么区分哪个开关对应哪个灯？
+这个题的有意思之处在于让你拓宽思维，不要被既定的线路束缚住。区别三个灯泡，一定需要两个条件，一个是灯泡亮否，还有一个条件哪里来呢？答案是温度，灯泡开了一会，表面温度自然就会上升。
+0.2、前言感悟：
+面试如考试：基础很重要，但是考前看看面试题库也是个不错的选择。
+面试就是探讨：多把自己的想法告诉面试官，对问题的思考或许比问题的答案更重要。
+实践出来的才属于自己。
+1.1、让CPU显示所需要的曲线？
+这个题的关键在于对系统函数的了解。适当比例使用sleep().awake()函数等即可。
+1.2、按照中国象棋的规则摆放“将、帅”两个棋子的位置让他们不会死。
+这个题就是让我们预先编码“将、帅“所能走到的位置，然后输出合法的编码对。（规则就是编码对所在的x坐标不能相等，即将和帅不能在一条线上）
+1.3、固定规则的排序问题。
+这个题所要表达的就是搜索加剪枝的思想。因为在工程中，最简单的优化就是把不可能发生的情况排除，这就是剪枝。
+1.4、买东西，单买和组合购买价格不同，找出最省钱的方案。
+贪心只能解决极少数情况，还是要用动态规划来解决。
+1.5、在一个很大的文件里，每个ID都会出现两次，只有一个ID出现一次，怎么把这个ID找出来？
+一个很漂亮的解法就是把这些ID异或，最后得到的值就是答案。
+那么，如果现在每个ID出现N次，只有一个ID只出现N-1次，怎么找呢？
+解法是类似的，就是把ID化成二进制然后对应一个数组，每一位加到数组里，mod N加，最后除以那个单独出现的次数就可以了。
+1.6、提出动态规划中备忘录的思想
+1.7、一块由两条平行线构成的平面被切N刀（刀都是从一条平行线切到另一条），问最后被切成了几部分？
+这种题目有规律，按照规律推出公式。如果总共有N条直线，M个交点，那么区域的数目为N&#43;M&#43;1。现在的问题是交点数怎么求？如果把平行线上定上坐标的话，那么我们所需要求的其实就是左右两边的逆序数的个数。归并排序或者线段树都可以O（nlogn）求出来逆序数。
+1.8、电梯调度算法，这个可以根据自己的想象力设计一个算法，由于电梯的层数和电梯运作的过程中可以载人，所以可以考虑贪心的解法。
+1.9、面试时间安排算法，调度合理的面试时间。
+初步提出的是搜索，每次尝试一种安排的方法能否成功，然后再回溯。
+后面提出一个区间重复覆盖的问题。每次寻找一个空的区间覆盖，利用堆进行存储。
+1.10、多线程编程，涉及到操作系统中一些PV操作的算法设计。
+1.11、1.12、1.13：三种NIM游戏。
+1、一列石头，每次取一个，问谁能取到最后一个。利用对称性，除了最中间那个，每次对手取哪个，我总能找到与之对应的那一个。
+2、传统的异或求NIM积，思想还是对称性的思想。（如果异或出来是0，那么你哪堆石头的哪一位被取掉了，问就能再另外一堆里面的这一位取掉。直到最后只剩下最后一堆的最后一位。）
+3、POJ 1067那题的取石子游戏，可以用筛选法，把范围内的必输状态筛出来，也可以用公式。
+1.14、1.15、1.17、连连看，数独，俄罗斯方块，扫雷的游戏设计
+如果自己要来设计这两个游戏，要解决哪些问题，首要思考的是哪些方面，怎么解决等等。
+因为这样类型的游戏数据范围都很小，只要想到解决方案就可以了，不用考虑复杂度。
+1.16、给你一个表达式，计算其值。
+转化成逆波兰表达式，用堆栈求解。
+2.1、二进制数中，1的个数。
+ 	int Count(BYTE v){
+ 		int num = 0;
+ 		while(v){
+ 		      v &amp;= (v-1);
+ 		      num&#43;&#43;;
+ 		}
+ 		return num;
+ 	}
+2.2、求整数N的阶乘N！的末尾有多少个0？
+算1～N中5的个数，有一个5就是最后乘积多一个0，因为2肯定比5多。
+int Count(int v){
+    int num = 0;
+    while(v){
+      num &#43;= v / 5;
+      v /= 5;
+    }
+    return num;
+}
+求N！的二进制表示中最低位1的位置？
+有了第一问的经验，就发现，这一问其实就是求2的因数个数。跟上面的做法是一样的。
+
+2.3、在一堆数据中，有一个数据出现的次数超过了总次数的一半，怎么快速找出这个数据？
+这个可以用对消的思想，每出现两个不一样的ID就消去，最后留下的一个一定是那个出现一半以上的ID。">
+    <meta name="generator" content="Hugo 0.153.4">
     
     
     
+      <meta name="robots" content="index, follow">
     
-      <meta name="robots" content="noindex, nofollow">
+    <meta name="author" content="admin">
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
 
+
+
+  
+    <link rel="stylesheet" href="/css/custom.css">
+  
 
 
     
-    
+
+
     
       
 <link rel="shortcut icon" href="/favicon_io/favicon.ico" type="image/x-icon" />
@@ -30,36 +97,102 @@
     
 
     
+
     
-    <meta property="og:title" content="《编程之美》读书笔记" />
-<meta property="og:description" content="总的来说，编程之美是一本讲面试算法的书，至于面试问算法到底问到的几率有多大，我不知道。不过这本书本身的很多问题是非常有意思的。 0.1、前言趣题： 房间里有三盏灯，屋外有三个开关，分别控制三盏灯，进了房间才能知道哪个灯泡是亮的，问只进入房间一次，怎么区分哪个开关对应哪个灯？ 这个题的有意思之处在于让你拓宽思维，不要被既定的线路束缚住。区别三个灯泡，一定需要两个条件，一个是灯泡亮否，还有一个条件哪里来呢？答案是温度，灯泡开了一会，表面温度自然就会上升。 0.2、前言感悟： 面试如考试：基础很重要，但是考前看看面试题库也是个不错的选择。 面试就是探讨：多把自己的想法告诉面试官，对问题的思考或许比问题的答案更重" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://wonderflow.info/posts/2012/08/28/e7bc96e7a88be4b98be7be8ee8afbbe4b9a6e7ac94e8aeb0/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2012-08-28T12:31:10+00:00" />
-<meta property="article:modified_time" content="2012-08-28T12:31:10+00:00" />
+      <link rel="canonical" href="https://wonderflow.info/posts/2012/08/28/e7bc96e7a88be4b98be7be8ee8afbbe4b9a6e7ac94e8aeb0/">
+    
 
-<meta itemprop="name" content="《编程之美》读书笔记">
-<meta itemprop="description" content="总的来说，编程之美是一本讲面试算法的书，至于面试问算法到底问到的几率有多大，我不知道。不过这本书本身的很多问题是非常有意思的。 0.1、前言趣题： 房间里有三盏灯，屋外有三个开关，分别控制三盏灯，进了房间才能知道哪个灯泡是亮的，问只进入房间一次，怎么区分哪个开关对应哪个灯？ 这个题的有意思之处在于让你拓宽思维，不要被既定的线路束缚住。区别三个灯泡，一定需要两个条件，一个是灯泡亮否，还有一个条件哪里来呢？答案是温度，灯泡开了一会，表面温度自然就会上升。 0.2、前言感悟： 面试如考试：基础很重要，但是考前看看面试题库也是个不错的选择。 面试就是探讨：多把自己的想法告诉面试官，对问题的思考或许比问题的答案更重"><meta itemprop="datePublished" content="2012-08-28T12:31:10+00:00" />
-<meta itemprop="dateModified" content="2012-08-28T12:31:10+00:00" />
-<meta itemprop="wordCount" content="3656">
-<meta itemprop="keywords" content="书目推荐,面试 算法," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="《编程之美》读书笔记"/>
-<meta name="twitter:description" content="总的来说，编程之美是一本讲面试算法的书，至于面试问算法到底问到的几率有多大，我不知道。不过这本书本身的很多问题是非常有意思的。 0.1、前言趣题： 房间里有三盏灯，屋外有三个开关，分别控制三盏灯，进了房间才能知道哪个灯泡是亮的，问只进入房间一次，怎么区分哪个开关对应哪个灯？ 这个题的有意思之处在于让你拓宽思维，不要被既定的线路束缚住。区别三个灯泡，一定需要两个条件，一个是灯泡亮否，还有一个条件哪里来呢？答案是温度，灯泡开了一会，表面温度自然就会上升。 0.2、前言感悟： 面试如考试：基础很重要，但是考前看看面试题库也是个不错的选择。 面试就是探讨：多把自己的想法告诉面试官，对问题的思考或许比问题的答案更重"/>
+    
+    
+    <meta property="og:url" content="https://wonderflow.info/posts/2012/08/28/e7bc96e7a88be4b98be7be8ee8afbbe4b9a6e7ac94e8aeb0/">
+  <meta property="og:site_name" content="奇迹之流WonderfloW">
+  <meta property="og:title" content="《编程之美》读书笔记">
+  <meta property="og:description" content="总的来说，编程之美是一本讲面试算法的书，至于面试问算法到底问到的几率有多大，我不知道。不过这本书本身的很多问题是非常有意思的。
+0.1、前言趣题： 房间里有三盏灯，屋外有三个开关，分别控制三盏灯，进了房间才能知道哪个灯泡是亮的，问只进入房间一次，怎么区分哪个开关对应哪个灯？ 这个题的有意思之处在于让你拓宽思维，不要被既定的线路束缚住。区别三个灯泡，一定需要两个条件，一个是灯泡亮否，还有一个条件哪里来呢？答案是温度，灯泡开了一会，表面温度自然就会上升。
+0.2、前言感悟： 面试如考试：基础很重要，但是考前看看面试题库也是个不错的选择。 面试就是探讨：多把自己的想法告诉面试官，对问题的思考或许比问题的答案更重要。 实践出来的才属于自己。
+1.1、让CPU显示所需要的曲线？ 这个题的关键在于对系统函数的了解。适当比例使用sleep().awake()函数等即可。
+1.2、按照中国象棋的规则摆放“将、帅”两个棋子的位置让他们不会死。 这个题就是让我们预先编码“将、帅“所能走到的位置，然后输出合法的编码对。（规则就是编码对所在的x坐标不能相等，即将和帅不能在一条线上）
+1.3、固定规则的排序问题。 这个题所要表达的就是搜索加剪枝的思想。因为在工程中，最简单的优化就是把不可能发生的情况排除，这就是剪枝。
+1.4、买东西，单买和组合购买价格不同，找出最省钱的方案。 贪心只能解决极少数情况，还是要用动态规划来解决。
+1.5、在一个很大的文件里，每个ID都会出现两次，只有一个ID出现一次，怎么把这个ID找出来？ 一个很漂亮的解法就是把这些ID异或，最后得到的值就是答案。 那么，如果现在每个ID出现N次，只有一个ID只出现N-1次，怎么找呢？ 解法是类似的，就是把ID化成二进制然后对应一个数组，每一位加到数组里，mod N加，最后除以那个单独出现的次数就可以了。
+1.6、提出动态规划中备忘录的思想
+1.7、一块由两条平行线构成的平面被切N刀（刀都是从一条平行线切到另一条），问最后被切成了几部分？ 这种题目有规律，按照规律推出公式。如果总共有N条直线，M个交点，那么区域的数目为N&#43;M&#43;1。现在的问题是交点数怎么求？如果把平行线上定上坐标的话，那么我们所需要求的其实就是左右两边的逆序数的个数。归并排序或者线段树都可以O（nlogn）求出来逆序数。
+1.8、电梯调度算法，这个可以根据自己的想象力设计一个算法，由于电梯的层数和电梯运作的过程中可以载人，所以可以考虑贪心的解法。
+1.9、面试时间安排算法，调度合理的面试时间。 初步提出的是搜索，每次尝试一种安排的方法能否成功，然后再回溯。 后面提出一个区间重复覆盖的问题。每次寻找一个空的区间覆盖，利用堆进行存储。
+1.10、多线程编程，涉及到操作系统中一些PV操作的算法设计。
+1.11、1.12、1.13：三种NIM游戏。 1、一列石头，每次取一个，问谁能取到最后一个。利用对称性，除了最中间那个，每次对手取哪个，我总能找到与之对应的那一个。 2、传统的异或求NIM积，思想还是对称性的思想。（如果异或出来是0，那么你哪堆石头的哪一位被取掉了，问就能再另外一堆里面的这一位取掉。直到最后只剩下最后一堆的最后一位。） 3、POJ 1067那题的取石子游戏，可以用筛选法，把范围内的必输状态筛出来，也可以用公式。
+1.14、1.15、1.17、连连看，数独，俄罗斯方块，扫雷的游戏设计 如果自己要来设计这两个游戏，要解决哪些问题，首要思考的是哪些方面，怎么解决等等。 因为这样类型的游戏数据范围都很小，只要想到解决方案就可以了，不用考虑复杂度。
+1.16、给你一个表达式，计算其值。 转化成逆波兰表达式，用堆栈求解。
+2.1、二进制数中，1的个数。
+int Count(BYTE v){ int num = 0; while(v){ v &amp;= (v-1); num&#43;&#43;; } return num; } 2.2、求整数N的阶乘N！的末尾有多少个0？ 算1～N中5的个数，有一个5就是最后乘积多一个0，因为2肯定比5多。
+int Count(int v){ int num = 0; while(v){ num &#43;= v / 5; v /= 5; } return num; } 求N！的二进制表示中最低位1的位置？ 有了第一问的经验，就发现，这一问其实就是求2的因数个数。跟上面的做法是一样的。 2.3、在一堆数据中，有一个数据出现的次数超过了总次数的一半，怎么快速找出这个数据？ 这个可以用对消的思想，每出现两个不一样的ID就消去，最后留下的一个一定是那个出现一半以上的ID。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2012-08-28T12:31:10+00:00">
+    <meta property="article:modified_time" content="2012-08-28T12:31:10+00:00">
+    <meta property="article:tag" content="书目推荐">
+    <meta property="article:tag" content="面试 算法">
 
+  <meta itemprop="name" content="《编程之美》读书笔记">
+  <meta itemprop="description" content="总的来说，编程之美是一本讲面试算法的书，至于面试问算法到底问到的几率有多大，我不知道。不过这本书本身的很多问题是非常有意思的。
+0.1、前言趣题： 房间里有三盏灯，屋外有三个开关，分别控制三盏灯，进了房间才能知道哪个灯泡是亮的，问只进入房间一次，怎么区分哪个开关对应哪个灯？ 这个题的有意思之处在于让你拓宽思维，不要被既定的线路束缚住。区别三个灯泡，一定需要两个条件，一个是灯泡亮否，还有一个条件哪里来呢？答案是温度，灯泡开了一会，表面温度自然就会上升。
+0.2、前言感悟： 面试如考试：基础很重要，但是考前看看面试题库也是个不错的选择。 面试就是探讨：多把自己的想法告诉面试官，对问题的思考或许比问题的答案更重要。 实践出来的才属于自己。
+1.1、让CPU显示所需要的曲线？ 这个题的关键在于对系统函数的了解。适当比例使用sleep().awake()函数等即可。
+1.2、按照中国象棋的规则摆放“将、帅”两个棋子的位置让他们不会死。 这个题就是让我们预先编码“将、帅“所能走到的位置，然后输出合法的编码对。（规则就是编码对所在的x坐标不能相等，即将和帅不能在一条线上）
+1.3、固定规则的排序问题。 这个题所要表达的就是搜索加剪枝的思想。因为在工程中，最简单的优化就是把不可能发生的情况排除，这就是剪枝。
+1.4、买东西，单买和组合购买价格不同，找出最省钱的方案。 贪心只能解决极少数情况，还是要用动态规划来解决。
+1.5、在一个很大的文件里，每个ID都会出现两次，只有一个ID出现一次，怎么把这个ID找出来？ 一个很漂亮的解法就是把这些ID异或，最后得到的值就是答案。 那么，如果现在每个ID出现N次，只有一个ID只出现N-1次，怎么找呢？ 解法是类似的，就是把ID化成二进制然后对应一个数组，每一位加到数组里，mod N加，最后除以那个单独出现的次数就可以了。
+1.6、提出动态规划中备忘录的思想
+1.7、一块由两条平行线构成的平面被切N刀（刀都是从一条平行线切到另一条），问最后被切成了几部分？ 这种题目有规律，按照规律推出公式。如果总共有N条直线，M个交点，那么区域的数目为N&#43;M&#43;1。现在的问题是交点数怎么求？如果把平行线上定上坐标的话，那么我们所需要求的其实就是左右两边的逆序数的个数。归并排序或者线段树都可以O（nlogn）求出来逆序数。
+1.8、电梯调度算法，这个可以根据自己的想象力设计一个算法，由于电梯的层数和电梯运作的过程中可以载人，所以可以考虑贪心的解法。
+1.9、面试时间安排算法，调度合理的面试时间。 初步提出的是搜索，每次尝试一种安排的方法能否成功，然后再回溯。 后面提出一个区间重复覆盖的问题。每次寻找一个空的区间覆盖，利用堆进行存储。
+1.10、多线程编程，涉及到操作系统中一些PV操作的算法设计。
+1.11、1.12、1.13：三种NIM游戏。 1、一列石头，每次取一个，问谁能取到最后一个。利用对称性，除了最中间那个，每次对手取哪个，我总能找到与之对应的那一个。 2、传统的异或求NIM积，思想还是对称性的思想。（如果异或出来是0，那么你哪堆石头的哪一位被取掉了，问就能再另外一堆里面的这一位取掉。直到最后只剩下最后一堆的最后一位。） 3、POJ 1067那题的取石子游戏，可以用筛选法，把范围内的必输状态筛出来，也可以用公式。
+1.14、1.15、1.17、连连看，数独，俄罗斯方块，扫雷的游戏设计 如果自己要来设计这两个游戏，要解决哪些问题，首要思考的是哪些方面，怎么解决等等。 因为这样类型的游戏数据范围都很小，只要想到解决方案就可以了，不用考虑复杂度。
+1.16、给你一个表达式，计算其值。 转化成逆波兰表达式，用堆栈求解。
+2.1、二进制数中，1的个数。
+int Count(BYTE v){ int num = 0; while(v){ v &amp;= (v-1); num&#43;&#43;; } return num; } 2.2、求整数N的阶乘N！的末尾有多少个0？ 算1～N中5的个数，有一个5就是最后乘积多一个0，因为2肯定比5多。
+int Count(int v){ int num = 0; while(v){ num &#43;= v / 5; v /= 5; } return num; } 求N！的二进制表示中最低位1的位置？ 有了第一问的经验，就发现，这一问其实就是求2的因数个数。跟上面的做法是一样的。 2.3、在一堆数据中，有一个数据出现的次数超过了总次数的一半，怎么快速找出这个数据？ 这个可以用对消的思想，每出现两个不一样的ID就消去，最后留下的一个一定是那个出现一半以上的ID。">
+  <meta itemprop="datePublished" content="2012-08-28T12:31:10+00:00">
+  <meta itemprop="dateModified" content="2012-08-28T12:31:10+00:00">
+  <meta itemprop="wordCount" content="202">
+  <meta itemprop="keywords" content="书目推荐,面试 算法">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="《编程之美》读书笔记">
+  <meta name="twitter:description" content="总的来说，编程之美是一本讲面试算法的书，至于面试问算法到底问到的几率有多大，我不知道。不过这本书本身的很多问题是非常有意思的。
+0.1、前言趣题： 房间里有三盏灯，屋外有三个开关，分别控制三盏灯，进了房间才能知道哪个灯泡是亮的，问只进入房间一次，怎么区分哪个开关对应哪个灯？ 这个题的有意思之处在于让你拓宽思维，不要被既定的线路束缚住。区别三个灯泡，一定需要两个条件，一个是灯泡亮否，还有一个条件哪里来呢？答案是温度，灯泡开了一会，表面温度自然就会上升。
+0.2、前言感悟： 面试如考试：基础很重要，但是考前看看面试题库也是个不错的选择。 面试就是探讨：多把自己的想法告诉面试官，对问题的思考或许比问题的答案更重要。 实践出来的才属于自己。
+1.1、让CPU显示所需要的曲线？ 这个题的关键在于对系统函数的了解。适当比例使用sleep().awake()函数等即可。
+1.2、按照中国象棋的规则摆放“将、帅”两个棋子的位置让他们不会死。 这个题就是让我们预先编码“将、帅“所能走到的位置，然后输出合法的编码对。（规则就是编码对所在的x坐标不能相等，即将和帅不能在一条线上）
+1.3、固定规则的排序问题。 这个题所要表达的就是搜索加剪枝的思想。因为在工程中，最简单的优化就是把不可能发生的情况排除，这就是剪枝。
+1.4、买东西，单买和组合购买价格不同，找出最省钱的方案。 贪心只能解决极少数情况，还是要用动态规划来解决。
+1.5、在一个很大的文件里，每个ID都会出现两次，只有一个ID出现一次，怎么把这个ID找出来？ 一个很漂亮的解法就是把这些ID异或，最后得到的值就是答案。 那么，如果现在每个ID出现N次，只有一个ID只出现N-1次，怎么找呢？ 解法是类似的，就是把ID化成二进制然后对应一个数组，每一位加到数组里，mod N加，最后除以那个单独出现的次数就可以了。
+1.6、提出动态规划中备忘录的思想
+1.7、一块由两条平行线构成的平面被切N刀（刀都是从一条平行线切到另一条），问最后被切成了几部分？ 这种题目有规律，按照规律推出公式。如果总共有N条直线，M个交点，那么区域的数目为N&#43;M&#43;1。现在的问题是交点数怎么求？如果把平行线上定上坐标的话，那么我们所需要求的其实就是左右两边的逆序数的个数。归并排序或者线段树都可以O（nlogn）求出来逆序数。
+1.8、电梯调度算法，这个可以根据自己的想象力设计一个算法，由于电梯的层数和电梯运作的过程中可以载人，所以可以考虑贪心的解法。
+1.9、面试时间安排算法，调度合理的面试时间。 初步提出的是搜索，每次尝试一种安排的方法能否成功，然后再回溯。 后面提出一个区间重复覆盖的问题。每次寻找一个空的区间覆盖，利用堆进行存储。
+1.10、多线程编程，涉及到操作系统中一些PV操作的算法设计。
+1.11、1.12、1.13：三种NIM游戏。 1、一列石头，每次取一个，问谁能取到最后一个。利用对称性，除了最中间那个，每次对手取哪个，我总能找到与之对应的那一个。 2、传统的异或求NIM积，思想还是对称性的思想。（如果异或出来是0，那么你哪堆石头的哪一位被取掉了，问就能再另外一堆里面的这一位取掉。直到最后只剩下最后一堆的最后一位。） 3、POJ 1067那题的取石子游戏，可以用筛选法，把范围内的必输状态筛出来，也可以用公式。
+1.14、1.15、1.17、连连看，数独，俄罗斯方块，扫雷的游戏设计 如果自己要来设计这两个游戏，要解决哪些问题，首要思考的是哪些方面，怎么解决等等。 因为这样类型的游戏数据范围都很小，只要想到解决方案就可以了，不用考虑复杂度。
+1.16、给你一个表达式，计算其值。 转化成逆波兰表达式，用堆栈求解。
+2.1、二进制数中，1的个数。
+int Count(BYTE v){ int num = 0; while(v){ v &amp;= (v-1); num&#43;&#43;; } return num; } 2.2、求整数N的阶乘N！的末尾有多少个0？ 算1～N中5的个数，有一个5就是最后乘积多一个0，因为2肯定比5多。
+int Count(int v){ int num = 0; while(v){ num &#43;= v / 5; v /= 5; } return num; } 求N！的二进制表示中最低位1的位置？ 有了第一问的经验，就发现，这一问其实就是求2的因数个数。跟上面的做法是一样的。 2.3、在一堆数据中，有一个数据出现的次数超过了总次数的一半，怎么快速找出这个数据？ 这个可以用对消的思想，每出现两个不一样的ID就消去，最后留下的一个一定是那个出现一半以上的ID。">
+
+      
+      
+    
 	
-  </head>
-
-  <body class="ma0 avenir bg-near-white">
+  </head><body class="ma0 avenir production">
 
     
-
-
 
   <header>
-    <div class="bg-black">
+    <div class="bg-near-white">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
       
         奇迹之流WonderfloW
       
@@ -71,115 +204,42 @@
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+            <a class="hover-white white-90 no-underline" href="/about/" title="About page">
               About
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/archives/" title="Archives page">
+            <a class="hover-white white-90 no-underline" href="/archives/" title="Archives page">
               Archives
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
-              Posts
             </a>
           </li>
           
         </ul>
       
-      
-<div class="ananke-socials">
-  
-    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-</div>
+      <div class="ananke-socials"></div>
 
     </div>
   </div>
 </nav>
-
     </div>
   </header>
 
 
-
     <main class="pb7" role="main">
       
-
-<article class="flex-l flex-wrap justify-between mw8 center ph3">
-  <header class="mt4 w-100">
-    <aside class="instapaper_ignoref b helvetica tracked">
-      
-      POSTS
-    </aside>
-    
-
-
-
-
-
-
-
-
-
-
-  <div id="sharing" class="mt3 ananke-socials">
-    
-      
-      <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2012/08/28/e7bc96e7a88be4b98be7be8ee8afbbe4b9a6e7ac94e8aeb0/&amp;text=%e3%80%8a%e7%bc%96%e7%a8%8b%e4%b9%8b%e7%be%8e%e3%80%8b%e8%af%bb%e4%b9%a6%e7%ac%94%e8%ae%b0" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
-        
-        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-        
-      </a>
-    
-  </div>
-
-
-    <h1 class="f1 athelas mt3 mb1">《编程之美》读书笔记</h1>
-    
-    <p class="tracked">
-      By <strong>
-        
-        admin
-        
-      </strong>
-    </p>
-    
-    
-    <time class="f6 mv4 dib tracked" datetime="2012-08-28T12:31:10Z" >August 28, 2012</time>
-
-    
-    
-    <span class="f6 mv4 dib tracked"> - 8 minutes read</span>
-    <span class="f6 mv4 dib tracked"> - 3656 words</span>
-    
-  </header>
-  <div class="nested-copy-line-height lh-copy serif f4 nested-links
-    nested-img mid-gray pr4-l w-100-l"><p>总的来说，编程之美是一本讲面试算法的书，至于面试问算法到底问到的几率有多大，我不知道。不过这本书本身的很多问题是非常有意思的。</p>
+<div class="flex-l mt2 mw8 center">
+  <article class="center cf pv5 ph3 ph4-ns mw7">
+    <header>
+      <p class="f6 b helvetica tracked">
+        POSTS
+      </p>
+      <h1 class="f1">
+        《编程之美》读书笔记
+      </h1>
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+      <p>总的来说，编程之美是一本讲面试算法的书，至于面试问算法到底问到的几率有多大，我不知道。不过这本书本身的很多问题是非常有意思的。</p>
 <p>0.1、前言趣题：
 房间里有三盏灯，屋外有三个开关，分别控制三盏灯，进了房间才能知道哪个灯泡是亮的，问只进入房间一次，怎么区分哪个开关对应哪个灯？
 这个题的有意思之处在于让你拓宽思维，不要被既定的线路束缚住。区别三个灯泡，一定需要两个条件，一个是灯泡亮否，还有一个条件哪里来呢？答案是温度，灯泡开了一会，表面温度自然就会上升。</p>
@@ -191,7 +251,6 @@
 这个题的关键在于对系统函数的了解。适当比例使用sleep().awake()函数等即可。</p>
 <p>1.2、按照中国象棋的规则摆放“将、帅”两个棋子的位置让他们不会死。
 这个题就是让我们预先编码“将、帅“所能走到的位置，然后输出合法的编码对。（规则就是编码对所在的x坐标不能相等，即将和帅不能在一条线上）</p>
-<!-- raw HTML omitted -->
 <p>1.3、固定规则的排序问题。
 这个题所要表达的就是搜索加剪枝的思想。因为在工程中，最简单的优化就是把不可能发生的情况排除，这就是剪枝。</p>
 <p>1.4、买东西，单买和组合购买价格不同，找出最省钱的方案。
@@ -218,25 +277,25 @@
 <p>1.16、给你一个表达式，计算其值。
 转化成逆波兰表达式，用堆栈求解。</p>
 <p>2.1、二进制数中，1的个数。</p>
-<pre tabindex="0"><code> 	int Count(BYTE v){
- 		int num = 0;
- 		while(v){
- 		      v &amp;= (v-1);
- 		      num++;
- 		}
- 		return num;
- 	}
-</code></pre><p>2.2、求整数N的阶乘N！的末尾有多少个0？
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span> 	int Count(BYTE v){
+</span></span><span style="display:flex;"><span> 		int num = 0;
+</span></span><span style="display:flex;"><span> 		while(v){
+</span></span><span style="display:flex;"><span> 		      v &amp;= (v-1);
+</span></span><span style="display:flex;"><span> 		      num++;
+</span></span><span style="display:flex;"><span> 		}
+</span></span><span style="display:flex;"><span> 		return num;
+</span></span><span style="display:flex;"><span> 	}
+</span></span></code></pre></div><p>2.2、求整数N的阶乘N！的末尾有多少个0？
 算1～N中5的个数，有一个5就是最后乘积多一个0，因为2肯定比5多。</p>
-<pre tabindex="0"><code>int Count(int v){
-    int num = 0;
-    while(v){
-      num += v / 5;
-      v /= 5;
-    }
-    return num;
-}
-</code></pre><pre><code>求N！的二进制表示中最低位1的位置？
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>int Count(int v){
+</span></span><span style="display:flex;"><span>    int num = 0;
+</span></span><span style="display:flex;"><span>    while(v){
+</span></span><span style="display:flex;"><span>      num += v / 5;
+</span></span><span style="display:flex;"><span>      v /= 5;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    return num;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><pre><code>求N！的二进制表示中最低位1的位置？
 有了第一问的经验，就发现，这一问其实就是求2的因数个数。跟上面的做法是一样的。
 </code></pre>
 <p>2.3、在一堆数据中，有一个数据出现的次数超过了总次数的一半，怎么快速找出这个数据？
@@ -247,25 +306,25 @@
 这个题有O（N）的算法，就是利用快速排序里面的那种思想，每次取一个数，大于这个数的方左边，小与这个数的放右边，然后根据左右边数字的数目选择左边或者右边递归。</p>
 <p>2.6、2.7 都是GCD（最大公约数问题）。
 GCD最简单的写法就是一行：</p>
-<pre tabindex="0"><code>	int gcd(int x,int y){
-		return (!y)?x:gcd(y,x%y);
-	}
-</code></pre><pre><code>还有一种很犀利的做法，就是模拟辗转相除法（这样就避免了mod除巨大的复杂度了。同时，对x,y都是偶数的情况，就把2提出来，做到了log加速。)
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>	int gcd(int x,int y){
+</span></span><span style="display:flex;"><span>		return (!y)?x:gcd(y,x%y);
+</span></span><span style="display:flex;"><span>	}
+</span></span></code></pre></div><pre><code>还有一种很犀利的做法，就是模拟辗转相除法（这样就避免了mod除巨大的复杂度了。同时，对x,y都是偶数的情况，就把2提出来，做到了log加速。)
 </code></pre>
-<pre tabindex="0"><code>	BigInt gcd(BigInt x, BigInt y){
-		if(x&lt;y)return gcd(y,x);
-		if(y==0)return x;
-		else{
-			if(IsEven(x)){
-				if(IsEven(y))return (gcd(x&gt;&gt;1,y&gt;&gt;1)&lt;&lt;1);
-				else return gcd(x&gt;&gt;1,y);
-			}else{
-				if(IsEven(y)) return gcd(x,y&gt;&gt;1);
-				else return gcd(y,x-y);
-			}
-		}
-	}
-</code></pre><p>2.8、任意给定一个正整数N，求一个最小的正整数M（M&gt;1），使得N*M的十进制表示形式里只含有1和0.
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>	BigInt gcd(BigInt x, BigInt y){
+</span></span><span style="display:flex;"><span>		if(x&lt;y)return gcd(y,x);
+</span></span><span style="display:flex;"><span>		if(y==0)return x;
+</span></span><span style="display:flex;"><span>		else{
+</span></span><span style="display:flex;"><span>			if(IsEven(x)){
+</span></span><span style="display:flex;"><span>				if(IsEven(y))return (gcd(x&gt;&gt;1,y&gt;&gt;1)&lt;&lt;1);
+</span></span><span style="display:flex;"><span>				else return gcd(x&gt;&gt;1,y);
+</span></span><span style="display:flex;"><span>			}else{
+</span></span><span style="display:flex;"><span>				if(IsEven(y)) return gcd(x,y&gt;&gt;1);
+</span></span><span style="display:flex;"><span>				else return gcd(y,x-y);
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span></code></pre></div><p>2.8、任意给定一个正整数N，求一个最小的正整数M（M&gt;1），使得N*M的十进制表示形式里只含有1和0.
 用搜索（BFS）的方法，假设我们得到了结果，每次添加一个1或者一个0，看能否整除N得到M，不行的话记录余数，再继续BFS下去。</p>
 <p>2.9、求Fibonacci数列
 最简单的做法自然是写递归函数求了。
@@ -284,20 +343,20 @@ O(N^2)的方法就是两个for循环枚举一下。
 <p>2.16、最长递增子序列，还是那篇博文。</p>
 <p>2.17、数组的循环移位
 用三次reverse函数解决的问题。</p>
-<pre tabindex="0"><code>	Reverse(int* arr, int b, int e){
-		for(;b&lt;e;b++,e--){
-			int t = arr[e];
-			arr[e] = arr[b];
-			arr[b] = t;
-		}
-	}
-	RightShift (int* arr, int N, int k){
-		K %= N;
-		Reverse(arr,0,N-K-1);
-		Reverse(arr,N-K,N-1);
-		Reverse(arr,0,N-1);
-	}
-</code></pre><p>2.18、数组分割，使两个子数组的和最接近
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>	Reverse(int* arr, int b, int e){
+</span></span><span style="display:flex;"><span>		for(;b&lt;e;b++,e--){
+</span></span><span style="display:flex;"><span>			int t = arr[e];
+</span></span><span style="display:flex;"><span>			arr[e] = arr[b];
+</span></span><span style="display:flex;"><span>			arr[b] = t;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	RightShift (int* arr, int N, int k){
+</span></span><span style="display:flex;"><span>		K %= N;
+</span></span><span style="display:flex;"><span>		Reverse(arr,0,N-K-1);
+</span></span><span style="display:flex;"><span>		Reverse(arr,N-K,N-1);
+</span></span><span style="display:flex;"><span>		Reverse(arr,0,N-1);
+</span></span><span style="display:flex;"><span>	}
+</span></span></code></pre></div><p>2.18、数组分割，使两个子数组的和最接近
 这也是一个经典的DP问题了，假设原数组的和为sum，那么我们就是要完成一个背包，使其得到一个小与等于sum/2的最大值。那么就是每一轮遍历一遍长度为sum的数组，然后对于存在的值加上当前物品的重量。然后再来第二轮这样依次算下去。</p>
 <p>2.19、区间重合：赤裸裸的线段树我就不说了。</p>
 <p>2.20、要有时间复杂度的概念！</p>
@@ -323,82 +382,83 @@ O(N^2)的方法就是两个for循环枚举一下。
 <p>4.2、瓷砖覆盖：分横放竖放这样，DP一下就可以了。</p>
 <p>4.3～over：不少智力题。。感觉编程之美越到后面越有点不想看了啊。。。。</p>
 <p>大致就是这样了。正本书还是非常经典的，后来的面试过程中也确实碰到过非常类似的题目。总之，面试过程中可能面试到的大部分算法题，这里都基本涵盖了，可能有些大数据的题和一些开放性思维的题还有所欠缺。这本书还是很值的一读的。</p>
-<ul class="pa0">
-  
-   <li class="list di">
-     <a href="/tags/%E4%B9%A6%E7%9B%AE%E6%8E%A8%E8%8D%90" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">书目推荐</a>
-   </li>
-  
-   <li class="list di">
-     <a href="/tags/%E9%9D%A2%E8%AF%95-%E7%AE%97%E6%B3%95" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">面试 算法</a>
-   </li>
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
-      
-      
-      <script src="https://utteranc.es/client.js" repo="wonderflow/wonderflow.github.io" issue-term="pathname"
-        label="Comment" theme="github-light" crossorigin="anonymous" async>
-        </script>
+
     </div>
-  </div>
-
-  <aside class="w-30-l mt6-l">
-
-
-
-
-</aside>
-
-</article>
+  </article>
+</div>
 
     </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+    <footer class="bg-near-white bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-    <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info">
-      &copy;  奇迹之流WonderfloW 2024 
+    <a class="f4 fw4 hover-black no-underline mid-gray dn dib-ns pv2 ph3" href="https://wonderflow.info/">
+      &copy;  奇迹之流WonderfloW 2025 
     </a>
-    <div>
-<div class="ananke-socials">
-  
-    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-</div>
+    <div><div class="ananke-socials"></div>
 </div>
     <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
     
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3XG75RG8W"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-Z3XG75RG8W', { 'anonymize_ip': false });
-}
-</script>
-
   </div>
 </footer>
+
+
+<div class="reading-progress" id="reading-progress"></div>
+
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+
+<script>
+(function() {
+  
+  const progressBar = document.getElementById('reading-progress');
+  const backToTop = document.getElementById('back-to-top');
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    if (progressBar) {
+      progressBar.style.width = progress + '%';
+    }
+
+    
+    if (backToTop) {
+      if (scrollTop > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }
+  }
+
+  
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  
+  if (backToTop) {
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  
+  updateProgress();
+})();
+</script>
+
   </body>
 </html>

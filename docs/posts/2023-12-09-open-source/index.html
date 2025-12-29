@@ -6,22 +6,49 @@
     
     <title>我的开源十年 | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="很幸运，自己从最早在 Github 接触开源到如今也已经有十年多时间，经常有同学问我开源该怎么玩，这次就借着这个契机，回顾一下我这十年的开源旅程，也跟大家聊聊我对开源的理解。 从小白用户到开源贡献者# 在我心中最早埋下对开源认识的种子是 2011 年，那时候读了刘未鹏的经典博文“怎样花两年时间去面试一个人”，发现原来 Github 和开源对找工作有这么大的帮助。然后把博客里推荐的大部分书读了一遍，其中有两本最让我心潮澎湃，一本是硅谷创业之父 Paul Graham 写的《黑客与画家》，里面提到黑客作为一帮全世界最酷的软件工程师，就是通过学习开源代码不断成长的；而另一本是开源运动领袖 Eric S.Raymond 写的《UNIX编程艺术》，里面描绘了大量实用的软件设计哲学和案例（包括著">
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="description" content="很幸运，自己从最早在 Github 接触开源到如今也已经有十年多时间，经常有同学问我开源该怎么玩，这次就借着这个契机，回顾一下我这十年的开源旅程，也跟大家聊聊我对开源的理解。
+
+    从小白用户到开源贡献者#
+在我心中最早埋下对开源认识的种子是 2011 年，那时候读了刘未鹏的经典博文“怎样花两年时间去面试一个人”，发现原来 Github 和开源对找工作有这么大的帮助。然后把博客里推荐的大部分书读了一遍，其中有两本最让我心潮澎湃，一本是硅谷创业之父 Paul Graham 写的《黑客与画家》，里面提到黑客作为一帮全世界最酷的软件工程师，就是通过学习开源代码不断成长的；而另一本是开源运动领袖 Eric S.Raymond 写的《UNIX编程艺术》，里面描绘了大量实用的软件设计哲学和案例（包括著名的 KISS 原则），更让我震撼的是通过开源赋予软件强大的生命力从而起死回生的故事。如今十几年后回过头来再看，这两本书依然可以称之为了解开源文化的必读书目。
+那时候种下了对开源向往的热情，遇到相关的事情就会非常积极参与。2013 年的时候开始在学校实验室接触开源 CloudFoundry，那时候 Docker 还没有流行，分布式系统的软件部署非常困难，甚至要从对接虚拟机（VMware VSphere）的 API 部署操作系统镜像开始，熟练工从零开始部署一整套也要好几天时间。那时候实验室给我安排的任务就是简化这个部署流程、缩短部署时间，因为系统最终是要商业化交付的，所以部署还要做到高可用，保证一定的稳定性。
+现在想来这还真是个不错的任务，为了编写自动化脚本，我梳理了 CloudFoundry 整体的架构、各组件的功能和作用、不同组件之间的依赖关系、以及实际管控和数据链路的依赖和运转方式，让我对整个系统有了全面的认识。这也给了我很好的启发，让我之后每次熟悉新的开源项目第一步都会采用同样的方法：
+
+1）参与开源的第一步是阅读项目文档了解其架构、组件作用和依赖关系，并且实际部署起来玩一玩、看看管控和数据链路如何流转。
+
+很快 Docker 就流行起来了，大家都看到了软件领域将迎来巨大的变革，一时之间起来了数十家创业公司。当时的华人创业圈子为了体现自己的技术优势，一个很好的办法就是比拼在 Docker 社区的 commit 数。我们学校实验室也投入其中，当时的基本策略就是看见 “Good First Issue” 就冲上去认领，因为通常这些任务就是项目维护者给新人入门的最好引导，带着问题学习是参与了解开源的最好方式。让我觉得神奇的是即使 Docker 那么火，大家都跃跃欲试，只要有人宣称要贡献某个功能，大家都礼貌的等待，就算你一时间没有解法，大家也愿意耐心的讨论，而不是粗暴的说“放下，我来”，直到后来我才清晰的明白其中的道理：
+
+2） 开源是一个高度注重名誉的社区，你的言行举止需要礼貌得体，而给对方荣誉（credit）就是最好的回报。
+
+当时内心也非常胆怯，看源码遇到问题总是自己先研究半天，直到翻遍了所有文档也得不到答案，才敢抱着试一试的心态冲到 google groups 论坛上去问。结果遇到一帮 Google 的技术大拿耐心的回答我这个小白的问题，这确实给了我惊喜。让我后来也乐意拿着刚学来的知识去回答别人的问题，一来二去就跟圈子里的大神们熟悉了，这也让我理解了什么叫“社区”：
+
+3）不要害羞，勇敢的提问，大胆的参与到社区里面，对于社区而言，活跃的出现很重要。
+
+虽然我当时 Go 语言都没完全掌握，但是成熟的 Docker 社区有着完善的文档，足以让一个小白都可以照着文档从头开始把环境搭建好实现代码贡献。我记得我当时给 libcontainer 仓库（后来改名 runc ）提的 Pull Request 歪歪扭扭的基本每一行都被项目作者 Michael Crosby 提了修改建议，最后改完我知道他花的时间一定比自己直接写完这个功能要多的多，但还是不厌其烦的欢迎外部贡献者，这让我第一次萌生了对开源项目维护者的敬仰之情。这也让我看到了开源社区的另外一面：
+
+4）把重复的事情自动化、把重复的问题文档化，把更多的时间和包容留给新来的人。
+
+一时之间 Docker 越来越火，但在当时的中文社区相关的技术资料仍然稀缺，学校实验室跟 InfoQ 比较熟，作为早期参与开源贡献的我们就这样机缘巧合地成为了社区早期的布道师。当时的想法也很纯粹，因为写文章投稿能拿稿费，就使劲写文章并且打磨到让编辑满意。有意思的是当时 InfoQ 还老拖欠我稿费，作为学生的我自然是厚着脸皮不停去要。这也是后来我才明白为什么他们老忘记给我稿费，文章投放获得的影响力回报要远比几百块稿费值钱的多，大多数其他投稿的技术人员都不是为了稿费。对于参与开源而言，写文章布道真是歪打正着做的最对的事情了；">
+    <meta name="generator" content="Hugo 0.153.4">
     
     
     
+      <meta name="robots" content="index, follow">
     
-      <meta name="robots" content="noindex, nofollow">
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
 
+
+
+  
+    <link rel="stylesheet" href="/css/custom.css">
+  
 
 
     
-    
+
+
     
       
 <link rel="shortcut icon" href="/favicon_io/favicon.ico" type="image/x-icon" />
@@ -30,36 +57,66 @@
     
 
     
+
     
-    <meta property="og:title" content="我的开源十年" />
-<meta property="og:description" content="很幸运，自己从最早在 Github 接触开源到如今也已经有十年多时间，经常有同学问我开源该怎么玩，这次就借着这个契机，回顾一下我这十年的开源旅程，也跟大家聊聊我对开源的理解。 从小白用户到开源贡献者# 在我心中最早埋下对开源认识的种子是 2011 年，那时候读了刘未鹏的经典博文“怎样花两年时间去面试一个人”，发现原来 Github 和开源对找工作有这么大的帮助。然后把博客里推荐的大部分书读了一遍，其中有两本最让我心潮澎湃，一本是硅谷创业之父 Paul Graham 写的《黑客与画家》，里面提到黑客作为一帮全世界最酷的软件工程师，就是通过学习开源代码不断成长的；而另一本是开源运动领袖 Eric S.Raymond 写的《UNIX编程艺术》，里面描绘了大量实用的软件设计哲学和案例（包括著" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://wonderflow.info/posts/2023-12-09-open-source/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-12-09T10:48:16+08:00" />
-<meta property="article:modified_time" content="2023-12-09T10:48:16+08:00" />
+      <link rel="canonical" href="https://wonderflow.info/posts/2023-12-09-open-source/">
+    
 
-<meta itemprop="name" content="我的开源十年">
-<meta itemprop="description" content="很幸运，自己从最早在 Github 接触开源到如今也已经有十年多时间，经常有同学问我开源该怎么玩，这次就借着这个契机，回顾一下我这十年的开源旅程，也跟大家聊聊我对开源的理解。 从小白用户到开源贡献者# 在我心中最早埋下对开源认识的种子是 2011 年，那时候读了刘未鹏的经典博文“怎样花两年时间去面试一个人”，发现原来 Github 和开源对找工作有这么大的帮助。然后把博客里推荐的大部分书读了一遍，其中有两本最让我心潮澎湃，一本是硅谷创业之父 Paul Graham 写的《黑客与画家》，里面提到黑客作为一帮全世界最酷的软件工程师，就是通过学习开源代码不断成长的；而另一本是开源运动领袖 Eric S.Raymond 写的《UNIX编程艺术》，里面描绘了大量实用的软件设计哲学和案例（包括著"><meta itemprop="datePublished" content="2023-12-09T10:48:16+08:00" />
-<meta itemprop="dateModified" content="2023-12-09T10:48:16+08:00" />
-<meta itemprop="wordCount" content="9926">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="我的开源十年"/>
-<meta name="twitter:description" content="很幸运，自己从最早在 Github 接触开源到如今也已经有十年多时间，经常有同学问我开源该怎么玩，这次就借着这个契机，回顾一下我这十年的开源旅程，也跟大家聊聊我对开源的理解。 从小白用户到开源贡献者# 在我心中最早埋下对开源认识的种子是 2011 年，那时候读了刘未鹏的经典博文“怎样花两年时间去面试一个人”，发现原来 Github 和开源对找工作有这么大的帮助。然后把博客里推荐的大部分书读了一遍，其中有两本最让我心潮澎湃，一本是硅谷创业之父 Paul Graham 写的《黑客与画家》，里面提到黑客作为一帮全世界最酷的软件工程师，就是通过学习开源代码不断成长的；而另一本是开源运动领袖 Eric S.Raymond 写的《UNIX编程艺术》，里面描绘了大量实用的软件设计哲学和案例（包括著"/>
+    
+    
+    <meta property="og:url" content="https://wonderflow.info/posts/2023-12-09-open-source/">
+  <meta property="og:site_name" content="奇迹之流WonderfloW">
+  <meta property="og:title" content="我的开源十年">
+  <meta property="og:description" content="很幸运，自己从最早在 Github 接触开源到如今也已经有十年多时间，经常有同学问我开源该怎么玩，这次就借着这个契机，回顾一下我这十年的开源旅程，也跟大家聊聊我对开源的理解。
+从小白用户到开源贡献者# 在我心中最早埋下对开源认识的种子是 2011 年，那时候读了刘未鹏的经典博文“怎样花两年时间去面试一个人”，发现原来 Github 和开源对找工作有这么大的帮助。然后把博客里推荐的大部分书读了一遍，其中有两本最让我心潮澎湃，一本是硅谷创业之父 Paul Graham 写的《黑客与画家》，里面提到黑客作为一帮全世界最酷的软件工程师，就是通过学习开源代码不断成长的；而另一本是开源运动领袖 Eric S.Raymond 写的《UNIX编程艺术》，里面描绘了大量实用的软件设计哲学和案例（包括著名的 KISS 原则），更让我震撼的是通过开源赋予软件强大的生命力从而起死回生的故事。如今十几年后回过头来再看，这两本书依然可以称之为了解开源文化的必读书目。
+那时候种下了对开源向往的热情，遇到相关的事情就会非常积极参与。2013 年的时候开始在学校实验室接触开源 CloudFoundry，那时候 Docker 还没有流行，分布式系统的软件部署非常困难，甚至要从对接虚拟机（VMware VSphere）的 API 部署操作系统镜像开始，熟练工从零开始部署一整套也要好几天时间。那时候实验室给我安排的任务就是简化这个部署流程、缩短部署时间，因为系统最终是要商业化交付的，所以部署还要做到高可用，保证一定的稳定性。
+现在想来这还真是个不错的任务，为了编写自动化脚本，我梳理了 CloudFoundry 整体的架构、各组件的功能和作用、不同组件之间的依赖关系、以及实际管控和数据链路的依赖和运转方式，让我对整个系统有了全面的认识。这也给了我很好的启发，让我之后每次熟悉新的开源项目第一步都会采用同样的方法：
+1）参与开源的第一步是阅读项目文档了解其架构、组件作用和依赖关系，并且实际部署起来玩一玩、看看管控和数据链路如何流转。 很快 Docker 就流行起来了，大家都看到了软件领域将迎来巨大的变革，一时之间起来了数十家创业公司。当时的华人创业圈子为了体现自己的技术优势，一个很好的办法就是比拼在 Docker 社区的 commit 数。我们学校实验室也投入其中，当时的基本策略就是看见 “Good First Issue” 就冲上去认领，因为通常这些任务就是项目维护者给新人入门的最好引导，带着问题学习是参与了解开源的最好方式。让我觉得神奇的是即使 Docker 那么火，大家都跃跃欲试，只要有人宣称要贡献某个功能，大家都礼貌的等待，就算你一时间没有解法，大家也愿意耐心的讨论，而不是粗暴的说“放下，我来”，直到后来我才清晰的明白其中的道理：
+2） 开源是一个高度注重名誉的社区，你的言行举止需要礼貌得体，而给对方荣誉（credit）就是最好的回报。 当时内心也非常胆怯，看源码遇到问题总是自己先研究半天，直到翻遍了所有文档也得不到答案，才敢抱着试一试的心态冲到 google groups 论坛上去问。结果遇到一帮 Google 的技术大拿耐心的回答我这个小白的问题，这确实给了我惊喜。让我后来也乐意拿着刚学来的知识去回答别人的问题，一来二去就跟圈子里的大神们熟悉了，这也让我理解了什么叫“社区”：
+3）不要害羞，勇敢的提问，大胆的参与到社区里面，对于社区而言，活跃的出现很重要。 虽然我当时 Go 语言都没完全掌握，但是成熟的 Docker 社区有着完善的文档，足以让一个小白都可以照着文档从头开始把环境搭建好实现代码贡献。我记得我当时给 libcontainer 仓库（后来改名 runc ）提的 Pull Request 歪歪扭扭的基本每一行都被项目作者 Michael Crosby 提了修改建议，最后改完我知道他花的时间一定比自己直接写完这个功能要多的多，但还是不厌其烦的欢迎外部贡献者，这让我第一次萌生了对开源项目维护者的敬仰之情。这也让我看到了开源社区的另外一面：
+4）把重复的事情自动化、把重复的问题文档化，把更多的时间和包容留给新来的人。 一时之间 Docker 越来越火，但在当时的中文社区相关的技术资料仍然稀缺，学校实验室跟 InfoQ 比较熟，作为早期参与开源贡献的我们就这样机缘巧合地成为了社区早期的布道师。当时的想法也很纯粹，因为写文章投稿能拿稿费，就使劲写文章并且打磨到让编辑满意。有意思的是当时 InfoQ 还老拖欠我稿费，作为学生的我自然是厚着脸皮不停去要。这也是后来我才明白为什么他们老忘记给我稿费，文章投放获得的影响力回报要远比几百块稿费值钱的多，大多数其他投稿的技术人员都不是为了稿费。对于参与开源而言，写文章布道真是歪打正着做的最对的事情了；">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-12-09T10:48:16+08:00">
+    <meta property="article:modified_time" content="2023-12-09T10:48:16+08:00">
 
+  <meta itemprop="name" content="我的开源十年">
+  <meta itemprop="description" content="很幸运，自己从最早在 Github 接触开源到如今也已经有十年多时间，经常有同学问我开源该怎么玩，这次就借着这个契机，回顾一下我这十年的开源旅程，也跟大家聊聊我对开源的理解。
+从小白用户到开源贡献者# 在我心中最早埋下对开源认识的种子是 2011 年，那时候读了刘未鹏的经典博文“怎样花两年时间去面试一个人”，发现原来 Github 和开源对找工作有这么大的帮助。然后把博客里推荐的大部分书读了一遍，其中有两本最让我心潮澎湃，一本是硅谷创业之父 Paul Graham 写的《黑客与画家》，里面提到黑客作为一帮全世界最酷的软件工程师，就是通过学习开源代码不断成长的；而另一本是开源运动领袖 Eric S.Raymond 写的《UNIX编程艺术》，里面描绘了大量实用的软件设计哲学和案例（包括著名的 KISS 原则），更让我震撼的是通过开源赋予软件强大的生命力从而起死回生的故事。如今十几年后回过头来再看，这两本书依然可以称之为了解开源文化的必读书目。
+那时候种下了对开源向往的热情，遇到相关的事情就会非常积极参与。2013 年的时候开始在学校实验室接触开源 CloudFoundry，那时候 Docker 还没有流行，分布式系统的软件部署非常困难，甚至要从对接虚拟机（VMware VSphere）的 API 部署操作系统镜像开始，熟练工从零开始部署一整套也要好几天时间。那时候实验室给我安排的任务就是简化这个部署流程、缩短部署时间，因为系统最终是要商业化交付的，所以部署还要做到高可用，保证一定的稳定性。
+现在想来这还真是个不错的任务，为了编写自动化脚本，我梳理了 CloudFoundry 整体的架构、各组件的功能和作用、不同组件之间的依赖关系、以及实际管控和数据链路的依赖和运转方式，让我对整个系统有了全面的认识。这也给了我很好的启发，让我之后每次熟悉新的开源项目第一步都会采用同样的方法：
+1）参与开源的第一步是阅读项目文档了解其架构、组件作用和依赖关系，并且实际部署起来玩一玩、看看管控和数据链路如何流转。 很快 Docker 就流行起来了，大家都看到了软件领域将迎来巨大的变革，一时之间起来了数十家创业公司。当时的华人创业圈子为了体现自己的技术优势，一个很好的办法就是比拼在 Docker 社区的 commit 数。我们学校实验室也投入其中，当时的基本策略就是看见 “Good First Issue” 就冲上去认领，因为通常这些任务就是项目维护者给新人入门的最好引导，带着问题学习是参与了解开源的最好方式。让我觉得神奇的是即使 Docker 那么火，大家都跃跃欲试，只要有人宣称要贡献某个功能，大家都礼貌的等待，就算你一时间没有解法，大家也愿意耐心的讨论，而不是粗暴的说“放下，我来”，直到后来我才清晰的明白其中的道理：
+2） 开源是一个高度注重名誉的社区，你的言行举止需要礼貌得体，而给对方荣誉（credit）就是最好的回报。 当时内心也非常胆怯，看源码遇到问题总是自己先研究半天，直到翻遍了所有文档也得不到答案，才敢抱着试一试的心态冲到 google groups 论坛上去问。结果遇到一帮 Google 的技术大拿耐心的回答我这个小白的问题，这确实给了我惊喜。让我后来也乐意拿着刚学来的知识去回答别人的问题，一来二去就跟圈子里的大神们熟悉了，这也让我理解了什么叫“社区”：
+3）不要害羞，勇敢的提问，大胆的参与到社区里面，对于社区而言，活跃的出现很重要。 虽然我当时 Go 语言都没完全掌握，但是成熟的 Docker 社区有着完善的文档，足以让一个小白都可以照着文档从头开始把环境搭建好实现代码贡献。我记得我当时给 libcontainer 仓库（后来改名 runc ）提的 Pull Request 歪歪扭扭的基本每一行都被项目作者 Michael Crosby 提了修改建议，最后改完我知道他花的时间一定比自己直接写完这个功能要多的多，但还是不厌其烦的欢迎外部贡献者，这让我第一次萌生了对开源项目维护者的敬仰之情。这也让我看到了开源社区的另外一面：
+4）把重复的事情自动化、把重复的问题文档化，把更多的时间和包容留给新来的人。 一时之间 Docker 越来越火，但在当时的中文社区相关的技术资料仍然稀缺，学校实验室跟 InfoQ 比较熟，作为早期参与开源贡献的我们就这样机缘巧合地成为了社区早期的布道师。当时的想法也很纯粹，因为写文章投稿能拿稿费，就使劲写文章并且打磨到让编辑满意。有意思的是当时 InfoQ 还老拖欠我稿费，作为学生的我自然是厚着脸皮不停去要。这也是后来我才明白为什么他们老忘记给我稿费，文章投放获得的影响力回报要远比几百块稿费值钱的多，大多数其他投稿的技术人员都不是为了稿费。对于参与开源而言，写文章布道真是歪打正着做的最对的事情了；">
+  <meta itemprop="datePublished" content="2023-12-09T10:48:16+08:00">
+  <meta itemprop="dateModified" content="2023-12-09T10:48:16+08:00">
+  <meta itemprop="wordCount" content="385">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="我的开源十年">
+  <meta name="twitter:description" content="很幸运，自己从最早在 Github 接触开源到如今也已经有十年多时间，经常有同学问我开源该怎么玩，这次就借着这个契机，回顾一下我这十年的开源旅程，也跟大家聊聊我对开源的理解。
+从小白用户到开源贡献者# 在我心中最早埋下对开源认识的种子是 2011 年，那时候读了刘未鹏的经典博文“怎样花两年时间去面试一个人”，发现原来 Github 和开源对找工作有这么大的帮助。然后把博客里推荐的大部分书读了一遍，其中有两本最让我心潮澎湃，一本是硅谷创业之父 Paul Graham 写的《黑客与画家》，里面提到黑客作为一帮全世界最酷的软件工程师，就是通过学习开源代码不断成长的；而另一本是开源运动领袖 Eric S.Raymond 写的《UNIX编程艺术》，里面描绘了大量实用的软件设计哲学和案例（包括著名的 KISS 原则），更让我震撼的是通过开源赋予软件强大的生命力从而起死回生的故事。如今十几年后回过头来再看，这两本书依然可以称之为了解开源文化的必读书目。
+那时候种下了对开源向往的热情，遇到相关的事情就会非常积极参与。2013 年的时候开始在学校实验室接触开源 CloudFoundry，那时候 Docker 还没有流行，分布式系统的软件部署非常困难，甚至要从对接虚拟机（VMware VSphere）的 API 部署操作系统镜像开始，熟练工从零开始部署一整套也要好几天时间。那时候实验室给我安排的任务就是简化这个部署流程、缩短部署时间，因为系统最终是要商业化交付的，所以部署还要做到高可用，保证一定的稳定性。
+现在想来这还真是个不错的任务，为了编写自动化脚本，我梳理了 CloudFoundry 整体的架构、各组件的功能和作用、不同组件之间的依赖关系、以及实际管控和数据链路的依赖和运转方式，让我对整个系统有了全面的认识。这也给了我很好的启发，让我之后每次熟悉新的开源项目第一步都会采用同样的方法：
+1）参与开源的第一步是阅读项目文档了解其架构、组件作用和依赖关系，并且实际部署起来玩一玩、看看管控和数据链路如何流转。 很快 Docker 就流行起来了，大家都看到了软件领域将迎来巨大的变革，一时之间起来了数十家创业公司。当时的华人创业圈子为了体现自己的技术优势，一个很好的办法就是比拼在 Docker 社区的 commit 数。我们学校实验室也投入其中，当时的基本策略就是看见 “Good First Issue” 就冲上去认领，因为通常这些任务就是项目维护者给新人入门的最好引导，带着问题学习是参与了解开源的最好方式。让我觉得神奇的是即使 Docker 那么火，大家都跃跃欲试，只要有人宣称要贡献某个功能，大家都礼貌的等待，就算你一时间没有解法，大家也愿意耐心的讨论，而不是粗暴的说“放下，我来”，直到后来我才清晰的明白其中的道理：
+2） 开源是一个高度注重名誉的社区，你的言行举止需要礼貌得体，而给对方荣誉（credit）就是最好的回报。 当时内心也非常胆怯，看源码遇到问题总是自己先研究半天，直到翻遍了所有文档也得不到答案，才敢抱着试一试的心态冲到 google groups 论坛上去问。结果遇到一帮 Google 的技术大拿耐心的回答我这个小白的问题，这确实给了我惊喜。让我后来也乐意拿着刚学来的知识去回答别人的问题，一来二去就跟圈子里的大神们熟悉了，这也让我理解了什么叫“社区”：
+3）不要害羞，勇敢的提问，大胆的参与到社区里面，对于社区而言，活跃的出现很重要。 虽然我当时 Go 语言都没完全掌握，但是成熟的 Docker 社区有着完善的文档，足以让一个小白都可以照着文档从头开始把环境搭建好实现代码贡献。我记得我当时给 libcontainer 仓库（后来改名 runc ）提的 Pull Request 歪歪扭扭的基本每一行都被项目作者 Michael Crosby 提了修改建议，最后改完我知道他花的时间一定比自己直接写完这个功能要多的多，但还是不厌其烦的欢迎外部贡献者，这让我第一次萌生了对开源项目维护者的敬仰之情。这也让我看到了开源社区的另外一面：
+4）把重复的事情自动化、把重复的问题文档化，把更多的时间和包容留给新来的人。 一时之间 Docker 越来越火，但在当时的中文社区相关的技术资料仍然稀缺，学校实验室跟 InfoQ 比较熟，作为早期参与开源贡献的我们就这样机缘巧合地成为了社区早期的布道师。当时的想法也很纯粹，因为写文章投稿能拿稿费，就使劲写文章并且打磨到让编辑满意。有意思的是当时 InfoQ 还老拖欠我稿费，作为学生的我自然是厚着脸皮不停去要。这也是后来我才明白为什么他们老忘记给我稿费，文章投放获得的影响力回报要远比几百块稿费值钱的多，大多数其他投稿的技术人员都不是为了稿费。对于参与开源而言，写文章布道真是歪打正着做的最对的事情了；">
+
+      
+      
+    
 	
-  </head>
-
-  <body class="ma0 avenir bg-near-white">
+  </head><body class="ma0 avenir production">
 
     
-
-
 
   <header>
-    <div class="bg-black">
+    <div class="bg-near-white">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
       
         奇迹之流WonderfloW
       
@@ -71,107 +128,42 @@
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+            <a class="hover-white white-90 no-underline" href="/about/" title="About page">
               About
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/archives/" title="Archives page">
+            <a class="hover-white white-90 no-underline" href="/archives/" title="Archives page">
               Archives
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
-              Posts
             </a>
           </li>
           
         </ul>
       
-      
-<div class="ananke-socials">
-  
-    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-</div>
+      <div class="ananke-socials"></div>
 
     </div>
   </div>
 </nav>
-
     </div>
   </header>
 
 
-
     <main class="pb7" role="main">
       
-
-<article class="flex-l flex-wrap justify-between mw8 center ph3">
-  <header class="mt4 w-100">
-    <aside class="instapaper_ignoref b helvetica tracked">
-      
-      POSTS
-    </aside>
-    
-
-
-
-
-
-
-
-
-
-
-  <div id="sharing" class="mt3 ananke-socials">
-    
-      
-      <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2023-12-09-open-source/&amp;text=%e6%88%91%e7%9a%84%e5%bc%80%e6%ba%90%e5%8d%81%e5%b9%b4" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
-        
-        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-        
-      </a>
-    
-  </div>
-
-
-    <h1 class="f1 athelas mt3 mb1">我的开源十年</h1>
-    
-    
-    <time class="f6 mv4 dib tracked" datetime="2023-12-09T10:48:16+08:00" >December 9, 2023</time>
-
-    
-    
-    <span class="f6 mv4 dib tracked"> - 20 minutes read</span>
-    <span class="f6 mv4 dib tracked"> - 9926 words</span>
-    
-  </header>
-  <div class="nested-copy-line-height lh-copy serif f4 nested-links
-    nested-img mid-gray pr4-l w-100-l"><p>很幸运，自己从最早在 Github 接触开源到如今也已经有十年多时间，经常有同学问我开源该怎么玩，这次就借着这个契机，回顾一下我这十年的开源旅程，也跟大家聊聊我对开源的理解。</p>
+<div class="flex-l mt2 mw8 center">
+  <article class="center cf pv5 ph3 ph4-ns mw7">
+    <header>
+      <p class="f6 b helvetica tracked">
+        POSTS
+      </p>
+      <h1 class="f1">
+        我的开源十年
+      </h1>
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+      <p>很幸运，自己从最早在 Github 接触开源到如今也已经有十年多时间，经常有同学问我开源该怎么玩，这次就借着这个契机，回顾一下我这十年的开源旅程，也跟大家聊聊我对开源的理解。</p>
 <h2 id="从小白用户到开源贡献者">
     从小白用户到开源贡献者<a class="hash-link" href="#%e4%bb%8e%e5%b0%8f%e7%99%bd%e7%94%a8%e6%88%b7%e5%88%b0%e5%bc%80%e6%ba%90%e8%b4%a1%e7%8c%ae%e8%80%85" title="Direct link to heading">#</a>
 </h2><p>在我心中最早埋下对开源认识的种子是 2011 年，那时候读了刘未鹏的经典博文<a href="http://mindhacks.cn/2011/11/04/how-to-interview-a-person-for-two-years/">“怎样花两年时间去面试一个人”</a>，发现原来 Github 和开源对找工作有这么大的帮助。然后把博客里推荐的大部分书读了一遍，其中有两本最让我心潮澎湃，一本是硅谷创业之父 Paul Graham 写的《黑客与画家》，里面提到黑客作为一帮全世界最酷的软件工程师，就是通过学习开源代码不断成长的；而另一本是开源运动领袖 Eric S.Raymond 写的《UNIX编程艺术》，里面描绘了大量实用的软件设计哲学和案例（包括著名的 KISS 原则），更让我震撼的是通过开源赋予软件强大的生命力从而起死回生的故事。如今十几年后回过头来再看，这两本书依然可以称之为了解开源文化的必读书目。</p>
@@ -237,23 +229,23 @@
     开源与商业的关系？<a class="hash-link" href="#%e5%bc%80%e6%ba%90%e4%b8%8e%e5%95%86%e4%b8%9a%e7%9a%84%e5%85%b3%e7%b3%bb" title="Direct link to heading">#</a>
 </h3><p>我最早对于开源与商业关系的认知是利用开源项目形成事实标准，然后通过云厂商的服务化能力对开源项目做托管，就像 MySQL 与 阿里云的 RDS，K8S 与 阿里云的 ACK 这样，通过开源心智不断给商业化产品引流。虽然这个想法没错，但是并不全面。后来看到 StackOverflow 的 CEO Joel Spolsky 早在 2002 年写的博客<a href="https://www.joelonsoftware.com/2002/06/12/strategy-letter-v/">《Strategy Letter V》</a>里就有了精准、简练、完整的描述。他首先介绍了一条经济学的基本规律，即任何商品都存在“替代品”和“互补品”，而一个商品需求的上升会自然带动其互补品需求的上升，比如买苹果手机的人变多以后，买对应手机壳的人也会变多。而开源就是通过免费将一类产品的需求提升，开源的商业化就是赚其互补品的钱。</p>
 <p>Spolsky 的开源经济学理论给了我很好的启发，如果按照软件的生命周期和生态去看它的“互补品”，我们可以画出这么一张图。最底层是软件的依赖；然后依次是软件的核心功能和高级功能；往上是软件的交付和维保服务；最后是生态和解决方案。</p>
-<pre tabindex="0"><code>                            生态和解决方案                            
-                                                        
-          低    \    ----------------------------      /  高
-                 \                                    /    
-                  \          软件交付和维保           /    
-                   \                                /      
-                    \  ------------------------    /       
-                     \                            /   人力投入 
-       投入产出比      \       软件高级功能        /         
-                       \                        /     市场规模 
-                        \ -------------------  /           
-                         \                    /            
-                          \   软件内核功能    /             
-                           \                /              
-                      高     ----------------   低           
-                             软件的依赖和平台                                                
-</code></pre><p>纵观整个生态，软件“互补品”层次里的每一层都可以单独考虑是否开源，从而形成商业模式，当然也可以组合使用。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>                            生态和解决方案                            
+</span></span><span style="display:flex;"><span>                                                        
+</span></span><span style="display:flex;"><span>          低    \    ----------------------------      /  高
+</span></span><span style="display:flex;"><span>                 \                                    /    
+</span></span><span style="display:flex;"><span>                  \          软件交付和维保           /    
+</span></span><span style="display:flex;"><span>                   \                                /      
+</span></span><span style="display:flex;"><span>                    \  ------------------------    /       
+</span></span><span style="display:flex;"><span>                     \                            /   人力投入 
+</span></span><span style="display:flex;"><span>       投入产出比      \       软件高级功能        /         
+</span></span><span style="display:flex;"><span>                       \                        /     市场规模 
+</span></span><span style="display:flex;"><span>                        \ -------------------  /           
+</span></span><span style="display:flex;"><span>                         \                    /            
+</span></span><span style="display:flex;"><span>                          \   软件内核功能    /             
+</span></span><span style="display:flex;"><span>                           \                /              
+</span></span><span style="display:flex;"><span>                      高     ----------------   低           
+</span></span><span style="display:flex;"><span>                             软件的依赖和平台                                                
+</span></span></code></pre></div><p>纵观整个生态，软件“互补品”层次里的每一层都可以单独考虑是否开源，从而形成商业模式，当然也可以组合使用。</p>
 <ol>
 <li>软件核心不开源：很多云服务厂商包括 Saas 服务商喜欢这种模式，开源周边生态工具通常是为了部署到用户的环境中，为了让用户放心其具备足够的安全性且满足合规要求才开源。比如AWS 就有大量的周边生态工具开源而其核心服务大多数都不开源。</li>
 </ol>
@@ -348,74 +340,83 @@ Spring Cloud 核心组件 Hystrix 和 Eureka，而阿里的 Nacos 和 Sentinel �
     最后<a class="hash-link" href="#%e6%9c%80%e5%90%8e" title="Direct link to heading">#</a>
 </h2><p>如果你是业余玩开源，那么全凭热爱去做就好，没有那么多道理和顾虑，获得了成长就好。如果你是在企业内全职做开源，最终还是要回归工作本身，开源只是达成工作的一种途径。千万不要本末倒置，把公司赋予你的开源工作当成自己的热爱而忘了朝着公司本身的商业目标努力。</p>
 <p>莫愁前路无知己，天下谁人不识君。祝愿开源永远没有国界，愿我们再相会。</p>
-<ul class="pa0">
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
-      
-      
-      <script src="https://utteranc.es/client.js" repo="wonderflow/wonderflow.github.io" issue-term="pathname"
-        label="Comment" theme="github-light" crossorigin="anonymous" async>
-        </script>
+
     </div>
-  </div>
-
-  <aside class="w-30-l mt6-l">
-
-
-
-
-</aside>
-
-</article>
+  </article>
+</div>
 
     </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+    <footer class="bg-near-white bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-    <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info">
-      &copy;  奇迹之流WonderfloW 2024 
+    <a class="f4 fw4 hover-black no-underline mid-gray dn dib-ns pv2 ph3" href="https://wonderflow.info/">
+      &copy;  奇迹之流WonderfloW 2025 
     </a>
-    <div>
-<div class="ananke-socials">
-  
-    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-</div>
+    <div><div class="ananke-socials"></div>
 </div>
     <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
     
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3XG75RG8W"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-Z3XG75RG8W', { 'anonymize_ip': false });
-}
-</script>
-
   </div>
 </footer>
+
+
+<div class="reading-progress" id="reading-progress"></div>
+
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+
+<script>
+(function() {
+  
+  const progressBar = document.getElementById('reading-progress');
+  const backToTop = document.getElementById('back-to-top');
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    if (progressBar) {
+      progressBar.style.width = progress + '%';
+    }
+
+    
+    if (backToTop) {
+      if (scrollTop > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }
+  }
+
+  
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  
+  if (backToTop) {
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  
+  updateProgress();
+})();
+</script>
+
   </body>
 </html>

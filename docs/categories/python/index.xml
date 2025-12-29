@@ -4,17 +4,16 @@
     <title>Python on 奇迹之流WonderfloW</title>
     <link>https://wonderflow.info/categories/python/</link>
     <description>Recent content in Python on 奇迹之流WonderfloW</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 04 Jul 2012 16:14:02 +0000</lastBuildDate><atom:link href="https://wonderflow.info/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 04 Jul 2012 16:14:02 +0000</lastBuildDate>
+    <atom:link href="https://wonderflow.info/categories/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>网络攻防与Python</title>
       <link>https://wonderflow.info/posts/2012/07/04/e7bd91e7bb9ce694bbe998b2e4b88epython/</link>
       <pubDate>Wed, 04 Jul 2012 16:14:02 +0000</pubDate>
-      
       <guid>https://wonderflow.info/posts/2012/07/04/e7bd91e7bb9ce694bbe998b2e4b88epython/</guid>
-      <description>上个学期学《网络攻防》，《信息安全》。发现自己对网络攻防、信息安全这方面内容还真的挺感兴趣的。 说来也是，学计算机的，谁小时候没有一个黑客梦呢！ 然后就开始研究了啊。趁着有兴趣的时候。 先去搞了CSDN的500万密码，然后开始把密码删选，把最常出现的几千个搞出来，然后跟崔嵬学习了一下对网站结构的分析之类的。再然后就发现了，还是学校教务处网站比较简单，哈哈，就拿学校教务处网站开工练手了。 记得第一个爆出密码来的同学是一个女生，成绩非常好，名字也挺好的，跟小说《诛仙》里一个人物的名相同，后来还认识了，算是挺有缘分的~哈哈~~ 当时先是把所有学号和密码相同的同学爆了一遍，后来发现不过瘾，把生日密码来尝试了一下</description>
+      <description>&lt;p&gt;上个学期学《网络攻防》，《信息安全》。发现自己对网络攻防、信息安全这方面内容还真的挺感兴趣的。&#xA;说来也是，学计算机的，谁小时候没有一个黑客梦呢！&lt;/p&gt;&#xA;&lt;p&gt;然后就开始研究了啊。趁着有兴趣的时候。&lt;/p&gt;&#xA;&lt;p&gt;先去搞了CSDN的500万密码，然后开始把密码删选，把最常出现的几千个搞出来，然后跟崔嵬学习了一下对网站结构的分析之类的。再然后就发现了，还是学校教务处网站比较简单，哈哈，就拿学校教务处网站开工练手了。&lt;/p&gt;&#xA;&lt;p&gt;记得第一个爆出密码来的同学是一个女生，成绩非常好，名字也挺好的，跟小说《诛仙》里一个人物的名相同，后来还认识了，算是挺有缘分的~哈哈~~&lt;/p&gt;&#xA;&lt;p&gt;当时先是把所有学号和密码相同的同学爆了一遍，后来发现不过瘾，把生日密码来尝试了一下，再后来就发现，这样一个一个爆密码实在太慢了。而且当时跟崔嵬学的是用java这个语言来做网络尝试登录，暴力破解密码，java的速度本来就比较慢。&lt;/p&gt;&#xA;&lt;p&gt;接下来沉寂了大概一两周，但是心里一直想着这个事情，就不停的学这方面内容了。&lt;/p&gt;&#xA;&lt;p&gt;再后来，通过别的同学，就知道了很多信息和内容。&#xA;就换了一种方式，知道了要爆教务处管理人员的账号和密码，这样的话，一下子就可以查询到所有同学的信息了。&#xA;然后语言也换成了黑客界的基本常用语言——python，这下，瞬间有种鸟枪换炮的感觉了啊。&lt;/p&gt;&#xA;&lt;p&gt;这是暴力教务处账号和密码的python脚本。出于对学校的尊重，这里把登录网址删掉了。&lt;/p&gt;&#xA;&lt;p&gt;{% codeblock %}&lt;/p&gt;&#xA;&lt;p&gt;import time&#xA;import urllib2&#xA;import urllib&#xA;import re&lt;/p&gt;&#xA;&lt;p&gt;print &amp;ldquo;Loading….&amp;rdquo;&#xA;cookies = urllib2.HTTPCookieProcessor()&#xA;opener = urllib2.build_opener(cookies)&#xA;urllib2.install_opener(opener)&lt;/p&gt;&#xA;&lt;p&gt;print &amp;ldquo;Loading….&amp;rdquo;&lt;/p&gt;&#xA;&lt;p&gt;stu = [];&#xA;for bj in range(10000,14000) :&#xA;fm = &amp;quot;&amp;quot;&#xA;if bj&amp;lt;10:&#xA;fm = &amp;ldquo;0000%d&amp;rdquo;%(bj)&#xA;elif bj&amp;lt;100:&#xA;fm = &amp;ldquo;000%d&amp;rdquo;%(bj)&#xA;elif bj&amp;lt;1000:&#xA;fm = &amp;ldquo;00%d&amp;rdquo;%(bj)&#xA;else :&#xA;fm = &amp;ldquo;0%d&amp;rdquo;%(bj)&#xA;stu.append(fm)&lt;/p&gt;&#xA;&lt;p&gt;digs = re.compile(‘&lt;/p&gt;&#xA;&lt;h4 id=&#34;姓名单位职称&#34;&gt;&#xA;    姓名：(.&lt;em&gt;)，单位：(.&lt;/em&gt;)，职称：(.*)&lt;a class=&#34;hash-link&#34; href=&#34;#%e5%a7%93%e5%90%8d%e5%8d%95%e4%bd%8d%e8%81%8c%e7%a7%b0&#34; title=&#34;Direct link to heading&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h4&gt;&lt;p&gt;’)&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,38 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ruby on 奇迹之流WonderfloW</title>
+    <title>Ruby on 奇迹之流WonderfloW</title>
     <link>https://wonderflow.info/tags/ruby/</link>
-    <description>Recent content in ruby on 奇迹之流WonderfloW</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Ruby on 奇迹之流WonderfloW</description>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 21 Nov 2013 16:27:21 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Nov 2013 16:27:21 +0000</lastBuildDate>
+    <atom:link href="https://wonderflow.info/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>《ruby元编程》读书笔记</title>
       <link>https://wonderflow.info/posts/2013/11/21/e3808arubye58583e7bc96e7a88be3808be8afbbe4b9a6e7ac94e8aeb0/</link>
       <pubDate>Thu, 21 Nov 2013 16:27:21 +0000</pubDate>
-      
       <guid>https://wonderflow.info/posts/2013/11/21/e3808arubye58583e7bc96e7a88be3808be8afbbe4b9a6e7ac94e8aeb0/</guid>
-      <description>总的来说，《ruby元编程》是一本好书。 当我拿到这本书的时候，第一反应是什么叫元编程？书上的定义是这样的：“元编程是写出编写代码的代码”。 而我认为，元编程是ruby语言的一些高级特性，是属于ruby的奇技淫巧。 有意思的是，这本书不是枯燥的一章一章给你灌输这些知识，而是描述公司里一个老程序员一对一带一个年轻程序员的故事。就是所谓的mentor/buddy制度，大部分IT公司都有，就是不知道贯彻的怎么样。不管书中描述的这样的工作情况是不是真的，都很令人神往。 我觉得一个IT行业的大公司就该有这样的气度，把新员工当朋友、兄弟一样培养，毕竟IT行业中，人才是最大的财富。这样带起来的团队，相比凝聚力也是极</description>
+      <description>&lt;p&gt;总的来说，《ruby元编程》是一本好书。 当我拿到这本书的时候，第一反应是什么叫元编程？书上的定义是这样的：&lt;strong&gt;“元编程是写出编写代码的代码”&lt;/strong&gt;。 而我认为，元编程是ruby语言的一些高级特性，是属于ruby的&lt;strong&gt;奇技淫巧&lt;/strong&gt;。&lt;/p&gt;&#xA;&lt;p&gt;有意思的是，这本书不是枯燥的一章一章给你灌输这些知识，而是描述公司里一个老程序员一对一带一个年轻程序员的故事。就是所谓的mentor/buddy制度，大部分IT公司都有，就是不知道贯彻的怎么样。不管书中描述的这样的工作情况是不是真的，都很令人神往。&lt;/p&gt;&#xA;&lt;p&gt;我觉得一个IT行业的大公司就该有这样的气度，把新员工当朋友、兄弟一样培养，毕竟IT行业中，人才是最大的财富。这样带起来的团队，相比凝聚力也是极强的。&lt;/p&gt;&#xA;&lt;p&gt;书中的内容也根据工作日的划分成了周一到周五5个部分，分别以“对象模型”，“方法”，“代码块”，“类定义”以及“编写代码的代码”这5个点作为话题描述。&lt;/p&gt;&#xA;&lt;p&gt;整本书都值得一看，书中很多技术给了我不少启发，挑几个有意思的记一记。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;ruby的class关键字更像是一个作用域操作符而不是类型声明语句。它的确可以创建一个还不存在的类，不过也可以把这看成是一种副作用。对于class关键字，其核心任务是把你带到类的上下文中，让你可以在其中定义方法。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;打开类这样的技术也有隐患：如果你粗心地为某个类添加了某些功能，就可能把类本身的一些方法替换到，造成bug，人们给这张方式起了一个不太好听的名字：&lt;strong&gt;猴子补丁（Monkeypatch）&lt;/strong&gt;，这就是著名的猴子补丁的由来了。当然，有时候一些临时性的猴子补丁可是有救场的奇效的。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;如何以大写字母开头的引用（包括类名和模块名），都是常量。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;动态派发&lt;/strong&gt;：当你调用一个方法时，实际上是给一个对象发送了一条消息。ruby用自身的语法完美的解释了这个关于类执行方法的概念。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;{% codeblock %}&#xA;class MyClass&#xA;def my_method(my_arg)&#xA;my_arg * 2&#xA;end&#xA;end&#xA;obj = MyClass.new&#xA;obj.my_method(3) # =&amp;gt; 6&#xA;obj.send(:my_method, 3) # =&amp;gt; 6&lt;/p&gt;&#xA;&lt;p&gt;{% endcodeblock %}&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;关于符号，symbol，是一个很不错的定义，它跟string的用法有相似性，但是它不是string。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;幽灵方法&lt;/strong&gt;，在ruby中，编译器并不强制方法调用时的行为，这意味着你可以调用一个并不存在的方法。而接收这个不存在方法的函数，就是method_missing方法，你可以覆写这个方法，并使用动态派发技术，来实现幽灵方法。 7. yield关键字可以回调一个你定义的块，相当好用。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;{% codeblock %}&#xA;def a_method&#xA;return yield if block_given? &amp;rsquo;no block&#39;&#xA;end&#xA;a_method # =&amp;gt; &amp;ldquo;no block&amp;rdquo;&#xA;a_method { &amp;ldquo;here&amp;rsquo;s a block!&amp;rdquo; } # =&amp;gt; &amp;ldquo;here&amp;rsquo;s a block!&amp;rdquo;&lt;/p&gt;&#xA;&lt;p&gt;{% endcodeblock %}&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Eventmachine Introduction Translation</title>
       <link>https://wonderflow.info/posts/2013/07/29/eventmachine-introduction-translation/</link>
       <pubDate>Mon, 29 Jul 2013 08:49:32 +0000</pubDate>
-      
       <guid>https://wonderflow.info/posts/2013/07/29/eventmachine-introduction-translation/</guid>
-      <description>最近在学Eventmachine，发现Dan Sinclair写的eventmachine introduction真心赞！ 然后跟陈琦一起翻译了一把。看这里：EventMachine入门 Eventmachine是Ruby中相当重要的轻量级通信模块，其相当于node.js，也是CouldFoundry中通信的主要途径。理清Eventmachine的工作机制对于理解CloudFoundry有磨刀不误砍柴工的功效。 关于Eventmachine的学习，我的路线为： 磊哥的博客 github上的Eventmachine Dan Sinclair写的eventmachine的入门导论 有人说，效率不是你工作的时间长短而是你</description>
+      <description>&lt;p&gt;最近在学Eventmachine，发现Dan Sinclair写的&lt;a href=&#34;http://everburning.com/wp-content/uploads/2009/02/eventmachine_introduction_10.pdf&#34;&gt;eventmachine introduction&lt;/a&gt;真心赞！&lt;/p&gt;&#xA;&lt;p&gt;然后跟陈琦一起翻译了一把。看这里：&lt;a href=&#34;https://wonderflow.info/images/2013-07-29-eventmachine-introduction-translation/EventMachine%E5%85%A5%E9%97%A8.pdf&#34;&gt;EventMachine入门&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Eventmachine是Ruby中相当重要的轻量级通信模块，其相当于node.js，也是CouldFoundry中通信的主要途径。理清Eventmachine的工作机制对于理解CloudFoundry有磨刀不误砍柴工的功效。&lt;/p&gt;&#xA;&lt;p&gt;关于Eventmachine的学习，我的路线为：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/resouer/article/details/7975550&#34;&gt;磊哥的博客&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/eventmachine/eventmachine/wiki/Tutorials&#34;&gt;github上的Eventmachine&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://everburning.com/wp-content/uploads/2009/02/eventmachine_introduction_10.pdf&#34;&gt;Dan Sinclair写的eventmachine的入门导论&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;有人说，效率不是你工作的时间长短而是你产生出的价值大小，我深以为然。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Guide for Cloud Foundry New Teamer</title>
       <link>https://wonderflow.info/posts/2013/07/25/guide-for-cloud-foundry-new-teamer-2/</link>
       <pubDate>Thu, 25 Jul 2013 05:41:20 +0000</pubDate>
-      
       <guid>https://wonderflow.info/posts/2013/07/25/guide-for-cloud-foundry-new-teamer-2/</guid>
-      <description>Preparation# 1、阅读以下博客： 了解架构，阅读“深入CloudFoundry一周年” 2、请准备好一个linux的客户端，如果没有请申请一个虚拟机，并安装好ubuntu10.04（windows下使用远程连接的方式是使用putty软件。） 3、如果不熟悉linux，请阅读linux相关命令，初步了解。 Start# 定位cloudfoundry集群： 请使用$ curl [your domain]。若显示出正常信息则初步表面集群配置正确，否则请找帮你配置集群的人。 配置linux源，提高下载速度。(百度一个ubuntu cn的源) {% codeblock %} $ /etc/apt/sources.list $ sudo apt-get update {% endcodeblock %} 安装git，为了下载一个基本应用，github上面的。 {% codeblock %} $ sudo apt-get install git {% endcodeblock %} 安装maven，为了</description>
+      <description>&lt;h2 id=&#34;preparation&#34;&gt;&#xA;    Preparation&lt;a class=&#34;hash-link&#34; href=&#34;#preparation&#34; title=&#34;Direct link to heading&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;1、阅读以下博客：&#xA;了解架构，阅读“&lt;a href=&#34;http://qing.blog.sina.com.cn/2294942122/88ca09aa33003k2j.html&#34;&gt;深入CloudFoundry一周年&lt;/a&gt;”&lt;/p&gt;&#xA;&lt;p&gt;2、请准备好一个linux的客户端，如果没有请申请一个虚拟机，并安装好ubuntu10.04（windows下使用远程连接的方式是使用putty软件。）&lt;/p&gt;&#xA;&lt;p&gt;3、如果不熟悉linux，请阅读linux相关命令，初步了解。&lt;/p&gt;&#xA;&lt;h2 id=&#34;start&#34;&gt;&#xA;    Start&lt;a class=&#34;hash-link&#34; href=&#34;#start&#34; title=&#34;Direct link to heading&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;定位cloudfoundry集群： 请使用$ curl [your domain]。若显示出正常信息则初步表面集群配置正确，否则请找帮你配置集群的人。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;配置linux源，提高下载速度。(百度一个ubuntu cn的源)&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;{% codeblock %}&#xA;$ /etc/apt/sources.list $ sudo apt-get update&#xA;{% endcodeblock %}&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;安装git，为了下载一个基本应用，github上面的。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;{% codeblock %}&#xA;$ sudo apt-get install git&#xA;{% endcodeblock %}&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;安装maven，为了打包成war包，期间阅读下maven的功能，不求甚解。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;{% codeblock %}&#xA;$ sudo apt-get install maven2&#xA;{% endcodeblock %}&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;用git下载cloud foundry基本样例。(请注册github，并百度相关用法，&lt;a href=&#34;https://github.com/wonderflow/cloudfoundry-samples/tree/master/hello-spring-mysql&#34;&gt;github简单应用&lt;/a&gt; )&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;{% codeblock %}&#xA;$ git clone [http://***.git]&#xA;{% endcodeblock %}&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

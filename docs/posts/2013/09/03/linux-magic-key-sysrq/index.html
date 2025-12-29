@@ -6,190 +6,17 @@
     
     <title>Linux Magic Key -- SysRq | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。 如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &quot;number&quot; &gt;/proc/sys/kernel/sysrq {% endcodeblock %} &lt;!-- more --&gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’">
-    <meta name="generator" content="Hugo 0.92.2" />
-    
-    
-    
-    
-      <meta name="robots" content="noindex, nofollow">
-    
+    <meta name="description" content="
+SysRq 键是什么 ?
 
-    
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
-
-
-
-    
-    
-    
-      
-<link rel="shortcut icon" href="/favicon_io/favicon.ico" type="image/x-icon" />
-
-
-    
-
-    
-    
-    <meta property="og:title" content="Linux Magic Key -- SysRq" />
-<meta property="og:description" content="SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。 如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &quot;number&quot; &gt;/proc/sys/kernel/sysrq {% endcodeblock %} &lt;!-- more --&gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://wonderflow.info/posts/2013/09/03/linux-magic-key-sysrq/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2013-09-03T11:34:14+00:00" />
-<meta property="article:modified_time" content="2013-09-03T11:34:14+00:00" />
-
-<meta itemprop="name" content="Linux Magic Key -- SysRq">
-<meta itemprop="description" content="SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。 如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &quot;number&quot; &gt;/proc/sys/kernel/sysrq {% endcodeblock %} &lt;!-- more --&gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’"><meta itemprop="datePublished" content="2013-09-03T11:34:14+00:00" />
-<meta itemprop="dateModified" content="2013-09-03T11:34:14+00:00" />
-<meta itemprop="wordCount" content="1358">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Linux Magic Key -- SysRq"/>
-<meta name="twitter:description" content="SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。 如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &quot;number&quot; &gt;/proc/sys/kernel/sysrq {% endcodeblock %} &lt;!-- more --&gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’"/>
-
-	
-  </head>
-
-  <body class="ma0 avenir bg-near-white">
-
-    
-
-
-
-  <header>
-    <div class="bg-black">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
-      
-        奇迹之流WonderfloW
-      
-    </a>
-    <div class="flex-l items-center">
-      
-
-      
-        <ul class="pl0 mr3">
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/about/" title="About page">
-              About
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/archives/" title="Archives page">
-              Archives
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
-              Posts
-            </a>
-          </li>
-          
-        </ul>
-      
-      
-<div class="ananke-socials">
-  
-    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-</div>
-
-    </div>
-  </div>
-</nav>
-
-    </div>
-  </header>
-
-
-
-    <main class="pb7" role="main">
-      
-
-<article class="flex-l flex-wrap justify-between mw8 center ph3">
-  <header class="mt4 w-100">
-    <aside class="instapaper_ignoref b helvetica tracked">
-      
-      POSTS
-    </aside>
-    
-
-
-
-
-
-
-
-
-
-
-  <div id="sharing" class="mt3 ananke-socials">
-    
-      
-      <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2013/09/03/linux-magic-key-sysrq/&amp;text=Linux%20Magic%20Key%20--%20SysRq" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
-        
-        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-        
-      </a>
-    
-  </div>
-
-
-    <h1 class="f1 athelas mt3 mb1">Linux Magic Key -- SysRq</h1>
-    
-    <p class="tracked">
-      By <strong>
-        
-        admin
-        
-      </strong>
-    </p>
-    
-    
-    <time class="f6 mv4 dib tracked" datetime="2013-09-03T11:34:14Z" >September 3, 2013</time>
-
-    
-    
-    <span class="f6 mv4 dib tracked"> - 3 minutes read</span>
-    <span class="f6 mv4 dib tracked"> - 1358 words</span>
-    
-  </header>
-  <div class="nested-copy-line-height lh-copy serif f4 nested-links
-    nested-img mid-gray pr4-l w-100-l"><ul>
-<li>SysRq 键是什么 ?</li>
-</ul>
-<p>{% codeblock %}
+{% codeblock %}
 `It is a ‘magical’ key combo you can hit which the kernel will respond to
 regardless of whatever else it is doing, unless it is completely locked up.
-即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。</p>
-<ul>
-<li>如何开启神奇的SysRq键?</li>
-</ul>
-<pre tabindex="0"><code>你需要配置 /proc/sys/kernel/sysrq 这个文件。
+即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。
+
+如何开启神奇的SysRq键?
+
+你需要配置 /proc/sys/kernel/sysrq 这个文件。
 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下：
 
 
@@ -219,7 +46,7 @@ description):
 
 {% codeblock %}
 
-echo &quot;number&quot; &gt;/proc/sys/kernel/sysrq
+echo &#34;number&#34; &gt;/proc/sys/kernel/sysrq
 
 {% endcodeblock %}
 
@@ -273,7 +100,7 @@ here will display help. but ‘h’ is easy to remember
 
 ‘i’ – Send a SIGKILL to all processes, except for init.
 
-‘j’ – Forcibly &quot;Just thaw it&quot; – filesystems frozen by the FIFREEZE ioctl.
+‘j’ – Forcibly &#34;Just thaw it&#34; – filesystems frozen by the FIFREEZE ioctl.
 
 ‘k’ – Secure Access Key (SAK) Kills all programs on the current virtual
 console. NOTE: See important comments below in SAK section.
@@ -401,77 +228,425 @@ processes.
 
 
 参考自：[https://www.kernel.org/doc/Documentation/sysrq.txt](https://www.kernel.org/doc/Documentation/sysrq.txt)
+">
+    <meta name="generator" content="Hugo 0.153.4">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="admin">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
 
 
 
-</code></pre><ul class="pa0">
   
-</ul>
-<div class="mt6 instapaper_ignoref">
+    <link rel="stylesheet" href="/css/custom.css">
+  
+
+
+    
+
+
+    
+      
+<link rel="shortcut icon" href="/favicon_io/favicon.ico" type="image/x-icon" />
+
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://wonderflow.info/posts/2013/09/03/linux-magic-key-sysrq/">
+    
+
+    
+    
+    <meta property="og:url" content="https://wonderflow.info/posts/2013/09/03/linux-magic-key-sysrq/">
+  <meta property="og:site_name" content="奇迹之流WonderfloW">
+  <meta property="og:title" content="Linux Magic Key -- SysRq">
+  <meta property="og:description" content="SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。
+如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &#34;number&#34; &gt;/proc/sys/kernel/sysrq {% endcodeblock %} &lt;!-- more --&gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’ &gt; /proc/sysrq-trigger {% endcodeblock %} 在x86机器上使用组合键：’ALT-SysRq-‘. 注意：有的键盘不显示’SysRq’,那就是’Print Screen’键。 * 有哪些Magic Key? ` {% endcodeblock %} {% codeblock %} ‘b’ – Will immediately reboot the system without syncing or unmounting your disks. ‘c’ – Will perform a system crash by a NULL pointer dereference. A crashdump will be taken if configured. ‘d’ – Shows all locks that are held. ‘e’ – Send a SIGTERM to all processes, except for init. ‘f’ – Will call oom_kill to kill a memory hog process. ‘g’ – Used by kgdb (kernel debugger) ‘h’ – Will display help (actually any other key than those listed here will display help. but ‘h’ is easy to remember ‘i’ – Send a SIGKILL to all processes, except for init. ‘j’ – Forcibly &#34;Just thaw it&#34; – filesystems frozen by the FIFREEZE ioctl. ‘k’ – Secure Access Key (SAK) Kills all programs on the current virtual console. NOTE: See important comments below in SAK section. ‘l’ – Shows a stack backtrace for all active CPUs. ‘m’ – Will dump current memory info to your console. ‘n’ – Used to make RT tasks nice-able ‘o’ – Will shut your system off (if configured and supported). ‘p’ – Will dump the current registers and flags to your console. ‘q’ – Will dump per CPU lists of all armed hrtimers (but NOT regular timer_list timers) and detailed information about all clockevent devices. ‘r’ – Turns off keyboard raw mode and sets it to XLATE. ‘s’ – Will attempt to sync all mounted filesystems. ‘t’ – Will dump a list of current tasks and their information to your console. ‘u’ – Will attempt to remount all mounted filesystems read-only. ‘v’ – Forcefully restores framebuffer console ‘v’ – Causes ETM buffer dump [ARM-specific] ‘w’ – Dumps tasks that are in uninterruptable (blocked) state. ‘x’ – Used by xmon interface on ppc/powerpc platforms. Show global PMU Registers on sparc64. ‘y’ – Show global CPU Registers [SPARC-64 specific] ‘z’ – Dump the ftrace buffer ’0′-’9′ – Sets the console log level, controlling which kernel messages will be printed to your console. (’0′, for example would make it so that only emergency messages like PANICs or OOPSes would make it to your console.) {% endcodeblock %} * 我们能用来干嘛呢? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ unraw(r) is very handy when your X server or a svgalib program crashes. sak(k) (Secure Access Key) 可以用来保证你输入密码的时候，是在一个初始化的终端里面， 而不是木马环境中，因为它会把所有该终端下的进程都杀死。. 注意这个最初的作用只是去除终端下已经存在的进程而已，不能真当成SAK来用。 It seems others find it useful as (System Attention Key) which is useful when you want to exit a program that will not let you switch consoles. (For example, X or a svgalib program.) reboot(b) is good when you’re unable to shut down. But you should also sync(s) and umount(u) first. **crash(c) 可以用来作为系统的宕机机制.** sync(s) is great when your system is locked up, it allows you to sync your disks and will certainly lessen the chance of data loss and fscking. Note that the sync hasn’t taken place until you see the “OK” and “Done” appear on the screen. (If the kernel is really in strife, you may not ever get the OK or Done message…) umount(u) is basically useful in the same ways as sync(s). I generally sync(s), umount(u), then reboot(b) when my system locks. It’s saved me many a fsck. Again, the unmount (remount read-only) hasn’t taken place until you see the “OK” and “Done” message appear on the screen. The loglevels ’0′-’9′ are useful when your console is being flooded with kernel messages you do not want to see. Selecting ’0′ will prevent all but the most urgent kernel messages from reaching your console. (They will still be logged if syslogd/klogd are alive, though.) term(e) and kill(i) are useful if you have some sort of runaway process you are unable to kill any other way, especially if it’s spawning other processes. “just thaw it(j)” is useful if your system becomes unresponsive due to a frozen (probably root) filesystem via the FIFREEZE ioctl. 参考自：[https://www.kernel.org/doc/Documentation/sysrq.txt](https://www.kernel.org/doc/Documentation/sysrq.txt)">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2013-09-03T11:34:14+00:00">
+    <meta property="article:modified_time" content="2013-09-03T11:34:14+00:00">
+
+  <meta itemprop="name" content="Linux Magic Key -- SysRq">
+  <meta itemprop="description" content="SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。
+如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &#34;number&#34; &gt;/proc/sys/kernel/sysrq {% endcodeblock %} &lt;!-- more --&gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’ &gt; /proc/sysrq-trigger {% endcodeblock %} 在x86机器上使用组合键：’ALT-SysRq-‘. 注意：有的键盘不显示’SysRq’,那就是’Print Screen’键。 * 有哪些Magic Key? ` {% endcodeblock %} {% codeblock %} ‘b’ – Will immediately reboot the system without syncing or unmounting your disks. ‘c’ – Will perform a system crash by a NULL pointer dereference. A crashdump will be taken if configured. ‘d’ – Shows all locks that are held. ‘e’ – Send a SIGTERM to all processes, except for init. ‘f’ – Will call oom_kill to kill a memory hog process. ‘g’ – Used by kgdb (kernel debugger) ‘h’ – Will display help (actually any other key than those listed here will display help. but ‘h’ is easy to remember ‘i’ – Send a SIGKILL to all processes, except for init. ‘j’ – Forcibly &#34;Just thaw it&#34; – filesystems frozen by the FIFREEZE ioctl. ‘k’ – Secure Access Key (SAK) Kills all programs on the current virtual console. NOTE: See important comments below in SAK section. ‘l’ – Shows a stack backtrace for all active CPUs. ‘m’ – Will dump current memory info to your console. ‘n’ – Used to make RT tasks nice-able ‘o’ – Will shut your system off (if configured and supported). ‘p’ – Will dump the current registers and flags to your console. ‘q’ – Will dump per CPU lists of all armed hrtimers (but NOT regular timer_list timers) and detailed information about all clockevent devices. ‘r’ – Turns off keyboard raw mode and sets it to XLATE. ‘s’ – Will attempt to sync all mounted filesystems. ‘t’ – Will dump a list of current tasks and their information to your console. ‘u’ – Will attempt to remount all mounted filesystems read-only. ‘v’ – Forcefully restores framebuffer console ‘v’ – Causes ETM buffer dump [ARM-specific] ‘w’ – Dumps tasks that are in uninterruptable (blocked) state. ‘x’ – Used by xmon interface on ppc/powerpc platforms. Show global PMU Registers on sparc64. ‘y’ – Show global CPU Registers [SPARC-64 specific] ‘z’ – Dump the ftrace buffer ’0′-’9′ – Sets the console log level, controlling which kernel messages will be printed to your console. (’0′, for example would make it so that only emergency messages like PANICs or OOPSes would make it to your console.) {% endcodeblock %} * 我们能用来干嘛呢? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ unraw(r) is very handy when your X server or a svgalib program crashes. sak(k) (Secure Access Key) 可以用来保证你输入密码的时候，是在一个初始化的终端里面， 而不是木马环境中，因为它会把所有该终端下的进程都杀死。. 注意这个最初的作用只是去除终端下已经存在的进程而已，不能真当成SAK来用。 It seems others find it useful as (System Attention Key) which is useful when you want to exit a program that will not let you switch consoles. (For example, X or a svgalib program.) reboot(b) is good when you’re unable to shut down. But you should also sync(s) and umount(u) first. **crash(c) 可以用来作为系统的宕机机制.** sync(s) is great when your system is locked up, it allows you to sync your disks and will certainly lessen the chance of data loss and fscking. Note that the sync hasn’t taken place until you see the “OK” and “Done” appear on the screen. (If the kernel is really in strife, you may not ever get the OK or Done message…) umount(u) is basically useful in the same ways as sync(s). I generally sync(s), umount(u), then reboot(b) when my system locks. It’s saved me many a fsck. Again, the unmount (remount read-only) hasn’t taken place until you see the “OK” and “Done” message appear on the screen. The loglevels ’0′-’9′ are useful when your console is being flooded with kernel messages you do not want to see. Selecting ’0′ will prevent all but the most urgent kernel messages from reaching your console. (They will still be logged if syslogd/klogd are alive, though.) term(e) and kill(i) are useful if you have some sort of runaway process you are unable to kill any other way, especially if it’s spawning other processes. “just thaw it(j)” is useful if your system becomes unresponsive due to a frozen (probably root) filesystem via the FIFREEZE ioctl. 参考自：[https://www.kernel.org/doc/Documentation/sysrq.txt](https://www.kernel.org/doc/Documentation/sysrq.txt)">
+  <meta itemprop="datePublished" content="2013-09-03T11:34:14+00:00">
+  <meta itemprop="dateModified" content="2013-09-03T11:34:14+00:00">
+  <meta itemprop="wordCount" content="793">
+  <meta itemprop="keywords" content="Linux">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Linux Magic Key -- SysRq">
+  <meta name="twitter:description" content="SysRq 键是什么 ? {% codeblock %} `It is a ‘magical’ key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. 即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。
+如何开启神奇的SysRq键? 你需要配置 /proc/sys/kernel/sysrq 这个文件。 默认情况下，文件的值是1，即开启所以sysrq请求的功能。所有/proc/sys/kernel/sysrq文件值对应的功能如下： {% codeblock %} 0 – disable sysrq completely 1 – enable all functions of sysrq &gt;1 – bitmask of allowed sysrq functions (see below for detailed function description): 2 – enable control of console logging level 4 – enable control of keyboard (SAK, unraw) 8 – enable debugging dumps of processes etc. 16 – enable sync command 32 – enable remount read-only 64 – enable signalling of processes (term, kill, oom-kill) 128 – allow reboot/poweroff 256 – allow nicing of all RT tasks {% endcodeblock %} 可以使用如下命令进行设置： {% codeblock %} echo &#34;number&#34; &gt;/proc/sys/kernel/sysrq {% endcodeblock %} &lt;!-- more --&gt; * 如何使用? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% codeblock %} echo ‘key’ &gt; /proc/sysrq-trigger {% endcodeblock %} 在x86机器上使用组合键：’ALT-SysRq-‘. 注意：有的键盘不显示’SysRq’,那就是’Print Screen’键。 * 有哪些Magic Key? ` {% endcodeblock %} {% codeblock %} ‘b’ – Will immediately reboot the system without syncing or unmounting your disks. ‘c’ – Will perform a system crash by a NULL pointer dereference. A crashdump will be taken if configured. ‘d’ – Shows all locks that are held. ‘e’ – Send a SIGTERM to all processes, except for init. ‘f’ – Will call oom_kill to kill a memory hog process. ‘g’ – Used by kgdb (kernel debugger) ‘h’ – Will display help (actually any other key than those listed here will display help. but ‘h’ is easy to remember ‘i’ – Send a SIGKILL to all processes, except for init. ‘j’ – Forcibly &#34;Just thaw it&#34; – filesystems frozen by the FIFREEZE ioctl. ‘k’ – Secure Access Key (SAK) Kills all programs on the current virtual console. NOTE: See important comments below in SAK section. ‘l’ – Shows a stack backtrace for all active CPUs. ‘m’ – Will dump current memory info to your console. ‘n’ – Used to make RT tasks nice-able ‘o’ – Will shut your system off (if configured and supported). ‘p’ – Will dump the current registers and flags to your console. ‘q’ – Will dump per CPU lists of all armed hrtimers (but NOT regular timer_list timers) and detailed information about all clockevent devices. ‘r’ – Turns off keyboard raw mode and sets it to XLATE. ‘s’ – Will attempt to sync all mounted filesystems. ‘t’ – Will dump a list of current tasks and their information to your console. ‘u’ – Will attempt to remount all mounted filesystems read-only. ‘v’ – Forcefully restores framebuffer console ‘v’ – Causes ETM buffer dump [ARM-specific] ‘w’ – Dumps tasks that are in uninterruptable (blocked) state. ‘x’ – Used by xmon interface on ppc/powerpc platforms. Show global PMU Registers on sparc64. ‘y’ – Show global CPU Registers [SPARC-64 specific] ‘z’ – Dump the ftrace buffer ’0′-’9′ – Sets the console log level, controlling which kernel messages will be printed to your console. (’0′, for example would make it so that only emergency messages like PANICs or OOPSes would make it to your console.) {% endcodeblock %} * 我们能用来干嘛呢? ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ unraw(r) is very handy when your X server or a svgalib program crashes. sak(k) (Secure Access Key) 可以用来保证你输入密码的时候，是在一个初始化的终端里面， 而不是木马环境中，因为它会把所有该终端下的进程都杀死。. 注意这个最初的作用只是去除终端下已经存在的进程而已，不能真当成SAK来用。 It seems others find it useful as (System Attention Key) which is useful when you want to exit a program that will not let you switch consoles. (For example, X or a svgalib program.) reboot(b) is good when you’re unable to shut down. But you should also sync(s) and umount(u) first. **crash(c) 可以用来作为系统的宕机机制.** sync(s) is great when your system is locked up, it allows you to sync your disks and will certainly lessen the chance of data loss and fscking. Note that the sync hasn’t taken place until you see the “OK” and “Done” appear on the screen. (If the kernel is really in strife, you may not ever get the OK or Done message…) umount(u) is basically useful in the same ways as sync(s). I generally sync(s), umount(u), then reboot(b) when my system locks. It’s saved me many a fsck. Again, the unmount (remount read-only) hasn’t taken place until you see the “OK” and “Done” message appear on the screen. The loglevels ’0′-’9′ are useful when your console is being flooded with kernel messages you do not want to see. Selecting ’0′ will prevent all but the most urgent kernel messages from reaching your console. (They will still be logged if syslogd/klogd are alive, though.) term(e) and kill(i) are useful if you have some sort of runaway process you are unable to kill any other way, especially if it’s spawning other processes. “just thaw it(j)” is useful if your system becomes unresponsive due to a frozen (probably root) filesystem via the FIFREEZE ioctl. 参考自：[https://www.kernel.org/doc/Documentation/sysrq.txt](https://www.kernel.org/doc/Documentation/sysrq.txt)">
+
       
       
-      <script src="https://utteranc.es/client.js" repo="wonderflow/wonderflow.github.io" issue-term="pathname"
-        label="Comment" theme="github-light" crossorigin="anonymous" async>
-        </script>
+    
+	
+  </head><body class="ma0 avenir production">
+
+    
+
+  <header>
+    <div class="bg-near-white">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        奇迹之流WonderfloW
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/archives/" title="Archives page">
+              Archives
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
     </div>
   </div>
+</nav>
+    </div>
+  </header>
 
-  <aside class="w-30-l mt6-l">
 
-
-
-
-</aside>
-
-</article>
+    <main class="pb7" role="main">
+      
+<div class="flex-l mt2 mw8 center">
+  <article class="center cf pv5 ph3 ph4-ns mw7">
+    <header>
+      <p class="f6 b helvetica tracked">
+        POSTS
+      </p>
+      <h1 class="f1">
+        Linux Magic Key -- SysRq
+      </h1>
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+      <ul>
+<li>SysRq 键是什么 ?</li>
+</ul>
+<p>{% codeblock %}
+`It is a ‘magical’ key combo you can hit which the kernel will respond to
+regardless of whatever else it is doing, unless it is completely locked up.
+即linux为内核设定的一系列关键键，让内核快速做出反应，跳过一些常规的过程。</p>
+<ul>
+<li>如何开启神奇的SysRq键?</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">你需要配置</span> <span style="color:#0550ae">/</span>proc<span style="color:#0550ae">/</span>sys<span style="color:#0550ae">/</span>kernel<span style="color:#0550ae">/</span>sysrq <span style="color:#f6f8fa;background-color:#82071e">这个文件。</span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">默认情况下，文件的值是</span><span style="color:#0550ae">1</span><span style="color:#f6f8fa;background-color:#82071e">，即开启所以</span>sysrq请求的功能<span style="color:#f6f8fa;background-color:#82071e">。所有</span><span style="color:#0550ae">/</span>proc<span style="color:#0550ae">/</span>sys<span style="color:#0550ae">/</span>kernel<span style="color:#0550ae">/</span>sysrq文件值对应的功能如下<span style="color:#f6f8fa;background-color:#82071e">：</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span><span style="color:#0550ae">%</span> codeblock <span style="color:#0550ae">%</span><span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">0</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> disable sysrq completely
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">1</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> enable all functions of sysrq
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">&gt;</span><span style="color:#0550ae">1</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> bitmask of allowed sysrq functions <span style="color:#1f2328">(</span>see below <span style="color:#cf222e">for</span> detailed function
+</span></span><span style="display:flex;"><span>description<span style="color:#1f2328">):</span>
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">2</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> enable control of console logging level
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">4</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> enable control of keyboard <span style="color:#1f2328">(</span>SAK<span style="color:#1f2328">,</span> unraw<span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">8</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> enable debugging dumps of processes etc<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">16</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> enable sync command
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">32</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> enable remount read<span style="color:#0550ae">-</span>only
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">64</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> enable signalling of processes <span style="color:#1f2328">(</span>term<span style="color:#1f2328">,</span> kill<span style="color:#1f2328">,</span> oom<span style="color:#0550ae">-</span>kill<span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">128</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> allow reboot<span style="color:#0550ae">/</span>poweroff
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">256</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> allow nicing of all RT tasks
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span><span style="color:#0550ae">%</span> endcodeblock <span style="color:#0550ae">%</span><span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">可以使用如下命令进行设置：</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span><span style="color:#0550ae">%</span> codeblock <span style="color:#0550ae">%</span><span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#0a3069">&#34;number&#34;</span> <span style="color:#0550ae">&gt;/</span>proc<span style="color:#0550ae">/</span>sys<span style="color:#0550ae">/</span>kernel<span style="color:#0550ae">/</span>sysrq
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span><span style="color:#0550ae">%</span> endcodeblock <span style="color:#0550ae">%</span><span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">&lt;!--</span> more <span style="color:#0550ae">--&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">*</span> <span style="color:#f6f8fa;background-color:#82071e">如何使用?</span>
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span><span style="color:#0550ae">%</span> codeblock <span style="color:#0550ae">%</span><span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#f6f8fa;background-color:#82071e">‘</span>key<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#0550ae">&gt;</span> <span style="color:#0550ae">/</span>proc<span style="color:#0550ae">/</span>sysrq<span style="color:#0550ae">-</span>trigger
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span><span style="color:#0550ae">%</span> endcodeblock <span style="color:#0550ae">%</span><span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">在</span>x86机器上使用组合键<span style="color:#f6f8fa;background-color:#82071e">：’</span>ALT<span style="color:#0550ae">-</span>SysRq<span style="color:#0550ae">-</span><span style="color:#f6f8fa;background-color:#82071e">‘</span><span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">注意：有的键盘不显示’</span>SysRq<span style="color:#f6f8fa;background-color:#82071e">’</span><span style="color:#1f2328">,</span><span style="color:#f6f8fa;background-color:#82071e">那就是’</span>Print Screen<span style="color:#f6f8fa;background-color:#82071e">’键。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">*</span> <span style="color:#f6f8fa;background-color:#82071e">有哪些</span>Magic Key<span style="color:#f6f8fa;background-color:#82071e">?</span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">`</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span><span style="color:#0550ae">%</span> endcodeblock <span style="color:#0550ae">%</span><span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span><span style="color:#0550ae">%</span> codeblock <span style="color:#0550ae">%</span><span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>b<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Will immediately reboot the system without syncing <span style="color:#0550ae">or</span> unmounting
+</span></span><span style="display:flex;"><span>your disks<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>c<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Will perform a system crash by a NULL pointer dereference<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>A crashdump will be taken <span style="color:#cf222e">if</span> configured<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>d<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Shows all locks that are held<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>e<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Send a SIGTERM to all processes<span style="color:#1f2328">,</span> except <span style="color:#cf222e">for</span> init<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>f<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Will call oom_kill to kill a memory hog process<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>g<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Used by kgdb <span style="color:#1f2328">(</span>kernel debugger<span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>h<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Will display help <span style="color:#1f2328">(</span>actually any other key than those listed
+</span></span><span style="display:flex;"><span>here will display help<span style="color:#0550ae">.</span> but <span style="color:#f6f8fa;background-color:#82071e">‘</span>h<span style="color:#f6f8fa;background-color:#82071e">’</span> is easy to remember
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>i<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Send a SIGKILL to all processes<span style="color:#1f2328">,</span> except <span style="color:#cf222e">for</span> init<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>j<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Forcibly <span style="color:#0a3069">&#34;Just thaw it&#34;</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> filesystems frozen by the FIFREEZE ioctl<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>k<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Secure Access Key <span style="color:#1f2328">(</span>SAK<span style="color:#1f2328">)</span> Kills all programs on the current virtual
+</span></span><span style="display:flex;"><span>console<span style="color:#0550ae">.</span> NOTE<span style="color:#1f2328">:</span> See important comments below <span style="color:#0550ae">in</span> SAK section<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>l<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Shows a stack backtrace <span style="color:#cf222e">for</span> all active CPUs<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>m<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Will dump current memory info to your console<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>n<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Used to make RT tasks nice<span style="color:#0550ae">-</span>able
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>o<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Will shut your system off <span style="color:#1f2328">(</span><span style="color:#cf222e">if</span> configured <span style="color:#0550ae">and</span> supported<span style="color:#1f2328">)</span><span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>p<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Will dump the current registers <span style="color:#0550ae">and</span> flags to your console<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>q<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Will dump per CPU lists of all armed hrtimers <span style="color:#1f2328">(</span>but NOT regular
+</span></span><span style="display:flex;"><span>timer_list timers<span style="color:#1f2328">)</span> <span style="color:#0550ae">and</span> detailed information about all
+</span></span><span style="display:flex;"><span>clockevent devices<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>r<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Turns off keyboard raw mode <span style="color:#0550ae">and</span> sets it to XLATE<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>s<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Will attempt to sync all mounted filesystems<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>t<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Will dump a list of current tasks <span style="color:#0550ae">and</span> their information to your
+</span></span><span style="display:flex;"><span>console<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>u<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Will attempt to remount all mounted filesystems read<span style="color:#0550ae">-</span>only<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>v<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Forcefully restores framebuffer console
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>v<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Causes ETM buffer dump <span style="color:#1f2328">[</span>ARM<span style="color:#0550ae">-</span>specific<span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>w<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Dumps tasks that are <span style="color:#0550ae">in</span> uninterruptable <span style="color:#1f2328">(</span>blocked<span style="color:#1f2328">)</span> state<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>x<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Used by xmon interface on ppc<span style="color:#0550ae">/</span>powerpc platforms<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>Show global PMU Registers on sparc64<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>y<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Show global CPU Registers <span style="color:#1f2328">[</span>SPARC<span style="color:#0550ae">-</span><span style="color:#0550ae">64</span> specific<span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">‘</span>z<span style="color:#f6f8fa;background-color:#82071e">’</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Dump the ftrace buffer
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">’</span><span style="color:#0550ae">0</span><span style="color:#f6f8fa;background-color:#82071e">′</span><span style="color:#0550ae">-</span><span style="color:#f6f8fa;background-color:#82071e">’</span><span style="color:#0550ae">9</span><span style="color:#f6f8fa;background-color:#82071e">′</span> <span style="color:#f6f8fa;background-color:#82071e">–</span> Sets the console <span style="color:#6639ba">log</span> level<span style="color:#1f2328">,</span> controlling which kernel messages
+</span></span><span style="display:flex;"><span>will be printed to your console<span style="color:#0550ae">.</span> <span style="color:#1f2328">(</span><span style="color:#f6f8fa;background-color:#82071e">’</span><span style="color:#0550ae">0</span><span style="color:#f6f8fa;background-color:#82071e">′</span><span style="color:#1f2328">,</span> <span style="color:#cf222e">for</span> example would make
+</span></span><span style="display:flex;"><span>it so that only emergency messages like PANICs <span style="color:#0550ae">or</span> OOPSes would
+</span></span><span style="display:flex;"><span>make it to your console<span style="color:#0550ae">.</span><span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span><span style="color:#0550ae">%</span> endcodeblock <span style="color:#0550ae">%</span><span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0550ae">*</span> <span style="color:#f6f8fa;background-color:#82071e">我们能用来干嘛呢?</span>
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+</span></span><span style="display:flex;"><span>unraw<span style="color:#1f2328">(</span>r<span style="color:#1f2328">)</span> is very handy when your X server <span style="color:#0550ae">or</span> a svgalib program crashes<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sak<span style="color:#1f2328">(</span>k<span style="color:#1f2328">)</span> <span style="color:#1f2328">(</span>Secure Access Key<span style="color:#1f2328">)</span> <span style="color:#f6f8fa;background-color:#82071e">可以用来保证你输入密码的时候，是在一个初始化的终端里面，</span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">而不是木马环境中，因为它会把所有该终端下的进程都杀死。</span><span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">注意这个最初的作用只是去除终端下已经存在的进程而已，不能真当成</span>SAK来用<span style="color:#f6f8fa;background-color:#82071e">。</span>
+</span></span><span style="display:flex;"><span>It seems others find it useful as <span style="color:#1f2328">(</span>System Attention Key<span style="color:#1f2328">)</span> which is
+</span></span><span style="display:flex;"><span>useful when you want to exit a program that will <span style="color:#0550ae">not</span> let you <span style="color:#cf222e">switch</span> consoles<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">(</span>For example<span style="color:#1f2328">,</span> X <span style="color:#0550ae">or</span> a svgalib program<span style="color:#0550ae">.</span><span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>reboot<span style="color:#1f2328">(</span>b<span style="color:#1f2328">)</span> is good when you<span style="color:#f6f8fa;background-color:#82071e">’</span>re unable to shut down<span style="color:#0550ae">.</span> But you should also
+</span></span><span style="display:flex;"><span>sync<span style="color:#1f2328">(</span>s<span style="color:#1f2328">)</span> <span style="color:#0550ae">and</span> umount<span style="color:#1f2328">(</span>u<span style="color:#1f2328">)</span> first<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">**</span>crash<span style="color:#1f2328">(</span>c<span style="color:#1f2328">)</span> <span style="color:#f6f8fa;background-color:#82071e">可以用来作为系统的宕机机制</span><span style="color:#0550ae">.**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sync<span style="color:#1f2328">(</span>s<span style="color:#1f2328">)</span> is great when your system is locked up<span style="color:#1f2328">,</span> it allows you to sync your
+</span></span><span style="display:flex;"><span>disks <span style="color:#0550ae">and</span> will certainly lessen the chance of data loss <span style="color:#0550ae">and</span> fscking<span style="color:#0550ae">.</span> Note
+</span></span><span style="display:flex;"><span>that the sync hasn<span style="color:#f6f8fa;background-color:#82071e">’</span>t taken place until you see the <span style="color:#f6f8fa;background-color:#82071e">“</span>OK<span style="color:#f6f8fa;background-color:#82071e">”</span> <span style="color:#0550ae">and</span> <span style="color:#f6f8fa;background-color:#82071e">“</span>Done<span style="color:#f6f8fa;background-color:#82071e">”</span> appear
+</span></span><span style="display:flex;"><span>on the screen<span style="color:#0550ae">.</span> <span style="color:#1f2328">(</span>If the kernel is really <span style="color:#0550ae">in</span> strife<span style="color:#1f2328">,</span> you may <span style="color:#0550ae">not</span> ever get the
+</span></span><span style="display:flex;"><span>OK <span style="color:#0550ae">or</span> Done message<span style="color:#f6f8fa;background-color:#82071e">…</span><span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>umount<span style="color:#1f2328">(</span>u<span style="color:#1f2328">)</span> is basically useful <span style="color:#0550ae">in</span> the same ways as sync<span style="color:#1f2328">(</span>s<span style="color:#1f2328">)</span><span style="color:#0550ae">.</span> I generally sync<span style="color:#1f2328">(</span>s<span style="color:#1f2328">),</span>
+</span></span><span style="display:flex;"><span>umount<span style="color:#1f2328">(</span>u<span style="color:#1f2328">),</span> then reboot<span style="color:#1f2328">(</span>b<span style="color:#1f2328">)</span> when my system locks<span style="color:#0550ae">.</span> It<span style="color:#f6f8fa;background-color:#82071e">’</span>s saved me many a fsck<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>Again<span style="color:#1f2328">,</span> the unmount <span style="color:#1f2328">(</span>remount read<span style="color:#0550ae">-</span>only<span style="color:#1f2328">)</span> hasn<span style="color:#f6f8fa;background-color:#82071e">’</span>t taken place until you see the
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">“</span>OK<span style="color:#f6f8fa;background-color:#82071e">”</span> <span style="color:#0550ae">and</span> <span style="color:#f6f8fa;background-color:#82071e">“</span>Done<span style="color:#f6f8fa;background-color:#82071e">”</span> message appear on the screen<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The loglevels <span style="color:#f6f8fa;background-color:#82071e">’</span><span style="color:#0550ae">0</span><span style="color:#f6f8fa;background-color:#82071e">′</span><span style="color:#0550ae">-</span><span style="color:#f6f8fa;background-color:#82071e">’</span><span style="color:#0550ae">9</span><span style="color:#f6f8fa;background-color:#82071e">′</span> are useful when your console is being flooded with
+</span></span><span style="display:flex;"><span>kernel messages you <span style="color:#cf222e">do</span> <span style="color:#0550ae">not</span> want to see<span style="color:#0550ae">.</span> Selecting <span style="color:#f6f8fa;background-color:#82071e">’</span><span style="color:#0550ae">0</span><span style="color:#f6f8fa;background-color:#82071e">′</span> will prevent all but
+</span></span><span style="display:flex;"><span>the most urgent kernel messages from reaching your console<span style="color:#0550ae">.</span> <span style="color:#1f2328">(</span>They will
+</span></span><span style="display:flex;"><span>still be logged <span style="color:#cf222e">if</span> syslogd<span style="color:#0550ae">/</span>klogd are alive<span style="color:#1f2328">,</span> though<span style="color:#0550ae">.</span><span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>term<span style="color:#1f2328">(</span>e<span style="color:#1f2328">)</span> <span style="color:#0550ae">and</span> kill<span style="color:#1f2328">(</span>i<span style="color:#1f2328">)</span> are useful <span style="color:#cf222e">if</span> you have some sort of runaway process you
+</span></span><span style="display:flex;"><span>are unable to kill any other way<span style="color:#1f2328">,</span> especially <span style="color:#cf222e">if</span> it<span style="color:#f6f8fa;background-color:#82071e">’</span>s spawning other
+</span></span><span style="display:flex;"><span>processes<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">“</span>just thaw it<span style="color:#1f2328">(</span>j<span style="color:#1f2328">)</span><span style="color:#f6f8fa;background-color:#82071e">”</span> is useful <span style="color:#cf222e">if</span> your system becomes unresponsive due to a frozen
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">(</span>probably root<span style="color:#1f2328">)</span> filesystem via the FIFREEZE ioctl<span style="color:#0550ae">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f6f8fa;background-color:#82071e">参考自：</span><span style="color:#1f2328">[</span>https<span style="color:#1f2328">:</span><span style="color:#0550ae">//</span>www<span style="color:#0550ae">.</span>kernel<span style="color:#0550ae">.</span>org<span style="color:#0550ae">/</span>doc<span style="color:#0550ae">/</span>Documentation<span style="color:#0550ae">/</span>sysrq<span style="color:#0550ae">.</span>txt<span style="color:#1f2328">](</span>https<span style="color:#1f2328">:</span><span style="color:#0550ae">//</span>www<span style="color:#0550ae">.</span>kernel<span style="color:#0550ae">.</span>org<span style="color:#0550ae">/</span>doc<span style="color:#0550ae">/</span>Documentation<span style="color:#0550ae">/</span>sysrq<span style="color:#0550ae">.</span>txt<span style="color:#1f2328">)</span>
+</span></span></code></pre></div>
+    </div>
+  </article>
+</div>
 
     </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+    <footer class="bg-near-white bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-    <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info">
-      &copy;  奇迹之流WonderfloW 2024 
+    <a class="f4 fw4 hover-black no-underline mid-gray dn dib-ns pv2 ph3" href="https://wonderflow.info/">
+      &copy;  奇迹之流WonderfloW 2025 
     </a>
-    <div>
-<div class="ananke-socials">
-  
-    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-</div>
+    <div><div class="ananke-socials"></div>
 </div>
     <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
     
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3XG75RG8W"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-Z3XG75RG8W', { 'anonymize_ip': false });
-}
-</script>
-
   </div>
 </footer>
+
+
+<div class="reading-progress" id="reading-progress"></div>
+
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+
+<script>
+(function() {
+  
+  const progressBar = document.getElementById('reading-progress');
+  const backToTop = document.getElementById('back-to-top');
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    if (progressBar) {
+      progressBar.style.width = progress + '%';
+    }
+
+    
+    if (backToTop) {
+      if (scrollTop > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }
+  }
+
+  
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  
+  if (backToTop) {
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  
+  updateProgress();
+})();
+</script>
+
   </body>
 </html>

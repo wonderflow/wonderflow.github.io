@@ -6,22 +6,63 @@
     
     <title>UNIX之lsof命令 | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="据说lsof命令很强大，就学习了一下。这个网站讲的最好,翻译如下： **lsof（list open files）**是一个列出当前系统打开文件的工具。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。所以lsof被称为unix系统检测的瑞士军刀。 # 那怎么用呢? 接下来我们一个个来看。 # 罗列出所有的文件设备情况. {% codeblock %} $ lsof {% endcodeblock %} 不带参数的运行 lsof 就是列出所有被进程打开的文件。 # 查看文件被谁使用. {% codeblock %} $ lsof /path/to/file {% endcodeblock %} 如果把文件路径作为参数，lsof命令会把用到这个文件的所有进程都罗列出来。 也可以加多个路径在后面，它会把所涉及到这些文件的进程都罗列出来: {% codeblock %}">
-    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="description" content="据说lsof命令很强大，就学习了一下。这个网站讲的最好,翻译如下：
+**lsof（list open files）**是一个列出当前系统打开文件的工具。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。所以lsof被称为unix系统检测的瑞士军刀。
+
+    #
+那怎么用呢?
+
+接下来我们一个个来看。
+
+    #
+罗列出所有的文件设备情况.
+
+{% codeblock %}
+$ lsof
+{% endcodeblock %}
+不带参数的运行 
+lsof 就是列出所有被进程打开的文件。
+
+    #
+查看文件被谁使用.
+
+{% codeblock %}
+$ lsof /path/to/file
+{% endcodeblock %}
+如果把文件路径作为参数，lsof命令会把用到这个文件的所有进程都罗列出来。 也可以加多个路径在后面，它会把所涉及到这些文件的进程都罗列出来:
+{% codeblock %}
+$ lsof /path/to/file1 /path/to/file2
+{% endcodeblock %}
+
+    #
+递归查找所有打开的文件
+
+{% codeblock %}
+$ lsof &#43;D /usr/lib
+{% endcodeblock %}
+使用&#43;D参数，加路径，就是递归查找目录下所有被打开的文件. 当然，显然没有用 ">
+    <meta name="generator" content="Hugo 0.153.4">
     
     
     
+      <meta name="robots" content="index, follow">
     
-      <meta name="robots" content="noindex, nofollow">
+    <meta name="author" content="admin">
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
 
+
+
+  
+    <link rel="stylesheet" href="/css/custom.css">
+  
 
 
     
-    
+
+
     
       
 <link rel="shortcut icon" href="/favicon_io/favicon.ico" type="image/x-icon" />
@@ -30,36 +71,63 @@
     
 
     
+
     
-    <meta property="og:title" content="UNIX之lsof命令" />
-<meta property="og:description" content="据说lsof命令很强大，就学习了一下。这个网站讲的最好,翻译如下： **lsof（list open files）**是一个列出当前系统打开文件的工具。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。所以lsof被称为unix系统检测的瑞士军刀。 # 那怎么用呢? 接下来我们一个个来看。 # 罗列出所有的文件设备情况. {% codeblock %} $ lsof {% endcodeblock %} 不带参数的运行 lsof 就是列出所有被进程打开的文件。 # 查看文件被谁使用. {% codeblock %} $ lsof /path/to/file {% endcodeblock %} 如果把文件路径作为参数，lsof命令会把用到这个文件的所有进程都罗列出来。 也可以加多个路径在后面，它会把所涉及到这些文件的进程都罗列出来: {% codeblock %}" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://wonderflow.info/posts/2013/08/05/unixe4b98blsofe591bde4bba4/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2013-08-05T09:04:25+00:00" />
-<meta property="article:modified_time" content="2013-08-05T09:04:25+00:00" />
+      <link rel="canonical" href="https://wonderflow.info/posts/2013/08/05/unixe4b98blsofe591bde4bba4/">
+    
 
-<meta itemprop="name" content="UNIX之lsof命令">
-<meta itemprop="description" content="据说lsof命令很强大，就学习了一下。这个网站讲的最好,翻译如下： **lsof（list open files）**是一个列出当前系统打开文件的工具。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。所以lsof被称为unix系统检测的瑞士军刀。 # 那怎么用呢? 接下来我们一个个来看。 # 罗列出所有的文件设备情况. {% codeblock %} $ lsof {% endcodeblock %} 不带参数的运行 lsof 就是列出所有被进程打开的文件。 # 查看文件被谁使用. {% codeblock %} $ lsof /path/to/file {% endcodeblock %} 如果把文件路径作为参数，lsof命令会把用到这个文件的所有进程都罗列出来。 也可以加多个路径在后面，它会把所涉及到这些文件的进程都罗列出来: {% codeblock %}"><meta itemprop="datePublished" content="2013-08-05T09:04:25+00:00" />
-<meta itemprop="dateModified" content="2013-08-05T09:04:25+00:00" />
-<meta itemprop="wordCount" content="1455">
-<meta itemprop="keywords" content="linux,unix," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="UNIX之lsof命令"/>
-<meta name="twitter:description" content="据说lsof命令很强大，就学习了一下。这个网站讲的最好,翻译如下： **lsof（list open files）**是一个列出当前系统打开文件的工具。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。所以lsof被称为unix系统检测的瑞士军刀。 # 那怎么用呢? 接下来我们一个个来看。 # 罗列出所有的文件设备情况. {% codeblock %} $ lsof {% endcodeblock %} 不带参数的运行 lsof 就是列出所有被进程打开的文件。 # 查看文件被谁使用. {% codeblock %} $ lsof /path/to/file {% endcodeblock %} 如果把文件路径作为参数，lsof命令会把用到这个文件的所有进程都罗列出来。 也可以加多个路径在后面，它会把所涉及到这些文件的进程都罗列出来: {% codeblock %}"/>
+    
+    
+    <meta property="og:url" content="https://wonderflow.info/posts/2013/08/05/unixe4b98blsofe591bde4bba4/">
+  <meta property="og:site_name" content="奇迹之流WonderfloW">
+  <meta property="og:title" content="UNIX之lsof命令">
+  <meta property="og:description" content="据说lsof命令很强大，就学习了一下。这个网站讲的最好,翻译如下：
+**lsof（list open files）**是一个列出当前系统打开文件的工具。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。所以lsof被称为unix系统检测的瑞士军刀。
+# 那怎么用呢? 接下来我们一个个来看。
+# 罗列出所有的文件设备情况. {% codeblock %} $ lsof {% endcodeblock %} 不带参数的运行 lsof 就是列出所有被进程打开的文件。
+# 查看文件被谁使用. {% codeblock %} $ lsof /path/to/file {% endcodeblock %} 如果把文件路径作为参数，lsof命令会把用到这个文件的所有进程都罗列出来。 也可以加多个路径在后面，它会把所涉及到这些文件的进程都罗列出来: {% codeblock %} $ lsof /path/to/file1 /path/to/file2 {% endcodeblock %}
+# 递归查找所有打开的文件 {% codeblock %} $ lsof &#43;D /usr/lib {% endcodeblock %} 使用&#43;D参数，加路径，就是递归查找目录下所有被打开的文件. 当然，显然没有用 ">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2013-08-05T09:04:25+00:00">
+    <meta property="article:modified_time" content="2013-08-05T09:04:25+00:00">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Unix">
 
+  <meta itemprop="name" content="UNIX之lsof命令">
+  <meta itemprop="description" content="据说lsof命令很强大，就学习了一下。这个网站讲的最好,翻译如下：
+**lsof（list open files）**是一个列出当前系统打开文件的工具。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。所以lsof被称为unix系统检测的瑞士军刀。
+# 那怎么用呢? 接下来我们一个个来看。
+# 罗列出所有的文件设备情况. {% codeblock %} $ lsof {% endcodeblock %} 不带参数的运行 lsof 就是列出所有被进程打开的文件。
+# 查看文件被谁使用. {% codeblock %} $ lsof /path/to/file {% endcodeblock %} 如果把文件路径作为参数，lsof命令会把用到这个文件的所有进程都罗列出来。 也可以加多个路径在后面，它会把所涉及到这些文件的进程都罗列出来: {% codeblock %} $ lsof /path/to/file1 /path/to/file2 {% endcodeblock %}
+# 递归查找所有打开的文件 {% codeblock %} $ lsof &#43;D /usr/lib {% endcodeblock %} 使用&#43;D参数，加路径，就是递归查找目录下所有被打开的文件. 当然，显然没有用 ">
+  <meta itemprop="datePublished" content="2013-08-05T09:04:25+00:00">
+  <meta itemprop="dateModified" content="2013-08-05T09:04:25+00:00">
+  <meta itemprop="wordCount" content="527">
+  <meta itemprop="keywords" content="Linux,Unix">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="UNIX之lsof命令">
+  <meta name="twitter:description" content="据说lsof命令很强大，就学习了一下。这个网站讲的最好,翻译如下：
+**lsof（list open files）**是一个列出当前系统打开文件的工具。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。所以lsof被称为unix系统检测的瑞士军刀。
+# 那怎么用呢? 接下来我们一个个来看。
+# 罗列出所有的文件设备情况. {% codeblock %} $ lsof {% endcodeblock %} 不带参数的运行 lsof 就是列出所有被进程打开的文件。
+# 查看文件被谁使用. {% codeblock %} $ lsof /path/to/file {% endcodeblock %} 如果把文件路径作为参数，lsof命令会把用到这个文件的所有进程都罗列出来。 也可以加多个路径在后面，它会把所涉及到这些文件的进程都罗列出来: {% codeblock %} $ lsof /path/to/file1 /path/to/file2 {% endcodeblock %}
+# 递归查找所有打开的文件 {% codeblock %} $ lsof &#43;D /usr/lib {% endcodeblock %} 使用&#43;D参数，加路径，就是递归查找目录下所有被打开的文件. 当然，显然没有用 ">
+
+      
+      
+    
 	
-  </head>
-
-  <body class="ma0 avenir bg-near-white">
+  </head><body class="ma0 avenir production">
 
     
-
-
 
   <header>
-    <div class="bg-black">
+    <div class="bg-near-white">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
       
         奇迹之流WonderfloW
       
@@ -71,124 +139,50 @@
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+            <a class="hover-white white-90 no-underline" href="/about/" title="About page">
               About
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/archives/" title="Archives page">
+            <a class="hover-white white-90 no-underline" href="/archives/" title="Archives page">
               Archives
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
-              Posts
             </a>
           </li>
           
         </ul>
       
-      
-<div class="ananke-socials">
-  
-    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-</div>
+      <div class="ananke-socials"></div>
 
     </div>
   </div>
 </nav>
-
     </div>
   </header>
 
 
-
     <main class="pb7" role="main">
       
-
-<article class="flex-l flex-wrap justify-between mw8 center ph3">
-  <header class="mt4 w-100">
-    <aside class="instapaper_ignoref b helvetica tracked">
-      
-      POSTS
-    </aside>
-    
-
-
-
-
-
-
-
-
-
-
-  <div id="sharing" class="mt3 ananke-socials">
-    
-      
-      <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2013/08/05/unixe4b98blsofe591bde4bba4/&amp;text=UNIX%e4%b9%8blsof%e5%91%bd%e4%bb%a4" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
-        
-        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-        
-      </a>
-    
-  </div>
-
-
-    <h1 class="f1 athelas mt3 mb1">UNIX之lsof命令</h1>
-    
-    <p class="tracked">
-      By <strong>
-        
-        admin
-        
-      </strong>
-    </p>
-    
-    
-    <time class="f6 mv4 dib tracked" datetime="2013-08-05T09:04:25Z" >August 5, 2013</time>
-
-    
-    
-    <span class="f6 mv4 dib tracked"> - 3 minutes read</span>
-    <span class="f6 mv4 dib tracked"> - 1455 words</span>
-    
-  </header>
-  <div class="nested-copy-line-height lh-copy serif f4 nested-links
-    nested-img mid-gray pr4-l w-100-l"><p>据说lsof命令很强大，就学习了一下。<a href="http://www.catonmat.net/blog/unix-utilities-lsof/">这个网站</a>讲的最好,翻译如下：</p>
+<div class="flex-l mt2 mw8 center">
+  <article class="center cf pv5 ph3 ph4-ns mw7">
+    <header>
+      <p class="f6 b helvetica tracked">
+        POSTS
+      </p>
+      <h1 class="f1">
+        UNIX之lsof命令
+      </h1>
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+      <p>据说lsof命令很强大，就学习了一下。<a href="http://www.catonmat.net/blog/unix-utilities-lsof/">这个网站</a>讲的最好,翻译如下：</p>
 <p>**lsof（list open files）**是一个列出当前系统打开文件的工具。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。所以lsof被称为unix系统检测的瑞士军刀。</p>
-<!-- raw HTML omitted -->
-<h2 id="heading">
-    <a class="hash-link" href="#heading" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>那怎么用呢?
 </code></pre>
 <p>接下来我们一个个来看。</p>
-<h2 id="heading-1">
-    <a class="hash-link" href="#heading-1" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>罗列出所有的文件设备情况.
 </code></pre>
 <p>{% codeblock %}
@@ -196,8 +190,8 @@ $ lsof
 {% endcodeblock %}
 不带参数的运行 </p>
 <p><code>lsof</code> 就是列出所有被进程打开的文件。</p>
-<h2 id="heading-2">
-    <a class="hash-link" href="#heading-2" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>查看文件被谁使用.
 </code></pre>
 <p>{% codeblock %}
@@ -207,8 +201,8 @@ $ lsof /path/to/file
 {% codeblock %}
 $ lsof /path/to/file1 /path/to/file2
 {% endcodeblock %}</p>
-<h2 id="heading-3">
-    <a class="hash-link" href="#heading-3" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>递归查找所有打开的文件
 </code></pre>
 <p>{% codeblock %}
@@ -219,8 +213,8 @@ $ lsof +D /usr/lib
 {% codeblock %}
 $ lsof | grep &lsquo;/usr/lib&rsquo;
 {% endcodeblock %}</p>
-<h2 id="heading-4">
-    <a class="hash-link" href="#heading-4" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>列出某用户的所有打开的端口.
 </code></pre>
 <p>{% codeblock %}
@@ -235,8 +229,8 @@ $ lsof -u vcap,root
 {% codeblock %}
 $ lsof -u rms -u root
 {% endcodeblock %}</p>
-<h2 id="heading-5">
-    <a class="hash-link" href="#heading-5" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>通过程序名.
 </code></pre>
 <p>{% codeblock %}
@@ -258,23 +252,23 @@ $ lsof -c apa
 {% codeblock %}
 $ lsof -c apache -c python
 {% endcodeblock %}</p>
-<h2 id="heading-6">
-    <a class="hash-link" href="#heading-6" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>如果你同时使用-u和-c参数.
 </code></pre>
 <p>{% codeblock %}
 $ lsof -u pkrumins -c apache
 {% endcodeblock %}
 其作用是“或”，即列出符合上述条件之一的.</p>
-<h2 id="heading-7">
-    <a class="hash-link" href="#heading-7" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>加上'-a'参数，就是and，两个条件共同满足的效果.
 </code></pre>
 <p>{% codeblock %}
 $ lsof -a -u pkrumins -c bash
 {% endcodeblock %}</p>
-<h2 id="heading-8">
-    <a class="hash-link" href="#heading-8" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>列出不包含root的所有用户.
 </code></pre>
 <p>{% codeblock %}
@@ -282,8 +276,8 @@ $ lsof -u ^root
 {% endcodeblock %}
 注意到 </p>
 <p><code>^</code> 这个符号.</p>
-<h2 id="heading-9">
-    <a class="hash-link" href="#heading-9" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>通过进程号查找-p(PID).
 </code></pre>
 <p>{% codeblock %}
@@ -293,37 +287,37 @@ $ lsof -p 1
 {% codeblock %}
 $ lsof -p 450,980,333
 {% endcodeblock %}</p>
-<h2 id="heading-10">
-    <a class="hash-link" href="#heading-10" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>使用^符号对进程号也有排除功能.
 </code></pre>
 <p>{% codeblock %}
 $ lsof -p ^1
 {% endcodeblock %}</p>
-<h2 id="heading-11">
-    <a class="hash-link" href="#heading-11" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>列出所有的网络连接
 </code></pre>
 <p>{% codeblock %}
 $ lsof -i
 {% endcodeblock %}</p>
 <p><code>-i</code> 参数列出所有（TCP和UDP）连接的进程</p>
-<h2 id="heading-12">
-    <a class="hash-link" href="#heading-12" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>列出所有TCP连接.
 </code></pre>
 <p>{% codeblock %}
 $ lsof -i tcp
 {% endcodeblock %}</p>
-<h2 id="heading-13">
-    <a class="hash-link" href="#heading-13" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>同理，列出所有UDP连接.
 </code></pre>
 <p>{% codeblock %}
 $ lsof -i udp
 {% endcodeblock %}</p>
-<h2 id="heading-14">
-    <a class="hash-link" href="#heading-14" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>查看谁在使用该端口.
 </code></pre>
 <p>{% codeblock %}
@@ -334,8 +328,8 @@ $ lsof -i :25
 {% codeblock %}
 $ lsof -i :smtp
 {% endcodeblock %}</p>
-<h2 id="heading-15">
-    <a class="hash-link" href="#heading-15" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>查看一个特定的UDP端口的使用者.
 </code></pre>
 <p>{% codeblock %}
@@ -345,16 +339,16 @@ $ lsof -i udp:53
 {% codeblock %}
 $ lsof -i tcp:80
 {% endcodeblock %}</p>
-<h2 id="heading-16">
-    <a class="hash-link" href="#heading-16" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>查看所有用户hacker的网络连接.
 </code></pre>
 <p>{% codeblock %}
 $ lsof -a -u hacker -i
 {% endcodeblock %}</p>
 <p><code>-a</code> 参数起到一个and的作用<code>-u</code> 表示用户 <code>-i</code> 表示网络连接.</p>
-<h2 id="heading-17">
-    <a class="hash-link" href="#heading-17" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>列出所有 NFS (Network File System)文件.
 </code></pre>
 <p>{% codeblock %}
@@ -362,22 +356,22 @@ $ lsof -N
 {% endcodeblock %}
 很容易记住 </p>
 <p><code>-N</code> 就是 <strong>N</strong>FS.</p>
-<h2 id="heading-18">
-    <a class="hash-link" href="#heading-18" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>列出 Unix 域套接字.
 </code></pre>
 <p>{% codeblock %}
 $ lsof -U
 {% endcodeblock %}</p>
-<h2 id="heading-19">
-    <a class="hash-link" href="#heading-19" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>列出特定进程组的进程文件.
 </code></pre>
 <p>{% codeblock %}
 $ lsof -g 1234
 {% endcodeblock %}</p>
-<h2 id="heading-20">
-    <a class="hash-link" href="#heading-20" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>根据文件描述符指定查找.
 </code></pre>
 <p>{% codeblock %}
@@ -396,8 +390,8 @@ Or <code>txt</code> for programs loaded in memory and executing:
 {% codeblock %}
 $ lsof -d txt
 {% endcodeblock %}</p>
-<h2 id="heading-21">
-    <a class="hash-link" href="#heading-21" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>根据条件输出所有的进程号.
 </code></pre>
 <p>{% codeblock %}
@@ -407,8 +401,8 @@ $ lsof -t -i
 {% codeblock %}
 $ kill -9 <code>lsof -t -i</code>
 {% endcodeblock %}</p>
-<h2 id="heading-22">
-    <a class="hash-link" href="#heading-22" title="Direct link to heading">#</a>
+<h2 id="">
+    <a class="hash-link" href="#" title="Direct link to heading">#</a>
 </h2><pre><code>-r参数就是repeat，重复执行.
 </code></pre>
 <p>{% codeblock %}
@@ -418,105 +412,83 @@ $ lsof -r 1
 {% codeblock %}
 $ lsof -r 1 -u john -i -a
 {% endcodeblock %}</p>
-<ul class="pa0">
-  
-   <li class="list di">
-     <a href="/tags/linux" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">linux</a>
-   </li>
-  
-   <li class="list di">
-     <a href="/tags/unix" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">unix</a>
-   </li>
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
-      
-      
-      <script src="https://utteranc.es/client.js" repo="wonderflow/wonderflow.github.io" issue-term="pathname"
-        label="Comment" theme="github-light" crossorigin="anonymous" async>
-        </script>
+
     </div>
-  </div>
-
-  <aside class="w-30-l mt6-l">
-
-
-
-
-  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
-    <p class="f5 b mb3">Related</p>
-    <ul class="pa0 list">
-	   
-	     <li  class="mb2">
-          <a href="/posts/2013/08/02/ubuntu12-04-install-record/">Ubuntu12.04LTS Install Record</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/posts/2012/09/28/linuxe5a49ae7babfe7a88be7bc96e7a88bpthread/">linux多线程编程pthread</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/posts/2012/08/31/e68ea8e88d90/">《unix&amp;linux大学教程》 推荐</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/posts/2012/07/28/fedorae8a385e69cbae6938de4bd9ce8aeb0e5bd95/">fedora装机操作记录</a>
-        </li>
-	    
-    </ul>
+  </article>
 </div>
-
-</aside>
-
-</article>
 
     </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+    <footer class="bg-near-white bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-    <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info">
-      &copy;  奇迹之流WonderfloW 2024 
+    <a class="f4 fw4 hover-black no-underline mid-gray dn dib-ns pv2 ph3" href="https://wonderflow.info/">
+      &copy;  奇迹之流WonderfloW 2025 
     </a>
-    <div>
-<div class="ananke-socials">
-  
-    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-</div>
+    <div><div class="ananke-socials"></div>
 </div>
     <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
     
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3XG75RG8W"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-Z3XG75RG8W', { 'anonymize_ip': false });
-}
-</script>
-
   </div>
 </footer>
+
+
+<div class="reading-progress" id="reading-progress"></div>
+
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+
+<script>
+(function() {
+  
+  const progressBar = document.getElementById('reading-progress');
+  const backToTop = document.getElementById('back-to-top');
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    if (progressBar) {
+      progressBar.style.width = progress + '%';
+    }
+
+    
+    if (backToTop) {
+      if (scrollTop > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }
+  }
+
+  
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  
+  if (backToTop) {
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  
+  updateProgress();
+})();
+</script>
+
   </body>
 </html>

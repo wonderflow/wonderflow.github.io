@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>puppet on 奇迹之流WonderfloW</title>
+    <title>Puppet on 奇迹之流WonderfloW</title>
     <link>https://wonderflow.info/tags/puppet/</link>
-    <description>Recent content in puppet on 奇迹之流WonderfloW</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Puppet on 奇迹之流WonderfloW</description>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 17 Mar 2014 06:44:24 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/puppet/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 Mar 2014 06:44:24 +0000</lastBuildDate>
+    <atom:link href="https://wonderflow.info/tags/puppet/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>为什么选择Bosh而不用Puppet/Chef</title>
       <link>https://wonderflow.info/posts/2014/03/17/e4b8bae4bb80e4b988e98089e68ba9boshe8808ce4b88de794a8puppetchef/</link>
       <pubDate>Mon, 17 Mar 2014 06:44:24 +0000</pubDate>
-      
       <guid>https://wonderflow.info/posts/2014/03/17/e4b8bae4bb80e4b988e98089e68ba9boshe8808ce4b88de794a8puppetchef/</guid>
-      <description>总的来说，Puppet/Chef是配置管理（Configration Management）工具，Bosh是云管理（Cloud Orchestration）工具。 Bosh的功能包含了Puppet/Chef所有的功能，并且Bosh把IaaS和PaaS的管理工作结合了起来并且实现了自动化，节省了大量的工作。但是Bosh需要IaaS层提供API，并且需要专门为API编写Bosh适配的CPI（Cloud Provider Interface），故而部署和使用的要求较高。 与此同时，Puppet/Chef工具自2000年起就已开始被广泛使用，其标准化的配置流程也渐渐成为了业界标准。因为其小巧灵活的特性，所以使用要求较低。与Bo</description>
+      <description>&lt;p&gt;总的来说，Puppet/Chef是配置管理（Configration Management）工具，Bosh是云管理（Cloud Orchestration）工具。&lt;/p&gt;&#xA;&lt;p&gt;Bosh的功能包含了Puppet/Chef所有的功能，并且Bosh把IaaS和PaaS的管理工作结合了起来并且实现了自动化，节省了大量的工作。但是Bosh需要IaaS层提供API，并且需要专门为API编写Bosh适配的CPI（Cloud Provider Interface），故而部署和使用的要求较高。&lt;/p&gt;&#xA;&lt;p&gt;与此同时，Puppet/Chef工具自2000年起就已开始被广泛使用，其标准化的配置流程也渐渐成为了业界标准。因为其小巧灵活的特性，所以使用要求较低。与Bosh相比，除了配置管理相关的工作以外，还需要人工的去做配置网络、管理虚拟机、版本控制管理等等其他工作，使用起来较为繁琐。&lt;/p&gt;&#xA;&lt;p&gt;目前针对Cloud Foundry的部署，基本有两种大众化的解决方案。&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;使用Bosh，以及拥有Bosh CPI的IaaS平台。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;使用vagrant管理虚拟机，使用puppet/chef来部署。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;而第2点则更多的用于在物理机上部署Cloud Foundry或者在个人开发机上部署CF环境。&lt;/p&gt;&#xA;&lt;p&gt;另外，Stark &amp;amp; Wayne 公司的CEO Dr Nic Williams在介绍为什么使用bosh的时候也说道，Bosh为开发人员、测试人员、部署人员配置了一套统一的环境，免去了很多不必要的麻烦和工作，使得工作变得更加简单了。&lt;/p&gt;&#xA;&lt;p&gt;相比之下，使用bosh进行部署确实如Dr Nic Williams所言，“It makes life easier !”&lt;/p&gt;&#xA;&lt;p&gt;下面详细介绍一下两个工具。&lt;/p&gt;&#xA;&lt;h1 id=&#34;puppet简介&#34;&gt;&#xA;    PUPPET简介&lt;a class=&#34;hash-link&#34; href=&#34;#puppet%e7%ae%80%e4%bb%8b&#34; title=&#34;Direct link to heading&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&lt;p&gt;Puppet是基于Ruby的开源系统配置管理工具，依赖于C/S的部署架构。主要开发者是Luke Kanies，遵循GPL v2版权协议。&lt;/p&gt;&#xA;&lt;p&gt;作为一款配置管理工具，Puppet除包含正常的配置管理工具的功能外，它还有跨平台的特性。Puppet的语法允许你创建一个单独脚本，用来在你所有的目标主机上建立一个用户。所有的目标主机会依次使用适用于本地系统的语法解释和执行这个模块。（举例：如果这个配置是在Red Hat服务器上执行，建立用户使用useradd命令；如果这个配置是在FreeBSD主机上执行，使用的是adduser命令。）&lt;/p&gt;&#xA;&lt;p&gt;Puppet使用跨平台语言规范，管理配置文件、用户、软件包、系统服务等内容，在Puppet里这些内容都被看做是“资源”，每种资源都有对应的属性，如软件包有安装、不安装的属性，文件有权限属性等。Puppet的代码主要由这些资源和其属性组成。其代码化的好处：分享，保存，快速的恢复和部署。&lt;/p&gt;&#xA;&lt;h2 id=&#34;puppet架构&#34;&gt;&#xA;    Puppet架构&lt;a class=&#34;hash-link&#34; href=&#34;#puppet%e6%9e%b6%e6%9e%84&#34; title=&#34;Direct link to heading&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://raw.github.com/wonderflow/pic/master/puppet.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Puppet是一个C/S架构的配置管理工具，在中央服务器上安装puppet-server软件包（被称作Puppet master）。在需要管理的目标主机上安装puppet客户端软件（被称作Puppet Client）。当客户端连接上Puppet master后，定义在Puppet master上的配置文件会被编译，然后在客户端上运行。每个客户端默认每半个小时和服务器进行一次通信，确认配置信息的更新情况。如果有新的配置信息或者配置信息已经改变，配置将会被重新编译并发布到各客户端执行。也可以在服务器上主动触发一个配置信息的更新，强制各客户端进行配置。如果客户端的配置信息被改变了，它可以从服务器获得原始配置进行校正。&lt;/p&gt;&#xA;&lt;p&gt;同时，Puppet也是易于扩展的。定制软件包的支持功能和特殊的系统环境配置能够快速简单的添加进Puppet的安装程序中。作为一款开源的工具，Puppet社区正快速壮大，并且许多新的想法不断融入，促使开发、更新和模块每天都在呈现。&lt;/p&gt;&#xA;&lt;h1 id=&#34;vagrant简介&#34;&gt;&#xA;    Vagrant简介&lt;a class=&#34;hash-link&#34; href=&#34;#vagrant%e7%ae%80%e4%bb%8b&#34; title=&#34;Direct link to heading&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&lt;p&gt;Vagrant 是一个虚拟机管理工具，非常适合用于搭建开发环境。它提供了一套易用的配置规则，比人工操作或者使用虚拟机软件提供的命令行要方便，且可重复。Vagrant最大的用途就是为开发团队配置统一的开发环境，与不同平台的虚拟机供应商结合，无论开发人员用的是 Windows 还是 Mac，都可以跑一个一致的 Linux 开发环境。&lt;/p&gt;&#xA;&lt;p&gt;目前用的最广的是开源的虚拟机VirtualBox。另外VMware等其他供应商的产品也支持，但是需要收费。&lt;/p&gt;&#xA;&lt;p&gt;而与IaaS层的结合使用方面，并没有明确的官方支持，官方只是提供了插件的编写方式允许开发者自行编写插件。&#xA;目前开源社区Github上存在&lt;a href=&#34;https://github.com/mitchellh/vagrant-aws&#34;&gt;AWS&lt;/a&gt;、&lt;a href=&#34;https://github.com/klarna/vagrant-cloudstack&#34;&gt;CloudStack&lt;/a&gt;以及&lt;a href=&#34;https://github.com/FlaPer87/vagrant-openstack&#34;&gt;OpenStack&lt;/a&gt;的插件。&lt;/p&gt;&#xA;&lt;p&gt;Vagrant启动虚拟机后，默认是跑在后台，并且不显示图形界面的，这时候需要用 ssh 连接虚拟机。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

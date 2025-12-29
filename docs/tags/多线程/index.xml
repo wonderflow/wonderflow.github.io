@@ -4,17 +4,16 @@
     <title>多线程 on 奇迹之流WonderfloW</title>
     <link>https://wonderflow.info/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
     <description>Recent content in 多线程 on 奇迹之流WonderfloW</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 28 Sep 2012 03:24:16 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 28 Sep 2012 03:24:16 +0000</lastBuildDate>
+    <atom:link href="https://wonderflow.info/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>linux多线程编程pthread</title>
       <link>https://wonderflow.info/posts/2012/09/28/linuxe5a49ae7babfe7a88be7bc96e7a88bpthread/</link>
       <pubDate>Fri, 28 Sep 2012 03:24:16 +0000</pubDate>
-      
       <guid>https://wonderflow.info/posts/2012/09/28/linuxe5a49ae7babfe7a88be7bc96e7a88bpthread/</guid>
-      <description>在linux下面使用多线程编程要用到pthread.h头文件，因为linux是不存在线程概念的，所以它其实是用进程模拟线程，产生出线程的效果。即linux中的多线程实际上是多进程。 那么为什么linux下有了进程还要再引入线程呢？原因有很多，首先，线程小巧，不需要单独分配地址空间，也不需要维护各种数据表单，然后线程间共享数据，通信起来非常方便. 不过，正因为linux下线程共享数据，如果线程胡乱修改数据的话，会出现一些灾难性的错误，所以就需要操纵系统中所强调的同步、互斥机制来控制。 除了上述一些区别，进程和线程还有如下共同的一些优点： 提高应用程序响应。这对图形界面的程序尤其有意义，当一个操作耗时很长</description>
+      <description>&lt;p&gt;在linux下面使用多线程编程要用到pthread.h头文件，因为linux是不存在线程概念的，所以它其实是用进程模拟线程，产生出线程的效果。即linux中的多线程实际上是多进程。&lt;/p&gt;&#xA;&lt;p&gt;那么为什么linux下有了进程还要再引入线程呢？原因有很多，首先，线程小巧，不需要单独分配地址空间，也不需要维护各种数据表单，然后线程间共享数据，通信起来非常方便.&lt;/p&gt;&#xA;&lt;p&gt;不过，正因为linux下线程共享数据，如果线程胡乱修改数据的话，会出现一些灾难性的错误，所以就需要操纵系统中所强调的同步、互斥机制来控制。&lt;/p&gt;&#xA;&lt;p&gt;除了上述一些区别，进程和线程还有如下共同的一些优点：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;提高应用程序响应。这对图形界面的程序尤其有意义，当一个操作耗时很长时，整个系统都会等待这个操作，此时程序不会响应键盘、鼠标、菜单的操作，而使用多线程技术，将耗时长的操作（time consuming）置于一个新的线程，可以避免这种尴尬的情况。&lt;/li&gt;&#xA;&lt;li&gt;使多CPU系统更加有效。操作系统会保证当线程数不大于CPU数目时，不同的线程运行于不同的CPU上。&lt;/li&gt;&#xA;&lt;li&gt;改善程序结构。一个既长又复杂的进程可以考虑分为多个线程，成为几个独立或半独立的运行部分，这样的程序会利于理解和修改。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;下面就进入正题，开始linux下的多线程编程了。&lt;/p&gt;&#xA;&lt;p&gt;{% codeblock %}&lt;/p&gt;&#xA;&lt;p&gt;#include&#xA;#include&#xA;#include&lt;/p&gt;&#xA;&lt;p&gt;void *print_message_function( void *ptr );&lt;/p&gt;&#xA;&lt;p&gt;main()&#xA;{&#xA;pthread_t thread1, thread2;&#xA;char *message1 = &amp;ldquo;Thread 1&amp;rdquo;;&#xA;char *message2 = &amp;ldquo;Thread 2&amp;rdquo;;&#xA;int iret1, iret2;&lt;/p&gt;&#xA;&lt;p&gt;/* Create independent threads each of which will execute function */&lt;/p&gt;&#xA;&lt;p&gt;iret1 = pthread_create( &amp;amp;thread1;, NULL, print_message_function, (void*) message1);&#xA;iret2 = pthread_create( &amp;amp;thread2;, NULL, print_message_function, (void*) message2);&lt;/p&gt;&#xA;&lt;p&gt;/* Wait till threads are complete before main continues. Unless we &lt;em&gt;/&#xA;/&lt;/em&gt; wait we run the risk of executing an exit which will terminate &lt;em&gt;/&#xA;/&lt;/em&gt; the process and all threads before the threads have completed. */&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

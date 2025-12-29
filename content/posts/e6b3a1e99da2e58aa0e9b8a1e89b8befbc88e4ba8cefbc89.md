@@ -2,7 +2,7 @@
 author = "admin"
 date = "2013-10-10T15:58:16Z"
 slug = "2013/10/10/e6b3a1e99da2e58aa0e9b8a1e89b8befbc88e4ba8cefbc89"
-published = false
+draft = false
 title = "泡面加鸡蛋（二）"
 Categories = ["Life", "zju"]
 Tags = ["泡面加鸡蛋"]

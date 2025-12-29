@@ -1,25 +1,741 @@
-.cf {
+/* ========================================
+   BLOG CUSTOM STYLES
+   Zero maintenance styling for technical blog
+   Last updated: 2024
+   ======================================== */
 
-  text-align: justify;
-  
-  opacity: 1.0;
-  
-  width: 100%;
-  
-  height: auto;
-  
+/* --- Chinese Web Fonts --- */
+/* Noto Sans SC - Clean, modern, great for technical content */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap');
+
+/* Optional: LXGW WenKai for a more elegant feel (uncomment to use)
+@import url('https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css');
+*/
+
+/* --- CSS Variables for Easy Theming --- */
+:root {
+  /* Light theme (default) */
+  --bg-primary: #fafafa;
+  --bg-secondary: #f5f5f5;
+  --bg-card: #ffffff;
+  --bg-code: #f8f9fa;
+  --bg-inline-code: #f1f3f5;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-muted: #666666;
+  --border-color: #e5e5e5;
+  --border-light: #f0f0f0;
+  --accent-color: #007bff;
+  --accent-hover: #0056b3;
+  --code-text: #e83e8c;
+  --blockquote-bg: #f9f9f9;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Dark Mode (Auto-detects system preference) --- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-card: #1c2128;
+    --bg-code: #161b22;
+    --bg-inline-code: #2d333b;
+    --text-primary: #e6edf3;
+    --text-secondary: #b1bac4;
+    --text-muted: #8b949e;
+    --border-color: #30363d;
+    --border-light: #21262d;
+    --accent-color: #58a6ff;
+    --accent-hover: #79c0ff;
+    --code-text: #ff7b72;
+    --blockquote-bg: #161b22;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
   }
-  
-   
-  
-  .nested-links{
-  
-  text-align: justify;
-  
-  opacity: 1.0;
-  
-  width: 100%;
-  
-  height: auto;
-  
+}
+
+/* --- Base Dark Mode Overrides --- */
+@media (prefers-color-scheme: dark) {
+  body,
+  html {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
   }
+
+  .bg-near-white,
+  .bg-white {
+    background: var(--bg-primary) !important;
+  }
+
+  .dark-gray,
+  .mid-gray,
+  .gray {
+    color: var(--text-secondary) !important;
+  }
+
+  .black {
+    color: var(--text-primary) !important;
+  }
+
+  article,
+  .article,
+  .nested-copy-line-height {
+    color: var(--text-secondary) !important;
+  }
+
+  a {
+    color: var(--accent-color);
+  }
+
+  a:hover {
+    color: var(--accent-hover);
+  }
+
+  /* Header without cover */
+  header:not(.cover) {
+    background-color: var(--bg-primary) !important;
+  }
+
+  header:not(.cover) .black,
+  header:not(.cover) .dark-gray {
+    color: var(--text-primary) !important;
+  }
+
+  header:not(.cover) .hover-white,
+  header:not(.cover) .white-90 {
+    color: var(--text-secondary) !important;
+  }
+
+  header:not(.cover) .hover-white:hover {
+    color: var(--text-primary) !important;
+  }
+
+  /* Footer dark mode */
+  footer.bg-near-white {
+    background: var(--bg-secondary) !important;
+  }
+
+  footer .f4.fw4.hover-white.white-70 {
+    color: var(--text-muted) !important;
+  }
+
+  footer .f4.fw4.hover-white.white-70:hover {
+    color: var(--text-primary) !important;
+  }
+}
+
+/* --- Global Smooth Scrolling --- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* --- Apply Chinese Font --- */
+body,
+.avenir,
+.nested-copy-line-height,
+.lh-copy {
+  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* For LXGW WenKai (uncomment if using that font instead):
+body, .avenir, .nested-copy-line-height, .lh-copy {
+  font-family: 'LXGW WenKai', serif;
+}
+*/
+
+/* --- Typography --- */
+.cf,
+.nested-links {
+  text-align: justify;
+}
+
+/* Better paragraph spacing and line height */
+.lh-copy p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.lh-copy h1,
+.lh-copy h2,
+.lh-copy h3,
+.lh-copy h4,
+.lh-copy h5,
+.lh-copy h6 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+.lh-copy h2 {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+/* Hide anchor '#' links on headings, show on hover */
+.lh-copy h1 a,
+.lh-copy h2 a,
+.lh-copy h3 a,
+.lh-copy h4 a,
+.lh-copy h5 a,
+.lh-copy h6 a {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  text-decoration: none;
+  margin-left: 0.3em;
+}
+
+.lh-copy h1:hover a,
+.lh-copy h2:hover a,
+.lh-copy h3:hover a,
+.lh-copy h4:hover a,
+.lh-copy h5:hover a,
+.lh-copy h6:hover a {
+  opacity: 0.5;
+}
+
+.lh-copy h1:hover a:hover,
+.lh-copy h2:hover a:hover,
+.lh-copy h3:hover a:hover,
+.lh-copy h4:hover a:hover,
+.lh-copy h5:hover a:hover,
+.lh-copy h6:hover a:hover {
+  opacity: 1;
+}
+
+/* Drop cap for first paragraph (optional - add class "drop-cap" to enable) */
+.drop-cap::first-letter {
+  float: left;
+  font-size: 4em;
+  line-height: 0.8;
+  padding-right: 0.1em;
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+/* --- Links --- */
+.nested-links a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.nested-links a:hover {
+  color: var(--accent-hover);
+  border-bottom-color: var(--accent-hover);
+}
+
+/* --- Homepage Header --- */
+.bg-near-white {
+  background: linear-gradient(to bottom, var(--bg-primary) 0%, var(--bg-secondary) 100%) !important;
+}
+
+/* --- Post Summary Cards --- */
+.bb.b--black-10 {
+  border: none !important;
+  border-radius: 0;
+  margin-bottom: 0;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border-light) !important;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.bb.b--black-10:last-child {
+  border-bottom: none !important;
+}
+
+.bb.b--black-10:hover {
+  background-color: var(--bg-secondary);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  border-radius: 8px;
+}
+
+/* Card title - make it bigger */
+.bb.b--black-10 .f3 {
+  font-size: 1.5rem !important;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+@media screen and (min-width: 30em) {
+  .bb.b--black-10 .f3 {
+    font-size: 1.75rem !important;
+  }
+}
+
+/* Card title hover effect */
+.bb.b--black-10:hover .f3 a {
+  color: var(--accent-color);
+}
+
+/* Card image hover effect */
+.bb.b--black-10:hover .img {
+  transform: scale(1.03);
+  transition: transform 0.3s ease;
+}
+
+/* --- Read More Button --- */
+.ba.br2 {
+  transition: all 0.2s ease;
+  border-radius: 8px !important;
+  border-color: var(--accent-color) !important;
+  color: var(--accent-color) !important;
+}
+
+.ba.br2:hover {
+  background-color: var(--accent-color) !important;
+  color: white !important;
+  transform: translateY(-2px);
+}
+
+/* --- Archive List --- */
+.archive-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.archive-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-light);
+  transition: all 0.2s ease;
+}
+
+.archive-list li:hover {
+  background-color: var(--blockquote-bg);
+  padding-left: 1rem;
+}
+
+.archive-list li a {
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
+.archive-list li a:hover {
+  text-decoration: underline;
+}
+
+/* --- Footer --- */
+footer.bg-near-white {
+  background: linear-gradient(to top, var(--bg-secondary) 0%, var(--bg-primary) 100%) !important;
+}
+
+footer .f4.fw4.hover-white.white-70 {
+  color: var(--text-muted) !important;
+}
+
+footer .f4.fw4.hover-white.white-70:hover {
+  color: var(--text-primary) !important;
+}
+
+/* Footer ICP Button */
+.pa2.br3.bg-mid-gray {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-muted) !important;
+  transition: all 0.2s ease;
+  border-radius: 8px !important;
+}
+
+.pa2.br3.bg-mid-gray:hover {
+  background-color: var(--border-color) !important;
+  color: var(--text-secondary) !important;
+  transform: translateY(-1px);
+}
+
+/* --- Social Icons --- */
+.ananke-socials a {
+  transition: transform 0.2s ease;
+}
+
+.ananke-socials a:hover {
+  transform: translateY(-3px);
+}
+
+/* Social icons - light theme (footer) */
+footer .ananke-socials svg {
+  fill: var(--text-muted) !important;
+}
+
+footer .ananke-socials a:hover svg {
+  fill: var(--accent-color) !important;
+}
+
+/* --- Spacing Improvements --- */
+.summary-with-image {
+  margin-bottom: 2rem;
+}
+
+/* --- Code Blocks --- */
+.lh-copy pre {
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  background-color: var(--bg-code);
+  padding: 1.25rem;
+  border: 1px solid var(--border-color);
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+.lh-copy code {
+  background-color: var(--bg-inline-code);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875em;
+  color: var(--code-text);
+  font-family: 'SF Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
+}
+
+.lh-copy pre code {
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* Syntax highlighting improvements */
+.highlight {
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+}
+
+.highlight pre {
+  margin: 0;
+  padding: 1.25rem;
+  overflow-x: auto;
+}
+
+/* Code block with line numbers */
+.highlight .lnt {
+  color: var(--text-muted);
+  margin-right: 1rem;
+  user-select: none;
+}
+
+/* --- Blockquotes --- */
+.lh-copy blockquote {
+  border-left: 4px solid var(--accent-color);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  color: var(--text-secondary);
+  font-style: italic;
+  background-color: var(--blockquote-bg);
+  border-radius: 0 8px 8px 0;
+}
+
+.lh-copy blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Tables --- */
+.lh-copy table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.lh-copy th,
+.lh-copy td {
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.lh-copy th {
+  background-color: var(--bg-secondary);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.lh-copy tr:nth-child(even) td {
+  background-color: var(--blockquote-bg);
+}
+
+.lh-copy tr:hover td {
+  background-color: var(--bg-secondary);
+}
+
+/* --- Images --- */
+.lh-copy img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 1.5rem auto;
+  box-shadow: var(--shadow-md);
+  display: block;
+}
+
+/* Image captions */
+.lh-copy img + em,
+.lh-copy figure figcaption {
+  display: block;
+  text-align: center;
+  font-size: 0.9em;
+  color: var(--text-muted);
+  margin-top: -1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* --- Post Title --- */
+.f1.athelas {
+  color: var(--text-primary);
+}
+
+/* --- Hero/Header with Featured Image --- */
+header.cover .white-90,
+header.cover .white-80,
+header.cover .hover-white {
+  color: rgba(255, 255, 255, 0.95) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+header.cover .hover-white:hover {
+  color: #fff !important;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* --- Pages without Featured Image (Light Theme) --- */
+header:not(.cover) {
+  background-color: var(--bg-primary) !important;
+}
+
+header:not(.cover) .black,
+header:not(.cover) .dark-gray {
+  color: var(--text-primary) !important;
+}
+
+header:not(.cover) .hover-white,
+header:not(.cover) .white-90 {
+  color: var(--text-secondary) !important;
+}
+
+header:not(.cover) .hover-white:hover {
+  color: var(--text-primary) !important;
+}
+
+/* Social icons in header (dark overlay) */
+header.cover .ananke-socials svg {
+  fill: rgba(255, 255, 255, 0.9) !important;
+}
+
+header.cover .ananke-socials a:hover svg {
+  fill: #fff !important;
+}
+
+/* Social icons in header without cover (light) */
+header:not(.cover) .ananke-socials svg {
+  fill: var(--text-secondary) !important;
+}
+
+header:not(.cover) .ananke-socials a:hover svg {
+  fill: var(--accent-color) !important;
+}
+
+/* ========================================
+   TABLE OF CONTENTS ENHANCEMENTS
+   ======================================== */
+
+/* ToC Container */
+#TableOfContents {
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+#TableOfContents ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+#TableOfContents ul ul {
+  padding-left: 1rem;
+  border-left: 2px solid var(--border-light);
+  margin-left: 0.5rem;
+}
+
+#TableOfContents li {
+  margin-bottom: 0.5rem;
+}
+
+#TableOfContents a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: block;
+  padding: 0.25rem 0;
+}
+
+#TableOfContents a:hover {
+  color: var(--accent-color);
+  padding-left: 0.5rem;
+}
+
+/* Sticky ToC sidebar */
+.w-30-l.mt6-l {
+  position: sticky;
+  top: 2rem;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+}
+
+/* ToC container styling */
+.bg-light-gray {
+  background-color: var(--bg-secondary) !important;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  .bg-light-gray {
+    background-color: var(--bg-card) !important;
+  }
+}
+
+/* Related posts styling */
+.bg-light-gray .nested-links a {
+  color: var(--text-secondary);
+  border-bottom: none;
+}
+
+.bg-light-gray .nested-links a:hover {
+  color: var(--accent-color);
+}
+
+/* ========================================
+   READING PROGRESS BAR
+   ======================================== */
+
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+  z-index: 9999;
+  transition: width 0.1s ease;
+}
+
+/* ========================================
+   BACK TO TOP BUTTON
+   ======================================== */
+
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.back-to-top:hover {
+  background: var(--accent-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+@media screen and (max-width: 60em) {
+  /* Hide sticky ToC on mobile */
+  .w-30-l.mt6-l {
+    position: static;
+  }
+
+  /* Smaller back to top button on mobile */
+  .back-to-top {
+    width: 40px;
+    height: 40px;
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .back-to-top svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* ========================================
+   SELECTION HIGHLIGHT
+   ======================================== */
+
+::selection {
+  background: var(--accent-color);
+  color: white;
+}
+
+::-moz-selection {
+  background: var(--accent-color);
+  color: white;
+}
+
+/* ========================================
+   FOCUS STYLES (Accessibility)
+   ======================================== */
+
+a:focus,
+button:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+@media print {
+  .reading-progress,
+  .back-to-top,
+  .ananke-socials,
+  footer {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  a {
+    color: black !important;
+    text-decoration: underline;
+  }
+}

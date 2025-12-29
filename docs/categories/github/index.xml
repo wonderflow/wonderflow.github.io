@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>github on 奇迹之流WonderfloW</title>
+    <title>Github on 奇迹之流WonderfloW</title>
     <link>https://wonderflow.info/categories/github/</link>
-    <description>Recent content in github on 奇迹之流WonderfloW</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Github on 奇迹之流WonderfloW</description>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 21 Jan 2014 05:52:56 +0000</lastBuildDate><atom:link href="https://wonderflow.info/categories/github/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 21 Jan 2014 05:52:56 +0000</lastBuildDate>
+    <atom:link href="https://wonderflow.info/categories/github/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>No Content Found</title>
       <link>https://wonderflow.info/posts/2014/01/21/847/</link>
       <pubDate>Tue, 21 Jan 2014 05:52:56 +0000</pubDate>
-      
       <guid>https://wonderflow.info/posts/2014/01/21/847/</guid>
-      <description>github真是业界良心，学生可以凭借edu邮箱获得免费创建私有项目的权限了，真好。我帮忙宣传一下：https://github.com/edu</description>
+      <description>&lt;p&gt;github真是业界良心，学生可以凭借edu邮箱获得免费创建私有项目的权限了，真好。我帮忙宣传一下：&lt;a href=&#34;https://github.com/edu&#34;&gt;https://github.com/edu&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>《git pocket guide》读书笔记</title>
       <link>https://wonderflow.info/posts/2013/08/27/e3808agit-pocket-guidee3808be8afbbe4b9a6e7ac94e8aeb0/</link>
       <pubDate>Tue, 27 Aug 2013 15:47:21 +0000</pubDate>
-      
       <guid>https://wonderflow.info/posts/2013/08/27/e3808agit-pocket-guidee3808be8afbbe4b9a6e7ac94e8aeb0/</guid>
-      <description>最近读了2013年新出的一本关于git的书《git pocket guide》既锻炼了自己的英语阅读，又学习了git，真是一举两得。 读书笔记长达40多页，要是整理成wordpress网页的格式，非得折腾死，还是直接上传一个pdf比较直接，看这里：chinese_git_pocket_wonderflow。 学会了git，就该常用github了，这个程序员的天堂。</description>
+      <description>&lt;p&gt;最近读了2013年新出的一本关于git的书《git pocket guide》既锻炼了自己的英语阅读，又学习了git，真是一举两得。&lt;/p&gt;&#xA;&lt;p&gt;读书笔记长达40多页，要是整理成wordpress网页的格式，非得折腾死，还是直接上传一个pdf比较直接，看这里：&lt;a href=&#34;https://wonderflow.info/images/2013-08-27-e3808agit-pocket-guidee3808be8afbbe4b9a6e7ac94e8aeb0/chinese_git_pocket_wonderflow.pdf&#34;&gt;chinese_git_pocket_wonderflow&lt;/a&gt;。&lt;/p&gt;&#xA;&lt;p&gt;学会了git，就该常用&lt;a href=&#34;https://github.com/&#34;&gt;github&lt;/a&gt;了，这个程序员的天堂。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

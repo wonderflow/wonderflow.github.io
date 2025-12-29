@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>markdown on 奇迹之流WonderfloW</title>
+    <title>Markdown on 奇迹之流WonderfloW</title>
     <link>https://wonderflow.info/tags/markdown/</link>
-    <description>Recent content in markdown on 奇迹之流WonderfloW</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Markdown on 奇迹之流WonderfloW</description>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 28 Feb 2014 05:17:10 +0000</lastBuildDate><atom:link href="https://wonderflow.info/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 28 Feb 2014 05:17:10 +0000</lastBuildDate>
+    <atom:link href="https://wonderflow.info/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>用Markdown写文章</title>
       <link>https://wonderflow.info/posts/2014/02/28/e794a8markdowne58699e58d9ae5aea2/</link>
       <pubDate>Fri, 28 Feb 2014 05:17:10 +0000</pubDate>
-      
       <guid>https://wonderflow.info/posts/2014/02/28/e794a8markdowne58699e58d9ae5aea2/</guid>
-      <description>最近喜欢上了用Markdown写文章的感觉，专注于内容，自然而然的格式处理，很方便，大方而整洁。 Markdown使用最多的地方就是GitHub的README.md和stackoverflow了，以前一直想用，但是想想还要学Markdown语法，真麻烦。后来觉得应该要接受新事物，就咬牙去学，没想到，半小时就全学会了，因为Markdown的语法实在太简单了。感兴趣的话可以查看一下这个Markdown语法手册，非常简短。 可惜WordPress对Markdown的支持依旧不够完善，所以很多之前的文章你们看到的代码就变成了非常难看的朴素文字，我把原先的代码高亮插件关掉了。（因为如果开起来你会看到一大堆C</description>
+      <description>&lt;p&gt;最近喜欢上了用Markdown写文章的感觉，专注于内容，自然而然的格式处理，很方便，大方而整洁。&lt;/p&gt;&#xA;&lt;p&gt;Markdown使用最多的地方就是GitHub的README.md和stackoverflow了，以前一直想用，但是想想还要学Markdown语法，真麻烦。后来觉得应该要接受新事物，就咬牙去学，没想到，半小时就全学会了，因为Markdown的语法实在太简单了。感兴趣的话可以查看一下这个&lt;a href=&#34;http://wowubuntu.com/markdown/#acknowledgement&#34;&gt;Markdown语法手册&lt;/a&gt;，非常简短。&lt;/p&gt;&#xA;&lt;p&gt;可惜WordPress对Markdown的支持依旧不够完善，所以很多之前的文章你们看到的代码就变成了非常难看的朴素文字，我把原先的代码高亮插件关掉了。（因为如果开起来你会看到一大堆CSS标签，更加看不清代码了。）&lt;/p&gt;&#xA;&lt;p&gt;而博客上有代码的博文很多，非常多。所以要一个个修改工作量就会很大。&lt;/p&gt;&#xA;&lt;p&gt;如果你对什么文章特别感兴趣，希望我调整格式的话，可以在这里留言，我看到后会第一时间去修改格式的。&lt;/p&gt;&#xA;&lt;p&gt;至于我怎么在WordPress上使用Markdown，大家可以看看&lt;a href=&#34;http://maemual.net/2013/09/04/markdown-test/&#34;&gt;maemual&lt;/a&gt;的这篇博客。&lt;/p&gt;&#xA;&lt;p&gt;如果你也想用Markdown写文章，&lt;/p&gt;&#xA;&lt;p&gt;纯Markdown在线编辑，我推荐： &lt;a href=&#34;http://dillinger.io/&#34;&gt;dillinger&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;如果你使用印象笔记的话，我推荐： &lt;a href=&#34;http://maxiang.info/&#34;&gt;马克飞象&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;如果你使用mac的话，我推荐： &lt;a href=&#34;http://mouapp.com/&#34;&gt;Mou&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Markdown是一个神奇的语言，让大家交流起来更加方便。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

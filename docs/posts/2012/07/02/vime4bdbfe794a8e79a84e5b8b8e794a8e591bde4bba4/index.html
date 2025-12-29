@@ -6,189 +6,16 @@
     
     <title>VIM使用的常用命令 | 奇迹之流WonderfloW</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="高级一些的编辑器，都会包含宏功能，vim当然不能缺少了，在vim中使用宏是非常方便的： :qx 开始记录宏，并将结果存入寄存器x q 退出记录模式 @x 播放记录在x寄存器中的宏命令 稍微解释一下，当在normal模式下输入:qx后，你对文本的所有编辑动作将会被记录下来，再次输入q即退出了记录模 式，然后输入@x对刚才记录下来的命令进行重复，此命令后可跟数字，表示要重复多少次，比如@x20，可以重复20次。这个在文本的批处理中是非常有用的。 同时编辑多个文件 在vim众多的插件中，有一个叫minibuffer的插件，就是下面所说的标签页功能了，可以支持同时编辑多个文件。 标签命令 :tabe fn 在一个新的标签页中编辑文件fn gt 切换到">
-    <meta name="generator" content="Hugo 0.92.2" />
-    
-    
-    
-    
-      <meta name="robots" content="noindex, nofollow">
-    
-
-    
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
-
-
-
-    
-    
-    
-      
-<link rel="shortcut icon" href="/favicon_io/favicon.ico" type="image/x-icon" />
-
-
-    
-
-    
-    
-    <meta property="og:title" content="VIM使用的常用命令" />
-<meta property="og:description" content="高级一些的编辑器，都会包含宏功能，vim当然不能缺少了，在vim中使用宏是非常方便的： :qx 开始记录宏，并将结果存入寄存器x q 退出记录模式 @x 播放记录在x寄存器中的宏命令 稍微解释一下，当在normal模式下输入:qx后，你对文本的所有编辑动作将会被记录下来，再次输入q即退出了记录模 式，然后输入@x对刚才记录下来的命令进行重复，此命令后可跟数字，表示要重复多少次，比如@x20，可以重复20次。这个在文本的批处理中是非常有用的。 同时编辑多个文件 在vim众多的插件中，有一个叫minibuffer的插件，就是下面所说的标签页功能了，可以支持同时编辑多个文件。 标签命令 :tabe fn 在一个新的标签页中编辑文件fn gt 切换到" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://wonderflow.info/posts/2012/07/02/vime4bdbfe794a8e79a84e5b8b8e794a8e591bde4bba4/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2012-07-02T18:04:52+00:00" />
-<meta property="article:modified_time" content="2012-07-02T18:04:52+00:00" />
-
-<meta itemprop="name" content="VIM使用的常用命令">
-<meta itemprop="description" content="高级一些的编辑器，都会包含宏功能，vim当然不能缺少了，在vim中使用宏是非常方便的： :qx 开始记录宏，并将结果存入寄存器x q 退出记录模式 @x 播放记录在x寄存器中的宏命令 稍微解释一下，当在normal模式下输入:qx后，你对文本的所有编辑动作将会被记录下来，再次输入q即退出了记录模 式，然后输入@x对刚才记录下来的命令进行重复，此命令后可跟数字，表示要重复多少次，比如@x20，可以重复20次。这个在文本的批处理中是非常有用的。 同时编辑多个文件 在vim众多的插件中，有一个叫minibuffer的插件，就是下面所说的标签页功能了，可以支持同时编辑多个文件。 标签命令 :tabe fn 在一个新的标签页中编辑文件fn gt 切换到"><meta itemprop="datePublished" content="2012-07-02T18:04:52+00:00" />
-<meta itemprop="dateModified" content="2012-07-02T18:04:52+00:00" />
-<meta itemprop="wordCount" content="1999">
-<meta itemprop="keywords" content="VIM," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="VIM使用的常用命令"/>
-<meta name="twitter:description" content="高级一些的编辑器，都会包含宏功能，vim当然不能缺少了，在vim中使用宏是非常方便的： :qx 开始记录宏，并将结果存入寄存器x q 退出记录模式 @x 播放记录在x寄存器中的宏命令 稍微解释一下，当在normal模式下输入:qx后，你对文本的所有编辑动作将会被记录下来，再次输入q即退出了记录模 式，然后输入@x对刚才记录下来的命令进行重复，此命令后可跟数字，表示要重复多少次，比如@x20，可以重复20次。这个在文本的批处理中是非常有用的。 同时编辑多个文件 在vim众多的插件中，有一个叫minibuffer的插件，就是下面所说的标签页功能了，可以支持同时编辑多个文件。 标签命令 :tabe fn 在一个新的标签页中编辑文件fn gt 切换到"/>
-
-	
-  </head>
-
-  <body class="ma0 avenir bg-near-white">
-
-    
-
-
-
-  <header>
-    <div class="bg-black">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
-      
-        奇迹之流WonderfloW
-      
-    </a>
-    <div class="flex-l items-center">
-      
-
-      
-        <ul class="pl0 mr3">
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/about/" title="About page">
-              About
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/archives/" title="Archives page">
-              Archives
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
-              Posts
-            </a>
-          </li>
-          
-        </ul>
-      
-      
-<div class="ananke-socials">
-  
-    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-</div>
-
-    </div>
-  </div>
-</nav>
-
-    </div>
-  </header>
-
-
-
-    <main class="pb7" role="main">
-      
-
-<article class="flex-l flex-wrap justify-between mw8 center ph3">
-  <header class="mt4 w-100">
-    <aside class="instapaper_ignoref b helvetica tracked">
-      
-      POSTS
-    </aside>
-    
-
-
-
-
-
-
-
-
-
-
-  <div id="sharing" class="mt3 ananke-socials">
-    
-      
-      <a href="https://twitter.com/share?url=https://wonderflow.info/posts/2012/07/02/vime4bdbfe794a8e79a84e5b8b8e794a8e591bde4bba4/&amp;text=VIM%e4%bd%bf%e7%94%a8%e7%9a%84%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
-        
-        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-        
-      </a>
-    
-  </div>
-
-
-    <h1 class="f1 athelas mt3 mb1">VIM使用的常用命令</h1>
-    
-    <p class="tracked">
-      By <strong>
-        
-        admin
-        
-      </strong>
-    </p>
-    
-    
-    <time class="f6 mv4 dib tracked" datetime="2012-07-02T18:04:52Z" >July 2, 2012</time>
-
-    
-    
-    <span class="f6 mv4 dib tracked"> - 4 minutes read</span>
-    <span class="f6 mv4 dib tracked"> - 1999 words</span>
-    
-  </header>
-  <div class="nested-copy-line-height lh-copy serif f4 nested-links
-    nested-img mid-gray pr4-l w-100-l"><p>高级一些的编辑器，都会包含宏功能，vim当然不能缺少了，在vim中使用宏是非常方便的：</p>
-<pre tabindex="0"><code>:qx 开始记录宏，并将结果存入寄存器x
+    <meta name="description" content="高级一些的编辑器，都会包含宏功能，vim当然不能缺少了，在vim中使用宏是非常方便的：
+:qx 开始记录宏，并将结果存入寄存器x
 q 退出记录模式
 @x 播放记录在x寄存器中的宏命令
-</code></pre><p>稍微解释一下，当在normal模式下输入:qx后，你对文本的所有编辑动作将会被记录下来，再次输入q即退出了记录模
+稍微解释一下，当在normal模式下输入:qx后，你对文本的所有编辑动作将会被记录下来，再次输入q即退出了记录模
 式，然后输入@x对刚才记录下来的命令进行重复，此命令后可跟数字，表示要重复多少次，比如@x20，可以重复20次。这个在文本的批处理中是非常有用的。
 同时编辑多个文件
 在vim众多的插件中，有一个叫minibuffer的插件，就是下面所说的标签页功能了，可以支持同时编辑多个文件。
-标签命令</p>
-<pre tabindex="0"><code>:tabe fn 在一个新的标签页中编辑文件fn
+标签命令
+:tabe fn 在一个新的标签页中编辑文件fn
 gt 切换到下一个标签页
 gT 切换到上一个标签页
 :tabr 切换到第一个标签页
@@ -196,10 +23,10 @@ gT 切换到上一个标签页
 :tabm [N] 把当前tab移动到第N个tab之后
 对，正如你所想象的那样，跟eclipse, ue等的标签页是一个意思！
 窗口命令
-ctrl+w s 水平分割窗口
-ctrl+w w 切换窗口
-ctrl+w q 退出当前窗口(由于同时有多个文件，此命令不会影响其他窗口)
-ctrl+w v 垂直分割窗口
+ctrl&#43;w s 水平分割窗口
+ctrl&#43;w w 切换窗口
+ctrl&#43;w q 退出当前窗口(由于同时有多个文件，此命令不会影响其他窗口)
+ctrl&#43;w v 垂直分割窗口
 其他
 vim在保存之前不会对文件做实际的修改，只是加载到缓冲区中，对文件的编辑其实是对缓冲区的编辑，直到:w时才会存入物理文件。&lt;!-- more --&gt;
 
@@ -233,8 +60,8 @@ y$ 复制到行末
 p 粘贴粘贴板的内容到当前行的下面
 P 粘贴粘贴板的内容到当前行的上面
 ]p 有缩进的粘贴，vim会自动调节代码的缩进
-&quot;a 将内容放入/存入a寄存器，可以支持多粘贴板
-附：比如常用的一个寄存器就是系统寄存器，名称为+，所以从系统粘贴板粘贴到vim中的命令为&quot;+p,注意此处的+不表示操作符，二十一个寄存器。
+&#34;a 将内容放入/存入a寄存器，可以支持多粘贴板
+附：比如常用的一个寄存器就是系统寄存器，名称为&#43;，所以从系统粘贴板粘贴到vim中的命令为&#34;&#43;p,注意此处的&#43;不表示操作符，二十一个寄存器。
 移动光标
 在vim中移动光标跟其他的编辑器中有很大的区别，不过一旦学会了，就会飞速的在文本中移动了。
 
@@ -280,7 +107,7 @@ s 删除当前字符并进入编辑模式
 S 删除光标所在行并进入编辑模式
 xp 交换当前字符和下一个字符
 u 撤销
-ctrl+r 重做
+ctrl&#43;r 重做
 . 重复上一个编辑命令
 ~ 切换大小写，当前字符
 g~iw 切换当前字的大小写
@@ -302,7 +129,7 @@ Esc 退出插入模式
 标记文本
 v 进入可视模式，单字符模式
 V 进入可视模式，行模式
-ctrl+v 进入可视模式，列模式，类似于UE的列模式
+ctrl&#43;v 进入可视模式，列模式，类似于UE的列模式
 o 跳转光标到选中块的另一个端点
 U 将选中块中的内容转成大写
 O 跳转光标到块的另一个端点
@@ -318,78 +145,346 @@ iB 选中{}中的内容，不含{}
 y 复制块
 d 删除块
 ~ 切换块中内容的大小写
-</code></pre><ul class="pa0">
+">
+    <meta name="generator" content="Hugo 0.153.4">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="admin">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
+
+
+
   
-   <li class="list di">
-     <a href="/tags/vim" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">VIM</a>
-   </li>
+    <link rel="stylesheet" href="/css/custom.css">
   
-</ul>
-<div class="mt6 instapaper_ignoref">
+
+
+    
+
+
+    
+      
+<link rel="shortcut icon" href="/favicon_io/favicon.ico" type="image/x-icon" />
+
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://wonderflow.info/posts/2012/07/02/vime4bdbfe794a8e79a84e5b8b8e794a8e591bde4bba4/">
+    
+
+    
+    
+    <meta property="og:url" content="https://wonderflow.info/posts/2012/07/02/vime4bdbfe794a8e79a84e5b8b8e794a8e591bde4bba4/">
+  <meta property="og:site_name" content="奇迹之流WonderfloW">
+  <meta property="og:title" content="VIM使用的常用命令">
+  <meta property="og:description" content="高级一些的编辑器，都会包含宏功能，vim当然不能缺少了，在vim中使用宏是非常方便的：
+:qx 开始记录宏，并将结果存入寄存器x q 退出记录模式 @x 播放记录在x寄存器中的宏命令 稍微解释一下，当在normal模式下输入:qx后，你对文本的所有编辑动作将会被记录下来，再次输入q即退出了记录模 式，然后输入@x对刚才记录下来的命令进行重复，此命令后可跟数字，表示要重复多少次，比如@x20，可以重复20次。这个在文本的批处理中是非常有用的。 同时编辑多个文件 在vim众多的插件中，有一个叫minibuffer的插件，就是下面所说的标签页功能了，可以支持同时编辑多个文件。 标签命令
+:tabe fn 在一个新的标签页中编辑文件fn gt 切换到下一个标签页 gT 切换到上一个标签页 :tabr 切换到第一个标签页 :tabl 切换到最后一个标签页 :tabm [N] 把当前tab移动到第N个tab之后 对，正如你所想象的那样，跟eclipse, ue等的标签页是一个意思！ 窗口命令 ctrl&#43;w s 水平分割窗口 ctrl&#43;w w 切换窗口 ctrl&#43;w q 退出当前窗口(由于同时有多个文件，此命令不会影响其他窗口) ctrl&#43;w v 垂直分割窗口 其他 vim在保存之前不会对文件做实际的修改，只是加载到缓冲区中，对文件的编辑其实是对缓冲区的编辑，直到:w时才会存入物理文件。&lt;!-- more --&gt; :e file 把file加载到新的缓冲区中 :bn 跳转到下一个缓冲区 :bd 删除缓冲区(关闭文件) :sp fn 分割窗口，并将fn加载到新的窗口中 退出编辑器 :w 将缓冲区写入文件，即保存修改 :wq 保存修改并退出 :x 保存修改并退出 :q 退出，如果对缓冲区进行过修改，则会提示 :q! 强制退出，放弃修改 查找替换 /pattern 向后搜索字符串pattern ?pattern 向前搜索字符串pattern n 下一个匹配(如果是/搜索，则是向下的下一个，?搜索则是向上的下一个) N 上一个匹配(同上) :%s/old/new/g 搜索整个文件，将所有的old替换为new :%s/old/new/gc 搜索整个文件，将所有的old替换为new，每次都要你确认是否替换 复制粘贴 dd 删除光标所在行 dw 删除一个字(word) x 删除当前字符 X 删除前一个字符 D 删除到行末 yy 复制一行，此命令前可跟数字，标识复制多行，如6yy，表示从当前行开始复制6行 yw 复制一个字 y$ 复制到行末 p 粘贴粘贴板的内容到当前行的下面 P 粘贴粘贴板的内容到当前行的上面 ]p 有缩进的粘贴，vim会自动调节代码的缩进 &#34;a 将内容放入/存入a寄存器，可以支持多粘贴板 附：比如常用的一个寄存器就是系统寄存器，名称为&#43;，所以从系统粘贴板粘贴到vim中的命令为&#34;&#43;p,注意此处的&#43;不表示操作符，二十一个寄存器。 移动光标 在vim中移动光标跟其他的编辑器中有很大的区别，不过一旦学会了，就会飞速的在文本中移动了。 h,j,k,l 上，下，左，右 ctrl-f 上翻一页 ctrl-b 下翻一页 % 跳到与当前括号匹配的括号处，如当前在{，则跳转到与之匹配的}处 w 跳到下一个字首，按标点或单词分割 W 跳到下一个字首，长跳，如end-of-line被认为是一个字 e 跳到下一个字尾 E 跳到下一个字尾，长跳 b 跳到上一个字 B 跳到上一个字，长跳 0 跳至行首，不管有无缩进，就是跳到第0个字符 ^ 跳至行首的第一个字符 $ 跳至行尾 gg 跳至文件的第一行 gd 跳至当前光标所在的变量的声明处 [N]G 跳到第N行，如0G，就等价于gg，100G就是第100行 fx 在当前行中找x字符，找到了就跳转至 ; 重复上一个f命令，而不用重复的输入fx tx 与fx类似，但是只是跳转到x的前一个字符处 Fx 跟fx的方向相反 ),( 跳转到上/下一个语句 * 查找光标所在处的单词，向下查找 # 查找光标所在处的单词，向上查找 `. 跳转至上次编辑位置 在屏幕上移动 H 移动光标到当前屏幕上最上边的一行 M 移动光标到当前屏幕上中间的一行 L 移动光标到当前屏幕上最下边的一行 书签 ma 把当前位置存成标签a `a 跳转到标签a处 编辑 r 替换一个字符 J 将下一行和当前行连接为一行 cc 删除当前行并进入编辑模式 cw 删除当前字，并进入编辑模式 c$ 擦除从当前位置至行末的内容，并进入编辑模式 s 删除当前字符并进入编辑模式 S 删除光标所在行并进入编辑模式 xp 交换当前字符和下一个字符 u 撤销 ctrl&#43;r 重做 . 重复上一个编辑命令 ~ 切换大小写，当前字符 g~iw 切换当前字的大小写 gUiw 将当前字变成大写 guiw 将当前字变成小写 &gt;&gt; 将当前行右移一个单位 &lt;&lt; 将当前行左移一个单位(一个tab符) == 自动缩进当前行 插入模式 i 从当前光标处进入插入模式 I 进入插入模式，并置光标于行首 a 追加模式，置光标于当前光标之后 A 追加模式，置光标于行末 o 在当前行之下新加一行，并进入插入模式 O 在当前行之上新加一行，并进入插入模式 Esc 退出插入模式 可视模式 标记文本 v 进入可视模式，单字符模式 V 进入可视模式，行模式 ctrl&#43;v 进入可视模式，列模式，类似于UE的列模式 o 跳转光标到选中块的另一个端点 U 将选中块中的内容转成大写 O 跳转光标到块的另一个端点 aw 选中一个字 ab 选中括号中的所有内容，包括括号本身 aB 选中{}括号中的所有内容 ib 选中括号中的内容，不含括号 iB 选中{}中的内容，不含{} 对标记进行动作 &gt; 块右移 &lt; 块左移 y 复制块 d 删除块 ~ 切换块中内容的大小写">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2012-07-02T18:04:52+00:00">
+    <meta property="article:modified_time" content="2012-07-02T18:04:52+00:00">
+    <meta property="article:tag" content="VIM">
+
+  <meta itemprop="name" content="VIM使用的常用命令">
+  <meta itemprop="description" content="高级一些的编辑器，都会包含宏功能，vim当然不能缺少了，在vim中使用宏是非常方便的：
+:qx 开始记录宏，并将结果存入寄存器x q 退出记录模式 @x 播放记录在x寄存器中的宏命令 稍微解释一下，当在normal模式下输入:qx后，你对文本的所有编辑动作将会被记录下来，再次输入q即退出了记录模 式，然后输入@x对刚才记录下来的命令进行重复，此命令后可跟数字，表示要重复多少次，比如@x20，可以重复20次。这个在文本的批处理中是非常有用的。 同时编辑多个文件 在vim众多的插件中，有一个叫minibuffer的插件，就是下面所说的标签页功能了，可以支持同时编辑多个文件。 标签命令
+:tabe fn 在一个新的标签页中编辑文件fn gt 切换到下一个标签页 gT 切换到上一个标签页 :tabr 切换到第一个标签页 :tabl 切换到最后一个标签页 :tabm [N] 把当前tab移动到第N个tab之后 对，正如你所想象的那样，跟eclipse, ue等的标签页是一个意思！ 窗口命令 ctrl&#43;w s 水平分割窗口 ctrl&#43;w w 切换窗口 ctrl&#43;w q 退出当前窗口(由于同时有多个文件，此命令不会影响其他窗口) ctrl&#43;w v 垂直分割窗口 其他 vim在保存之前不会对文件做实际的修改，只是加载到缓冲区中，对文件的编辑其实是对缓冲区的编辑，直到:w时才会存入物理文件。&lt;!-- more --&gt; :e file 把file加载到新的缓冲区中 :bn 跳转到下一个缓冲区 :bd 删除缓冲区(关闭文件) :sp fn 分割窗口，并将fn加载到新的窗口中 退出编辑器 :w 将缓冲区写入文件，即保存修改 :wq 保存修改并退出 :x 保存修改并退出 :q 退出，如果对缓冲区进行过修改，则会提示 :q! 强制退出，放弃修改 查找替换 /pattern 向后搜索字符串pattern ?pattern 向前搜索字符串pattern n 下一个匹配(如果是/搜索，则是向下的下一个，?搜索则是向上的下一个) N 上一个匹配(同上) :%s/old/new/g 搜索整个文件，将所有的old替换为new :%s/old/new/gc 搜索整个文件，将所有的old替换为new，每次都要你确认是否替换 复制粘贴 dd 删除光标所在行 dw 删除一个字(word) x 删除当前字符 X 删除前一个字符 D 删除到行末 yy 复制一行，此命令前可跟数字，标识复制多行，如6yy，表示从当前行开始复制6行 yw 复制一个字 y$ 复制到行末 p 粘贴粘贴板的内容到当前行的下面 P 粘贴粘贴板的内容到当前行的上面 ]p 有缩进的粘贴，vim会自动调节代码的缩进 &#34;a 将内容放入/存入a寄存器，可以支持多粘贴板 附：比如常用的一个寄存器就是系统寄存器，名称为&#43;，所以从系统粘贴板粘贴到vim中的命令为&#34;&#43;p,注意此处的&#43;不表示操作符，二十一个寄存器。 移动光标 在vim中移动光标跟其他的编辑器中有很大的区别，不过一旦学会了，就会飞速的在文本中移动了。 h,j,k,l 上，下，左，右 ctrl-f 上翻一页 ctrl-b 下翻一页 % 跳到与当前括号匹配的括号处，如当前在{，则跳转到与之匹配的}处 w 跳到下一个字首，按标点或单词分割 W 跳到下一个字首，长跳，如end-of-line被认为是一个字 e 跳到下一个字尾 E 跳到下一个字尾，长跳 b 跳到上一个字 B 跳到上一个字，长跳 0 跳至行首，不管有无缩进，就是跳到第0个字符 ^ 跳至行首的第一个字符 $ 跳至行尾 gg 跳至文件的第一行 gd 跳至当前光标所在的变量的声明处 [N]G 跳到第N行，如0G，就等价于gg，100G就是第100行 fx 在当前行中找x字符，找到了就跳转至 ; 重复上一个f命令，而不用重复的输入fx tx 与fx类似，但是只是跳转到x的前一个字符处 Fx 跟fx的方向相反 ),( 跳转到上/下一个语句 * 查找光标所在处的单词，向下查找 # 查找光标所在处的单词，向上查找 `. 跳转至上次编辑位置 在屏幕上移动 H 移动光标到当前屏幕上最上边的一行 M 移动光标到当前屏幕上中间的一行 L 移动光标到当前屏幕上最下边的一行 书签 ma 把当前位置存成标签a `a 跳转到标签a处 编辑 r 替换一个字符 J 将下一行和当前行连接为一行 cc 删除当前行并进入编辑模式 cw 删除当前字，并进入编辑模式 c$ 擦除从当前位置至行末的内容，并进入编辑模式 s 删除当前字符并进入编辑模式 S 删除光标所在行并进入编辑模式 xp 交换当前字符和下一个字符 u 撤销 ctrl&#43;r 重做 . 重复上一个编辑命令 ~ 切换大小写，当前字符 g~iw 切换当前字的大小写 gUiw 将当前字变成大写 guiw 将当前字变成小写 &gt;&gt; 将当前行右移一个单位 &lt;&lt; 将当前行左移一个单位(一个tab符) == 自动缩进当前行 插入模式 i 从当前光标处进入插入模式 I 进入插入模式，并置光标于行首 a 追加模式，置光标于当前光标之后 A 追加模式，置光标于行末 o 在当前行之下新加一行，并进入插入模式 O 在当前行之上新加一行，并进入插入模式 Esc 退出插入模式 可视模式 标记文本 v 进入可视模式，单字符模式 V 进入可视模式，行模式 ctrl&#43;v 进入可视模式，列模式，类似于UE的列模式 o 跳转光标到选中块的另一个端点 U 将选中块中的内容转成大写 O 跳转光标到块的另一个端点 aw 选中一个字 ab 选中括号中的所有内容，包括括号本身 aB 选中{}括号中的所有内容 ib 选中括号中的内容，不含括号 iB 选中{}中的内容，不含{} 对标记进行动作 &gt; 块右移 &lt; 块左移 y 复制块 d 删除块 ~ 切换块中内容的大小写">
+  <meta itemprop="datePublished" content="2012-07-02T18:04:52+00:00">
+  <meta itemprop="dateModified" content="2012-07-02T18:04:52+00:00">
+  <meta itemprop="wordCount" content="254">
+  <meta itemprop="keywords" content="VIM">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="VIM使用的常用命令">
+  <meta name="twitter:description" content="高级一些的编辑器，都会包含宏功能，vim当然不能缺少了，在vim中使用宏是非常方便的：
+:qx 开始记录宏，并将结果存入寄存器x q 退出记录模式 @x 播放记录在x寄存器中的宏命令 稍微解释一下，当在normal模式下输入:qx后，你对文本的所有编辑动作将会被记录下来，再次输入q即退出了记录模 式，然后输入@x对刚才记录下来的命令进行重复，此命令后可跟数字，表示要重复多少次，比如@x20，可以重复20次。这个在文本的批处理中是非常有用的。 同时编辑多个文件 在vim众多的插件中，有一个叫minibuffer的插件，就是下面所说的标签页功能了，可以支持同时编辑多个文件。 标签命令
+:tabe fn 在一个新的标签页中编辑文件fn gt 切换到下一个标签页 gT 切换到上一个标签页 :tabr 切换到第一个标签页 :tabl 切换到最后一个标签页 :tabm [N] 把当前tab移动到第N个tab之后 对，正如你所想象的那样，跟eclipse, ue等的标签页是一个意思！ 窗口命令 ctrl&#43;w s 水平分割窗口 ctrl&#43;w w 切换窗口 ctrl&#43;w q 退出当前窗口(由于同时有多个文件，此命令不会影响其他窗口) ctrl&#43;w v 垂直分割窗口 其他 vim在保存之前不会对文件做实际的修改，只是加载到缓冲区中，对文件的编辑其实是对缓冲区的编辑，直到:w时才会存入物理文件。&lt;!-- more --&gt; :e file 把file加载到新的缓冲区中 :bn 跳转到下一个缓冲区 :bd 删除缓冲区(关闭文件) :sp fn 分割窗口，并将fn加载到新的窗口中 退出编辑器 :w 将缓冲区写入文件，即保存修改 :wq 保存修改并退出 :x 保存修改并退出 :q 退出，如果对缓冲区进行过修改，则会提示 :q! 强制退出，放弃修改 查找替换 /pattern 向后搜索字符串pattern ?pattern 向前搜索字符串pattern n 下一个匹配(如果是/搜索，则是向下的下一个，?搜索则是向上的下一个) N 上一个匹配(同上) :%s/old/new/g 搜索整个文件，将所有的old替换为new :%s/old/new/gc 搜索整个文件，将所有的old替换为new，每次都要你确认是否替换 复制粘贴 dd 删除光标所在行 dw 删除一个字(word) x 删除当前字符 X 删除前一个字符 D 删除到行末 yy 复制一行，此命令前可跟数字，标识复制多行，如6yy，表示从当前行开始复制6行 yw 复制一个字 y$ 复制到行末 p 粘贴粘贴板的内容到当前行的下面 P 粘贴粘贴板的内容到当前行的上面 ]p 有缩进的粘贴，vim会自动调节代码的缩进 &#34;a 将内容放入/存入a寄存器，可以支持多粘贴板 附：比如常用的一个寄存器就是系统寄存器，名称为&#43;，所以从系统粘贴板粘贴到vim中的命令为&#34;&#43;p,注意此处的&#43;不表示操作符，二十一个寄存器。 移动光标 在vim中移动光标跟其他的编辑器中有很大的区别，不过一旦学会了，就会飞速的在文本中移动了。 h,j,k,l 上，下，左，右 ctrl-f 上翻一页 ctrl-b 下翻一页 % 跳到与当前括号匹配的括号处，如当前在{，则跳转到与之匹配的}处 w 跳到下一个字首，按标点或单词分割 W 跳到下一个字首，长跳，如end-of-line被认为是一个字 e 跳到下一个字尾 E 跳到下一个字尾，长跳 b 跳到上一个字 B 跳到上一个字，长跳 0 跳至行首，不管有无缩进，就是跳到第0个字符 ^ 跳至行首的第一个字符 $ 跳至行尾 gg 跳至文件的第一行 gd 跳至当前光标所在的变量的声明处 [N]G 跳到第N行，如0G，就等价于gg，100G就是第100行 fx 在当前行中找x字符，找到了就跳转至 ; 重复上一个f命令，而不用重复的输入fx tx 与fx类似，但是只是跳转到x的前一个字符处 Fx 跟fx的方向相反 ),( 跳转到上/下一个语句 * 查找光标所在处的单词，向下查找 # 查找光标所在处的单词，向上查找 `. 跳转至上次编辑位置 在屏幕上移动 H 移动光标到当前屏幕上最上边的一行 M 移动光标到当前屏幕上中间的一行 L 移动光标到当前屏幕上最下边的一行 书签 ma 把当前位置存成标签a `a 跳转到标签a处 编辑 r 替换一个字符 J 将下一行和当前行连接为一行 cc 删除当前行并进入编辑模式 cw 删除当前字，并进入编辑模式 c$ 擦除从当前位置至行末的内容，并进入编辑模式 s 删除当前字符并进入编辑模式 S 删除光标所在行并进入编辑模式 xp 交换当前字符和下一个字符 u 撤销 ctrl&#43;r 重做 . 重复上一个编辑命令 ~ 切换大小写，当前字符 g~iw 切换当前字的大小写 gUiw 将当前字变成大写 guiw 将当前字变成小写 &gt;&gt; 将当前行右移一个单位 &lt;&lt; 将当前行左移一个单位(一个tab符) == 自动缩进当前行 插入模式 i 从当前光标处进入插入模式 I 进入插入模式，并置光标于行首 a 追加模式，置光标于当前光标之后 A 追加模式，置光标于行末 o 在当前行之下新加一行，并进入插入模式 O 在当前行之上新加一行，并进入插入模式 Esc 退出插入模式 可视模式 标记文本 v 进入可视模式，单字符模式 V 进入可视模式，行模式 ctrl&#43;v 进入可视模式，列模式，类似于UE的列模式 o 跳转光标到选中块的另一个端点 U 将选中块中的内容转成大写 O 跳转光标到块的另一个端点 aw 选中一个字 ab 选中括号中的所有内容，包括括号本身 aB 选中{}括号中的所有内容 ib 选中括号中的内容，不含括号 iB 选中{}中的内容，不含{} 对标记进行动作 &gt; 块右移 &lt; 块左移 y 复制块 d 删除块 ~ 切换块中内容的大小写">
+
       
       
-      <script src="https://utteranc.es/client.js" repo="wonderflow/wonderflow.github.io" issue-term="pathname"
-        label="Comment" theme="github-light" crossorigin="anonymous" async>
-        </script>
+    
+	
+  </head><body class="ma0 avenir production">
+
+    
+
+  <header>
+    <div class="bg-near-white">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        奇迹之流WonderfloW
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/archives/" title="Archives page">
+              Archives
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
     </div>
   </div>
+</nav>
+    </div>
+  </header>
 
-  <aside class="w-30-l mt6-l">
 
-
-
-
-</aside>
-
-</article>
+    <main class="pb7" role="main">
+      
+<div class="flex-l mt2 mw8 center">
+  <article class="center cf pv5 ph3 ph4-ns mw7">
+    <header>
+      <p class="f6 b helvetica tracked">
+        POSTS
+      </p>
+      <h1 class="f1">
+        VIM使用的常用命令
+      </h1>
+    </header>
+    <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+      <p>高级一些的编辑器，都会包含宏功能，vim当然不能缺少了，在vim中使用宏是非常方便的：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>:qx 开始记录宏，并将结果存入寄存器x
+</span></span><span style="display:flex;"><span>q 退出记录模式
+</span></span><span style="display:flex;"><span>@x 播放记录在x寄存器中的宏命令
+</span></span></code></pre></div><p>稍微解释一下，当在normal模式下输入:qx后，你对文本的所有编辑动作将会被记录下来，再次输入q即退出了记录模
+式，然后输入@x对刚才记录下来的命令进行重复，此命令后可跟数字，表示要重复多少次，比如@x20，可以重复20次。这个在文本的批处理中是非常有用的。
+同时编辑多个文件
+在vim众多的插件中，有一个叫minibuffer的插件，就是下面所说的标签页功能了，可以支持同时编辑多个文件。
+标签命令</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>:tabe fn 在一个新的标签页中编辑文件fn
+</span></span><span style="display:flex;"><span>gt 切换到下一个标签页
+</span></span><span style="display:flex;"><span>gT 切换到上一个标签页
+</span></span><span style="display:flex;"><span>:tabr 切换到第一个标签页
+</span></span><span style="display:flex;"><span>:tabl 切换到最后一个标签页
+</span></span><span style="display:flex;"><span>:tabm [N] 把当前tab移动到第N个tab之后
+</span></span><span style="display:flex;"><span>对，正如你所想象的那样，跟eclipse, ue等的标签页是一个意思！
+</span></span><span style="display:flex;"><span>窗口命令
+</span></span><span style="display:flex;"><span>ctrl+w s 水平分割窗口
+</span></span><span style="display:flex;"><span>ctrl+w w 切换窗口
+</span></span><span style="display:flex;"><span>ctrl+w q 退出当前窗口(由于同时有多个文件，此命令不会影响其他窗口)
+</span></span><span style="display:flex;"><span>ctrl+w v 垂直分割窗口
+</span></span><span style="display:flex;"><span>其他
+</span></span><span style="display:flex;"><span>vim在保存之前不会对文件做实际的修改，只是加载到缓冲区中，对文件的编辑其实是对缓冲区的编辑，直到:w时才会存入物理文件。&lt;!-- more --&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>:e file 把file加载到新的缓冲区中
+</span></span><span style="display:flex;"><span>:bn 跳转到下一个缓冲区
+</span></span><span style="display:flex;"><span>:bd 删除缓冲区(关闭文件)
+</span></span><span style="display:flex;"><span>:sp fn 分割窗口，并将fn加载到新的窗口中
+</span></span><span style="display:flex;"><span>退出编辑器
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>:w 将缓冲区写入文件，即保存修改
+</span></span><span style="display:flex;"><span>:wq 保存修改并退出
+</span></span><span style="display:flex;"><span>:x 保存修改并退出
+</span></span><span style="display:flex;"><span>:q 退出，如果对缓冲区进行过修改，则会提示
+</span></span><span style="display:flex;"><span>:q! 强制退出，放弃修改
+</span></span><span style="display:flex;"><span>查找替换
+</span></span><span style="display:flex;"><span>/pattern 向后搜索字符串pattern
+</span></span><span style="display:flex;"><span>?pattern 向前搜索字符串pattern
+</span></span><span style="display:flex;"><span>n 下一个匹配(如果是/搜索，则是向下的下一个，?搜索则是向上的下一个)
+</span></span><span style="display:flex;"><span>N 上一个匹配(同上)
+</span></span><span style="display:flex;"><span>:%s/old/new/g 搜索整个文件，将所有的old替换为new
+</span></span><span style="display:flex;"><span>:%s/old/new/gc 搜索整个文件，将所有的old替换为new，每次都要你确认是否替换
+</span></span><span style="display:flex;"><span>复制粘贴
+</span></span><span style="display:flex;"><span>dd 删除光标所在行
+</span></span><span style="display:flex;"><span>dw 删除一个字(word)
+</span></span><span style="display:flex;"><span>x 删除当前字符
+</span></span><span style="display:flex;"><span>X 删除前一个字符
+</span></span><span style="display:flex;"><span>D 删除到行末
+</span></span><span style="display:flex;"><span>yy 复制一行，此命令前可跟数字，标识复制多行，如6yy，表示从当前行开始复制6行
+</span></span><span style="display:flex;"><span>yw 复制一个字
+</span></span><span style="display:flex;"><span>y$ 复制到行末
+</span></span><span style="display:flex;"><span>p 粘贴粘贴板的内容到当前行的下面
+</span></span><span style="display:flex;"><span>P 粘贴粘贴板的内容到当前行的上面
+</span></span><span style="display:flex;"><span>]p 有缩进的粘贴，vim会自动调节代码的缩进
+</span></span><span style="display:flex;"><span>&#34;a 将内容放入/存入a寄存器，可以支持多粘贴板
+</span></span><span style="display:flex;"><span>附：比如常用的一个寄存器就是系统寄存器，名称为+，所以从系统粘贴板粘贴到vim中的命令为&#34;+p,注意此处的+不表示操作符，二十一个寄存器。
+</span></span><span style="display:flex;"><span>移动光标
+</span></span><span style="display:flex;"><span>在vim中移动光标跟其他的编辑器中有很大的区别，不过一旦学会了，就会飞速的在文本中移动了。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>h,j,k,l 上，下，左，右
+</span></span><span style="display:flex;"><span>ctrl-f 上翻一页
+</span></span><span style="display:flex;"><span>ctrl-b 下翻一页
+</span></span><span style="display:flex;"><span>% 跳到与当前括号匹配的括号处，如当前在{，则跳转到与之匹配的}处
+</span></span><span style="display:flex;"><span>w 跳到下一个字首，按标点或单词分割
+</span></span><span style="display:flex;"><span>W 跳到下一个字首，长跳，如end-of-line被认为是一个字
+</span></span><span style="display:flex;"><span>e 跳到下一个字尾
+</span></span><span style="display:flex;"><span>E 跳到下一个字尾，长跳
+</span></span><span style="display:flex;"><span>b 跳到上一个字
+</span></span><span style="display:flex;"><span>B 跳到上一个字，长跳
+</span></span><span style="display:flex;"><span>0 跳至行首，不管有无缩进，就是跳到第0个字符
+</span></span><span style="display:flex;"><span>^ 跳至行首的第一个字符
+</span></span><span style="display:flex;"><span>$ 跳至行尾
+</span></span><span style="display:flex;"><span>gg 跳至文件的第一行
+</span></span><span style="display:flex;"><span>gd 跳至当前光标所在的变量的声明处
+</span></span><span style="display:flex;"><span>[N]G 跳到第N行，如0G，就等价于gg，100G就是第100行
+</span></span><span style="display:flex;"><span>fx 在当前行中找x字符，找到了就跳转至
+</span></span><span style="display:flex;"><span>; 重复上一个f命令，而不用重复的输入fx
+</span></span><span style="display:flex;"><span>tx 与fx类似，但是只是跳转到x的前一个字符处
+</span></span><span style="display:flex;"><span>Fx 跟fx的方向相反
+</span></span><span style="display:flex;"><span>),( 跳转到上/下一个语句
+</span></span><span style="display:flex;"><span>* 查找光标所在处的单词，向下查找
+</span></span><span style="display:flex;"><span># 查找光标所在处的单词，向上查找
+</span></span><span style="display:flex;"><span>`. 跳转至上次编辑位置
+</span></span><span style="display:flex;"><span>在屏幕上移动
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>H 移动光标到当前屏幕上最上边的一行
+</span></span><span style="display:flex;"><span>M 移动光标到当前屏幕上中间的一行
+</span></span><span style="display:flex;"><span>L 移动光标到当前屏幕上最下边的一行
+</span></span><span style="display:flex;"><span>书签
+</span></span><span style="display:flex;"><span>ma 把当前位置存成标签a
+</span></span><span style="display:flex;"><span>`a 跳转到标签a处
+</span></span><span style="display:flex;"><span>编辑
+</span></span><span style="display:flex;"><span>r 替换一个字符
+</span></span><span style="display:flex;"><span>J 将下一行和当前行连接为一行
+</span></span><span style="display:flex;"><span>cc 删除当前行并进入编辑模式
+</span></span><span style="display:flex;"><span>cw 删除当前字，并进入编辑模式
+</span></span><span style="display:flex;"><span>c$ 擦除从当前位置至行末的内容，并进入编辑模式
+</span></span><span style="display:flex;"><span>s 删除当前字符并进入编辑模式
+</span></span><span style="display:flex;"><span>S 删除光标所在行并进入编辑模式
+</span></span><span style="display:flex;"><span>xp 交换当前字符和下一个字符
+</span></span><span style="display:flex;"><span>u 撤销
+</span></span><span style="display:flex;"><span>ctrl+r 重做
+</span></span><span style="display:flex;"><span>. 重复上一个编辑命令
+</span></span><span style="display:flex;"><span>~ 切换大小写，当前字符
+</span></span><span style="display:flex;"><span>g~iw 切换当前字的大小写
+</span></span><span style="display:flex;"><span>gUiw 将当前字变成大写
+</span></span><span style="display:flex;"><span>guiw 将当前字变成小写
+</span></span><span style="display:flex;"><span>&gt;&gt; 将当前行右移一个单位
+</span></span><span style="display:flex;"><span>&lt;&lt; 将当前行左移一个单位(一个tab符)
+</span></span><span style="display:flex;"><span>== 自动缩进当前行
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>插入模式
+</span></span><span style="display:flex;"><span>i 从当前光标处进入插入模式
+</span></span><span style="display:flex;"><span>I 进入插入模式，并置光标于行首
+</span></span><span style="display:flex;"><span>a 追加模式，置光标于当前光标之后
+</span></span><span style="display:flex;"><span>A 追加模式，置光标于行末
+</span></span><span style="display:flex;"><span>o 在当前行之下新加一行，并进入插入模式
+</span></span><span style="display:flex;"><span>O 在当前行之上新加一行，并进入插入模式
+</span></span><span style="display:flex;"><span>Esc 退出插入模式
+</span></span><span style="display:flex;"><span>可视模式
+</span></span><span style="display:flex;"><span>标记文本
+</span></span><span style="display:flex;"><span>v 进入可视模式，单字符模式
+</span></span><span style="display:flex;"><span>V 进入可视模式，行模式
+</span></span><span style="display:flex;"><span>ctrl+v 进入可视模式，列模式，类似于UE的列模式
+</span></span><span style="display:flex;"><span>o 跳转光标到选中块的另一个端点
+</span></span><span style="display:flex;"><span>U 将选中块中的内容转成大写
+</span></span><span style="display:flex;"><span>O 跳转光标到块的另一个端点
+</span></span><span style="display:flex;"><span>aw 选中一个字
+</span></span><span style="display:flex;"><span>ab 选中括号中的所有内容，包括括号本身
+</span></span><span style="display:flex;"><span>aB 选中{}括号中的所有内容
+</span></span><span style="display:flex;"><span>ib 选中括号中的内容，不含括号
+</span></span><span style="display:flex;"><span>iB 选中{}中的内容，不含{}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>对标记进行动作
+</span></span><span style="display:flex;"><span>&gt; 块右移
+</span></span><span style="display:flex;"><span>&lt; 块左移
+</span></span><span style="display:flex;"><span>y 复制块
+</span></span><span style="display:flex;"><span>d 删除块
+</span></span><span style="display:flex;"><span>~ 切换块中内容的大小写
+</span></span></code></pre></div>
+    </div>
+  </article>
+</div>
 
     </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+    <footer class="bg-near-white bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-    <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://wonderflow.info">
-      &copy;  奇迹之流WonderfloW 2024 
+    <a class="f4 fw4 hover-black no-underline mid-gray dn dib-ns pv2 ph3" href="https://wonderflow.info/">
+      &copy;  奇迹之流WonderfloW 2025 
     </a>
-    <div>
-<div class="ananke-socials">
-  
-    <a href="https://twitter.com/wonderflow1" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-    <a href="https://github.com/wonderflow" target="_blank" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" rel="noopener" aria-label="follow on GitHub——Opens in a new window">
-      
-        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-</span>
-      
-<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
-</svg>
-</span></a>
-  
-</div>
+    <div><div class="ananke-socials"></div>
 </div>
     <a href="https://beian.miit.gov.cn/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc"> 沪ICP备2020029591号 </a>
     
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3XG75RG8W"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-Z3XG75RG8W', { 'anonymize_ip': false });
-}
-</script>
-
   </div>
 </footer>
+
+
+<div class="reading-progress" id="reading-progress"></div>
+
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+
+<script>
+(function() {
+  
+  const progressBar = document.getElementById('reading-progress');
+  const backToTop = document.getElementById('back-to-top');
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    if (progressBar) {
+      progressBar.style.width = progress + '%';
+    }
+
+    
+    if (backToTop) {
+      if (scrollTop > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }
+  }
+
+  
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  
+  if (backToTop) {
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  
+  updateProgress();
+})();
+</script>
+
   </body>
 </html>
